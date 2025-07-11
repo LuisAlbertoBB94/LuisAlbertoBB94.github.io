@@ -1,3 +1,4 @@
-theme: minima
-title: "Mi Portafolio"
-description: "Proyectos en Python, MATLAB y más"
+title: "Portafolio de [Tu Nombre]"
+description: "Ingeniero en Control | Científico de Datos"
+theme: minima  # Tema por defecto (puedes cambiarlo luego)
+baseurl: ""    # Déjalo así para GitHub Pages
