@@ -2,14 +2,13 @@
 layout: home
 ---
 
-# ¡Hola! Soy [Tu Nombre] 👋
+# ¡Hola! Soy [Tu Nombre] 👨‍💻
 
-**Ingeniero en Control | Científico de Datos**
+**Especialista en Python, MATLAB y Análisis de Datos**
 
 ## Proyectos Destacados
-- 🐍 [Análisis de Datos con Python](/python): Proyecto con Pandas y Power BI.
-- 📊 [Dashboard de Ventas](/dashboard): Visualización en Tableau.
-- 🤖 [Control con MATLAB](/matlab): Simulación de sistemas.
+- 🐍 [Análisis de Datos con Python](/proyectos/python)
+- 📈 [Simulación de Sistemas con MATLAB](/proyectos/matlab)
 
 ## Contacto
-📧 email@ejemplo.com | 🔗 [LinkedIn](https://linkedin.com/in/tuperfil)
+📧 tunombre@email.com | 🔗 [LinkedIn](https://linkedin.com/in/tuperfil)
