@@ -1,5 +1,6 @@
 ---
-layout: home
+layout: page
+title: "Control de Sistemas con MATLAB"
 ---
 
 # ¡Hola! Soy [Tu Nombre] 👨‍💻
