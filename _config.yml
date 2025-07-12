@@ -1,2 +1,23 @@
-title: "Mi Portafolio"
-theme: minima  # Tema por defecto de Jekyll
+title: "Luis Barragán | Ingeniero en Control & Ciencia de Datos"
+description: "Portafolio profesional con proyectos en Python, MATLAB y análisis de datos"
+url: "https://luisalbertobb94.github.io" # Reemplaza con tu URL
+
+# Tema y plugins
+theme: jekyll-theme-cayman # Más moderno que minima
+plugins:
+  - jekyll-seo-tag # Para mejor SEO
+  - jekyll-sitemap # Genera mapa del sitio
+
+# Personalización
+navbar:
+  - name: "Inicio"
+    url: /
+  - name: "Proyectos"
+    url: /proyectos
+  - name: "Contacto"
+    url: /contacto
+
+social:
+  github: LuisAlbertoBB94
+  linkedin: in/luisbarraganbonilla
+  email: luis.bto88@gmail.com
