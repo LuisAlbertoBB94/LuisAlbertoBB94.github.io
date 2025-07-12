@@ -26,3 +26,36 @@ from sklearn.linear_model import LinearRegression
 
 data = pd.read_csv("ventas.csv")
 model = LinearRegression().fit(data[['feature']], data['target'])
+
+
+
+---
+
+### **4. `_layouts/project.html` (Layout Personalizado)**
+```html
+---
+layout: default
+---
+<article class="project">
+  <header>
+    <h1>{{ page.title }}</h1>
+    <div class="meta">
+      <span class="date">{{ page.date | date: "%B %Y" }}</span>
+      <div class="tags">
+        {% for tech in page.technologies %}
+          <span class="tag">{{ tech }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  {% if page.github_url %}
+  <a href="{{ page.github_url }}" class="github-button">
+    <i class="fab fa-github"></i> Ver en GitHub
+  </a>
+  {% endif %}
+</article>
