@@ -1,9 +1,39 @@
-/* Personaliza colores y fuentes */
+// Variables
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+
+// Estructura
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
 }
 
-h1 {
-  color: #2c3e50;
+.project {
+  max-width: 800px;
+  margin: 2rem auto;
+
+  header {
+    border-bottom: 2px solid $primary-color;
+    margin-bottom: 2rem;
+  }
+
+  .tags {
+    margin: 1rem 0;
+    
+    .tag {
+      background: $secondary-color;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
 }
