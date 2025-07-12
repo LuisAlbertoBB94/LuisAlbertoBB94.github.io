@@ -1,9 +1,8 @@
 ---
 layout: page
-title: "Análisis de Datos con Python"
+title: "Proyecto Python"
 ---
 
-## Objetivo
 Análisis de dataset de ventas usando Pandas y Power BI.
 
 ### Herramientas
