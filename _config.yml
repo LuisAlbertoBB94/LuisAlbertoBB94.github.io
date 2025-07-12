@@ -1,2 +1,4 @@
-title: "Mi Portafolio"
+plugins:
+  - jekyll-remote-theme
+  title: "Mi Portafolio"
 remote_theme: jekyll/minima
