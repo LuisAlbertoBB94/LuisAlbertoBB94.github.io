@@ -1,0 +1,6 @@
+- name: "Inicio"
+  url: "/"
+- name: "Proyectos"
+  url: "/proyectos"
+- name: "Publicaciones"
+  url: "/publicaciones"
