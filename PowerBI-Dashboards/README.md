@@ -10,8 +10,8 @@
 
 ## 🌟 Featured Dashboards
 
-### 🌍 Ventas Globales
-[![Descargar Dashboard](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Ventas.pbix)
+### 📈 Ventas Globales
+[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Ventas.pbix)
 
 <p align="center">
   <a href="./Ventas.pbix">
@@ -20,23 +20,23 @@
 </p>
 
 **Descripción**:  
-Análisis de ventas internacionales con utilidad de $671.11M (19.95% margen) en 11 países principales.
+Análisis de ventas internacionales con desglose por país, continente y período (2025-2027).
 
-**Hallazgos clave**:
-- 🏆 Top 3 países: 
-  - Estados Unidos ($165.1M · 24.47%)
-  - China ($86.9M · 16.71%)
-  - Alemania ($83.7M · 25.75%)
-- 📅 Tendencia 2025-2027: Crecimiento anual del 12.4%
+**Métricas clave**:
+- 💰 Utilidad total: $671.1M (Margen 19.95%)
 - 🌎 Distribución por continente:
   - América: 39.14%
-  - Asia: 35.2%
+  - Asia: 35.20%
   - Europa: 17.68%
+- 🏆 Top países:
+  - Estados Unidos: $165.1M (24.47%)
+  - China: $86.9M
+  - Alemania: $83.7M
 
 ---
 
-### 📚 Cursos_BD - Capacitación Clientes
-[![Descargar Dashboard](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./BD_cursos.pbix)
+### 🎓 Cursos BD - Análisis Clientes
+[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./BD_cursos.pbix)
 
 <p align="center">
   <a href="./BD_cursos.pbix">
@@ -45,22 +45,22 @@ Análisis de ventas internacionales con utilidad de $671.11M (19.95% margen) en 
 </p>
 
 **Descripción**:  
-Análisis de 362 cursos (8,659 horas) tomados por clientes durante 2019-2021.
+Reporte de capacitación corporativa (2019-2021) con análisis de clientes, cursos y jornadas.
 
-**Insights**:
-- ⏰ Preferencia horaria:
+**Datos clave**:
+- 📚 Total cursos: 362 (8,659 horas)
+- ⏰ Distribución horaria:
   - Tarde: 41.9%
   - Noche: 37.3%
   - Mañana: 20.8%
-- 🏅 Cursos más demandados:
-  - Excel (24.6% horas)
-  - Word (21.1%)
-  - Access (16.9%)
+- 👥 Participación clientes:
+  - Cliente 003: 21.7%
+  - Cliente 005: 20.7%
 
 ---
 
-### 💰 Facturación Clientes
-[![Descargar Dashboard](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Facturas.pbix)
+### 💼 Facturación Clientes
+[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Facturas.pbix)
 
 <p align="center">
   <a href="./Facturas.pbix">
@@ -69,32 +69,29 @@ Análisis de 362 cursos (8,659 horas) tomados por clientes durante 2019-2021.
 </p>
 
 **Descripción**:  
-Gestión de 778 facturas (€228,110 total) segmentada por cliente, sector y concepto.
+Análisis de facturación por cliente, sector y concepto.
 
-**Datos clave**:
-- 👥 Top clientes:
-  - CLIENTE-0010 (€67,100 · 29.42%)
-  - CLIENTE-0005 (€43,270 · 18.97%)
-- 🏭 Distribución por sector:
+**Hallazgos principales**:
+- 💸 Facturación total: €228,110
+- 🏢 Top clientes:
+  - CLIENTE-0010: 29.42% (€67,100)
+  - CLIENTE-0005: 18.97% (€43,270)
+- 📊 Distribución sectorial:
   - Banca: 30.98%
   - Construcción: 35.35%
   - Metal: 33.68%
-- 📝 Conceptos frecuentes:
-  - Equipos (142 facturas)
-  - Desarrollo (141)
-  - Proyecto (139)
 
 ---
 
 ## 🛠️ Cómo Utilizar
 
-1. Haz clic en cualquier botón **Descargar PBIX**
-2. Abre el archivo en Power BI Desktop (v2.120+)
-3. Actualiza conexiones si es necesario (Ctrl+Alt+R)
+1. Haz clic en el botón **Descargar PBIX**
+2. Abre el archivo en Power BI Desktop (versión 2.120+ recomendada)
+3. Actualiza conexiones de datos si es necesario (Ctrl+Alt+R)
 4. Explora los filtros interactivos:
-   - Selectores temporales
-   - Segmentación por categorías
-   - Navegación jerárquica
+   - Selectores por período
+   - Filtros por categoría/cliente
+   - Segmentaciones geográficas
 
 <div align="center" style="margin-top: 40px;">
   <a href="https://github.com/LuisAlbertoBB94/Data-Analyst-Portfolio">
