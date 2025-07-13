@@ -64,6 +64,23 @@
 <Br>
 <hr>
 <Br>
+
+[... otras secciones anteriores ...]
+
+<Br>
+<hr>
+<Br>
+
+## 📂 Power BI Dashboards
+
+[![PowerBI Projects](https://img.shields.io/badge/📊_View_PowerBI_Dashboards-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](./PowerBI-Dashboards/README.md)
+
+<Br>
+<hr>
+<Br>
+
+<h1>Featured Projects 🚀</h1>
+[... resto de tu contenido actual ...]
 <h1>Featured Projects 🚀</h1>
 <Br>
 
