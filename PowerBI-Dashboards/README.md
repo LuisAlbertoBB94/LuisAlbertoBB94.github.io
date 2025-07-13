@@ -22,17 +22,6 @@
 **Descripción**:  
 Análisis de ventas internacionales con desglose por país, continente y período (2025-2027).
 
-**Métricas clave**:
-- 💰 Utilidad total: $671.1M (Margen 19.95%)
-- 🌎 Distribución por continente:
-  - América: 39.14%
-  - Asia: 35.20%
-  - Europa: 17.68%
-- 🏆 Top países:
-  - Estados Unidos: $165.1M (24.47%)
-  - China: $86.9M
-  - Alemania: $83.7M
-
 ---
 
 ### 🎓 Cursos BD - Análisis Clientes
@@ -47,15 +36,6 @@ Análisis de ventas internacionales con desglose por país, continente y períod
 **Descripción**:  
 Reporte de capacitación corporativa (2019-2021) con análisis de clientes, cursos y jornadas.
 
-**Datos clave**:
-- 📚 Total cursos: 362 (8,659 horas)
-- ⏰ Distribución horaria:
-  - Tarde: 41.9%
-  - Noche: 37.3%
-  - Mañana: 20.8%
-- 👥 Participación clientes:
-  - Cliente 003: 21.7%
-  - Cliente 005: 20.7%
 
 ---
 
@@ -71,15 +51,7 @@ Reporte de capacitación corporativa (2019-2021) con análisis de clientes, curs
 **Descripción**:  
 Análisis de facturación por cliente, sector y concepto.
 
-**Hallazgos principales**:
-- 💸 Facturación total: €228,110
-- 🏢 Top clientes:
-  - CLIENTE-0010: 29.42% (€67,100)
-  - CLIENTE-0005: 18.97% (€43,270)
-- 📊 Distribución sectorial:
-  - Banca: 30.98%
-  - Construcción: 35.35%
-  - Metal: 33.68%
+
 
 ---
 
