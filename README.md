@@ -84,12 +84,8 @@
 <Br>
 <hr>
 <Br>
-<h1>GitHub Stats 📈</h1>
-<Br>
-  
-[![Luis's GitHub stats](https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=merko)](https://github.com/LuisAlbertoBB94/github-readme-stats) [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=LuisAlbertoBB94&layout=compact&theme=merko)](https://github.com/LuisAlbertoBB94/github-readme-stats)
 
-<Br>
+
 <hr>
 <Br>
 <h1>Publications 📚</h1>
