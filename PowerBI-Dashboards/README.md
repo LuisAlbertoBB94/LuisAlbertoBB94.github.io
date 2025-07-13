@@ -9,8 +9,8 @@
 
 ## 🌟 Featured Dashboards
 
-### 🎓 BD Cursos
-[![Descargar Dashboard](https://img.shields.io/badge/Download_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./BD_cursos.pbix)
+### 🎓 BD Cursos Análisis de  Clientes (2019-2021)
+[![Descargar Dashboard](https://img.shields.io/badge/Descargar_Reporte-FF9E0F?style=for-the-badge&logo=powerbi)](./BD_cursos.pbix)
 
 <p align="center">
   <a href="./BD_cursos.pbix">
@@ -19,14 +19,9 @@
 </p>
 
 **Descripción**:  
-Análisis completo de rendimiento académico con métricas de inscripción y progreso estudiantil.
+Reporte analítico que evalúa la demanda de cursos por clientes durante el período 2019-2021, identificando preferencias horarias y cursos más solicitados. Analiza 362 cursos tomados con un total de 8,659 horas de capacitación.
 
-**Características**:
-- Seguimiento de cursos completados vs abandonados
-- Comparativa entre programas académicos
-- Filtros interactivos por periodo y departamento
 
----
 
 ### 👥 HR Analytics
 [![Descargar Dashboard](https://img.shields.io/badge/Download_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./HR-Dashboard.pbix)
