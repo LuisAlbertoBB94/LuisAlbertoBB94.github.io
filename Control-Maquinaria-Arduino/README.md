@@ -53,6 +53,12 @@ Desarrollar un sistema accesible y de bajo costo que permita controlar y monitor
    - Permite enviar comandos remotos para encender o apagar maquinaria
 
 ---
+## 🚀 Cómo ejecutar el sistema
+1. Descargar archivos: [Codigos_Maquinaria_Arduino.zip](ruta/al/zip)
+2. Cargar programas a los Arduinos
+3. Configurar servidor XAMPP
+4. Acceder a `http://localhost/maquinaria`
+---
 
 ## 🖼️ Capturas del sistema
 
