@@ -1,10 +1,5 @@
 # 🎛️ Interactive PD/PID Controller Design Tool
 
-<p align="center">
-  <img src="PD.png" height="200"/>
-  <img src="PID.png" height="200"/> 
-  <img src="PDMP.png" height="200"/>
-</p>
 
 ## 📝 Description
 MATLAB-based interactive tool for designing and analyzing PD/PID controllers for systems with:
