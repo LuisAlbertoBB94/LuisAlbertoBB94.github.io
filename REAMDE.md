@@ -64,7 +64,18 @@
 | ![MATLAB](https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white) | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) | ![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white) |
 |------------|------------|------------|
 </div>
+---
+## 📜 Certifications & Credentials
 
+<div align="center">
+
+| Certification | Badge | Verify |
+|--------------|-------|--------|
+| **The Data Science Course**<br>Complete Data Science Bootcamp 2025 | ![Udemy](https://img.shields.io/badge/Udemy-EC5252?style=flat&logo=udemy&logoColor=white) | [View Credential](https://www.udemy.com/certificate/UC-195d9570-4a45-404b-835b-3f69d2e43897/) |
+| **Data Fundamentals** | ![Credly](https://img.shields.io/badge/Credly-FF6B00?style=flat&logo=credly&logoColor=white) | [View Badge](https://www.credly.com/badges/e395110f-cb5d-4cd5-94d7-7469b528bda1) |
+| **MOS: Excel Associate** | ![Microsoft](https://img.shields.io/badge/Microsoft-5E5E5E?style=flat&logo=microsoft&logoColor=white) | [View Certification](https://www.credly.com/badges/e1027462-8208-4483-9364-d1f36c6f6577) |
+
+</div>
 ---
 
 ## 💼 Professional Experience
