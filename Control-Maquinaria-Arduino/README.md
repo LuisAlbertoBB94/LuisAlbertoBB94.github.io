@@ -2,8 +2,6 @@
 
 Este proyecto presenta un sistema integral de **control y monitoreo remoto** para maquinaria de construcción utilizando **Arduino UNO**, módulos **GSM/GPS**, sensores de temperatura tipo **termopar**, y una **aplicación web** desarrollada en PHP y JavaScript. El sistema permite supervisar en tiempo real el estado operativo de la maquinaria, su ubicación geográfica, la temperatura del equipo y realizar el **encendido o apagado remoto** desde una interfaz web.
 
-> 🎓 Proyecto desarrollado como tesis de licenciatura en la Facultad de Ingeniería de la Universidad Autónoma de Guerrero (2018).
-
 ---
 
 ## 📌 Objetivo del proyecto
@@ -132,18 +130,6 @@ Visualización del estado de la máquina, ubicación geográfica y temperatura e
 
 ---
 
-## 🧑‍💻 Autores
-
-Proyecto desarrollado por:
-
-- **Luis Alberto Barragán Bonilla**
-- **Christopher Morales Martínez**
-
-**Director de tesis:** Dr. Gustavo Adolfo Alonso Silverio  
-**Universidad Autónoma de Guerrero – Facultad de Ingeniería**  
-**Fecha de presentación:** Septiembre de 2018
-
----
 
 ## 🏁 Conclusión
 
@@ -151,9 +137,6 @@ Este sistema demuestra cómo una solución basada en tecnologías accesibles pue
 
 ---
 
-## 📌 Licencia
-
-Este proyecto académico es de uso libre con fines educativos. Si deseas reutilizarlo en un entorno comercial, por favor contacta a los autores.
 
 ---
 
