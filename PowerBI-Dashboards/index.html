@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Portfolio | Luis Alberto Barragán</title>
+    <title>Power BI Portfolio | Luis Barragán</title>
     <style>
         :root {
             --powerbi-yellow: #FFB900;
@@ -33,28 +33,19 @@
             margin-bottom: 20px;
         }
         
-        h1 {
+        h1, h2, h3 {
             color: var(--powerbi-dark);
+        }
+        
+        h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-        }
-        
-        h2 {
-            color: var(--powerbi-dark);
-            border-bottom: 2px solid var(--powerbi-yellow);
-            padding-bottom: 8px;
-            margin: 40px 0 25px;
-        }
-        
-        h3 {
-            color: var(--accent);
-            margin-top: 35px;
         }
         
         .dashboard-card {
             background: white;
             border-radius: 8px;
-            padding: 25px;
+            padding: 30px;
             margin-bottom: 40px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border-left: 4px solid var(--powerbi-yellow);
@@ -68,11 +59,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             display: block;
             margin: 20px auto;
-            transition: transform 0.3s;
-        }
-        
-        .preview-image:hover {
-            transform: scale(1.02);
         }
         
         .download-btn {
@@ -90,7 +76,23 @@
         .download-btn:hover {
             background: var(--powerbi-dark);
             color: white;
-            box-shadow: 0 4px 12px rgba(27, 58, 87, 0.2);
+        }
+        
+        .insights {
+            background: rgba(0, 183, 195, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: var(--powerbi-dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
         }
         
         .back-btn {
@@ -102,19 +104,6 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: var(--accent);
-            box-shadow: 0 4px 12px rgba(0, 183, 195, 0.2);
-        }
-        
-        .features {
-            background: rgba(0, 183, 195, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
         }
         
         @media (max-width: 768px) {
@@ -123,7 +112,7 @@
             }
             
             .dashboard-card {
-                padding: 15px;
+                padding: 20px;
             }
         }
     </style>
@@ -132,67 +121,77 @@
     <header>
         <img src="https://github.com/microsoft/PowerBI-Embedded/raw/master/assets/PowerBI-Logo.png" alt="Power BI Logo" class="powerbi-logo">
         <h1>Power BI Dashboard Portfolio</h1>
-        <p>Interactive data visualization solutions for business intelligence</p>
-        <span style="display: inline-block; background: #1B3A57; color: white; padding: 4px 12px; border-radius: 20px; margin-top: 10px;">Version 2.0</span>
+        <p>Advanced Business Intelligence Solutions</p>
     </header>
 
-    <section>
-        <h2>Featured Dashboards</h2>
+    <div class="dashboard-card">
+        <h2>Global Sales Analysis</h2>
+        <a href="./Ventas.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image">
         
-        <div class="dashboard-card">
-            <h3>Ventas Globales</h3>
-            <a href="./Ventas.pbix" class="download-btn">
-                Download PBIX Report
-            </a>
-            <a href="./Ventas.pbix">
-                <img src="./Ventas-preview.jpg" alt="Ventas Globales Dashboard" class="preview-image">
-            </a>
-            <p><strong>Description:</strong> Análisis de ventas internacionales con desglose por país, continente y período (2025-2027).</p>
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>
+                <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
+                <li>Americas generate <strong>39.14%</strong> of profits</li>
+                <li>USA leads with <strong>24.47%</strong> profit margin</li>
+                <li>Clear quarterly growth trends visible</li>
+            </ul>
         </div>
-        
-        <div class="dashboard-card">
-            <h3>Cursos BD - Análisis Clientes</h3>
-            <a href="./BD_cursos.pbix" class="download-btn">
-                Download PBIX Report
-            </a>
-            <a href="./BD_cursos.pbix">
-                <img src="./BD_cursos_page-0001.jpg" alt="Cursos BD Dashboard" class="preview-image">
-            </a>
-            <p><strong>Description:</strong> Reporte de capacitación corporativa (2019-2021) con análisis de clientes, cursos y jornadas.</p>
-        </div>
-        
-        <div class="dashboard-card">
-            <h3>Facturación Clientes</h3>
-            <a href="./Facturas.pbix" class="download-btn">
-                Download PBIX Report
-            </a>
-            <a href="./Facturas.pbix">
-                <img src="./Facturas-preview.jpg" alt="Facturación Dashboard" class="preview-image">
-            </a>
-            <p><strong>Description:</strong> Análisis de facturación por cliente, sector y concepto.</p>
-        </div>
-    </section>
+    </div>
 
-    <section class="features">
-        <h2>How to Use</h2>
-        <ol>
-            <li>Click the <strong>Download PBIX</strong> button</li>
-            <li>Open the file in Power BI Desktop (version 2.120+ recommended)</li>
-            <li>Update data connections if needed (Ctrl+Alt+R)</li>
-            <li>Explore interactive filters:
-                <ul>
-                    <li>Time period selectors</li>
-                    <li>Category/client filters</li>
-                    <li>Geographic segmentation</li>
-                </ul>
-            </li>
-        </ol>
-    </section>
+    <div class="dashboard-card">
+        <h2>Corporate Training</h2>
+        <a href="./BD_cursos.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image">
+        
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>
+                <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
+                <li>Night shift has <strong>42.27%</strong> participation</li>
+                <li>Top client generated <strong>€65,500</strong> revenue</li>
+                <li>Average 23.92 training hours per course</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Client Billing</h2>
+        <a href="./Facturas.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image">
+        
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>                
+                <li>Banking sector represents <strong>30.98%</strong> of invoices</li>
+                <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
+                <li>Madrid leads in billing by province</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Technical Implementation</h2>
+        <h3>Data Sources</h3>
+        <div>
+            <span class="tech-badge">SQL Server</span>
+            <span class="tech-badge">Excel</span>
+            <span class="tech-badge">SharePoint</span>
+            <span class="tech-badge">REST APIs</span>
+        </div>
+        
+        <h3>Main Features</h3>
+        <ul>
+            <li>Drill-through navigation</li>
+            <li>Dynamic parameter control</li>
+            <li>Custom DAX measures</li>
+            <li>Mobile-responsive design</li>
+        </ul>
+    </div>
 
     <div style="text-align: center;">
-        <a href="https://luisalbertobb94.github.io/" class="back-btn">
-            ← Back to Portfolio
-        </a>
+        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Return to Portfolio</a>
     </div>
 </body>
 </html>
