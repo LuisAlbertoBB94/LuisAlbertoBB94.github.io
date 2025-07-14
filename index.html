@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Alberto Barragán Bonilla | Data & Control Systems</title>
+    <title>Luis Barragán | Data Analyst & Control Engineer</title>
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
             --accent: #e74c3c;
+            --powerbi: #f2c811;
             --light: #ecf0f1;
             --dark: #2c3e50;
             --gray: #95a5a6;
@@ -109,6 +110,25 @@
             transform: translateY(-10px);
         }
         
+        .highlight-card {
+            border: 3px solid var(--powerbi);
+            transform: scale(1.02);
+            position: relative;
+        }
+        
+        .highlight-card::before {
+            content: "Featured Project";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--powerbi);
+            color: var(--dark);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
         .project-img {
             width: 100%;
             height: 200px;
@@ -128,6 +148,12 @@
             border-radius: 5px;
             margin: 10px 5px;
             transition: background 0.3s;
+        }
+        
+        .powerbi-btn {
+            background: var(--powerbi);
+            color: var(--dark);
+            font-weight: bold;
         }
         
         .btn:hover {
@@ -156,43 +182,67 @@
     <header>
         <img src="https://miro.medium.com/max/2048/1*OohqW5DGh9CQS4hLY5FXzA.png" alt="Profile" class="profile-img">
         <h1>Luis Alberto Barragán Bonilla</h1>
-        <p>PhD in Communications & Electronics | Data & Control Systems Specialist</p>
+        <p>PhD in Communications & Electronics | Data Analysis Specialist</p>
     </header>
 
     <div class="section">
         <h2>About Me 👨‍💻</h2>
         <ul>
-            <li>🎓 PhD in Communications & Electronics with expertise in <strong>data analysis</strong> and <strong>control systems</strong></li>
-            <li>👨‍🏫 Experienced educator in <strong>Python, SQL</strong>, and data visualization</li>
-            <li>📊 Advanced proficiency in <strong>Power BI, Tableau</strong>, and <strong>MATLAB</strong></li>
-            <li>🔭 Currently working on data science projects combining control theory and machine learning</li>
-            <li>⚡ Fun fact: I enjoy integrating hardware (electronics) with software solutions</li>
+            <li>🎓 PhD with expertise in <strong>data analysis</strong> and control systems</li>
+            <li>👨‍🏫 Experienced educator in <strong>data visualization</strong> and analytics tools</li>
+            <li>📊 Created <strong>10+ Power BI dashboards</strong> for business intelligence</li>
+            <li>🔭 Transform raw data into <strong>actionable insights</strong></li>
+            <li>⚡ Passionate about data-driven decision making</li>
         </ul>
     </div>
 
     <div class="section">
+        <h2>Featured Analytics Work 📊</h2>
+        <div class="project-showcase">
+            <div class="project-card highlight-card">
+                <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Analytics" class="project-img">
+                <div class="project-content">
+                    <h3>Business Intelligence Portfolio</h3>
+                    <p>Professional dashboards developed with Power BI:</p>
+                    <ul>
+                        <li>Sales performance analysis</li>
+                        <li>Training program optimization</li>
+                        <li>Financial reporting automation</li>
+                    </ul>
+                    <a href="PowerBI-Dashboards/index.html" class="btn powerbi-btn">View Power BI Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Technical Skills 🛠️</h2>
-        <h3>Data Analytics</h3>
+        <h3>Data Analysis</h3>
         <div class="skills-grid">
-            <div class="skill-card">Data Analysis</div>
-            <div class="skill-card">Data Visualization</div>
-            <div class="skill-card">Business Intelligence</div>
-            <div class="skill-card">SQL</div>
-            <div class="skill-card">Statistical Analysis</div>
+            <div class="skill-card" style="background-color: #f2c81120; border: 2px solid var(--powerbi);">
+                <strong>Power BI</strong>
+                <p>Dashboard Development</p>
+            </div>
+            <div class="skill-card">
+                <strong>SQL</strong>
+                <p>Data Querying</p>
+            </div>
+            <div class="skill-card">
+                <strong>Python</strong>
+                <p>Pandas, NumPy</p>
+            </div>
+            <div class="skill-card">
+                <strong>Data Modeling</strong>
+                <p>DAX, Relationships</p>
+            </div>
         </div>
         
-        <h3>Technical Stack</h3>
+        <h3>Additional Skills</h3>
         <div class="skills-grid">
-            <div class="skill-card">Python</div>
-            <div class="skill-card">Pandas</div>
-            <div class="skill-card">NumPy</div>
             <div class="skill-card">Tableau</div>
-            <div class="skill-card">Power BI</div>
-            <div class="skill-card">MySQL</div>
             <div class="skill-card">Excel</div>
-            <div class="skill-card">Jupyter</div>
-            <div class="skill-card">Git</div>
             <div class="skill-card">MATLAB</div>
+            <div class="skill-card">Git</div>
         </div>
     </div>
 
@@ -201,30 +251,21 @@
         <h3>Data Programming & Visualization Instructor</h3>
         <p><strong>Universidad del Valle de México</strong> | 2024–2025</p>
         <ul>
-            <li>Designed and led <strong>Data Analytics bootcamps</strong> teaching Python, SQL, and data visualization</li>
-            <li>Guided students in developing 10+ <strong>Power BI/Tableau dashboards</strong></li>
+            <li>Designed and led <strong>Data Analytics bootcamps</strong> teaching Power BI and Tableau</li>
+            <li>Guided students in developing <strong>interactive dashboards</strong> for real-world datasets</li>
         </ul>
         
         <h3>Control Systems Professor</h3>
         <p><strong>Instituto Politécnico Nacional</strong> | 2021–2023</p>
         <ul>
-            <li>Developed <strong>MATLAB data analysis</strong> scripts for system modeling</li>
-            <li>Applied statistical methods to analyze control system performance</li>
+            <li>Developed <strong>data analysis</strong> scripts for system modeling</li>
+            <li>Applied statistical methods to analyze system performance</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>Featured Projects</h2>
+        <h2>Other Projects</h2>
         <div class="project-showcase">
-            <div class="project-card">
-				<img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboards" class="project-img">
-				<div class="project-content">
-					<h3>Power BI Analytics</h3>
-					<p>Advanced Business Intelligence</p>
-				<a href="PowerBI-Dashboards/index.html" class="btn">View Portfolio</a>
-				</div>
-			</div>
-            
             <div class="project-card">
                 <img src="Control-Maquinaria-Arduino/Interfaz.png" alt="IoT System" class="project-img">
                 <div class="project-content">
@@ -235,7 +276,7 @@
             </div>
             
             <div class="project-card">
-                <img src="MATLAB-Projects/PDMP.png" alt="MATLAB Control Design" class="project-img">
+                <img src="MATLAB-Projects/PDMP.png" alt="MATLAB Control" class="project-img">
                 <div class="project-content">
                     <h3>Control Systems Designer</h3>
                     <p>PD/PID MATLAB Tool</p>
