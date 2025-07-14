@@ -10,7 +10,6 @@
 - 👨‍🏫 Experienced educator in **Python, SQL**, and data visualization
 - 📊 Advanced proficiency in **Power BI, Tableau**, and **MATLAB** for technical and analytical applications
 - 🔭 Currently working on data science projects combining control theory and machine learning
-- 🌱 Deepening my knowledge in **Machine Learning** and **Big Data** technologies
 - 💬 Ask me about: Data Analysis, Control Systems, Python, SQL, or academic research
 - ⚡ Fun fact: I enjoy integrating hardware (electronics) with software solutions
 
