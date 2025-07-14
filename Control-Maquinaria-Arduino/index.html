@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Control de Maquinaria | Luis Barragán</title>
+    <style>
+        :root {
+            --arduino-blue: #00878F;
+            --arduino-dark: #2C3E50;
+            --accent: #E74C3C;
+            --light-bg: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--arduino-dark), var(--arduino-blue));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .arduino-logo {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--arduino-dark);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid var(--arduino-blue);
+            padding-bottom: 8px;
+            margin: 50px 0 30px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--arduino-blue);
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .component-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--arduino-blue);
+        }
+        
+        .screenshot {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 25px auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--arduino-blue);
+            color: white;
+            padding: 12px 25px;
+            margin: 15px 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--arduino-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            margin: 40px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: var(--arduino-dark);
+            color: white;
+            padding: 12px 30px;
+            margin: 40px 0;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: var(--accent);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg" alt="Arduino Logo" class="arduino-logo">
+        <h1>Sistema de Control y Monitoreo de Maquinaria</h1>
+        <p>Control remoto con Arduino, GSM/GPS y aplicación web</p>
+    </header>
+
+    <div class="project-card">
+        <h2>Objetivo del proyecto</h2>
+        <p>Desarrollar un sistema accesible y de bajo costo que permita controlar y monitorear maquinaria de construcción para prevenir fallas mecánicas, robos o usos no autorizados mediante tecnologías integradas de geolocalización, sensores y comunicación móvil.</p>
+    </div>
+
+    <div class="project-card">
+        <h2>Componentes del sistema</h2>
+        
+        <h3>Hardware</h3>
+        <div class="component-grid">
+            <div class="component-card">
+                <strong>Arduino UNO</strong>
+                <p>Placa controladora principal</p>
+            </div>
+            <div class="component-card">
+                <strong>Módulo GSM SIM900</strong>
+                <p>Comunicación celular</p>
+            </div>
+            <div class="component-card">
+                <strong>GPS Ublox NEO-6M</strong>
+                <p>Geolocalización</p>
+            </div>
+            <div class="component-card">
+                <strong>Termopar tipo K</strong>
+                <p>Medición de temperatura</p>
+            </div>
+        </div>
+        
+        <h3>Software</h3>
+        <div class="component-grid">
+            <div class="component-card">
+                <strong>Arduino IDE</strong>
+                <p>Programación en C/C++</p>
+            </div>
+            <div class="component-card">
+                <strong>XAMPP</strong>
+                <p>Servidor web local</p>
+            </div>
+            <div class="component-card">
+                <strong>PHP + MySQL</strong>
+                <p>Backend y base de datos</p>
+            </div>
+            <div class="component-card">
+                <strong>Google Maps API</strong>
+                <p>Visualización de ubicación</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <h2>Funcionamiento del sistema</h2>
+        <ol>
+            <li><strong>Nodo en la maquinaria:</strong> Lee temperatura y posición GPS, envía datos via GSM</li>
+            <li><strong>Nodo servidor:</strong> Recibe datos y los guarda en MySQL</li>
+            <li><strong>Aplicación web:</strong> Muestra estado, ubicación y permite control remoto</li>
+        </ol>
+        
+        <img src="Interfaz.png" alt="Interfaz de monitoreo" class="screenshot">
+        <p class="caption" style="text-align: center; margin-top: -15px; color: #666;">Interfaz web de monitoreo en tiempo real</p>
+    </div>
+
+    <div class="project-card">
+        <h2>Capturas del sistema</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div>
+                <img src="login.png" alt="Inicio de sesión" style="width: 100%; border-radius: 6px;">
+                <p style="text-align: center;">Inicio de sesión</p>
+            </div>
+            <div>
+                <img src="BD.png" alt="Base de datos" style="width: 100%; border-radius: 6px;">
+                <p style="text-align: center;">Base de datos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <h2>Demostración en video</h2>
+        <div class="video-container">
+            <video width="100%" controls>
+                <source src="Video.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </div>
+        <a href="Video.mp4" class="btn">Descargar Video</a>
+    </div>
+
+    <div class="project-card">
+        <h2>Configuración del sistema</h2>
+        <h3>Requisitos</h3>
+        <ul>
+            <li>2 placas Arduino UNO</li>
+            <li>Módulos GSM, GPS, Ethernet</li>
+            <li>Computadora con XAMPP</li>
+            <li>Conexión a red local</li>
+        </ul>
+        
+        <h3>Instalación</h3>
+        <ol>
+            <li>Descargar <a href="Codigos_Maquinaria_Arduino.zip" class="btn">Códigos Arduino</a></li>
+            <li>Cargar programas a los Arduinos</li>
+            <li>Configurar servidor XAMPP</li>
+            <li>Acceder a <code>http://localhost/maquinaria</code></li>
+        </ol>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Volver al Portafolio</a>
+    </div>
+</body>
+</html>
