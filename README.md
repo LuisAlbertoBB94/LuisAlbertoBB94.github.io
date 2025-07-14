@@ -71,6 +71,41 @@
 <hr>
 <Br>
 
+
+
+## 🏭 Control de Maquinaria Industrial vía Arduino
+
+[![ControlMaquinaria](https://img.shields.io/badge/🔧_Control_de_Maquinaria_vía_Arduino-FF9E0F?style=for-the-badge&logo=arduino&logoColor=white)](./Control-Maquinaria-Arduino/README.md)
+
+**Tecnologías utilizadas:**
+- PHP para backend web
+- MySQL para base de datos
+- Arduino C++ para control hardware
+- Comunicación serial Arduino-PC
+
+**Características principales:**
+- Sistema de autenticación de usuarios
+- Panel de control en tiempo real
+- Registro histórico de operaciones
+- Interfaz web responsive
+
+<Br>
+
+### 📷 Capturas del sistema
+<!-- Espacio para agregar imágenes después -->
+[![Login](https://via.placeholder.com/150?text=Login+Screen)]() [![Dashboard](https://via.placeholder.com/150?text=Main+Dashboard)]() [![DB](https://via.placeholder.com/150?text=Database+View)]()
+
+### 📹 Video demostrativo
+<!-- Espacio para video después -->
+[![Video Demo](https://via.placeholder.com/150?text=Video+Demonstration)]()
+
+<Br>
+
+### 📝 Fragmentos de código destacados
+
+```cpp
+// ESPACIO PARA CÓDIGO PRINCIPAL DE ENVÍO DE DATOS
+
 <h1>MATLAB Projects 🧮</h1>
 
 - [Control Systems Data Analysis Toolkit](https://github.com/LuisAlbertoBB94/MATLAB-Control-Analysis)
