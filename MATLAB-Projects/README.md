@@ -1,5 +1,8 @@
 # 🎛️ Interactive PD/PID Controller Design Tool
-
+## 🖥️ Screenshots
+| PD Controller | PID Controller | Minimum Phase PD |
+|--------------|---------------|------------------|
+| <img src="PD.png" width="250"> | <img src="PID.png" width="250"> | <img src="PDMP.png" width="250"> |
 
 ## 📝 Description
 MATLAB-based interactive tool for designing and analyzing PD/PID controllers for systems with:
@@ -27,10 +30,7 @@ MATLAB-based interactive tool for designing and analyzing PD/PID controllers for
 2. **Source Code** (MATLAB required):
    - [Download code.zip](code.zip)
 
-## 🖥️ Screenshots
-| PD Controller | PID Controller | Minimum Phase PD |
-|--------------|---------------|------------------|
-| <img src="PD.png" width="250"> | <img src="PID.png" width="250"> | <img src="PDMP.png" width="250"> |
+
 
 ## 🚀 Quick Start
 1. Run the executable or MATLAB script
