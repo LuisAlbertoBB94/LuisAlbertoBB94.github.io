@@ -104,6 +104,21 @@
 <hr>
 <Br>
 
+<Br>
+<hr>
+<Br>
+
+## 🛠️ MATLAB Projects
+
+<div align="center">
+  <a href="MATLAB-Projects/README.md">
+    <img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/52084/versions/1/screenshot.jpg" alt="MATLAB Projects" width="60%">
+  </a>
+  <h3>Control Systems Design Toolkit</h3>
+  
+  [![View Project](https://img.shields.io/badge/Explore_MATLAB_Projects-0076A8?style=for-the-badge&logo=mathworks&logoColor=white)](MATLAB-Projects/README.md)
+</div>
+
 <h1>Publications 📚</h1>
 <Br>
 
