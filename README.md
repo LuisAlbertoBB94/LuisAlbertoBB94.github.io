@@ -62,39 +62,44 @@
 <hr>
 <Br>
 
+## 📊 Power BI Analytics Portfolio
 
-## 📂 Power BI Dashboards
+<div align="center">
+  <a href="PowerBI-Dashboards/README.md">
+    <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="80%">
+  </a>
+  <h4>Advanced Business Intelligence Solutions</h4>
+  
+  [![Explore Dashboards](https://img.shields.io/badge/View_Dashboard_Collection-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](PowerBI-Dashboards/README.md)
+</div>
 
-[![PowerBI Projects](https://img.shields.io/badge/📊_View_PowerBI_Dashboards-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](./PowerBI-Dashboards/README.md)
+**Featured Capabilities:**  
+▸ Sales performance analytics  
+▸ Customer behavior visualization  
+▸ Automated financial reporting  
+▸ Interactive data exploration  
 
 <Br>
 <hr>
 <Br>
 
+## 🏗️ Industrial Control System Project
 
+<div align="center">
+  <a href="Control-Maquinaria-Arduino/README.md">
+    <img src="Control-Maquinaria-Arduino/Interfaz.png" alt="Project Interface" width="80%">
+  </a>
+  <h4>IoT Machinery Monitoring System</h4>
+  
+  [![Project Badge](https://img.shields.io/badge/Explore_Full_Project-0066CC?style=for-the-badge&logo=arduino&logoColor=white)](Control-Maquinaria-Arduino/README.md)
+  [![Demo Video](https://img.shields.io/badge/Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](Control-Maquinaria-Arduino/Video.mp4)
+</div>
 
-## 🚜 Sistema Inteligente de Control para Maquinaria Pesada
-
-[![Badge Proyecto](https://img.shields.io/badge/VER_PROYECTO_COMPLETO-0066CC?style=for-the-badge&logo=arduino&logoColor=white)](Control-Maquinaria-Arduino/README.md)
-
-**Solución integral para gestión remota de maquinaria**  
-▸ Geolocalización en tiempo real  
-▸ Monitoreo de temperatura industrial  
-▸ Control de encendido/apagado remoto  
-▸ Histórico de operaciones  
-
-### 💻 Tecnologías Clave
-| Área          | Tecnologías                     |
-|---------------|---------------------------------|
-| **Hardware**  | Arduino, GSM/GPS, Termopares    |
-| **Software**  | PHP, MySQL, Google Maps API     |
-| **Seguridad** | Autenticación de usuarios       |
-
-[▶️ Ver demostración en video](Control-Maquinaria-Arduino/Video.mp4)  
-[📚 Documentación técnica](Control-Maquinaria-Arduino/docs/)
-
-
-
+**Key Features:**  
+▸ Real-time GPS tracking  
+▸ Industrial temperature monitoring  
+▸ Remote power control  
+▸ Web-based dashboard  
 
 <Br>
 <hr>
@@ -103,14 +108,14 @@
 <h1>Publications 📚</h1>
 <Br>
 
-- **Modified Smith Predictor for high-order delayed processes**  
+- **[Modified Smith Predictor for high-order delayed processes](https://doi.org/10.1016/j.jprocont.2024.103299)**  
   *Journal of Process Control, 2024*
   
-- **Observer-predictor control for unstable high-order delay systems**  
-  *Processes, 2023*
+- **[Observer-predictor control for unstable high-order delay systems](https://onlinelibrary.wiley.com/doi/epdf/10.1002/asjc.2914)**  
+  *Asian Journal of Control, 2023*
 
-- **Observer-based control for delayed systems with unstable poles**  
-  *Asian Journal of Control, 2022*
+- **[Observer-based control for delayed systems with unstable poles](https://doi.org/10.3390/pr11061613)**  
+  *Processes, 2022*
 
 <Br>
 <hr>
