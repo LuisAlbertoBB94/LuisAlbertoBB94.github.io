@@ -73,46 +73,28 @@
 
 
 
-## 🏭 Control de Maquinaria Industrial vía Arduino
+## 🚜 Sistema Inteligente de Control para Maquinaria Pesada
 
-<details>
-<summary>🔍 Ver detalles del sistema</summary>
+[![Badge Proyecto](https://img.shields.io/badge/VER_PROYECTO_COMPLETO-0066CC?style=for-the-badge&logo=arduino&logoColor=white)](Control-Maquinaria-Arduino/README.md)
 
-[![ControlMaquinaria](https://img.shields.io/badge/🔧_Control_de_Maquinaria_vía_Arduino-FF9E0F?style=for-the-badge&logo=arduino&logoColor=white)](Control-Maquinaria-Arduino/README.md)
+**Solución integral para gestión remota de maquinaria**  
+▸ Geolocalización en tiempo real  
+▸ Monitoreo de temperatura industrial  
+▸ Control de encendido/apagado remoto  
+▸ Histórico de operaciones  
 
-**Tecnologías principales:**
-- PHP (Backend)
-- MySQL (Base de datos) 
-- Arduino C++ (Control hardware)
-- Comunicación serial
+### 💻 Tecnologías Clave
+| Área          | Tecnologías                     |
+|---------------|---------------------------------|
+| **Hardware**  | Arduino, GSM/GPS, Termopares    |
+| **Software**  | PHP, MySQL, Google Maps API     |
+| **Seguridad** | Autenticación de usuarios       |
 
-**Características destacadas:**
-- Autenticación segura de usuarios
-- Panel de control en tiempo real
-- Historial completo de operaciones
-- Diseño responsive para móviles
+[▶️ Ver demostración en video](Control-Maquinaria-Arduino/Video.mp4)  
+[📚 Documentación técnica](Control-Maquinaria-Arduino/docs/)
 
-### 📸 Capturas del sistema  
-[![Login](Control-Maquinaria-Arduino/login.png)](Control-Maquinaria-Arduino/login.png)  
-*Interfaz de autenticación*
 
-[![Dashboard](Control-Maquinaria-Arduino/Interfaz.png)](Control-Maquinaria-Arduino/Interfaz.png)  
-*Panel de control principal*
 
-[![Database](Control-Maquinaria-Arduino/BD.png)](Control-Maquinaria-Arduino/BD.png)  
-*Estructura de base de datos*
-
-### 🎥 Video demostrativo
-[![Ver demostración](Control-Maquinaria-Arduino/Video.mp4)](Control-Maquinaria-Arduino/Video.mp4)
-
-</details>
-
-<h1>Education & Certifications 🎓</h1>
-<Br>
-
-| [![](https://img.shields.io/badge/PhD_Communications_&_Electronics-8A2BE2?style=for-the-badge)](https://www.ipn.mx) | [![](https://img.shields.io/badge/MSc_Mechanical_&_Electrical_Engineering-4B0082?style=for-the-badge)](https://www.ipn.mx) | [![](https://img.shields.io/badge/Microsoft_Office_Specialist-217346?style=for-the-badge)](https://www.microsoft.com) |
-|-------------|-------------|-------------|
-| [![](https://img.shields.io/badge/IBM_Data_Fundamentals-052FAD?style=for-the-badge)](https://www.ibm.com) | [![](https://img.shields.io/badge/English_CEFR_B1-FFD700?style=for-the-badge)](https://www.cambridgeenglish.org) | [![](https://img.shields.io/badge/Data_Science_Bootcamp-FF6F00?style=for-the-badge)]() |
 
 <Br>
 <hr>
