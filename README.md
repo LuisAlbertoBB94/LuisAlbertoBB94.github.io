@@ -10,7 +10,6 @@
 - 👨‍🏫 Experienced educator in **Python, SQL**, and data visualization
 - 📊 Advanced proficiency in **Power BI, Tableau**, and **MATLAB** for technical and analytical applications
 - 🔭 Currently working on data science projects combining control theory and machine learning
-- 🌱 Deepening my knowledge in **Machine Learning** and **Big Data** technologies
 - 💬 Ask me about: Data Analysis, Control Systems, Python, SQL, or academic research
 - ⚡ Fun fact: I enjoy integrating hardware (electronics) with software solutions
 
@@ -62,82 +61,75 @@
 <hr>
 <Br>
 
+## 📊 Power BI Analytics Portfolio
 
-## 📂 Power BI Dashboards
+<div align="center">
+  <a href="PowerBI-Dashboards/README.md">
+    <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="80%">
+  </a>
+  <h4>Advanced Business Intelligence Solutions</h4>
+  
+  [![Explore Dashboards](https://img.shields.io/badge/View_Dashboard_Collection-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](PowerBI-Dashboards/README.md)
+</div>
 
-[![PowerBI Projects](https://img.shields.io/badge/📊_View_PowerBI_Dashboards-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](./PowerBI-Dashboards/README.md)
-
-<Br>
-<hr>
-<Br>
-
-
-
-## 🏭 Control de Maquinaria Industrial vía Arduino
-
-[![ControlMaquinaria](https://img.shields.io/badge/🔧_Control_de_Maquinaria_vía_Arduino-FF9E0F?style=for-the-badge&logo=arduino&logoColor=white)](./Control-Maquinaria-Arduino/README.md)
-
-**Tecnologías utilizadas:**
-- PHP para backend web
-- MySQL para base de datos
-- Arduino C++ para control hardware
-- Comunicación serial Arduino-PC
-
-**Características principales:**
-- Sistema de autenticación de usuarios
-- Panel de control en tiempo real
-- Registro histórico de operaciones
-- Interfaz web responsive
-
-<Br>
-
-### 📷 Capturas del sistema
-<!-- Espacio para agregar imágenes después -->
-[![Login](https://via.placeholder.com/150?text=Login+Screen)]() [![Dashboard](https://via.placeholder.com/150?text=Main+Dashboard)]() [![DB](https://via.placeholder.com/150?text=Database+View)]()
-
-### 📹 Video demostrativo
-<!-- Espacio para video después -->
-[![Video Demo](https://via.placeholder.com/150?text=Video+Demonstration)]()
-
-<Br>
-
-### 📝 Fragmentos de código destacados
-
-```cpp
-// ESPACIO PARA CÓDIGO PRINCIPAL DE ENVÍO DE DATOS
-
-<h1>MATLAB Projects 🧮</h1>
-
-- [Control Systems Data Analysis Toolkit](https://github.com/LuisAlbertoBB94/MATLAB-Control-Analysis)
-- [Time-Series Forecasting with System Identification](https://github.com/LuisAlbertoBB94/MATLAB-Time-Series)
-- [Statistical Process Control Simulations](https://github.com/LuisAlbertoBB94/MATLAB-SPC)
+**Featured Capabilities:**  
+▸ Sales performance analytics  
+▸ Customer behavior visualization  
+▸ Automated financial reporting  
+▸ Interactive data exploration  
 
 <Br>
 <hr>
 <Br>
 
-<h1>Education & Certifications 🎓</h1>
-<Br>
+## 🏗️ Industrial Control System Project
 
-| [![](https://img.shields.io/badge/PhD_Communications_&_Electronics-8A2BE2?style=for-the-badge)](https://www.ipn.mx) | [![](https://img.shields.io/badge/MSc_Mechanical_&_Electrical_Engineering-4B0082?style=for-the-badge)](https://www.ipn.mx) | [![](https://img.shields.io/badge/Microsoft_Office_Specialist-217346?style=for-the-badge)](https://www.microsoft.com) |
-|-------------|-------------|-------------|
-| [![](https://img.shields.io/badge/IBM_Data_Fundamentals-052FAD?style=for-the-badge)](https://www.ibm.com) | [![](https://img.shields.io/badge/English_CEFR_B1-FFD700?style=for-the-badge)](https://www.cambridgeenglish.org) | [![](https://img.shields.io/badge/Data_Science_Bootcamp-FF6F00?style=for-the-badge)]() |
+<div align="center">
+  <a href="Control-Maquinaria-Arduino/README.md">
+    <img src="Control-Maquinaria-Arduino/Interfaz.png" alt="Project Interface" width="80%">
+  </a>
+  <h4>IoT Machinery Monitoring System</h4>
+  
+  [![Project Badge](https://img.shields.io/badge/Explore_Full_Project-0066CC?style=for-the-badge&logo=arduino&logoColor=white)](Control-Maquinaria-Arduino/README.md)
+  [![Demo Video](https://img.shields.io/badge/Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](Control-Maquinaria-Arduino/Video.mp4)
+</div>
+
+**Key Features:**  
+▸ Real-time GPS tracking  
+▸ Industrial temperature monitoring  
+▸ Remote power control  
+▸ Web-based dashboard  
 
 <Br>
 <hr>
 <Br>
+
+<Br>
+<hr>
+<Br>
+
+## 🛠️ MATLAB Projects
+
+<div align="center">
+  <a href="MATLAB-Projects/README.md">
+    <img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/52084/versions/1/screenshot.jpg" alt="MATLAB Projects" width="60%">
+  </a>
+  <h3>Control Systems Design Toolkit</h3>
+  
+  [![View Project](https://img.shields.io/badge/Explore_MATLAB_Projects-0076A8?style=for-the-badge&logo=mathworks&logoColor=white)](MATLAB-Projects/README.md)
+</div>
 
 <h1>Publications 📚</h1>
 <Br>
 
-- **Modified Smith Predictor for high-order delayed processes**  
+- **[Modified Smith Predictor for high-order delayed processes](https://doi.org/10.1016/j.jprocont.2024.103299)**  
   *Journal of Process Control, 2024*
   
-- **Observer-predictor control for unstable high-order delay systems**  
-  *Processes, 2023*
+- **[Observer-predictor control for unstable high-order delay systems](https://onlinelibrary.wiley.com/doi/epdf/10.1002/asjc.2914)**  
+  *Asian Journal of Control, 2023*
 
-- **Observer-based control for delayed systems with unstable poles**  
-  *Asian Journal of Control, 2022*
+- **[Observer-based control for delayed systems with unstable poles](https://doi.org/10.3390/pr11061613)**  
+  *Processes, 2022*
 
 <Br>
 <hr>
