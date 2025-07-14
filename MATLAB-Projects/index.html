@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PD/PID Controller Design Tool</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .screenshots img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .screenshots img:hover {
+            transform: scale(1.05);
+        }
+        .feature-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎛️ Interactive PD/PID Controller Design Tool</h1>
+        <p>MATLAB-based tool for control systems with time delays and unstable poles</p>
+    </header>
+
+    <section>
+        <h2>🖥️ Screenshots</h2>
+        <div class="screenshots">
+            <img src="PD.png" alt="PD Controller" width="300">
+            <img src="PID.png" alt="PID Controller" width="300">
+            <img src="PDMP.png" alt="Minimum Phase PD" width="300">
+        </div>
+    </section>
+
+    <section>
+        <h2>📝 Description</h2>
+        <p>MATLAB-based interactive tool for designing and analyzing PD/PID controllers for systems with:</p>
+        <ul>
+            <li>Time delays</li>
+            <li>Two unstable poles</li>
+            <li>Complex conjugate pole pairs</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>✨ Key Features</h2>
+        <div class="feature-box">
+            <h3>Three Control Modules</h3>
+            <ul>
+                <li>Non-minimum phase PD controller</li>
+                <li>Non-minimum phase PID controller</li>
+                <li>Minimum phase PD controller</li>
+            </ul>
+        </div>
+        
+        <div class="feature-box">
+            <h3>Visual Stability Analysis</h3>
+            <ul>
+                <li>Nyquist diagrams</li>
+                <li>Phase margin evaluation</li>
+                <li>Parameter stability regions</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>📥 Download & Installation</h2>
+        <a href="ControllerPD_PID.exe" class="download-btn">Download Executable (Windows)</a>
+        <a href="code.zip" class="download-btn">Download Source Code</a>
+        
+        <h3>🚀 Quick Start</h3>
+        <ol>
+            <li>Run the executable or MATLAB script</li>
+            <li>Enter system parameters in main interface</li>
+            <li>Select controller type (PD/PID)</li>
+            <li>Analyze stability regions and Nyquist plots</li>
+            <li>Export your controller design</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>📚 Academic Background</h2>
+        <p>Developed as part of PhD research in Control Systems at Instituto Politécnico Nacional.</p>
+        <p>Implements theoretical stability conditions from:</p>
+        <ul>
+            <li>Modified Smith Predictor architectures</li>
+            <li>Observer-predictor control frameworks</li>
+            <li>Frequency-domain stability analysis</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🔗 Related Publications</h2>
+        <ul>
+            <li><a href="https://doi.org/10.1016/j.jprocont.2024.103299">Modified Smith Predictor for high-order delayed processes</a> - Journal of Process Control, 2024</li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914">Observer-predictor control for unstable high-order delay systems</a> - Asian Journal of Control, 2023</li>
+        </ul>
+    </section>
+</body>
+</html>
