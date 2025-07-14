@@ -71,9 +71,7 @@
 <hr>
 <Br>
 
-<Br>
-<hr>
-<Br>
+
 
 ## 🏭 Control de Maquinaria Industrial vía Arduino
 
