@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luis Alberto Barragán Bonilla | Data & Control Systems</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .skill-card {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .project-card {
+            flex: 1 1 300px;
+            max-width: 400px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .project-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://miro.medium.com/max/2048/1*OohqW5DGh9CQS4hLY5FXzA.png" alt="Profile" class="profile-img">
+        <h1>Luis Alberto Barragán Bonilla</h1>
+        <p>PhD in Communications & Electronics | Data & Control Systems Specialist</p>
+    </header>
+
+    <div class="section">
+        <h2>About Me 👨‍💻</h2>
+        <ul>
+            <li>🎓 PhD in Communications & Electronics with expertise in <strong>data analysis</strong> and <strong>control systems</strong></li>
+            <li>👨‍🏫 Experienced educator in <strong>Python, SQL</strong>, and data visualization</li>
+            <li>📊 Advanced proficiency in <strong>Power BI, Tableau</strong>, and <strong>MATLAB</strong></li>
+            <li>🔭 Currently working on data science projects combining control theory and machine learning</li>
+            <li>⚡ Fun fact: I enjoy integrating hardware (electronics) with software solutions</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Technical Skills 🛠️</h2>
+        <h3>Data Analytics</h3>
+        <div class="skills-grid">
+            <div class="skill-card">Data Analysis</div>
+            <div class="skill-card">Data Visualization</div>
+            <div class="skill-card">Business Intelligence</div>
+            <div class="skill-card">SQL</div>
+            <div class="skill-card">Statistical Analysis</div>
+        </div>
+        
+        <h3>Technical Stack</h3>
+        <div class="skills-grid">
+            <div class="skill-card">Python</div>
+            <div class="skill-card">Pandas</div>
+            <div class="skill-card">NumPy</div>
+            <div class="skill-card">Tableau</div>
+            <div class="skill-card">Power BI</div>
+            <div class="skill-card">MySQL</div>
+            <div class="skill-card">Excel</div>
+            <div class="skill-card">Jupyter</div>
+            <div class="skill-card">Git</div>
+            <div class="skill-card">MATLAB</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Professional Experience 👨‍💻</h2>
+        <h3>Data Programming & Visualization Instructor</h3>
+        <p><strong>Universidad del Valle de México</strong> | 2024–2025</p>
+        <ul>
+            <li>Designed and led <strong>Data Analytics bootcamps</strong> teaching Python, SQL, and data visualization</li>
+            <li>Guided students in developing 10+ <strong>Power BI/Tableau dashboards</strong></li>
+        </ul>
+        
+        <h3>Control Systems Professor</h3>
+        <p><strong>Instituto Politécnico Nacional</strong> | 2021–2023</p>
+        <ul>
+            <li>Developed <strong>MATLAB data analysis</strong> scripts for system modeling</li>
+            <li>Applied statistical methods to analyze control system performance</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Featured Projects</h2>
+        <div class="project-showcase">
+            <div class="project-card">
+                <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" class="project-img">
+                <div class="project-content">
+                    <h3>Power BI Analytics</h3>
+                    <p>Advanced Business Intelligence Solutions</p>
+                    <a href="PowerBI-Dashboards/README.md" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="Control-Maquinaria-Arduino/Interfaz.png" alt="IoT System" class="project-img">
+                <div class="project-content">
+                    <h3>IoT Control System</h3>
+                    <p>Machinery Monitoring with Arduino</p>
+                    <a href="Control-Maquinaria-Arduino/README.md" class="btn">View Project</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="PD.png" alt="MATLAB Control" class="project-img">
+                <div class="project-content">
+                    <h3>MATLAB Controller</h3>
+                    <p>PD/PID Design Tool</p>
+                    <a href="MATLAB-Projects/README.md" class="btn">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Publications 📚</h2>
+        <ul>
+            <li><a href="https://doi.org/10.1016/j.jprocont.2024.103299">Modified Smith Predictor for high-order delayed processes</a> - Journal of Process Control, 2024</li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914">Observer-predictor control for unstable high-order delay systems</a> - Asian Journal of Control, 2023</li>
+        </ul>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <h2>Get in Touch 📬</h2>
+        <a href="https://www.linkedin.com/in/LuisBarraganBonilla" class="btn">LinkedIn</a>
+        <a href="mailto:luis.bto08@gmail.com" class="btn">Email</a>
+        <a href="https://github.com/LuisAlbertoBB94" class="btn">GitHub</a>
+    </div>
+
+    <footer>
+        <p>© 2024 Luis Alberto Barragán Bonilla | Thank You for Visiting! 🙏</p>
+    </footer>
+</body>
+</html>
