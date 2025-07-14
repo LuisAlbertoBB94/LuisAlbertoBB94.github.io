@@ -1,72 +1,47 @@
-<!-- Encabezado con banner estilizado -->
+<p align="center">
+  <img src="https://miro.medium.com/max/2048/1*OohqW5DGh9CQS4hLY5FXzA.png" height="230"/>
+</p>
+<hr>
+<h1 align="center">I'm <a href="https://github.com/LuisAlbertoBB94">Luis Alberto Barragán Bonilla<a><img src="https://github.com/Kathryn-Jie/Kathryn-Jie/blob/main/wave.gif" width="60px"/></h1>
+<Br>
+<h1>About Me! 👨‍💻</h1>
+
+- 🎓 PhD in Communications & Electronics with expertise in **data analysis** and **control systems**
+- 👨‍🏫 Experienced educator in **Python, SQL**, and data visualization
+- 📊 Advanced proficiency in **Power BI, Tableau**, and **MATLAB** for technical and analytical applications
+- 🔭 Currently working on data science projects combining control theory and machine learning
+- 💬 Ask me about: Data Analysis, Control Systems, Python, SQL, or academic research
+- ⚡ Fun fact: I enjoy integrating hardware (electronics) with software solutions
+
+<hr>
+<Br>
+
+## 📊 Power BI Analytics Portfolio
+
 <div align="center">
-  <img src="https://github.com/microsoft/PowerBI-Embedded/raw/master/assets/PowerBI-Logo.png" width="180"/>
-  <h1>📊 Power BI Dashboard Portfolio</h1>
-  <p>Interactive data visualization solutions for business intelligence</p>
-  <img src="https://img.shields.io/badge/Version-2.0-blue?style=flat&logo=powerbi" alt="Portfolio Version">
+  <a href="PowerBI-Dashboards/README.md">
+    <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="80%">
+  </a>
+  <h3>Business Intelligence Solutions</h3>
+  
+  ### Key Insights
+  - **Global Sales**: 19.95% avg margin (US peaks at 24.47%)
+  - **Training**: Excel dominates (24.6% hours), 42% night attendance
+  - **Billing**: Banking sector represents 31% of invoices
+  
+  [![Explore Dashboards](https://img.shields.io/badge/View_Dashboard_Collection-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=white)](PowerBI-Dashboards/README.md)
 </div>
 
----
+<Br>
+<hr>
+<Br>
 
-## 🌟 Featured Dashboards
+## 🛠️ Technical Stack
+| ![](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) | ![](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=sql&logoColor=white) |
+|--------------|--------------|--------------|
 
-### 📈 Ventas Globales
-[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Ventas.pbix)
+<Br>
+<hr>
+<Br>
 
-<p align="center">
-  <a href="./Ventas.pbix">
-    <img src="./Ventas-preview.jpg" width="85%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #eee;">
-  </a>
-</p>
-
-**Descripción**:  
-Análisis de ventas internacionales con desglose por país, continente y período (2025-2027).
-
----
-
-### 🎓 Cursos BD - Análisis Clientes
-[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./BD_cursos.pbix)
-
-<p align="center">
-  <a href="./BD_cursos.pbix">
-    <img src="./BD_cursos_page-0001.jpg" width="85%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #eee;">
-  </a>
-</p>
-
-**Descripción**:  
-Reporte de capacitación corporativa (2019-2021) con análisis de clientes, cursos y jornadas.
-
-
----
-
-### 💼 Facturación Clientes
-[![Descargar Reporte](https://img.shields.io/badge/Descargar_PBIX-FF9E0F?style=for-the-badge&logo=powerbi)](./Facturas.pbix)
-
-<p align="center">
-  <a href="./Facturas.pbix">
-    <img src="./Facturas-preview.jpg" width="85%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #eee;">
-  </a>
-</p>
-
-**Descripción**:  
-Análisis de facturación por cliente, sector y concepto.
-
-
-
----
-
-## 🛠️ Cómo Utilizar
-
-1. Haz clic en el botón **Descargar PBIX**
-2. Abre el archivo en Power BI Desktop (versión 2.120+ recomendada)
-3. Actualiza conexiones de datos si es necesario (Ctrl+Alt+R)
-4. Explora los filtros interactivos:
-   - Selectores por período
-   - Filtros por categoría/cliente
-   - Segmentaciones geográficas
-
-<div align="center" style="margin-top: 40px;">
-  <a href="https://github.com/LuisAlbertoBB94/Data-Analyst-Portfolio">
-    <img src="https://img.shields.io/badge/←_Volver_al_Portafolio-217346?style=for-the-badge&logo=github">
-  </a>
-</div>
+<!-- Resto de tu README.md existente -->
