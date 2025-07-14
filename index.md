@@ -3,54 +3,76 @@
 </p>
 
 <h1 align="center">Luis Alberto Barragán Bonilla</h1>
-<h3 align="center">Data Analyst | Control Systems Engineer</h3>
+<h3 align="center">PhD in Communications & Electronics | Data Analysis Specialist</h3>
 
-## 🚀 Professional Profile
+---
 
-PhD with expertise in **data analysis** and **business intelligence**, specializing in transforming complex data into actionable insights through interactive dashboards and reports.
+## 👨‍💻 About Me
 
-## 💡 Core Competencies
+- 🎓 PhD with expertise in **data analysis** and control systems  
+- 👨‍🏫 Experienced educator in **data visualization** and analytics tools  
+- 📊 Created **10+ Power BI dashboards** for business intelligence  
+- 🔭 Transform raw data into **actionable insights**  
+- ⚡ Passionate about data-driven decision making  
 
-- **Business Intelligence**: Power BI, Tableau
-- **Data Analysis**: Python, SQL, MATLAB
-- **Data Visualization**: Interactive dashboards, KPI tracking
-- **Process Optimization**: Statistical analysis, control systems
+---
 
-## 🔍 Featured Analytics Work
+## 📊 Featured Analytics Work
 
-[![Power BI Portfolio](https://img.shields.io/badge/View_Power_BI_Portfolio-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=black)](PowerBI-Dashboards/README.md)
+[![Power BI Portfolio](https://img.shields.io/badge/View_Power_BI_Portfolio-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=black)](PowerBI-Dashboards/index.html)
 
-**Key Achievements:**
-- Developed sales performance dashboards tracking $671M profit
-- Created training optimization reports for corporate clients
-- Automated financial reporting processes
+**Professional dashboards developed with Power BI:**
+- Sales performance analysis  
+- Training program optimization  
+- Financial reporting automation  
 
-## 🛠️ Technical Stack
+---
 
-### Data Analytics
-![](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
-![](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white)
+## 🛠️ Technical Skills
+
+### Data Analysis
+| ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) | ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) |
+|------------|------------|------------|
+| Dashboard Development | Data Querying | Pandas, NumPy |
 
 ### Additional Skills
-![](https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white)
-![](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+| ![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white) | ![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white) | ![MATLAB](https://img.shields.io/badge/MATLAB-0076A8?style=for-the-badge&logo=mathworks&logoColor=white) |
+|------------|------------|------------|
 
-## 📊 Professional Experience
+---
 
-**Data Analytics Instructor**  
-*Universidad del Valle de México*  
-- Designed curriculum for data visualization courses  
-- Trained 50+ students in Power BI dashboard development  
+## 👨‍💻 Professional Experience
 
-**Control Systems Professor**  
-*Instituto Politécnico Nacional*  
-- Developed data analysis scripts for system optimization  
-- Implemented statistical process control methods  
+### Data Programming & Visualization Instructor  
+**Universidad del Valle de México** | 2024–2025  
+- Designed and led **Data Analytics bootcamps** teaching Power BI and Tableau  
+- Guided students in developing **interactive dashboards** for real-world datasets  
 
-## 📫 Connect With Me
+### Control Systems Professor  
+**Instituto Politécnico Nacional** | 2021–2023  
+- Developed **data analysis** scripts for system modeling  
+- Applied statistical methods to analyze system performance  
 
-[![LinkedIn](https://img.shields.io/badge/Luis_Barragán-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/LuisBarraganBonilla)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luis.bto08@gmail.com)
-[![GitHub](https://img.shields.io/badge/Portfolio-181717?style=for-the-badge&logo=github&logoColor=white)](https://luisalbertobb94.github.io/)
+---
+
+## 🚀 Other Projects
+
+[![IoT Control System](https://img.shields.io/badge/IoT_Control_System-0066CC?style=for-the-badge)](Control-Maquinaria-Arduino/index.html)  
+[![MATLAB Designer](https://img.shields.io/badge/Control_Designer-0076A8?style=for-the-badge&logo=mathworks)](MATLAB-Projects/index.html)  
+
+---
+
+## 📚 Publications
+
+- [Modified Smith Predictor for high-order delayed processes](https://doi.org/10.1016/j.jprocont.2024.103299)  
+- [Observer-predictor control for unstable systems](https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914)  
+
+---
+
+## 📬 Get in Touch
+
+[![LinkedIn](https://img.shields.io/badge/Luis_Barragán-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/LuisBarraganBonilla)  
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail)](mailto:luis.bto08@gmail.com)  
+[![GitHub](https://img.shields.io/badge/Portfolio-181717?style=for-the-badge&logo=github)](https://github.com/LuisAlbertoBB94)  
+
+<p align="center">© 2024 Luis Alberto Barragán Bonilla | Thank You for Visiting! 🙏</p>
