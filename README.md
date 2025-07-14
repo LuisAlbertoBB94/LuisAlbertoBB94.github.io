@@ -62,16 +62,6 @@
 <hr>
 <Br>
 
-<h1>Featured Projects 🚀</h1>
-<Br>
-
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=LuisAlbertoBB94&repo=Control-Systems-Simulations)](https://github.com/LuisAlbertoBB94/Control-Systems-Simulations)
-
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=LuisAlbertoBB94&repo=Data-Visualization-Dashboards)](https://github.com/LuisAlbertoBB94/Data-Visualization-Dashboards)
-
-<Br>
-<hr>
-<Br>
 
 ## 📂 Power BI Dashboards
 
