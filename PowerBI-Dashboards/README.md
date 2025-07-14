@@ -41,7 +41,6 @@
 ![Billing Dashboard](./Facturas-preview.jpg)
 
 **Key Insights**:
-- Top client contributes 29.42% revenue
 - Banking sector: 30.98% of invoices
 - Consulting most frequent service (133 cases)
 
