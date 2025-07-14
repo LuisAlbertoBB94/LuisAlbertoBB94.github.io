@@ -1,198 +1,162 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>README - Sistema de Control de Maquinaria con Arduino</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    color: #333;
-  }
-  h1, h2, h3 {
-    color: #2c3e50;
-  }
-  code {
-    background-color: #f4f4f4;
-    padding: 2px 5px;
-    border-radius: 3px;
-    font-family: monospace;
-  }
-  pre {
-    background-color: #f8f8f8;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 10px auto;
-    border: 1px solid #ddd;
-  }
-  .highlight {
-    background-color: #ffffcc;
-    padding: 2px;
-  }
-</style>
-</head>
-<body>
+# üì° Sistema de Control y Monitoreo de Maquinaria de Construcci√≥n
 
-<h1>?? Sistema de Control y Monitoreo de Maquinaria con Arduino</h1>
+Este proyecto presenta un sistema integral de **control y monitoreo remoto** para maquinaria de construcci√≥n utilizando **Arduino UNO**, m√≥dulos **GSM/GPS**, sensores de temperatura tipo **termopar**, y una **aplicaci√≥n web** desarrollada en PHP y JavaScript. El sistema permite supervisar en tiempo real el estado operativo de la maquinaria, su ubicaci√≥n geogr√°fica, la temperatura del equipo y realizar el **encendido o apagado remoto** desde una interfaz web.
 
-<p><img src="./media/screenshots/dashboard.png" alt="Banner del Proyecto"></p>
+> üéì Proyecto desarrollado como tesis de licenciatura en la Facultad de Ingenier√≠a de la Universidad Aut√≥noma de Guerrero (2018).
 
-<h2>?? Descripci®Æn</h2>
-<p>Sistema completo para monitoreo y control remoto de maquinaria de construcci®Æn mediante interfaz web y Arduino con m®Ædulos GSM/GPS. Desarrollado como trabajo de titulaci®Æn en la Universidad Aut®Ænoma de Guerrero.</p>
+---
 
-<p><strong>Autores</strong>:<br>
-Luis Alberto Barrag®¢n Bonilla<br>
-Christopher Morales Mart®™nez<br>
-<strong>Director</strong>: Dr. Gustavo Adolfo Alonso Silverio</p>
+## üìå Objetivo del proyecto
 
-<h2>??? Tecnolog®™as Utilizadas</h2>
-<h3>Hardware</h3>
-<ul>
-  <li>Arduino UNO</li>
-  <li>M®Ædulo GSM SIM900</li>
-  <li>M®Ædulo GPS Ublox NEO-6M</li>
-  <li>Termopar tipo K con MAX6675</li>
-  <li>M®Ædulo Ethernet</li>
-</ul>
+Desarrollar un sistema accesible y de bajo costo que permita controlar y monitorear maquinaria de construcci√≥n para prevenir fallas mec√°nicas, robos o usos no autorizados mediante tecnolog√≠as integradas de geolocalizaci√≥n, sensores y comunicaci√≥n m√≥vil.
 
-<h3>Software</h3>
-<ul>
-  <li>Frontend: HTML5, CSS3, JavaScript (Google Maps API)</li>
-  <li>Backend: PHP, MySQL</li>
-  <li>Comunicaci®Æn: Protocolo serial, Comandos AT</li>
-</ul>
+---
 
-<h2>?? Funcionalidades Principales</h2>
-<ul>
-  <li>Monitoreo en tiempo real de ubicaci®Æn GPS</li>
-  <li>Medici®Æn de temperatura con termopar</li>
-  <li>Control remoto de encendido/apagado</li>
-  <li>Dashboard web con visualizaci®Æn de datos</li>
-  <li>Sistema de autenticaci®Æn de usuarios</li>
-</ul>
+## ‚öôÔ∏è Componentes del sistema
 
-<h2>?? Capturas del Sistema</h2>
+### üîß Hardware
 
-<p><img src="./media/screenshots/login.png" alt="Interfaz de Login"><br>
-<em>Pantalla de inicio de sesi®Æn</em></p>
+- Arduino UNO
+- M√≥dulo GSM SIM900
+- M√≥dulo GPS Ublox NEO-6M
+- M√≥dulo Ethernet W5100
+- Termopar tipo K con m√≥dulo MAX6675
+- Relevador para corte de energ√≠a
+- Fuente reguladora (LM7805)
+- Ventilador para disipaci√≥n de calor
 
-<p><img src="./media/screenshots/dashboard.png" alt="Dashboard Principal"><br>
-<em>Panel de control con datos en tiempo real</em></p>
+### üíª Software
 
-<p><img src="./media/screenshots/BD.png" alt="Estructura de Base de Datos"><br>
-<em>Esquema de la base de datos</em></p>
+- Arduino IDE (c√≥digo en C/C++)
+- XAMPP (Servidor Apache + MySQL + PHP)
+- Sublime Text (edici√≥n de HTML, CSS, JS)
+- PHP, HTML, CSS, JavaScript
+- Google Maps API + Google Charts
 
-<h2>?? Instalaci®Æn</h2>
+---
 
-<ol>
-  <li><strong>Hardware</strong>:
-    <ul>
-      <li>Conectar m®Ædulos GSM, GPS y termopar al Arduino</li>
-      <li>Alimentar con fuente de 12V regulada a 5V</li>
-    </ul>
-  </li>
-  
-  <li><strong>Software</strong>:
-    <pre><code>git clone https://github.com/LuisAlbertoBB94/Control-Maquinaria-Arduino.git
-mysql -u usuario -p < database/schema.sql</code></pre>
-  </li>
-  
-  <li>Configurar credenciales en <code>web/includes/conexion.php</code></li>
-</ol>
 
-<h2>?? Configuraci®Æn de conexi®Æn a base de datos</h2>
+---
 
-<p>Editar el archivo <code>web/includes/conexion.php</code>:</p>
+## üß≠ Funcionamiento general del sistema
 
-<pre><code>&lt;?php
-$host = 'localhost';    // Servidor de base de datos
-$dbname = 'maquinaria'; // Nombre de la base de datos
-$username = 'root';     // Usuario MySQL
-$password = '';         // Contrase?a MySQL
+1. **Nodo en la maquinaria**  
+   - Lee temperatura con el termopar
+   - Obtiene posici√≥n GPS
+   - Envia datos mediante GSM al nodo receptor
 
-try {
-    $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Error de conexi®Æn: " . $e->getMessage());
-}
-?&gt;</code></pre>
+2. **Nodo en el servidor web**
+   - Recibe datos v√≠a GSM
+   - Conecta con el servidor web por Ethernet
+   - Guarda datos en base de datos MySQL
 
-<h2>?? Estructura b®¢sica de la base de datos</h2>
+3. **Aplicaci√≥n Web**
+   - Visualiza estado (encendido/apagado), ubicaci√≥n y temperatura
+   - Permite enviar comandos remotos para encender o apagar maquinaria
 
-<pre><code>CREATE TABLE `maquinaria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `latitud` varchar(20) NOT NULL,
-  `longitud` varchar(20) NOT NULL,
-  `temperatura` float NOT NULL,
-  `estado` tinyint(1) NOT NULL COMMENT '1=Encendido, 0=Apagado',
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
+---
 
-<h2>?? Configuraci®Æn de Arduino</h2>
+## üñºÔ∏è Capturas del sistema
 
-<p>Los sketches principales son:</p>
+### üîê Inicio de sesi√≥n  
+![login](login.png)
 
-<ol>
-  <li><code>EnvioDatos.ino</code> - Para enviar datos de sensores</li>
-  <li><code>RecibeDatos.ino</code> - Para recibir comandos de control</li>
-</ol>
+### üñ•Ô∏è Interfaz de monitoreo  
+Visualizaci√≥n del estado de la m√°quina, ubicaci√≥n geogr√°fica y temperatura en tiempo real:  
+![interfaz](Interfaz.png)
 
-<h3>Configuraci®Æn b®¢sica en ambos sketches:</h3>
+### üóÑÔ∏è Base de datos del monitoreo  
+![bd](BD.png)
 
-<pre><code>// Configuraci®Æn GSM
-#define SIM900_RX_PIN 7
-#define SIM900_TX_PIN 8
-SoftwareSerial SIM900(SIM900_RX_PIN, SIM900_TX_PIN);
+---
 
-// Configuraci®Æn GPS
-#define GPS_RX_PIN 11
-#define GPS_TX_PIN 10
-SoftwareSerial serialgps(GPS_RX_PIN, GPS_TX_PIN);
+## üé• Demostraci√≥n en video
 
-// Configuraci®Æn termopar
-#define thermoDO  3
-#define thermoCS  4
-#define thermoCLK 5
-MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);</code></pre>
+üìΩÔ∏è [Ver demostraci√≥n completa del sistema](Video.mp4)
 
-<h2>?? Configuraci®Æn del servidor web</h2>
+> Incluye pruebas reales de rastreo, control y operaci√≥n en tiempo real del sistema instalado.
 
-<p>Requisitos:</p>
-<ul>
-  <li>PHP 7.0 o superior</li>
-  <li>MySQL 5.6+</li>
-  <li>Servidor Apache o Nginx</li>
-  <li>Habilitada la comunicaci®Æn serial (para COM en Windows o /dev/tty* en Linux)</li>
-</ul>
+---
 
-<h2>?? Demo</h2>
-<p><a href="./media/demo.mp4">Ver video demostrativo</a></p>
+## üöÄ C√≥mo ejecutar el sistema
 
-<h2>?? Documentaci®Æn T®¶cnica</h2>
-<p>El sistema utiliza:</p>
-<ul>
-  <li>Protocolo NMEA para datos GPS</li>
-  <li>Comandos AT para comunicaci®Æn GSM</li>
-  <li>API de Google Maps para geolocalizaci®Æn</li>
-  <li>MySQL para almacenamiento de datos hist®Æricos</li>
-</ul>
+### 1. Requisitos
 
-<h2>?? Licencia</h2>
-<p>Proyecto acad®¶mico desarrollado para la Universidad Aut®Ænoma de Guerrero. Todos los derechos reservados.</p>
+- Arduino UNO √ó 2
+- M√≥dulos GSM, GPS, Ethernet
+- Termopar + MAX6675
+- Computadora con XAMPP
+- Conexi√≥n a red local
 
-<hr>
+### 2. Configuraci√≥n del hardware
 
-<p><em>"Sistema para el control y monitoreo de maquinaria de construcci®Æn a trav®¶s de Arduino y m®Ædulos GSM/GPS" - 2018</em></p>
+- Cargar los programas Arduino desde `Codigos_Maquinaria_Arduino.zip`
+- Realizar conexiones seg√∫n los diagramas incluidos en la tesis:
+  - Nodo maquinaria: Arduino + GPS + GSM + termopar
+  - Nodo servidor: Arduino + GSM + Ethernet
+- Alimentar con fuente regulada de 5V
 
-</body>
-</html>
+### 3. Configuraci√≥n del servidor
+
+- Instalar XAMPP y activar Apache y MySQL
+- Crear base de datos `maquinaria_db` desde phpMyAdmin
+- Subir archivos web al directorio `htdocs/maquinaria`
+- Modificar credenciales de conexi√≥n en `ConexBD.php` si es necesario
+
+### 4. Acceso al sistema
+
+- Abrir navegador y acceder a:  
+  `http://localhost/maquinaria`
+- Iniciar sesi√≥n con las credenciales creadas
+- Visualizar, controlar y monitorear maquinaria en tiempo real
+
+---
+
+## ‚úÖ Resultados esperados
+
+- Visualizaci√≥n en tiempo real del estado de la maquinaria
+- Control remoto de encendido y apagado desde la web
+- Registro autom√°tico en la base de datos MySQL cada 3 minutos
+- Ubicaci√≥n GPS precisa mediante Google Maps API
+- Medidor gr√°fico de temperatura con Google Charts
+
+---
+
+## üìö Informaci√≥n t√©cnica
+
+- El sistema utiliza **comandos AT** para la comunicaci√≥n GSM
+- La ubicaci√≥n se obtiene con sentencias **NMEA** del GPS y se procesa con la librer√≠a `TinyGPS`
+- El control ON/OFF se gestiona mediante un script PHP que env√≠a se√±ales por el **puerto COM**
+- Se utiliza Google Maps API para visualizar el punto GPS en un mapa interactivo
+- La aplicaci√≥n es responsive, ejecutable desde cualquier equipo conectado a la red local
+
+---
+
+## üßë‚Äçüíª Autores
+
+Proyecto desarrollado por:
+
+- **Luis Alberto Barrag√°n Bonilla**
+- **Christopher Morales Mart√≠nez**
+
+**Director de tesis:** Dr. Gustavo Adolfo Alonso Silverio  
+**Universidad Aut√≥noma de Guerrero ‚Äì Facultad de Ingenier√≠a**  
+**Fecha de presentaci√≥n:** Septiembre de 2018
+
+---
+
+## üèÅ Conclusi√≥n
+
+Este sistema demuestra c√≥mo una soluci√≥n basada en tecnolog√≠as accesibles puede competir con herramientas comerciales de alto costo. Adem√°s, su escalabilidad permite futuras implementaciones como lectura de combustible, c√°maras, o acceso desde aplicaciones m√≥viles.
+
+---
+
+## üìå Licencia
+
+Este proyecto acad√©mico es de uso libre con fines educativos. Si deseas reutilizarlo en un entorno comercial, por favor contacta a los autores.
+
+---
+
+**¬°Gracias por visitar este repositorio! Si te resulta √∫til, no olvides dar ‚≠ê en GitHub.**
+
+
