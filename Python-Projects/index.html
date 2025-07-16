@@ -3,115 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Portfolio | Luis Barragán</title>
+    <title>Análisis de Estabilidad - Sistema con Retardo</title>
     <style>
         :root {
-            --powerbi-yellow: #FFB900;
-            --powerbi-dark: #1B3A57;
-            --accent: #00B7C3;
-            --light-bg: #F8F9FA;
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
         }
         
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: var(--light-bg);
+            background-color: #f9f9f9;
         }
         
         header {
             text-align: center;
             padding: 40px 0;
-            margin-bottom: 40px;
-        }
-        
-        .powerbi-logo {
-            height: 80px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         h1, h2, h3 {
-            color: var(--powerbi-dark);
+            color: var(--primary);
         }
         
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .dashboard-card {
+        .section {
             background: white;
-            border-radius: 8px;
             padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--powerbi-yellow);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
-        .preview-image {
-            width: 100%;
-            max-width: 900px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: block;
-            margin: 20px auto;
         }
         
-        .download-btn {
-            display: inline-block;
-            background: var(--powerbi-yellow);
-            color: var(--powerbi-dark);
-            padding: 12px 25px;
-            margin: 15px 0;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
+        .image-caption {
+            font-style: italic;
+            color: var(--gray);
+            margin-top: 10px;
         }
         
-        .download-btn:hover {
-            background: var(--powerbi-dark);
-            color: white;
-        }
-        
-        .insights {
-            background: rgba(0, 183, 195, 0.1);
+        .parameters {
+            background: var(--light);
             padding: 20px;
             border-radius: 8px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
-        .tech-badge {
-            display: inline-block;
-            background: var(--powerbi-dark);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            margin: 5px;
-            font-size: 0.9rem;
+        .math {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.1em;
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
         
-        .back-btn {
-            display: inline-block;
-            background: var(--powerbi-dark);
-            color: white;
-            padding: 12px 30px;
-            margin: 40px 0;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
+        .conclusion {
+            border-left: 4px solid var(--secondary);
+            padding-left: 20px;
+            margin: 30px 0;
         }
         
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .dashboard-card {
+            .section {
                 padding: 20px;
             }
         }
@@ -119,79 +93,108 @@
 </head>
 <body>
     <header>
-        <img src="https://github.com/microsoft/PowerBI-Embedded/raw/master/assets/PowerBI-Logo.png" alt="Power BI Logo" class="powerbi-logo">
-        <h1>Power BI Dashboard Portfolio</h1>
-        <p>Advanced Business Intelligence Solutions</p>
+        <h1>Análisis de Estabilidad en Sistemas con Retardo</h1>
+        <p>Estudio del Comportamiento de Fase y Criterios de Estabilidad</p>
     </header>
 
-    <div class="dashboard-card">
-        <h2>Global Sales Analysis</h2>
-        <a href="./Ventas.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image">
+    <div class="section">
+        <h2>Introducción</h2>
+        <p>Este reporte analiza el comportamiento de un sistema con dos polos inestables y un retardo, estudiando especialmente el comportamiento de la fase en la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab)</span>.</p>
         
-        <div class="insights">
-            <h3>Key Insights</h3>
+        <div class="parameters">
+            <h3>Parámetros del Sistema</h3>
             <ul>
-                <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
-                <li>Americas generate <strong>39.14%</strong> of profits</li>
-                <li>USA leads with <strong>24.47%</strong> profit margin</li>
-                <li>Clear quarterly growth trends visible</li>
+                <li>Polo inestable 1 (<span class="math">a</span>): 0.2</li>
+                <li>Polo inestable 2 (<span class="math">b</span>): 0.5</li>
+                <li>Retardo actual (<span class="math">τ</span>): 0.1615 s</li>
+                <li>Ganancia derivativa (<span class="math">k<sub>d</sub></span>): <span class="math">(1/a + 1/b - τ)</span> = 6.8385</li>
             </ul>
         </div>
     </div>
 
-    <div class="dashboard-card">
-        <h2>Corporate Training</h2>
-        <a href="./BD_cursos.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image">
+    <div class="section">
+        <h2>Comportamiento de la Fase</h2>
         
-        <div class="insights">
-            <h3>Key Insights</h3>
-            <ul>
-                <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
-                <li>Night shift has <strong>42.27%</strong> participation</li>
-                <li>Top client generated <strong>€65,500</strong> revenue</li>
-                <li>Average 23.92 training hours per course</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="dashboard-card">
-        <h2>Client Billing</h2>
-        <a href="./Facturas.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image">
-        
-        <div class="insights">
-            <h3>Key Insights</h3>
-            <ul>
-                <li>Top client contributes <strong>29.42%</strong> revenue</li>                
-                <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
-                <li>Madrid leads in billing by province</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="dashboard-card">
-        <h2>Technical Implementation</h2>
-        <h3>Data Sources</h3>
-        <div>
-            <span class="tech-badge">SQL Server</span>
-            <span class="tech-badge">Excel</span>
-            <span class="tech-badge">SharePoint</span>
-            <span class="tech-badge">REST APIs</span>
+        <div class="image-container">
+            <img src="Comportamiento de la Fase.png" alt="Gráfico de Comportamiento de la Fase">
+            <p class="image-caption">Figura 1: Comportamiento de la fase Φ<sub>Q1</sub>(ω) en función de la frecuencia</p>
         </div>
         
-        <h3>Main Features</h3>
+        <p>La fase se calcula mediante:</p>
+        <p class="math">Φ<sub>Q1</sub>(ω) = arctan(ω/a) + arctan(ω/b) - ωτ - π - arctan(k<sub>d</sub>ω)</p>
+        
+        <p>En la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab) = 0.3162 rad/s</span>:</p>
         <ul>
-            <li>Drill-through navigation</li>
-            <li>Dynamic parameter control</li>
-            <li>Custom DAX measures</li>
-            <li>Mobile-responsive design</li>
+            <li>Fase: -2.7595 rad</li>
+            <li>Derivada respecto a τ: -0.3719 (siempre negativa)</li>
         </ul>
     </div>
 
-    <div style="text-align: center;">
-        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Return to Portfolio</a>
+    <div class="section">
+        <h2>Análisis de Estabilidad</h2>
+        
+        <div class="image-container">
+            <img src="Comportamiento de la fase en función del retardo.png" alt="Fase en función del retardo">
+            <p class="image-caption">Figura 2: Comportamiento de la fase en función del retardo τ</p>
+        </div>
+        
+        <p>El retardo máximo permitido para estabilidad es:</p>
+        <p class="math">τ<sub>max</sub> = (1/a + 1/b) - √(1/a² + 1/b²) = 1.6148 s</p>
+        
+        <div class="conclusion">
+            <h3>Conclusiones Clave</h3>
+            <ul>
+                <li>La derivada dΦ/dτ es siempre negativa, lo que prueba que Φ es monótona decreciente</li>
+                <li>Para τ < τ<sub>max</sub> se cumple Φ(ω<sub>s</sub>) > -π (zona estable)</li>
+                <li>Cuando τ > τ<sub>max</sub>, Φ(ω<sub>s</sub>) ≤ -π (zona inestable)</li>
+            </ul>
+        </div>
     </div>
+
+    <div class="section">
+        <h2>Análisis de la Derivada</h2>
+        
+        <div class="image-container">
+            <img src="Comportamiento de Phi_{Q_1}}{d tau} en omega_s.png" alt="Comportamiento de la derivada">
+            <p class="image-caption">Figura 3: Comportamiento de la derivada de la fase respecto a τ</p>
+        </div>
+        
+        <p>La derivada de la fase respecto al retardo muestra:</p>
+        <ul>
+            <li>Valor en τ = 0: -0.2626</li>
+            <li>Valor en τ = τ<sub>max</sub>: -0.2351</li>
+            <li>La derivada es siempre negativa para todo τ ≥ 0</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Resultados Numéricos</h2>
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background-color: var(--primary); color: white;">
+                <th style="padding: 10px; text-align: left;">Parámetro</th>
+                <th style="padding: 10px; text-align: left;">Valor</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px;">Frecuencia crítica ω<sub>s</sub></td>
+                <td style="padding: 10px;">0.3162 rad/s</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px;">Retardo máximo τ<sub>max</sub></td>
+                <td style="padding: 10px;">1.6148 s</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px;">Fase en τ<sub>max</sub></td>
+                <td style="padding: 10px;">-3.1213 rad</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Derivada mínima</td>
+                <td style="padding: 10px;">[-0.2626, 0]</td>
+            </tr>
+        </table>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; color: var(--gray);">
+        <p>© 2025 Análisis de Sistemas con Retardo | Luis Barragán</p>
+    </footer>
 </body>
 </html>

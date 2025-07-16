@@ -129,10 +129,68 @@
             font-size: 0.8rem;
         }
         
+		.highlight-card[style*="border-color: var(--secondary)"]::before {
+			background: var(--secondary);
+			color: white;
+		}
+    
+	
         .project-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+        }
+		
+		        .logo-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .powerbi-logo-bg {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .python-logo-bg {
+            background-color: #f2f7fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        /* Estilos para los logos */
+        .project-logo {
+            max-height: 120px;
+            max-width: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .powerbi-highlight:hover .project-logo {
+            transform: scale(1.05);
+        }
+        
+        .python-highlight:hover .project-logo {
+            transform: scale(1.05);
+        }
+        
+        /* Ajustes responsivos */
+        @media (max-width: 768px) {
+            .logo-container {
+                height: 160px;
+                padding: 15px;
+            }
+            
+            .project-logo {
+                max-height: 100px;
+            }
+        }
+        /* === FIN DE NUEVOS ESTILOS === */
+
+        /* EL RESTO DE TUS ESTILOS EXISTENTES... */
+        .project-content {
+            padding: 20px;
         }
         
         .project-content {
@@ -155,6 +213,42 @@
             color: var(--dark);
             font-weight: bold;
         }
+		
+				/* Estilos para tarjetas destacadas */
+		.powerbi-highlight {
+			border: 3px solid var(--powerbi);
+			position: relative;
+		}
+
+		.python-highlight {
+			border: 3px solid var(--secondary);
+			position: relative;
+		}
+
+		.powerbi-highlight::before {
+			content: "Power BI Project";
+			background: var(--powerbi);
+			color: var(--dark);
+		}
+
+		.python-highlight::before {
+			content: "Python Project";
+			background: var(--secondary);
+			color: white;
+		}
+
+		/* Estilo compartido para ambas etiquetas */
+		.powerbi-highlight::before,
+		.python-highlight::before {
+			position: absolute;
+			top: -12px;
+			left: 20px;
+			padding: 3px 15px;
+			border-radius: 20px;
+			font-weight: bold;
+			font-size: 0.8rem;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		}
         
         .btn:hover {
             background: var(--primary);
@@ -166,6 +260,8 @@
             padding: 20px;
             color: var(--gray);
         }
+		
+		
         
         @media (max-width: 768px) {
             .skills-grid {
@@ -196,35 +292,57 @@
         </ul>
     </div>
 
-    <div class="section">
-        <h2>Featured Analytics Work 📊</h2>
-        <div class="project-showcase">
-            <div class="project-card highlight-card">
-                <img src="logo_PB.png" alt="Power BI Analytics" class="project-img">
-                <div class="project-content">
-                    <h3>Business Intelligence Portfolio</h3>
-                    <p>Professional dashboards developed with Power BI:</p>
-                    <ul>
-                        <li>Sales performance analysis</li>
-                        <li>Training program optimization</li>
-                        <li>Financial reporting automation</li>
-                    </ul>
-                    <a href="PowerBI-Dashboards/index.html" class="btn powerbi-btn">View Power BI Portfolio</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="section">
+		<h2>Featured Analytics Work 📊</h2>
+		<div class="project-showcase">
+			<!-- Power BI Card - Versión optimizada -->
+			<div class="project-card powerbi-highlight">
+				<div class="logo-container powerbi-logo-bg">
+					<img src="logo_PB.png" alt="Power BI Analytics" class="project-logo">
+				</div>
+				<div class="project-content">
+					<h3>Business Intelligence Portfolio</h3>
+					<p>Professional dashboards developed with Power BI:</p>
+					<ul>
+						<li>Sales performance analysis</li>
+						<li>Training program optimization</li>
+						<li>Financial reporting automation</li>
+					</ul>
+					<a href="PowerBI-Dashboards/index.html" class="btn powerbi-btn">View Power BI Portfolio</a>
+				</div>
+			</div>
+			
+			<!-- Python Card - Versión optimizada -->
+			<div class="project-card python-highlight">
+				<div class="logo-container python-logo-bg">
+					<img src="Python_logo.png" alt="Python Data Analysis" class="project-logo">
+				</div>
+				<div class="project-content">
+					<h3>Python Data Analysis</h3>
+					<p>Statistical modeling and data science projects:</p>
+					<ul>
+						<li>Linear regression analysis (SAT vs GPA)</li>
+						<li>Data exploration with Pandas</li>
+						<li>Statistical modeling with statsmodels</li>
+						<li>Data visualization with Matplotlib</li>
+					</ul>
+					<a href="Python-Data-Analysis/index.html" class="btn python-btn">View Python Projects</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <div class="section">
         <h2>Technical Skills 🛠️</h2>
         <h3>Data Analysis</h3>
         <div class="skills-grid">
-            <div class="skill-card" style="background-color: #f2c81120; border: 2px solid var(--powerbi);">
+		
+             <div class="skill-card" style="background-color: #f2c81120; border: 2px solid var(--powerbi);">
                 <strong>Power BI</strong>
                 <p>Dashboard Development</p>
             </div>
            
-            <div class="skill-card">
+            <div class="skill-card" style="background-color: #9ac5ed">
                 <strong>Python</strong>
                 <p>Pandas, NumPy</p>
             </div>
