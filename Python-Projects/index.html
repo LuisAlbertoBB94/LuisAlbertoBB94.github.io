@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Portfolio | Luis Barragán</title>
+    <style>
+        :root {
+            --powerbi-yellow: #FFB900;
+            --powerbi-dark: #1B3A57;
+            --accent: #00B7C3;
+            --light-bg: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+        
+        .powerbi-logo {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--powerbi-dark);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--powerbi-yellow);
+        }
+        
+        .preview-image {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--powerbi-yellow);
+            color: var(--powerbi-dark);
+            padding: 12px 25px;
+            margin: 15px 0;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: var(--powerbi-dark);
+            color: white;
+        }
+        
+        .insights {
+            background: rgba(0, 183, 195, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: var(--powerbi-dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: var(--powerbi-dark);
+            color: white;
+            padding: 12px 30px;
+            margin: 40px 0;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://github.com/microsoft/PowerBI-Embedded/raw/master/assets/PowerBI-Logo.png" alt="Power BI Logo" class="powerbi-logo">
+        <h1>Power BI Dashboard Portfolio</h1>
+        <p>Advanced Business Intelligence Solutions</p>
+    </header>
+
+    <div class="dashboard-card">
+        <h2>Global Sales Analysis</h2>
+        <a href="./Ventas.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image">
+        
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>
+                <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
+                <li>Americas generate <strong>39.14%</strong> of profits</li>
+                <li>USA leads with <strong>24.47%</strong> profit margin</li>
+                <li>Clear quarterly growth trends visible</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Corporate Training</h2>
+        <a href="./BD_cursos.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image">
+        
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>
+                <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
+                <li>Night shift has <strong>42.27%</strong> participation</li>
+                <li>Top client generated <strong>€65,500</strong> revenue</li>
+                <li>Average 23.92 training hours per course</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Client Billing</h2>
+        <a href="./Facturas.pbix" class="download-btn">Download PBIX Report</a>
+        <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image">
+        
+        <div class="insights">
+            <h3>Key Insights</h3>
+            <ul>
+                <li>Top client contributes <strong>29.42%</strong> revenue</li>                
+                <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
+                <li>Madrid leads in billing by province</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>Technical Implementation</h2>
+        <h3>Data Sources</h3>
+        <div>
+            <span class="tech-badge">SQL Server</span>
+            <span class="tech-badge">Excel</span>
+            <span class="tech-badge">SharePoint</span>
+            <span class="tech-badge">REST APIs</span>
+        </div>
+        
+        <h3>Main Features</h3>
+        <ul>
+            <li>Drill-through navigation</li>
+            <li>Dynamic parameter control</li>
+            <li>Custom DAX measures</li>
+            <li>Mobile-responsive design</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Return to Portfolio</a>
+    </div>
+</body>
+</html>
