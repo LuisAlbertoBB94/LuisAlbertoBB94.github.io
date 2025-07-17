@@ -22,7 +22,7 @@
 </p>
 
 - 🎓 PhD in Communications & Electronics with **data analysis** expertise
-- 📊 Created **10+ interactive dashboards** for business intelligence
+- 📊 Created **interactive dashboards** for business intelligence
 - 👨‍🏫 Educator in **Python, SQL, and data visualization**
 - ⚡ Passion for **hardware-software integration**
 
@@ -35,7 +35,7 @@
     <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="85%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #eee;">
   </a>
   
-[![Explore Dashboards](https://img.shields.io/badge/View_Power_BI_Portfolio-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=black)](PowerBI-Dashboards/index.html)
+[![Explore Dashboards](https://img.shields.io/badge/View_Power_BI_Portfolio-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=black)](https://github.com/LuisAlbertoBB94/LuisAlbertoBB94.github.io/blob/main/PowerBI-Dashboards/README.md)
 </div>
 
 **Dashboard Features**:
