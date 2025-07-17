@@ -22,7 +22,7 @@
 </p>
 
 - 🎓 PhD in Communications & Electronics with **data analysis** expertise
-- 📊 Created **10+ interactive dashboards** for business intelligence
+- 📊 Created **interactive dashboards** for business intelligence
 - 👨‍🏫 Educator in **Python, SQL, and data visualization**
 - ⚡ Passion for **hardware-software integration**
 
