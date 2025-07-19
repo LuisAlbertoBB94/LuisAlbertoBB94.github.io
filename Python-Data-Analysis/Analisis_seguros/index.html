@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Reclamaciones de Seguros - Luis Barragán</title>
+    <title>Análisis de Seguros - Luis Barragán | Data Analyst</title>
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
             --accent: #e74c3c;
+            --python: #3776ab;
+            --pandas: #150458;
+            --numpy: #4d77cf;
             --light: #ecf0f1;
             --dark: #2c3e50;
             --gray: #95a5a6;
@@ -26,7 +29,7 @@
         
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 40px 0;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 10px;
@@ -39,62 +42,89 @@
         }
         
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
         
         h2 {
-            font-size: 1.8rem;
-            margin: 30px 0 15px;
-            padding-bottom: 8px;
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
             border-bottom: 2px solid var(--secondary);
         }
         
         h3 {
-            font-size: 1.4rem;
-            margin: 25px 0 10px;
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
         }
         
         .section {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px 5px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .python-badge {
+            background-color: var(--python);
+        }
+        
+        .pandas-badge {
+            background-color: var(--pandas);
+        }
+        
+        .numpy-badge {
+            background-color: var(--numpy);
         }
         
         .image-container {
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .image-container img {
             max-width: 100%;
             height: auto;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .image-caption {
             font-style: italic;
             color: var(--gray);
-            margin-top: 8px;
+            margin-top: 10px;
+            font-size: 0.95rem;
         }
         
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: var(--secondary);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             margin: 10px 5px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .btn:hover {
             background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         
         .btn-download {
@@ -107,21 +137,34 @@
         
         .btn-group {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            flex-wrap: wrap;
             margin: 30px 0;
+            gap: 15px;
+        }
+        
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            margin: 20px 0;
+            border-left: 4px solid var(--python);
         }
         
         .findings {
-            background-color: #e8f4fc;
-            padding: 20px;
-            border-left: 4px solid var(--secondary);
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-left: 5px solid var(--secondary);
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
         }
         
         .findings h3 {
-            color: var(--primary);
             margin-top: 0;
+            color: var(--primary);
         }
         
         .findings ul {
@@ -129,50 +172,88 @@
         }
         
         .findings li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
         table th, table td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px 15px;
             text-align: left;
         }
         
         table th {
             background-color: var(--primary);
             color: white;
+            font-weight: 600;
         }
         
         table tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
+        }
+        
+        table tr:hover {
+            background-color: #f1f1f1;
         }
         
         .data-highlight {
             font-weight: bold;
             color: var(--accent);
+            background-color: #fde8e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .methodology {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .method-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .method-card h4 {
+            margin-top: 0;
+            color: var(--primary);
         }
         
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 50px;
+            padding: 25px;
             color: var(--gray);
+            border-top: 1px solid #eee;
         }
         
         @media (max-width: 768px) {
             .btn-group {
                 flex-direction: column;
+                align-items: center;
             }
             
             .btn {
-                margin: 5px 0;
+                width: 100%;
                 text-align: center;
+            }
+            
+            .methodology {
+                flex-direction: column;
             }
         }
     </style>
@@ -180,185 +261,217 @@
 <body>
     <header>
         <h1>Análisis de Reclamaciones de Seguros de Auto</h1>
-        <p>Exploración de datos y hallazgos clave sobre patrones de reclamaciones</p>
+        <p>Proyecto de análisis de datos con Python, Pandas y Numpy</p>
+        <div style="margin-top: 20px;">
+            <span class="tech-badge python-badge">Python</span>
+            <span class="tech-badge pandas-badge">Pandas</span>
+            <span class="tech-badge numpy-badge">NumPy</span>
+            <span class="tech-badge" style="background-color:#333;">Data Analysis</span>
+        </div>
     </header>
 
     <div class="section">
         <h2>Resumen del Proyecto</h2>
-        <p>Este análisis explora un conjunto de datos de reclamaciones de seguros de automóviles para identificar patrones y factores asociados con la probabilidad de que un asegurado presente una reclamación.</p>
+        <p>Como Analista de Datos, realicé un exhaustivo análisis de un conjunto de datos de reclamaciones de seguros de automóviles utilizando Python y sus librerías científicas. El objetivo fue identificar patrones significativos y factores de riesgo asociados con las reclamaciones de seguros.</p>
         
         <div class="btn-group">
-            <a href="http://luisalbertobb94.github.io/" class="btn">Regresar al Inicio</a>
-            <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">Regresar a Análisis Python</a>
+            <a href="http://luisalbertobb94.github.io/" class="btn">🏠 Portafolio Principal</a>
+            <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">🐍 Proyectos Python</a>
+            <a href="Reporte_analisis_seguros.pdf" class="btn btn-download" download>📄 Descargar PDF</a>
+            <a href="Reporte_analisis_seguros.ipynb" class="btn btn-download" download>📓 Notebook Jupyter</a>
         </div>
-        
-        <h3>Descargas</h3>
-        <a href="Reporte_analisis_seguros.pdf" class="btn btn-download" download>Descargar PDF del Reporte</a>
-        <a href="Reporte_analisis_seguros.ipynb" class="btn btn-download" download>Descargar Notebook Jupyter</a>
     </div>
 
     <div class="section">
-        <h2>Dataset: Car Insurance Claim</h2>
-        <p>El conjunto de datos incluye información sobre pólizas de seguro de automóviles con las siguientes variables clave:</p>
+        <h2>Metodología y Proceso</h2>
+        
+        <div class="methodology">
+            <div class="method-card">
+                <h4>1. Extracción y Limpieza</h4>
+                <p>Utilicé Pandas para cargar y transformar los datos, manejando valores atípicos y normalizando variables.</p>
+                <div class="code-block">
+                    # Carga de datos<br>
+                    df = pd.read_csv('insurance_claims.csv')<br><br>
+                    # Normalización de variables<br>
+                    df['age_of_policyholder'] = (df['age_of_policyholder'] * 100).astype(int)<br>
+                    df['policy_tenure'] = (df['policy_tenure'] * 12).astype(int)
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <h4>2. Análisis Exploratorio</h4>
+                <p>Implementé visualizaciones con Matplotlib/Seaborn y análisis estadísticos para identificar patrones.</p>
+                <div class="code-block">
+                    # Análisis de distribución<br>
+                    df.hist(bins=30, figsize=(12,8))<br><br>
+                    # Test estadístico<br>
+                    from scipy.stats import ttest_ind<br>
+                    t_stat, p_value = ttest_ind(group1, group2)
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <h4>3. Ingeniería de Features</h4>
+                <p>Creé nuevas variables y transformé características para mejorar el análisis.</p>
+                <div class="code-block">
+                    # Extracción de características de potencia<br>
+                    df['horse_power'] = df['max_power'].str.split('@').str[0]<br>
+                    df['rpm'] = df['max_power'].str.split('@').str[1]<br><br>
+                    # Manejo de outliers<br>
+                    Q1 = df[col].quantile(0.25)<br>
+                    Q3 = df[col].quantile(0.75)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Dataset y Transformaciones</h2>
+        <p>El conjunto de datos contenía información detallada sobre pólizas de seguro de automóviles. Como analista, transformé y enriquecí los datos originales:</p>
         
         <table>
             <tr>
-                <th>Variable</th>
-                <th>Descripción</th>
+                <th>Variable Original</th>
+                <th>Transformación Aplicada</th>
+                <th>Técnica Utilizada</th>
             </tr>
             <tr>
-                <td>policy_id</td>
-                <td>Identificador único del titular</td>
+                <td>age_of_policyholder (0-1)</td>
+                <td>Escalado a años (0-100)</td>
+                <td>Normalización con NumPy</td>
             </tr>
             <tr>
-                <td>age_of_car</td>
-                <td>Edad del vehículo en años</td>
+                <td>policy_tenure (0-1)</td>
+                <td>Convertido a meses (0-12)</td>
+                <td>Transformación lineal</td>
             </tr>
             <tr>
-                <td>age_of_policyholder</td>
-                <td>Edad del titular</td>
+                <td>max_power (texto)</td>
+                <td>Separado en hp y rpm</td>
+                <td>String operations</td>
             </tr>
             <tr>
-                <td>transmission_type</td>
-                <td>Tipo de transmisión (Automática/Manual)</td>
-            </tr>
-            <tr>
-                <td>airbags</td>
-                <td>Número de airbags</td>
-            </tr>
-            <tr>
-                <td>cylinder</td>
-                <td>Configuración de cilindros</td>
-            </tr>
-            <tr>
-                <td>is_claim</td>
-                <td>Indicador de reclamación (0=No, 1=Sí)</td>
+                <td>Variables numéricas</td>
+                <td>Detección de outliers</td>
+                <td>IQR con Pandas</td>
             </tr>
         </table>
         
         <div class="image-container">
-            <img src="INFORMACION DE LOS DATOS DE DATA FRAME ORGINAL.png" alt="Información del DataFrame Original">
-            <div class="image-caption">Distribución inicial de las variables principales</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Limpieza y Preparación de Datos</h2>
-        <p>Se realizaron las siguientes transformaciones:</p>
-        <ul>
-            <li>Normalización de edades (de proporciones a años enteros)</li>
-            <li>Conversión de policy_tenure a meses</li>
-            <li>División de max_power en caballos de fuerza y RPM</li>
-            <li>Detección y manejo de valores atípicos</li>
-        </ul>
-        
-        <div class="findings">
-            <h3>Datos Interesantes</h3>
-            <ul>
-                <li>No se encontraron valores nulos en el dataset original</li>
-                <li>El 6.4% de los asegurados presentaron reclamaciones (dataset desbalanceado)</li>
-                <li>Se identificaron y manejaron valores atípicos en varias variables</li>
-            </ul>
+            <img src="INFORMACION DE LOS DATOS DE DATA FRAME ORGINAL.png" alt="Análisis de distribución inicial">
+            <div class="image-caption">Distribución inicial de variables clave - Análisis realizado con Pandas</div>
         </div>
     </div>
 
     <div class="section">
         <h2>Análisis Exploratorio (EDA)</h2>
-        <h3>Comparación General</h3>
+        <p>Mediante técnicas avanzadas de análisis exploratorio, identifiqué relaciones significativas en los datos:</p>
+        
         <div class="image-container">
-            <img src="COMPARACIÓN DE CLIENTES QUE SE QUEJAN VS. CLIENTES QUE NO SE QUEJAN.png" alt="Comparación de clientes que presentaron quejas">
-            <div class="image-caption">Comparación entre clientes que presentaron reclamaciones (rojo) vs. que no presentaron (verde)</div>
+            <img src="COMPARACIÓN DE CLIENTES QUE SE QUEJAN VS. CLIENTES QUE NO SE QUEJAN.png" alt="Comparación de grupos">
+            <div class="image-caption">Comparación estadística entre clientes que presentaron reclamaciones vs. los que no</div>
         </div>
         
-        <h3>Distribución de Reclamaciones por Características</h3>
+        <h3>Principales Visualizaciones</h3>
         
         <div class="image-container">
-            <img src="Distribucion de age_of_car Por reclamacion.png" alt="Edad del vehículo por reclamación">
-            <div class="image-caption">Relación entre antigüedad del vehículo y reclamaciones</div>
-        </div>
-        
-        <div class="image-container">
-            <img src="Distribucion de transmission_type_por reclamacion.png" alt="Tipo de transmisión por reclamación">
-            <div class="image-caption">Reclamaciones por tipo de transmisión</div>
+            <img src="Distribucion de age_of_car Por reclamacion.png" alt="Edad del vehículo">
+            <div class="image-caption">Distribución de reclamaciones por antigüedad del vehículo (mayor riesgo en vehículos >5 años)</div>
         </div>
         
         <div class="image-container">
-            <img src="Distribucion de airbags por reclamacion.png" alt="Airbags por reclamación">
-            <div class="image-caption">Reclamaciones por número de airbags</div>
+            <img src="Distribucion de transmission_type_por reclamacion.png" alt="Tipo de transmisión">
+            <div class="image-caption">Análisis de reclamaciones por tipo de transmisión (p=0.91, no significativo)</div>
         </div>
         
-        <div class="image-container">
-            <img src="Distribuccion de cylinder por reclamacion.png" alt="Cilindros por reclamación">
-            <div class="image-caption">Reclamaciones por configuración de cilindros</div>
+        <div class="findings">
+            <h3>Hallazgos Estadísticos Clave</h3>
+            <ul>
+                <li><span class="data-highlight">Vehículos antiguos</span> mostraron mayor probabilidad de reclamación (t=6.41, p<0.0001)</li>
+                <li>Configuración de <span class="data-highlight">cilindros</span> fue significativa (χ²=13.46, p=0.0002)</li>
+                <li>El número de <span class="data-highlight">airbags</span> no mostró relación significativa (p=0.75)</li>
+                <li>Dataset <span class="data-highlight">desbalanceado</span> (solo 6.4% de reclamaciones)</li>
+            </ul>
         </div>
     </div>
 
     <div class="section">
-        <h2>Hallazgos Clave</h2>
+        <h2>Técnicas Avanzadas Implementadas</h2>
+        
+        <div class="methodology">
+            <div class="method-card">
+                <h4>Manejo de Outliers</h4>
+                <p>Implementé un sistema robusto para identificar y manejar valores atípicos:</p>
+                <div class="code-block">
+                    def handle_outliers(df, columns):<br>
+                    &nbsp;&nbsp;for col in columns:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Q1 = df[col].quantile(0.25)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Q3 = df[col].quantile(0.75)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;IQR = Q3 - Q1<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;df = df[~((df[col] < (Q1-1.5*IQR)) | (df[col] > (Q3+1.5*IQR)))]<br>
+                    &nbsp;&nbsp;return df
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <h4>Análisis Comparativo</h4>
+                <p>Desarrollé funciones para análisis estadístico comparativo:</p>
+                <div class="code-block">
+                    def compare_groups(df, target, features):<br>
+                    &nbsp;&nbsp;results = []<br>
+                    &nbsp;&nbsp;for feat in features:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if df[feat].dtype == 'object':<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Chi-square test<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# t-test<br>
+                    &nbsp;&nbsp;return pd.DataFrame(results)
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <h4>Visualización Automatizada</h4>
+                <p>Creé funciones para generar visualizaciones consistentes:</p>
+                <div class="code-block">
+                    def plot_distribution(df, feature, target):<br>
+                    &nbsp;&nbsp;plt.figure(figsize=(10,6))<br>
+                    &nbsp;&nbsp;sns.histplot(data=df, x=feature, hue=target,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element='step', kde=True)<br>
+                    &nbsp;&nbsp;plt.title(f'Distribución de {feature} por Reclamación')
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Conclusiones y Recomendaciones</h2>
         
         <div class="findings">
-            <h3>Principales Patrones Identificados</h3>
+            <h3>Insights Clave para la Empresa</h3>
             <ul>
-                <li><span class="data-highlight">Vehículos más antiguos</span> tienden a presentar más reclamaciones</li>
-                <li>Vehículos con <span class="data-highlight">menos airbags</span> (ej. 2) tuvieron más reclamaciones</li>
-                <li>Motores de <span class="data-highlight">4 cilindros</span> mostraron mayor asociación con reclamaciones</li>
-                <li>Clientes en áreas de <span class="data-highlight">menor densidad poblacional</span> presentaron más reclamos</li>
-                <li>Pólizas con <span class="data-highlight">menor antigüedad</span> (<6 meses) tuvieron mayor siniestralidad</li>
+                <li>Los vehículos con más de 5 años de antigüedad tienen un <span class="data-highlight">riesgo significativamente mayor</span> de reclamación</li>
+                <li>La configuración del motor (cilindros) es un <span class="data-highlight">factor predictivo importante</span></li>
+                <li>Se recomienda <span class="data-highlight">ajustar las primas</span> para vehículos antiguos</li>
+                <li>El dataset desbalanceado sugiere la necesidad de <span class="data-highlight">técnicas de muestreo especializadas</span> para modelado predictivo</li>
             </ul>
         </div>
         
-        <h3>Resultados Estadísticos</h3>
-        <table>
-            <tr>
-                <th>Variable</th>
-                <th>Test</th>
-                <th>Resultado</th>
-                <th>Significancia</th>
-            </tr>
-            <tr>
-                <td>age_of_car</td>
-                <td>t-test</td>
-                <td>t = 6.41</td>
-                <td>p < 0.0001</td>
-            </tr>
-            <tr>
-                <td>transmission_type</td>
-                <td>Chi-cuadrado</td>
-                <td>χ² = 0.01</td>
-                <td>p = 0.9121</td>
-            </tr>
-            <tr>
-                <td>airbags</td>
-                <td>Chi-cuadrado</td>
-                <td>χ² = 0.55</td>
-                <td>p = 0.7577</td>
-            </tr>
-            <tr>
-                <td>cylinder</td>
-                <td>Chi-cuadrado</td>
-                <td>χ² = 13.46</td>
-                <td>p = 0.0002</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="section">
-        <h2>Recomendaciones</h2>
+        <h3>Próximos Pasos</h3>
         <ul>
-            <li>Implementar técnicas de balanceo de datos (SMOTE) para mejorar modelos predictivos</li>
-            <li>Profundizar en el análisis por zona geográfica (area_cluster)</li>
-            <li>Investigar la relación entre antigüedad del vehículo y tipo de transmisión</li>
-            <li>Considerar la densidad poblacional en la evaluación de riesgos</li>
+            <li>Implementar modelos predictivos con Scikit-learn</li>
+            <li>Aplicar técnicas de balanceo (SMOTE) para mejorar el aprendizaje</li>
+            <li>Desarrollar un dashboard interactivo con Power BI</li>
+            <li>Automatizar el pipeline de análisis con Airflow</li>
         </ul>
     </div>
 
     <div class="btn-group">
-        <a href="http://luisalbertobb94.github.io/" class="btn">Regresar al Inicio</a>
-        <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">Regresar a Análisis Python</a>
+        <a href="http://luisalbertobb94.github.io/" class="btn">🏠 Regresar al Portafolio</a>
+        <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">🐍 Ver más Proyectos Python</a>
     </div>
 
     <footer>
-        <p>© 2025 Luis Alberto Barragán Bonilla | Análisis de Datos</p>
+        <p>© 2025 Luis Alberto Barragán Bonilla | Data Analyst & Control Engineer</p>
+        <p>Especializado en análisis de datos con Python, Pandas y NumPy</p>
     </footer>
 </body>
 </html>
