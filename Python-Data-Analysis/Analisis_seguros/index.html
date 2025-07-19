@@ -3,369 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Regresión Lineal: SAT vs GPA</title>
+    <title>Análisis de Reclamaciones de Seguros - Luis Barragán</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f9f9f9;
         }
         
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
         h1, h2, h3 {
-            color: #2c3e50;
+            color: var(--primary);
         }
         
         h1 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
         
-        .date {
-            color: #7f8c8d;
-            margin-bottom: 30px;
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary);
         }
         
-        .code-block {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: monospace;
-            border-left: 4px solid #3498db;
+        h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 10px;
         }
         
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .data-table th, .data-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .data-table th {
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .data-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-        
-        .result-table th, .result-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .result-table th {
-            background-color: #2c3e50;
-            color: white;
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
         .image-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         
         .image-container img {
             max-width: 100%;
             height: auto;
             border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .image-caption {
             font-style: italic;
-            color: #7f8c8d;
-            margin-top: 10px;
+            color: var(--gray);
+            margin-top: 8px;
         }
         
-        .notes {
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+        }
+        
+        .btn-download {
+            background: var(--accent);
+        }
+        
+        .btn-download:hover {
+            background: #c0392b;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .findings {
             background-color: #e8f4fc;
-            padding: 15px;
-            border-left: 4px solid #3498db;
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .findings h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        .findings ul {
+            padding-left: 20px;
+        }
+        
+        .findings li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
         }
         
-        .download-btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            margin: 15px 0;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
         }
         
-        .download-btn:hover {
-            background-color: #2980b9;
+        table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .data-highlight {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                margin: 5px 0;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Análisis de Regresión Lineal: SAT vs GPA</h1>
-    <div class="date">July 16, 2025</div>
-    
-    <h2>Descargar Datos</h2>
-    <a href="Simpl linear regression.csv" class="download-btn">Descargar archivo CSV de datos</a>
-    
-    <h2>Importación de Bibliotecas</h2>
-    <div class="code-block">
-        import numpy as np<br>
-        import pandas as pd<br>
-        import matplotlib.pyplot as plt<br>
-        import statsmodels.api as sm
+    <header>
+        <h1>Análisis de Reclamaciones de Seguros de Auto</h1>
+        <p>Exploración de datos y hallazgos clave sobre patrones de reclamaciones</p>
+    </header>
+
+    <div class="section">
+        <h2>Resumen del Proyecto</h2>
+        <p>Este análisis explora un conjunto de datos de reclamaciones de seguros de automóviles para identificar patrones y factores asociados con la probabilidad de que un asegurado presente una reclamación.</p>
+        
+        <div class="btn-group">
+            <a href="http://luisalbertobb94.github.io/" class="btn">Regresar al Inicio</a>
+            <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">Regresar a Análisis Python</a>
+        </div>
+        
+        <h3>Descargas</h3>
+        <a href="Reporte_analisis_seguros.pdf" class="btn btn-download" download>Descargar PDF del Reporte</a>
+        <a href="Reporte_analisis_seguros.ipynb" class="btn btn-download" download>Descargar Notebook Jupyter</a>
     </div>
-    
-    <h2>Carga de Datos</h2>
-    <div class="code-block">
-        data = pd.read_csv('1.01.*Simple+linear+regression.csv')
+
+    <div class="section">
+        <h2>Dataset: Car Insurance Claim</h2>
+        <p>El conjunto de datos incluye información sobre pólizas de seguro de automóviles con las siguientes variables clave:</p>
+        
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td>policy_id</td>
+                <td>Identificador único del titular</td>
+            </tr>
+            <tr>
+                <td>age_of_car</td>
+                <td>Edad del vehículo en años</td>
+            </tr>
+            <tr>
+                <td>age_of_policyholder</td>
+                <td>Edad del titular</td>
+            </tr>
+            <tr>
+                <td>transmission_type</td>
+                <td>Tipo de transmisión (Automática/Manual)</td>
+            </tr>
+            <tr>
+                <td>airbags</td>
+                <td>Número de airbags</td>
+            </tr>
+            <tr>
+                <td>cylinder</td>
+                <td>Configuración de cilindros</td>
+            </tr>
+            <tr>
+                <td>is_claim</td>
+                <td>Indicador de reclamación (0=No, 1=Sí)</td>
+            </tr>
+        </table>
+        
+        <div class="image-container">
+            <img src="INFORMACION DE LOS DATOS DE DATA FRAME ORGINAL.png" alt="Información del DataFrame Original">
+            <div class="image-caption">Distribución inicial de las variables principales</div>
+        </div>
     </div>
-    
-    <h2>Visualización de Datos</h2>
-    <table class="data-table">
-        <tr>
-            <th>SAT</th>
-            <th>GPA</th>
-        </tr>
-        <tr>
-            <td>1714</td>
-            <td>2.40</td>
-        </tr>
-        <tr>
-            <td>1664</td>
-            <td>2.52</td>
-        </tr>
-        <tr>
-            <td>1760</td>
-            <td>2.54</td>
-        </tr>
-        <tr>
-            <td>1685</td>
-            <td>2.74</td>
-        </tr>
-        <tr>
-            <td>1693</td>
-            <td>2.83</td>
-        </tr>
-        <tr>
-            <td colspan="2">... (84 filas en total)</td>
-        </tr>
-    </table>
-    
-    <h2>Estadísticas Descriptivas</h2>
-    <table class="data-table">
-        <tr>
-            <th></th>
-            <th>SAT</th>
-            <th>GPA</th>
-        </tr>
-        <tr>
-            <td>count</td>
-            <td>84.000000</td>
-            <td>84.000000</td>
-        </tr>
-        <tr>
-            <td>mean</td>
-            <td>1845.273810</td>
-            <td>3.330238</td>
-        </tr>
-        <tr>
-            <td>std</td>
-            <td>104.530661</td>
-            <td>0.271617</td>
-        </tr>
-        <tr>
-            <td>min</td>
-            <td>1634.000000</td>
-            <td>2.400000</td>
-        </tr>
-        <tr>
-            <td>25%</td>
-            <td>1772.000000</td>
-            <td>3.190000</td>
-        </tr>
-        <tr>
-            <td>50%</td>
-            <td>1846.000000</td>
-            <td>3.380000</td>
-        </tr>
-        <tr>
-            <td>75%</td>
-            <td>1934.000000</td>
-            <td>3.502500</td>
-        </tr>
-        <tr>
-            <td>max</td>
-            <td>2050.000000</td>
-            <td>3.810000</td>
-        </tr>
-    </table>
-    
-    <h2>Preparación de Variables</h2>
-    <div class="code-block">
-        y = data['GPA']<br>
-        x1 = data['SAT']
+
+    <div class="section">
+        <h2>Limpieza y Preparación de Datos</h2>
+        <p>Se realizaron las siguientes transformaciones:</p>
+        <ul>
+            <li>Normalización de edades (de proporciones a años enteros)</li>
+            <li>Conversión de policy_tenure a meses</li>
+            <li>División de max_power en caballos de fuerza y RPM</li>
+            <li>Detección y manejo de valores atípicos</li>
+        </ul>
+        
+        <div class="findings">
+            <h3>Datos Interesantes</h3>
+            <ul>
+                <li>No se encontraron valores nulos en el dataset original</li>
+                <li>El 6.4% de los asegurados presentaron reclamaciones (dataset desbalanceado)</li>
+                <li>Se identificaron y manejaron valores atípicos en varias variables</li>
+            </ul>
+        </div>
     </div>
-    
-    <h2>Gráfico de Dispersión</h2>
-    <div class="image-container">
-        <img src="GPA_SAT.png" alt="Gráfico de dispersión SAT vs GPA">
-        <div class="image-caption">Relación entre puntajes SAT y GPA</div>
+
+    <div class="section">
+        <h2>Análisis Exploratorio (EDA)</h2>
+        <h3>Comparación General</h3>
+        <div class="image-container">
+            <img src="COMPARACIÓN DE CLIENTES QUE SE QUEJAN VS. CLIENTES QUE NO SE QUEJAN.png" alt="Comparación de clientes que presentaron quejas">
+            <div class="image-caption">Comparación entre clientes que presentaron reclamaciones (rojo) vs. que no presentaron (verde)</div>
+        </div>
+        
+        <h3>Distribución de Reclamaciones por Características</h3>
+        
+        <div class="image-container">
+            <img src="Distribucion de age_of_car Por reclamacion.png" alt="Edad del vehículo por reclamación">
+            <div class="image-caption">Relación entre antigüedad del vehículo y reclamaciones</div>
+        </div>
+        
+        <div class="image-container">
+            <img src="Distribucion de transmission_type_por reclamacion.png" alt="Tipo de transmisión por reclamación">
+            <div class="image-caption">Reclamaciones por tipo de transmisión</div>
+        </div>
+        
+        <div class="image-container">
+            <img src="Distribucion de airbags por reclamacion.png" alt="Airbags por reclamación">
+            <div class="image-caption">Reclamaciones por número de airbags</div>
+        </div>
+        
+        <div class="image-container">
+            <img src="Distribuccion de cylinder por reclamacion.png" alt="Cilindros por reclamación">
+            <div class="image-caption">Reclamaciones por configuración de cilindros</div>
+        </div>
     </div>
-    
-    <h2>Modelo de Regresión Lineal</h2>
-    <div class="code-block">
-        x = sm.add_constant(x1)<br>
-        result = sm.OLS(y,x).fit()<br>
-        result.summary()
+
+    <div class="section">
+        <h2>Hallazgos Clave</h2>
+        
+        <div class="findings">
+            <h3>Principales Patrones Identificados</h3>
+            <ul>
+                <li><span class="data-highlight">Vehículos más antiguos</span> tienden a presentar más reclamaciones</li>
+                <li>Vehículos con <span class="data-highlight">menos airbags</span> (ej. 2) tuvieron más reclamaciones</li>
+                <li>Motores de <span class="data-highlight">4 cilindros</span> mostraron mayor asociación con reclamaciones</li>
+                <li>Clientes en áreas de <span class="data-highlight">menor densidad poblacional</span> presentaron más reclamos</li>
+                <li>Pólizas con <span class="data-highlight">menor antigüedad</span> (<6 meses) tuvieron mayor siniestralidad</li>
+            </ul>
+        </div>
+        
+        <h3>Resultados Estadísticos</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Test</th>
+                <th>Resultado</th>
+                <th>Significancia</th>
+            </tr>
+            <tr>
+                <td>age_of_car</td>
+                <td>t-test</td>
+                <td>t = 6.41</td>
+                <td>p < 0.0001</td>
+            </tr>
+            <tr>
+                <td>transmission_type</td>
+                <td>Chi-cuadrado</td>
+                <td>χ² = 0.01</td>
+                <td>p = 0.9121</td>
+            </tr>
+            <tr>
+                <td>airbags</td>
+                <td>Chi-cuadrado</td>
+                <td>χ² = 0.55</td>
+                <td>p = 0.7577</td>
+            </tr>
+            <tr>
+                <td>cylinder</td>
+                <td>Chi-cuadrado</td>
+                <td>χ² = 13.46</td>
+                <td>p = 0.0002</td>
+            </tr>
+        </table>
     </div>
-    
-    <h3>Resultados del Modelo</h3>
-    <table class="result-table">
-        <tr>
-            <th>Dep. Variable:</th>
-            <td>GPA</td>
-            <th>R-squared:</th>
-            <td>0.406</td>
-        </tr>
-        <tr>
-            <th>Model:</th>
-            <td>OLS</td>
-            <th>Adj. R-squared:</th>
-            <td>0.399</td>
-        </tr>
-        <tr>
-            <th>Method:</th>
-            <td>Least Squares</td>
-            <th>F-statistic:</th>
-            <td>56.05</td>
-        </tr>
-        <tr>
-            <th>Date:</th>
-            <td>Tue, 08 Jul 2025</td>
-            <th>Prob (F-statistic):</th>
-            <td>7.20e-11</td>
-        </tr>
-        <tr>
-            <th>Time:</th>
-            <td>16:03:54</td>
-            <th>Log-Likelihood:</th>
-            <td>12.672</td>
-        </tr>
-        <tr>
-            <th>No. Observations:</th>
-            <td>84</td>
-            <th>AIC:</th>
-            <td>-21.34</td>
-        </tr>
-        <tr>
-            <th>Df Residuals:</th>
-            <td>82</td>
-            <th>BIC:</th>
-            <td>-16.48</td>
-        </tr>
-    </table>
-    
-    <h3>Coeficientes</h3>
-    <table class="result-table">
-        <tr>
-            <th></th>
-            <th>coef</th>
-            <th>std err</th>
-            <th>t</th>
-            <th>P>|t|</th>
-            <th>[0.025</th>
-            <th>0.975]</th>
-        </tr>
-        <tr>
-            <td><strong>const</strong></td>
-            <td>0.2750</td>
-            <td>0.409</td>
-            <td>0.673</td>
-            <td>0.503</td>
-            <td>-0.538</td>
-            <td>1.088</td>
-        </tr>
-        <tr>
-            <td><strong>SAT</strong></td>
-            <td>0.0017</td>
-            <td>0.000</td>
-            <td>7.487</td>
-            <td>0.000</td>
-            <td>0.001</td>
-            <td>0.002</td>
-        </tr>
-    </table>
-    
-    <h3>Diagnósticos</h3>
-    <table class="result-table">
-        <tr>
-            <th>Omnibus:</th>
-            <td>12.839</td>
-            <th>Durbin-Watson:</th>
-            <td>0.950</td>
-        </tr>
-        <tr>
-            <th>Prob(Omnibus):</th>
-            <td>0.002</td>
-            <th>Jarque-Bera (JB):</th>
-            <td>16.155</td>
-        </tr>
-        <tr>
-            <th>Skew:</th>
-            <td>-0.722</td>
-            <th>Prob(JB):</th>
-            <td>0.000310</td>
-        </tr>
-        <tr>
-            <th>Kurtosis:</th>
-            <td>4.590</td>
-            <th>Cond. No.</th>
-            <td>3.29e+04</td>
-        </tr>
-    </table>
-    
-    <div class="notes">
-        <strong>Notas:</strong>
-        <ol>
-            <li>Standard Errors assume that the covariance matrix of the errors is correctly specified.</li>
-            <li>The condition number is large, 3.29e+04. This might indicate that there are strong multicollinearity or other numerical problems.</li>
-        </ol>
+
+    <div class="section">
+        <h2>Recomendaciones</h2>
+        <ul>
+            <li>Implementar técnicas de balanceo de datos (SMOTE) para mejorar modelos predictivos</li>
+            <li>Profundizar en el análisis por zona geográfica (area_cluster)</li>
+            <li>Investigar la relación entre antigüedad del vehículo y tipo de transmisión</li>
+            <li>Considerar la densidad poblacional en la evaluación de riesgos</li>
+        </ul>
     </div>
-    
-    <h2>Línea de Regresión</h2>
-    <div class="image-container">
-        <img src="GPA_SAT_regresion.png" alt="Gráfico de regresión SAT vs GPA">
-        <div class="image-caption">Línea de regresión ajustada a los datos</div>
+
+    <div class="btn-group">
+        <a href="http://luisalbertobb94.github.io/" class="btn">Regresar al Inicio</a>
+        <a href="https://luisalbertobb94.github.io/Python-Data-Analysis/index.html" class="btn">Regresar a Análisis Python</a>
     </div>
-    
-    <div class="code-block">
-        plt.scatter(x1,y)<br>
-        yhat = 0.0017*x1 + 0.275<br>
-        fig = plt.plot(x1,yhat, lw=4, c='orange', label ='regression line')<br>
-        plt.xlabel('SAT', fontsize = 20)<br>
-        plt.ylabel('GPA', fontsize = 20)<br>
-        plt.show()
-    </div>
+
+    <footer>
+        <p>© 2025 Luis Alberto Barragán Bonilla | Análisis de Datos</p>
+    </footer>
 </body>
 </html>
