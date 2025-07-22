@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Insights Comerciales</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --success: #27ae60;
+            --powerbi: #f2c811;
+            --python: #3776ab;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        .project-subtitle {
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .project-tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tool-tag {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .sql-tag {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+        
+        .powerbi-tag {
+            background-color: rgba(242, 200, 17, 0.1);
+            border: 1px solid var(--powerbi);
+            color: var(--powerbi);
+        }
+        
+        .python-tag {
+            background-color: rgba(55, 118, 171, 0.1);
+            border: 1px solid var(--python);
+            color: var(--python);
+        }
+        
+        .excel-tag {
+            background-color: rgba(33, 115, 70, 0.1);
+            border: 1px solid #217346;
+            color: #217346;
+        }
+        
+        .sql-code {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .insight-card h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-download {
+            background: var(--success);
+        }
+        
+        .btn-powerbi {
+            background: var(--powerbi);
+            color: #333;
+        }
+        
+        .btn-python {
+            background: var(--python);
+        }
+        
+        .dashboard-preview {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .project-tools {
+                margin-top: 15px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .process-step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://miro.medium.com/max/2048/1*OohqW5DGh9CQS4hLY5FXzA.png" alt="Profile" class="profile-img">
+        <h1>Análisis de Insights Comerciales</h1>
+    </header>
+
+    <div class="section">
+        <div class="project-header">
+            <div>
+                <h2 class="project-title">Análisis de Insights Comerciales</h2>
+                <p class="project-subtitle">Análisis integral de ventas, productos y comportamiento de clientes</p>
+            </div>
+            <div class="project-tools">
+                <span class="tool-tag sql-tag">SQL</span>
+                <span class="tool-tag powerbi-tag">Power BI</span>
+                <span class="tool-tag excel-tag">Excel</span>
+            </div>
+        </div>
+        
+        <h3>Objetivo del Proyecto</h3>
+        <p>Realizar un análisis completo del desempeño comercial para identificar patrones, tendencias y oportunidades de mejora, mediante:</p>
+        <ul>
+            <li>Análisis de ventas y tendencias temporales</li>
+            <li>Evaluación del rendimiento por departamento y sección</li>
+            <li>Identificación de productos más vendidos y más rentables</li>
+            <li>Análisis del comportamiento y valor de los clientes</li>
+        </ul>
+        
+        <h3>Metodología</h3>
+        
+        <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Extracción de Datos con SQL</h4>
+                <p>Consultas SQL diseñadas para responder a 10 preguntas clave del negocio:</p>
+                
+                <div class="sql-code">
+                    <strong>Visión General de Ventas:</strong><br>
+                    SELECT SUM(precio_total) AS ingreso_total<br>
+                    FROM tickets;
+                </div>
+                
+                <div class="sql-code">
+                    <strong>Tendencias Mensuales:</strong><br>
+                    SELECT strftime('%Y-%m', fecha) AS mes, SUM(precio_total) AS ingreso_mensual<br>
+                    FROM tickets<br>
+                    GROUP BY mes<br>
+                    ORDER BY mes;
+                </div>
+                
+                <a href="Análisis de Insights.pdf" class="btn btn-download">Ver Consultas Completas</a>
+            </div>
+        </div>
+        
+        <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Resultados Clave</h4>
+                <p>Principales hallazgos obtenidos del análisis:</p>
+                
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Interpretación</th>
+                    </tr>
+                    <tr>
+                        <td>Ingreso total</td>
+                        <td>$39,854,875.32 MXN</td>
+                        <td>Volumen de negocio anual</td>
+                    </tr>
+                    <tr>
+                        <td>Tendencia mensual</td>
+                        <td>De $6.67M a $1.18M</td>
+                        <td>Caída del 82% durante el año</td>
+                    </tr>
+                    <tr>
+                        <td>Departamento principal</td>
+                        <td>Depto. 4: $37.0M</td>
+                        <td>92.8% del total</td>
+                    </tr>
+                    <tr>
+                        <td>Producto más vendido</td>
+                        <td>Banana: 2.46M unidades</td>
+                        <td>Producto estrella</td>
+                    </tr>
+                </table>
+                
+                <a href="SQLAnálisis de Insights_resultados.pdf" class="btn btn-download">Ver Resultados Completos</a>
+            </div>
+        </div>
+        
+        <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Visualización en Power BI</h4>
+                <p>Dashboard interactivo desarrollado para monitoreo ejecutivo:</p>
+                
+                <img src="Dashboard_Análisis_de_Insights.jpg" alt="Dashboard Power BI" class="dashboard-preview">
+                
+                <p>Características principales:</p>
+                <ul>
+                    <li>Vista general de KPIs clave</li>
+                    <li>Tendencia de ventas mensuales</li>
+                    <li>Análisis por departamento y sección</li>
+                    <li>Top productos por ingresos y cantidad</li>
+                </ul>
+                
+                <a href="Dashboard_Análisis_de_Insights.pbix" class="btn btn-powerbi">Descargar Dashboard PBIX</a>
+            </div>
+        </div>
+        
+        <h3>Hallazgos y Recomendaciones</h3>
+        
+        <div class="insight-card">
+            <h4>1. Tendencia Decreciente en Ventas</h4>
+            <p>Los ingresos muestran una <span class="highlight">caída del 82%</span> durante el año, de $6.67M en enero a $1.18M en diciembre.</p>
+            <p><strong>Recomendación:</strong> Investigar causas raíz (estacionalidad, competencia, cambios internos) y desarrollar estrategias correctivas.</p>
+        </div>
+        
+        <div class="insight-card">
+            <h4>2. Alta Concentración en un Departamento</h4>
+            <p>El <span class="highlight">Departamento 4 representa el 92.8%</span> de los ingresos totales ($37.0M de $39.85M).</p>
+            <p><strong>Recomendación:</strong> Diversificar fuentes de ingreso mediante desarrollo de otros departamentos y análisis de canasta de compra.</p>
+        </div>
+        
+        <div class="insight-card">
+            <h4>3. Oportunidad en Valor por Cliente</h4>
+            <p>El <span class="highlight">valor promedio por pedido es de solo $19.34 MXN</span>, con compra media por cliente de $219.09 MXN.</p>
+            <p><strong>Recomendación:</strong> Implementar estrategias de upselling/cross-selling y programas de fidelización.</p>
+        </div>
+        
+        <a href="Conclusiones Análisis de Insights.pdf" class="btn btn-download">Ver Documento Completo de Conclusiones</a>
+    </div>
+
+    <div class="section">
+        <h2>Habilidades Demostradas</h2>
+        
+        <h3>Análisis de Datos</h3>
+        <ul>
+            <li>Extracción y transformación de datos con SQL</li>
+            <li>Análisis de tendencias y patrones temporales</li>
+            <li>Segmentación y análisis comparativo</li>
+            <li>Identificación de insights accionables</li>
+        </ul>
+        
+        <h3>Visualización</h3>
+        <ul>
+            <li>Creación de dashboards ejecutivos en Power BI</li>
+            <li>Selección de visualizaciones apropiadas para cada métrica</li>
+            <li>Diseño de informes interactivos</li>
+        </ul>
+        
+        <h3>Comunicación</h3>
+        <ul>
+            <li>Síntesis de hallazgos complejos</li>
+            <li>Elaboración de recomendaciones estratégicas</li>
+            <li>Documentación profesional del análisis</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Recursos del Proyecto</h2>
+        <p>Documentación completa y archivos fuente disponibles:</p>
+        
+        <ul>
+            <li><strong>Consultas SQL:</strong> <a href="Análisis de Insights.pdf">Análisis de Insights</a></li>
+            <li><strong>Resultados en Excel:</strong> <a href="SQLAnálisis de Insights_resultados.pdf">SQLAnálisis de Insights_resultados</a></li>
+            <li><strong>Dashboard Power BI:</strong> <a href="Dashboard_Análisis_de_Insights.pbix">Dashboard_Análisis_de_Insights</a></li>
+            <li><strong>Base de Datos:</strong> <a href="https://drive.google.com/file/d/1W30t2-d3Qvq1fwe-mdt7AUXkirsLKIKn/view?usp=sharing">DB_tickets.db</a></li>
+            <li><strong>Conclusiones:</strong> <a href="Conclusiones Análisis de Insights.pdf">Conclusiones Análisis de Insights</a></li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>© 2024 Luis Alberto Barragán Bonilla | Portafolio de Análisis de Datos</p>
+        <p>Contacto: <a href="mailto:luis.bto08@gmail.com">luis.bto08@gmail.com</a> | 
+           <a href="https://www.linkedin.com/in/LuisBarraganBonilla">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
