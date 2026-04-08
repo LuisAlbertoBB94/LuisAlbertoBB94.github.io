@@ -11,7 +11,7 @@ Lidero la arquitectura de Business Intelligence mediante **GCP, BigQuery y Airfl
 ---
 
 ## 🚀 Proyectos Estratégicos (Retail & AI)
-1.  **Maxter AI Analytics:** Sistema Multi-Agente para consulta de +321M registros.
+1.  **GenAI Data Analyst Agent:** Sistema Multi-Agente para consulta de +321M registros.
 2.  **Real-Time Sales Engine:** Pipeline POS con latencia de 10 min.
 3.  **Auditoría & Paridad:** Conciliación SAP vs Tableau íntegra.
 4.  **Matriz BCG AI:** Optimización de inventarios mediante IA.

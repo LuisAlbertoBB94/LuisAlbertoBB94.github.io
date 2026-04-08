@@ -19,7 +19,7 @@ Senior BI Lead y Doctor en Ciencias (PhD) con especialización en **Modern Data 
 ## 🚀 Proyectos Estratégicos (Retail & AI)
 *Casos de éxito implementados en una Empresa Líder en Retail*
 
-- **🧠 Maxter AI Assistant:** Sistema Multi-Agente (Gemini) para análisis financiero por lenguaje natural sobre +321M registros.
+- **🧠 GenAI Data Analyst Agent:** Sistema Multi-Agente (Gemini) para análisis financiero por lenguaje natural sobre +321M registros.
 - **⚡ Real-Time Sales Engine:** Pipeline ELT con latencia <10 min para transacciones POS globales.
 - **🛡️ Auditoría & Paridad:** Conciliación 100% SAP vs Tableau mediante inyección de reglas de negocio complejas.
 - **📊 Matriz BCG AI:** Motor proyectivo de ventas y rentabilidad para optimización de inventarios.
