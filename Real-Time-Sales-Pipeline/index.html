@@ -89,7 +89,6 @@
             font-size: 2rem;
             border-left: 4px solid var(--accent);
             padding-left: 20px;
-            margin-bottom: 300px;
             margin-bottom: 40px;
         }
 
@@ -256,12 +255,19 @@
             transform: scale(1.02);
         }
 
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: start;
+        }
+
         .mermaid {
             background: rgba(255,255,255,0.02);
             padding: 20px;
             border-radius: 12px;
             border: 1px solid var(--border);
-            margin: 20px 0;
+            margin: 0;
         }
 
         .tab-content { display: block; margin-bottom: 60px; }
@@ -305,7 +311,13 @@
 
         @media (max-width: 768px) {
             .grid, .kpi-container, .chart-row, .architecture-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .meta-tags { flex-wrap: wrap; gap: 6px; }
+            .back-link { padding: 10px 16px; font-size: 0.85rem; }
+            .kpi-value { font-size: 1.4rem; }
+            .data-table { font-size: 0.75rem; }
+            .data-table th, .data-table td { padding: 8px 6px; }
         }
     </style>
 </head>
@@ -336,9 +348,9 @@
                     <p>La operación global de retail generaba millones de transacciones por hora que se procesaban en batches diarios. Esto impedía a la Dirección General tomar decisiones rápidas sobre inventarios y promociones durante el horario comercial.</p>
                     <p>Necesitábamos una solución que:</p>
                     <ul style="color: var(--text-dim);">
-                        <li>Redujera la latencia de 24 horas a 10 minutos.</li>
-                        <li>Garantizara 100% de paridad con SAP HANA.</li>
-                        <li>Fuera eficiente en costos (FinOps).</li>
+                        <li>Redujo la latencia de datos de 24 horas a menos de 10 minutos.</li>
+                        <li>Procesamiento confiable con integridad total del dato de origen.</li>
+                        <li>Arquitectura pensada para eficiencia de costos (FinOps).</li>
                     </ul>
                 </div>
                 <div class="card">
@@ -383,16 +395,15 @@
                             style Z3 fill:#0f172a,stroke-dasharray: 5 5
                     </div>
                 </div>
-                <p class="description">
-                Diseño e implementación de una infraestructura de datos de alta disponibilidad capaz de procesar millones de transacciones diarias con integridad absoluta, optimizando la toma de decisiones estratégica a través de una arquitectura elástica y escalable.
-            </p>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim);">
-                        Este flujo garantiza la integridad y el gobierno de los datos desde la extracción segura en sistemas transaccionales hasta la capa analítica.
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <p>Diseño e implementación de una infraestructura de datos de alta disponibilidad para el procesamiento masivo de transacciones en tiempo real.</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-dim);">
+                        Este flujo garantiza la integridad y el gobierno de los datos desde la extracción segura en sistemas transaccionales hasta la capa analítica optimizada.
                     </p>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem;">
-                        <li><strong>Fase 1: Recolección</strong> - Ingesta segura y persistencia de datos crudos con mínima latencia.</li>
-                        <li><strong>Fase 2: Procesamiento</strong> - Transformación multietapa y validación de reglas financieras.</li>
-                        <li><strong>Fase 3: Optimización</strong> - Materialización de vistas semánticas optimizadas para el rendimiento de BI.</li>
+                    <ul style="color: var(--text-dim); font-size: 0.9rem; margin-top: 15px;">
+                        <li><strong>Fase 1: Recolección</strong> — Ingesta segura con mínima latencia.</li>
+                        <li><strong>Fase 2: Procesamiento</strong> — Transformación multietapa y validación financiera.</li>
+                        <li><strong>Fase 3: Optimización</strong> — Materialización de vistas para consumo analítico de alto rendimiento.</li>
                     </ul>
                 </div>
             </div>
