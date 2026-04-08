@@ -243,34 +243,16 @@
             filter: grayscale(0) brightness(1);
         }
 
-        /* Tabs Styles */
-        .tabs { margin: 40px 0; }
-        .tab-header {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+        .tab-content { display: block; margin-bottom: 60px; }
+        .tab-title { 
+            font-size: 1.2rem; 
+            color: var(--accent); 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
-        .tab-btn {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .tab-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.5s; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Data Table Style */
         .data-table {
@@ -382,16 +364,12 @@
                 </div>
             </div>
 
-            <!-- Tabs System -->
-            <div class="tabs">
-                <div class="tab-header">
-                    <button class="tab-btn active" onclick="openTab(event, 'exec')">Ejecutivo (Horario)</button>
-                    <button class="tab-btn" onclick="openTab(event, 'prod')">Producto (Top SKUs)</button>
-                    <button class="tab-btn" onclick="openTab(event, 'cube')">Cubo Operativo</button>
-                </div>
-
-                <!-- Tab: Ejecutivo -->
-                <div id="exec" class="tab-content active">
+            <!-- Dashboard Sections Unrolled -->
+            <div class="dashboard-sections">
+                
+                <!-- Section: ejecutivo -->
+                <div class="tab-content">
+                    <div class="tab-title">01. Vista Ejecutiva (Venta Intradía)</div>
                     <div class="chart-row">
                         <div class="chart-box">
                             <div class="chart-title">VENTA POR HORA (INTRADÍA)</div>
@@ -434,8 +412,9 @@
                     </div>
                 </div>
 
-                <!-- Tab: Producto -->
-                <div id="prod" class="tab-content">
+                <!-- Section: Producto -->
+                <div class="tab-content">
+                    <div class="tab-title">02. Análisis de Mix & Performance</div>
                     <div class="chart-row">
                         <div class="chart-box" style="text-align: center;">
                             <div class="chart-title">MIX DE VENTA POR CATEGORÍA (%)</div>
@@ -470,8 +449,9 @@
                     </div>
                 </div>
 
-                <!-- Tab: Cubo -->
-                <div id="cube" class="tab-content">
+                <!-- Section: Cubo -->
+                <div class="tab-content">
+                    <div class="tab-title">03. Cubo Operativo (Data Lake Semantic Zone)</div>
                     <div style="overflow-x: auto;">
                         <table class="data-table">
                             <thead>
@@ -509,24 +489,6 @@
                 </p>
             </div>
         </section>
-
-        <script>
-            function openTab(evt, tabName) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tab-content");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                    tabcontent[i].classList.remove("active");
-                }
-                tablinks = document.getElementsByClassName("tab-btn");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].classList.remove("active");
-                }
-                document.getElementById(tabName).style.display = "block";
-                document.getElementById(tabName).classList.add("active");
-                evt.currentTarget.classList.add("active");
-            }
-        </script>
 
         <footer>
             <p>Luis Barragan, PhD | Senior BI Lead</p>
