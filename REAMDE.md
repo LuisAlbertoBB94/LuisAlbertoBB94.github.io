@@ -31,8 +31,26 @@
 ## 🚀 Featured Project
 
 <div align="center">
+  <a href="Maxter-AI-Analytics/index.html">
+    <img src="Maxter-AI-Analytics/img/hero_architecture.png" alt="Maxter AI Analytics" width="85%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid #7c3aed;">
+  </a>
+  
+[![Explore Maxter AI](https://img.shields.io/badge/View_Maxter_AI_System-7C3AED?style=for-the-badge&logo=openai&logoColor=white)](https://github.com/LuisAlbertoBB94/LuisAlbertoBB94.github.io/blob/main/Maxter-AI-Analytics/index.html)
+</div>
+
+**Maxter Analytics AI Features**:
+- 🧠 **Multi-Agent Hive Architecture**: Autonomous orchestration of specialized AI agents.
+- 📈 **Big Data Engine**: Real-time analysis of **+321 Million records** on BigQuery.
+- 🎯 **Strategic Frameworks**: Instant Pareto, BCG, and Price Elasticity analysis.
+- ✅ **Financial Parity**: Validated against SAP Sales Cube source of truth.
+
+---
+
+## 📊 Business Intelligence Dashboards
+
+<div align="center">
   <a href="PowerBI-Dashboards/index.html">
-    <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="85%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #eee;">
+    <img src="PowerBI-Dashboards/Ventas-preview.jpg" alt="Power BI Dashboard" width="70%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #eee;">
   </a>
   
 [![Explore Dashboards](https://img.shields.io/badge/View_Power_BI_Portfolio-FF9E0F?style=for-the-badge&logo=powerbi&logoColor=black)](https://github.com/LuisAlbertoBB94/LuisAlbertoBB94.github.io/blob/main/PowerBI-Dashboards/README.md)
@@ -42,7 +60,6 @@
 - 📈 Sales performance tracking ($671M profit analyzed)
 - 🌍 Geospatial visualization by country/region
 - 📅 Time-series analysis with quarterly trends
-- 🎯 KPI monitoring with dynamic filters
 
 ---
 
