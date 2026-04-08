@@ -5,300 +5,545 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loyalty & Customer Frequency | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #2563eb;       /* Corporate Zafiro */
-            --tech-purple: #94a3b8;  /* Platinum */
-            --success: #059669;      /* Wealth Green */
+            --accent: #2563eb;
+            --success: #059669;
+            --gold: #d97706;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --border: rgba(51, 65, 85, 0.8);
-            --card-bg: #1e293b;
+            --border: rgba(51,65,85,0.8);
+            --card: #161e2e;
+            --card2: #1e293b;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--primary); color: var(--text-main); line-height: 1.5; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary);
-            color: var(--text-main);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 30px 20px; }
 
         .back-link {
-            text-decoration: none;
-            color: white;
-            background: rgba(37, 99, 235, 0.1);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            transition: all 0.3s ease;
+            text-decoration: none; color: white; background: rgba(37,99,235,0.1);
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
+            display: inline-flex; align-items: center; gap: 10px; margin-bottom: 25px;
+            border: 1px solid rgba(37,99,235,0.3); transition: all 0.3s;
         }
+        .back-link:hover { background: var(--accent); border-color: var(--accent); }
 
-        .back-link:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+        header { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 30px; }
+        .section-tag { background: transparent; color: var(--text-dim); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; border: 1px solid var(--border); display: inline-block; margin-bottom: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        h1 { font-size: 2.8rem; letter-spacing: -1.5px; font-weight: 900; margin-bottom: 10px; }
+        p.lead { font-size: 1.1rem; color: var(--text-dim); max-width: 800px; font-weight: 300; }
+
+        /* ── DASHBOARD SHELL ── */
+        .db-shell {
+            background: #0d1423;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            margin: 30px 0 60px;
         }
-
-        header {
+        .db-topbar {
+            background: #111827;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 40px;
-            margin-bottom: 50px;
-        }
-
-        .tag {
-            background: transparent;
-            color: var(--text-dim);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            border: 1px solid var(--border);
-            display: inline-block;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 15px;
-            letter-spacing: -1.5px;
-            font-weight: 900;
-        }
-
-        p.lead {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 800px;
-            font-weight: 300;
-        }
-
-        /* Mockup de CSS */
-        .dashboard-mockup {
-            background: #161e2e;
-            border-radius: 8px;
-            padding: 30px;
-            border: 1px solid var(--border);
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .chart-title {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .fake-chart {
+            padding: 14px 24px;
             display: flex;
-            align-items: flex-end;
-            gap: 15px;
-            height: 180px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
+            align-items: center;
+            justify-content: space-between;
         }
+        .db-title { font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+        .db-badge { font-size: 0.7rem; color: var(--text-dim); background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 3px 10px; border-radius: 4px; }
 
-        .bar {
-            flex: 1;
-            background: var(--accent);
-            border-radius: 4px 4px 0 0;
-            opacity: 0.7;
-            position: relative;
+        .db-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+
+        /* ── FILTRO BAR ── */
+        .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-chip {
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            border-radius: 4px; padding: 5px 12px; font-size: 0.72rem; color: var(--text-dim);
         }
-        .bar:hover { opacity: 1; }
+        .filter-chip strong { color: var(--text-main); }
 
-        h2 {
-            font-size: 2rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin-bottom: 30px;
-            margin-top: 60px;
+        /* ── KPI ROW ── */
+        .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+        .kpi-box {
+            background: var(--card2); border: 1px solid var(--border); border-radius: 8px;
+            padding: 16px 14px; text-align: center;
         }
+        .kpi-box.highlighted { border-color: var(--accent); background: rgba(37,99,235,0.08); }
+        .kpi-label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .kpi-value { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+        .kpi-value.gold { color: var(--gold); }
 
-        .challenge-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+        /* ── CHARTS ROW 1 ── */
+        .charts-row { display: grid; grid-template-columns: 1fr 1.4fr 1.4fr; gap: 14px; }
+        .chart-box {
+            background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px;
         }
+        .chart-box-title { font-size: 0.8rem; color: var(--text-dim); font-weight: 600; text-align: center; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .challenge-card {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        /* Composición por Segmento – barras */
+        .seg-chart { display: flex; flex-direction: column; gap: 10px; padding-top: 10px; }
+        .seg-bar-wrap { display: flex; align-items: center; gap: 8px; }
+        .seg-name { font-size: 0.72rem; color: var(--text-dim); width: 80px; text-align: right; flex-shrink: 0; }
+        .seg-bar-track { flex: 1; height: 32px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+        .seg-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.7rem; font-weight: 700; color: white; }
+        .seg-val { font-size: 0.72rem; color: var(--text-dim); width: 40px; flex-shrink: 0; }
+        .fill-occ { background: var(--gold); }
+        .fill-rec { background: rgba(37,99,235,0.8); }
+        .fill-leal { background: var(--success); }
+
+        /* Tendencia lineas – SVG  */
+        .line-svg { width: 100%; height: 130px; }
+        .axis-labels { display: flex; justify-content: space-between; padding: 0 2px; margin-top: 4px; }
+        .axis-label { font-size: 0.6rem; color: var(--text-dim); }
+
+        /* ── CHARTS ROW 2 ── */
+        .charts-row2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+        /* Mapa simulado */
+        .map-sim {
+            background: #0c1829; border-radius: 6px; height: 200px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
-
-        .challenge-card h3 {
-            margin-top: 0;
-            color: var(--text-main);
-            font-size: 1.4rem;
+        .map-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 40% 50%, rgba(37,99,235,0.08) 0%, transparent 70%);
         }
-
-        .context-tag {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: block;
+        .map-dots { position: absolute; inset: 0; }
+        .map-dot {
+            position: absolute; border-radius: 50%;
+            background: var(--accent); opacity: 0.6;
+            animation: pulse-dot 3s ease-in-out infinite;
         }
+        @keyframes pulse-dot { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:0.9;transform:scale(1.3)} }
+        .map-label { font-size: 0.65rem; color: var(--text-dim); position: absolute; bottom: 8px; right: 10px; }
 
-        pre {
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            color: #cbd5e1;
-            font-family: monospace;
-            font-size: 0.9rem;
-            margin-top: 20px;
+        /* Barras horizontales Top Productos */
+        .hbar-list { display: flex; flex-direction: column; gap: 8px; }
+        .hbar-item { display: flex; align-items: center; gap: 8px; }
+        .hbar-name { font-size: 0.63rem; color: var(--text-dim); width: 130px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hbar-track { flex: 1; height: 18px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; }
+        .hbar-fill { height: 100%; border-radius: 3px; background: var(--gold); }
+        .hbar-val { font-size: 0.63rem; color: var(--text-dim); width: 35px; text-align: right; flex-shrink: 0; }
+
+        /* ── TABLA DETALLE ── */
+        .detail-section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+        .detail-title { font-size: 0.85rem; color: var(--text-dim); font-weight: 600; text-align: center; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .detail-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+        .detail-table th { background: rgba(255,255,255,0.04); padding: 8px 10px; text-align: left; color: var(--text-dim); border-bottom: 1px solid var(--border); font-weight: 600; letter-spacing: 0.5px; }
+        .detail-table td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-dim); }
+        .detail-table tr:hover td { background: rgba(255,255,255,0.03); color: var(--text-main); }
+        .detail-table td:first-child { color: var(--text-main); }
+        .badge-leal { background: rgba(5,150,105,0.15); color: #6ee7b7; padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; }
+        .badge-rec { background: rgba(37,99,235,0.15); color: #93c5fd; padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; }
+        .badge-occ { background: rgba(217,119,6,0.15); color: #fcd34d; padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; }
+
+        /* ── CHALLENGES SECTION ── */
+        .section-title { font-size: 1.8rem; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 20px; margin: 50px 0 20px; }
+        .section-desc { color: var(--text-dim); margin-bottom: 30px; font-size: 1rem; max-width: 800px; }
+        .challenge-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        .challenge-card { background: #1e293b; padding: 28px 30px; border-radius: 8px; border: 1px solid var(--border); }
+        .c-num { color: var(--accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+        .challenge-card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 12px; }
+        .challenge-card p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 10px; }
+        pre { background: #0f172a; padding: 14px; border-radius: 6px; overflow-x: auto; border: 1px solid var(--border); color: #cbd5e1; font-family: monospace; font-size: 0.88rem; margin-top: 14px; }
+        .impact { margin-top: 14px; padding: 12px 16px; background: rgba(5,150,105,0.1); border-left: 3px solid var(--success); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--text-main); }
+
+        /* legend */
+        .legend { display: flex; gap: 16px; margin-top: 10px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--text-dim); }
+        .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+        footer { border-top: 1px solid var(--border); padding: 40px 20px; text-align: center; color: var(--text-dim); margin-top: 60px; background: #0f172a; }
+
+        @media (max-width: 900px) {
+            .kpi-row { grid-template-columns: repeat(3,1fr); }
+            .charts-row, .charts-row2 { grid-template-columns: 1fr; }
         }
-
-        .impact {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(5, 150, 105, 0.1);
-            border-left: 3px solid var(--success);
-            border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
-            color: var(--text-main);
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .kpi-row { grid-template-columns: repeat(2,1fr); }
         }
-
     </style>
 </head>
 <body>
+<div class="container">
+    <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
 
-    <div class="container">
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
-        
-        <header>
-            <div class="tag">ANALYTICS & DATA MODELING</div>
-            <h1>Loyalty Analytics & Frecuencia de Compra</h1>
-            <p class="lead">
-                Análisis avanzado del comportamiento de clientes, identificando patrones de lealtad mediante métricas dinámicas y superando sesgos algorítmicos comunes en arquitecturas masivas empresariales.
-            </p>
-        </header>
+    <header>
+        <div class="section-tag">Analytics &amp; Data Modeling · Tableau LOD</div>
+        <h1>Frecuencia y Lealtad Ecommerce</h1>
+        <p class="lead">Modelo analítico para segmentar clientes en Ocasional, Recurrente y Leal, midiendo frecuencia de compra real, ritmo inter-compra y ticket promedio por tipo de cliente.</p>
+    </header>
 
-        <!-- Dashboard Mockup Sintético -->
-        <div class="dashboard-mockup">
-            <div class="chart-title"><i class="fas fa-chart-bar"></i> Distribución Estructural de Frecuencia de Compra (Mock Data)</div>
-            <div class="fake-chart">
-                <div class="bar" style="height: 20%; background: #94a3b8;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">1x</span></div>
-                <div class="bar" style="height: 40%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">2-3x</span></div>
-                <div class="bar" style="height: 70%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">4-6x</span></div>
-                <div class="bar" style="height: 35%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">7-10x</span></div>
-                <div class="bar" style="height: 15%; background: var(--success);"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">10x+</span></div>
+    <!-- ═══════════════════ DASHBOARD SHELL ═══════════════════ -->
+    <div class="db-shell">
+        <div class="db-topbar">
+            <span class="db-title"><i class="fas fa-chart-bar" style="color:var(--gold);margin-right:8px;"></i>Frecuencia y Lealtad Ecommerce</span>
+            <div style="display:flex;gap:8px;">
+                <span class="db-badge">MOCK DATA — Datos Anonimizados</span>
+                <span class="db-badge">Período: Valores múltiples</span>
+                <span class="db-badge">Segmento: Todo</span>
             </div>
         </div>
+        <div class="db-body">
 
-        <section>
-            <h2>Ingeniería del Modelo Analítico</h2>
-            <p style="color: var(--text-dim); margin-bottom: 30px;">
-                Calcular la frecuencia real de los clientes en entornos corporativos exige superar graves sesgos estadísticos. A continuación, presento los 6 retos arquitectónicos resueltos para este proyecto empleando <strong>SQL / Tableau Level of Detail (LOD)</strong>.
-            </p>
+            <!-- Filtros -->
+            <div class="filter-bar">
+                <div class="filter-chip"><strong>Observar Por:</strong> Año</div>
+                <div class="filter-chip"><strong>Período:</strong> Valores múltiples</div>
+                <div class="filter-chip"><strong>Es Interno:</strong> Todo</div>
+                <div class="filter-chip"><strong>Segmento:</strong> Todo</div>
+                <div class="filter-chip"><strong>Email Cliente:</strong> Todo</div>
+            </div>
 
-            <div class="challenge-grid">
-                
-                <!-- Reto 1 -->
-                <div class="challenge-card">
-                    <span class="context-tag">01. Agregación</span>
-                    <h3>La "Falsa" Frecuencia Promedio</h3>
-                    <p><strong>El Conflicto:</strong> Al intentar calcular la frecuencia mediante promedios simples de facturas, se generaban agregaciones erróneas que no reflejaban el comportamiento individual por cliente, sino un volcado general global distorsionado.</p>
-                    <p><strong>Resolución:</strong> Implementé Expresiones de Nivel de Detalle (LOD) para etiquetar estáticamente a cada cliente individual con su volumen de facturas únicas antes de inyectarlas en el promedio poblacional.</p>
-<pre><code>// Compras totales bloqueadas por cada cliente único
-{ FIXED [Email Cliente] : COUNTD([Numero Factura]) }</code></pre>
+            <!-- KPIs -->
+            <div class="kpi-row">
+                <div class="kpi-box">
+                    <div class="kpi-label">Venta Total</div>
+                    <div class="kpi-value gold">$138M</div>
                 </div>
-
-                <!-- Reto 2 -->
-                <div class="challenge-card">
-                    <span class="context-tag">02. Gobierno de Datos</span>
-                    <h3>El Identificador Único Absoluto</h3>
-                    <p><strong>El Conflicto:</strong> La data transaccional venía sin limpieza de los sistemas <em>Core</em>. Requeríamos asegurar que la frecuencia no contara facturas duplicadas artificialmente (ej. por múltiples líneas de productos en una sola orden).</p>
-                    <p><strong>Resolución:</strong> Se desarrolló un campo de validación cruzada mediante manipulación asimétrica de cadenas <em>(string manipulation)</em> que extrae la pureza del ticket omitiendo variables nulas o decimales espurios.</p>
-<pre><code>[Email Cliente] + 
-LEFT(STR([Numero Pedido]), LEN(STR([Numero Pedido])) - 2) + 
-STR([Fecha Pedido])</code></pre>
+                <div class="kpi-box">
+                    <div class="kpi-label">Transacciones</div>
+                    <div class="kpi-value">101,839</div>
                 </div>
-
-                <!-- Reto 3 -->
-                <div class="challenge-card">
-                    <span class="context-tag">03. Flexibilidad Analítica</span>
-                    <h3>Ecosistema Temporal Dinámico</h3>
-                    <p><strong>El Conflicto:</strong> La Dirección General requería analizar la frecuencia en "lentes" distintos (Anual, Semestral, Trimestral) desde un único panel maestro, forzando al motor a adaptar el denominador geométricamente.</p>
-                    <p><strong>Resolución:</strong> Se codificó un selector paramétrico robusto capaz de mutar la granularidad temporal al vuelo.</p>
-<pre><code>// 1. Matriz de Periodo Dinámico
-CASE [Elegir Periodo]
-   WHEN "Año" THEN STR(YEAR([Fecha]))
-   WHEN "Semestre" THEN STR(YEAR([Fecha])) + IF MONTH([Fecha]) <= 6 THEN " S1" ELSE " S2" END
-   WHEN "Trimestre" THEN STR(YEAR([Fecha])) + "-Q" + STR(DATEPART('quarter', [Fecha]))
-END
-
-// 2. Ejecución LOD contra la Variación Temporal
-{ FIXED [Email Cliente] : COUNTD([ID_Factura_Unico]) } / 
-{ FIXED [Email Cliente] : COUNTD([Periodo Dinamico]) }</code></pre>
+                <div class="kpi-box">
+                    <div class="kpi-label">Ticket — Ocasional</div>
+                    <div class="kpi-value" style="font-size:1.1rem;">$1,654</div>
                 </div>
-
-                <!-- Reto 4 -->
-                <div class="challenge-card">
-                    <span class="context-tag">04. Medición de Intervalos</span>
-                    <h3>El Ritmo de Compra (Inter-purchase Time)</h3>
-                    <p><strong>El Conflicto:</strong> Saber cuántas compras hace un cliente informa el <em>Lifetime Value</em> (LTV), pero no el "espacio vital" entre ellas. Debíamos medir los espacios vacíos evitando colapsos matemáticos (división por cero) en usuarios pioneros de solo una compra.</p>
-                    <p><strong>Resolución:</strong> Segmentación matemática midiendo <code>N-1</code> transacciones respecto a los extremos de sus compras vitalicias.</p>
-<pre><code>DATEDIFF('day', {FIXED [Email Cliente]: MIN([Fecha])}, {FIXED [Email Cliente]: MAX([Fecha])}) 
-/ 
-({FIXED [Email Cliente]: COUNTD([ID_Factura_Unico])} - 1)</code></pre>
+                <div class="kpi-box">
+                    <div class="kpi-label">Ticket — En Desarrollo</div>
+                    <div class="kpi-value" style="font-size:1.1rem;">$1,941</div>
                 </div>
-
-                <!-- Reto 5 -->
-                <div class="challenge-card">
-                    <span class="context-tag">05. Sesgo Estadístico</span>
-                    <h3>El Defecto de los Racimos (Clustering)</h3>
-                    <p><strong>El Conflicto:</strong> Analíticamente, un usuario realizando 5 tickets fragmentados el mismo día ocasionaba que el "Ritmo" arrojara una ilusión de recurrencia masiva (una vez cada pocos días), ocultando que históricamente el cliente visita la tienda una vez cada 3 meses.</p>
-                    <p><strong>Resolución:</strong> Transición absoluta del enfoque de "Transacciones" a <strong>"Días de Visita Real"</strong>, validando así recurrencia en sustratos geolocalizados válidos.</p>
-<pre><code>// Ritmo Real del Customer Journey
-DATEDIFF('day', MIN([Fecha]), MAX([Fecha])) / (COUNTD([Fecha]) - 1)</code></pre>
+                <div class="kpi-box">
+                    <div class="kpi-label">Ticket — Recurrente</div>
+                    <div class="kpi-value" style="font-size:1.1rem;">$2,100</div>
                 </div>
+                <div class="kpi-box highlighted">
+                    <div class="kpi-label">Ticket — Leal</div>
+                    <div class="kpi-value" style="font-size:1.2rem;color:var(--accent);">$4,195</div>
+                </div>
+            </div>
 
-                <!-- Reto 6 -->
-                <div class="challenge-card">
-                    <span class="context-tag">06. Control de Daños</span>
-                    <h3>Depuración de Outliers Institucionales</h3>
-                    <p><strong>El Conflicto:</strong> Distorsión de promedios causada por facturas huérfanas o entidades institucionales simulando ser "clientes finales" con historiales de compras que superaban los 14,000 registros.</p>
-                    <p><strong>Resolución:</strong> Inyección de reglas de negocio para depurar <em>Outliers</em> institucionales y proteger la jerarquía, usando Filtros de Contexto de motor profundo para que los filtros funcionen estáticamente antes de las cláusulas FIXED.</p>
-                    <div class="impact">
-                        <strong>Impacto Corporativo:</strong> Al neutralizar el sesgo, la proyección predictiva sobre retención y reactivación de clientes de verdadero volumen incrementó su rentabilidad drásticamente.
+            <!-- Fila de gráficas 1 -->
+            <div class="charts-row">
+
+                <!-- Composición por Segmento -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Composición por Segmento</div>
+                    <div class="seg-chart">
+                        <div class="seg-bar-wrap">
+                            <span class="seg-name">Ocasional</span>
+                            <div class="seg-bar-track">
+                                <div class="seg-bar-fill fill-occ" style="width:94%;">47,869</div>
+                            </div>
+                            <span class="seg-val">47.9k</span>
+                        </div>
+                        <div class="seg-bar-wrap">
+                            <span class="seg-name">Recurrente</span>
+                            <div class="seg-bar-track">
+                                <div class="seg-bar-fill fill-rec" style="width:7%;">3,317</div>
+                            </div>
+                            <span class="seg-val">3.3k</span>
+                        </div>
+                        <div class="seg-bar-wrap">
+                            <span class="seg-name">Leal</span>
+                            <div class="seg-bar-track">
+                                <div class="seg-bar-fill fill-leal" style="width:0.7%;">284</div>
+                            </div>
+                            <span class="seg-val">284</span>
+                        </div>
+                    </div>
+                    <div class="legend" style="margin-top:16px;">
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div>Ocasional</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:rgba(37,99,235,0.8);"></div>Recurrente</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--success);"></div>Leal</div>
                     </div>
                 </div>
 
+                <!-- Tendencia Transacciones (SVG) -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Tendencia Transacciones</div>
+                    <svg class="line-svg" viewBox="0 0 300 120">
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#d97706" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#059669" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- grid lines -->
+                        <line x1="0" y1="100" x2="300" y2="100" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="10" x2="300" y2="10" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <!-- axis labels -->
+                        <text x="2" y="103" font-size="6" fill="#64748b">0k</text>
+                        <text x="2" y="73" font-size="6" fill="#64748b">5k</text>
+                        <text x="2" y="43" font-size="6" fill="#64748b">10k</text>
+                        <!-- Línea Ocasional (gold) -->
+                        <polyline fill="none" stroke="#d97706" stroke-width="2"
+                            points="15,90 45,70 75,80 105,50 135,60 165,40 195,55 225,35 255,45 285,30"/>
+                        <!-- área bajo línea ocasional -->
+                        <polygon fill="url(#g1)"
+                            points="15,90 45,70 75,80 105,50 135,60 165,40 195,55 225,35 255,45 285,30 285,100 15,100"/>
+                        <!-- Línea Leal (green) -->
+                        <polyline fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,2"
+                            points="15,100 45,99 75,98 105,97 135,97 165,96 195,95 225,95 255,94 285,93"/>
+                        <!-- Línea Recurrente (blue) -->
+                        <polyline fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"
+                            points="15,96 45,95 75,93 105,91 135,90 165,88 195,87 225,86 255,85 285,83"/>
+                    </svg>
+                    <div class="axis-labels">
+                        <span class="axis-label">2023 T3</span>
+                        <span class="axis-label">2024 T1</span>
+                        <span class="axis-label">2024 T3</span>
+                        <span class="axis-label">2025 T1</span>
+                        <span class="axis-label">2025 T3</span>
+                        <span class="axis-label">2026 T1</span>
+                    </div>
+                    <div class="legend" style="margin-top:8px;">
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div>Ocasional</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--accent);"></div>Recurrente</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--success);"></div>Leal</div>
+                    </div>
+                </div>
+
+                <!-- Tendencia de Venta ($) SVG -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Tendencia de Venta ($)</div>
+                    <svg class="line-svg" viewBox="0 0 300 120">
+                        <line x1="0" y1="100" x2="300" y2="100" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <line x1="0" y1="10" x2="300" y2="10" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <text x="2" y="103" font-size="6" fill="#64748b">$0M</text>
+                        <text x="2" y="73" font-size="6" fill="#64748b">$5M</text>
+                        <text x="2" y="43" font-size="6" fill="#64748b">$10M</text>
+                        <text x="2" y="13" font-size="6" fill="#64748b">$15M</text>
+                        <!-- Ocasional -->
+                        <polygon fill="url(#g1)"
+                            points="15,85 45,60 75,75 105,40 135,55 165,30 195,50 225,25 255,40 285,20 285,100 15,100"/>
+                        <polyline fill="none" stroke="#d97706" stroke-width="2"
+                            points="15,85 45,60 75,75 105,40 135,55 165,30 195,50 225,25 255,40 285,20"/>
+                        <!-- Leal -->
+                        <polyline fill="none" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,2"
+                            points="15,98 45,96 75,95 105,93 135,92 165,91 195,90 225,89 255,88 285,86"/>
+                        <!-- Recurrente -->
+                        <polyline fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"
+                            points="15,95 45,93 75,91 105,89 135,88 165,86 195,85 225,84 255,83 285,80"/>
+                    </svg>
+                    <div class="axis-labels">
+                        <span class="axis-label">2022</span>
+                        <span class="axis-label">2023</span>
+                        <span class="axis-label">2024</span>
+                        <span class="axis-label">2025</span>
+                        <span class="axis-label">2026</span>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <section style="text-align: center; margin-top: 60px;">
-            <a href="../index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Volver a Proyectos
-            </a>
-        </section>
+            <!-- Fila de gráficas 2 -->
+            <div class="charts-row2">
 
+                <!-- Mapa por Entidad -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Venta por Entidad</div>
+                    <div class="map-sim">
+                        <div class="map-bg"></div>
+                        <div class="map-dots">
+                            <div class="map-dot" style="width:40px;height:40px;top:30%;left:20%;animation-delay:0s;"></div>
+                            <div class="map-dot" style="width:25px;height:25px;top:50%;left:45%;animation-delay:0.5s;background:var(--gold);"></div>
+                            <div class="map-dot" style="width:30px;height:30px;top:40%;left:65%;animation-delay:1s;"></div>
+                            <div class="map-dot" style="width:18px;height:18px;top:65%;left:35%;animation-delay:1.5s;background:var(--success);"></div>
+                            <div class="map-dot" style="width:22px;height:22px;top:25%;left:55%;animation-delay:2s;background:var(--gold);"></div>
+                            <div class="map-dot" style="width:14px;height:14px;top:70%;left:70%;animation-delay:0.8s;"></div>
+                        </div>
+                        <svg viewBox="0 0 200 120" style="opacity:0.15;position:absolute;inset:0;width:100%;height:100%;">
+                            <path d="M30,20 Q50,10 80,15 Q110,20 140,10 Q170,5 185,25 L190,60 Q175,80 150,90 Q120,100 90,95 Q60,90 35,80 Q15,70 20,50 Z" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                        </svg>
+                        <span class="map-label">Distribución Geográfica (Mock)</span>
+                    </div>
+                </div>
+
+                <!-- Top Productos — Pedidos -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Productos Top — Pedidos</div>
+                    <div class="hbar-list">
+                        <div class="hbar-item">
+                            <span class="hbar-name">Resma 500 Hojas A4</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:90%;"></div></div>
+                            <span class="hbar-val">6.2k</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Papel Ecológico TC</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:65%;"></div></div>
+                            <span class="hbar-val">4.4k</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Impresora Color 1-50</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:40%;"></div></div>
+                            <span class="hbar-val">2.7k</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Foto 4×6 de 1-50</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:25%;"></div></div>
+                            <span class="hbar-val">1.7k</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Impresora BN 1 a 100</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:18%;"></div></div>
+                            <span class="hbar-val">1.2k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Productos — Venta -->
+                <div class="chart-box">
+                    <div class="chart-box-title">Productos Top — Venta ($)</div>
+                    <div class="hbar-list">
+                        <div class="hbar-item">
+                            <span class="hbar-name">Resma 500 Hojas A4</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:95%;background:var(--accent);"></div></div>
+                            <span class="hbar-val">$8.1M</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Papel Ecológico TC</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:70%;background:var(--accent);"></div></div>
+                            <span class="hbar-val">$5.9M</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Silla Ejecutiva Olmo</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:45%;background:var(--accent);"></div></div>
+                            <span class="hbar-val">$3.8M</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Escritorio Cassel Gris</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:28%;background:var(--accent);"></div></div>
+                            <span class="hbar-val">$2.4M</span>
+                        </div>
+                        <div class="hbar-item">
+                            <span class="hbar-name">Escritorio Estudiantil</span>
+                            <div class="hbar-track"><div class="hbar-fill" style="width:18%;background:var(--accent);"></div></div>
+                            <span class="hbar-val">$1.5M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Detalle -->
+            <div class="detail-section">
+                <div class="detail-title">Tabla de Detalle — Clientes Muestra (Mock Data Anónima)</div>
+                <div style="overflow-x:auto;">
+                    <table class="detail-table">
+                        <thead>
+                            <tr>
+                                <th>Email Cliente</th>
+                                <th>Año Pedido</th>
+                                <th>Última Compra</th>
+                                <th>Entidad</th>
+                                <th>No. Pedidos</th>
+                                <th>Frec. Promedio</th>
+                                <th>Ritmo (Días)</th>
+                                <th>Venta</th>
+                                <th>Ticket Prom.</th>
+                                <th>Segmento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>cliente.a@correo.com</td><td>2025</td><td>01/05/2025</td><td>Región Centro</td><td>1</td><td>1.0</td><td>0</td><td>$8</td><td>$8</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.b@correo.com</td><td>2024</td><td>21/05/2024</td><td>Región Norte</td><td>1</td><td>1.0</td><td>0</td><td>$297</td><td>$297</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.c@correo.com</td><td>2024</td><td>06/02/2024</td><td>Desconocido</td><td>1</td><td>1.0</td><td>0</td><td>$254</td><td>$254</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.d@correo.com</td><td>2024</td><td>03/12/2024</td><td>Región Noreste</td><td>1</td><td>1.0</td><td>0</td><td>$1,679</td><td>$1,679</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.e@correo.com</td><td>2025</td><td>10/09/2025</td><td>Región Este</td><td>1</td><td>1.0</td><td>0</td><td>$1,203</td><td>$1,203</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.f@correo.com</td><td>2025</td><td>17/09/2025</td><td>Región Noroeste</td><td>2</td><td>2.0</td><td>6</td><td>$861</td><td>$430</td><td><span class="badge-rec">Recurrente</span></td></tr>
+                            <tr><td>cliente.g@correo.com</td><td>2025</td><td>02/06/2025</td><td>Región Centro</td><td>2</td><td>2.0</td><td>0</td><td>$896</td><td>$448</td><td><span class="badge-rec">Recurrente</span></td></tr>
+                            <tr><td>cliente.h@correo.com</td><td>2025</td><td>18/08/2025</td><td>Región Este</td><td>12</td><td>12.0</td><td>9</td><td>$0</td><td>$0</td><td><span class="badge-leal">Leal</span></td></tr>
+                            <tr><td>cliente.i@correo.com</td><td>2024</td><td>23/07/2024</td><td>Región Sur</td><td>1</td><td>1.0</td><td>0</td><td>$328</td><td>$328</td><td><span class="badge-occ">Ocasional</span></td></tr>
+                            <tr><td>cliente.j@correo.com</td><td>2025</td><td>29/05/2025</td><td>Región Sureste</td><td>2</td><td>2.0</td><td>9</td><td>$125</td><td>$63</td><td><span class="badge-rec">Recurrente</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div><!-- /db-body -->
+    </div><!-- /db-shell -->
+
+    <!-- ═══════ SECCIÓN TÉCNICA ═══════ -->
+    <h2 class="section-title">Ingeniería del Modelo Analítico</h2>
+    <p class="section-desc">Calcular la frecuencia real en entornos corporativos exige superar sesgos estadísticos graves. Los 6 retos resueltos con <strong>Tableau LOD Expressions</strong>.</p>
+
+    <div class="challenge-grid">
+        <div class="challenge-card">
+            <span class="c-num">01 · Agregación</span>
+            <h3>La "Falsa" Frecuencia Promedio</h3>
+            <p><strong>Conflicto:</strong> Promedios simples de facturas generaban agregaciones globales distorsionadas, sin reflejar el comportamiento individual de cada cliente.</p>
+            <p><strong>Resolución:</strong> LOD FIXED para etiquetar cada cliente con su volumen exacto de facturas únicas antes de promediarlo pobalcionalmente.</p>
+<pre>{ FIXED [Email Cliente] : COUNTD([Numero Factura]) }</pre>
+        </div>
+        <div class="challenge-card">
+            <span class="c-num">02 · Gobierno de Datos</span>
+            <h3>El Identificador Único Absoluto</h3>
+            <p><strong>Conflicto:</strong> Una orden con múltiples líneas de producto inflaba artificialmente el conteo de facturas.</p>
+<pre>[Email Cliente] +
+LEFT(STR([Numero Pedido]), LEN(STR([Numero Pedido])) - 2) +
+STR([Fecha Pedido])</pre>
+        </div>
+        <div class="challenge-card">
+            <span class="c-num">03 · Flexibilidad Analítica</span>
+            <h3>Ecosistema Temporal Dinámico</h3>
+            <p><strong>Conflicto:</strong> La Dirección requería analizar la frecuencia por Año, Semestre y Trimestre desde un único panel.</p>
+<pre>CASE [Elegir Periodo]
+  WHEN "Año"      THEN STR(YEAR([Fecha]))
+  WHEN "Semestre" THEN STR(YEAR([Fecha])) + IF MONTH([Fecha])&lt;=6 THEN " S1" ELSE " S2" END
+  WHEN "Trimestre"THEN STR(YEAR([Fecha])) + "-Q" + STR(DATEPART('quarter',[Fecha]))
+END
+
+{ FIXED [Email Cliente] : COUNTD([ID_Factura_Unico]) } /
+{ FIXED [Email Cliente] : COUNTD([Periodo Dinamico]) }</pre>
+        </div>
+        <div class="challenge-card">
+            <span class="c-num">04 · Medición de Intervalos</span>
+            <h3>Ritmo de Compra (Inter-purchase Time)</h3>
+            <p><strong>Conflicto:</strong> División por cero en clientes con solo una compra. Necesitábamos medir el "espacio" entre visitas, no las visitas.</p>
+<pre>DATEDIFF('day',
+  {FIXED [Email Cliente]: MIN([Fecha])},
+  {FIXED [Email Cliente]: MAX([Fecha])}
+) / ({FIXED [Email Cliente]: COUNTD([ID_Factura_Unico])} - 1)</pre>
+        </div>
+        <div class="challenge-card">
+            <span class="c-num">05 · Sesgo Estadístico</span>
+            <h3>El Defecto de los Racimos (Clustering)</h3>
+            <p><strong>Conflicto:</strong> 5 tickets el mismo día hacían que el ritmo pareciera muy frecuente cuando el cliente visitaba la tienda solo 1 vez cada 3 meses.</p>
+<pre>// Ritmo Real: días únicos de visita, no tickets
+DATEDIFF('day', MIN([Fecha]), MAX([Fecha])) / (COUNTD([Fecha]) - 1)</pre>
+        </div>
+        <div class="challenge-card">
+            <span class="c-num">06 · Control de Daños</span>
+            <h3>Depuración de Outliers Institucionales</h3>
+            <p><strong>Conflicto:</strong> Cuentas corporativas con +14,000 registros distorsionaban los promedios de clientes reales.</p>
+            <p><strong>Resolución:</strong> Filtros de Contexto (<em>Add to Context</em>) para garantizar que los FIXED se evalúen después del filtrado, protegiendo la validez estadística del análisis.</p>
+            <div class="impact"><strong>Impacto:</strong> La precisión predictiva del modelo de retención aumentó significativamente al operar sobre la distribución de clientes real, no contaminada por outliers institucionales.</div>
+        </div>
     </div>
+
+    <div style="text-align:center;margin-top:50px;">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+    </div>
+</div>
+
+<footer>
+    <p>Luis Barragan, PhD | Senior BI Lead</p>
+    <div style="margin-top:12px;">
+        <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color:var(--text-dim);margin:0 10px;"><i class="fab fa-linkedin"></i></a>
+    </div>
+</footer>
 </body>
 </html>
