@@ -40,12 +40,23 @@
 
         .back-link {
             text-decoration: none;
-            color: var(--accent);
+            color: white;
+            background: var(--secondary);
+            padding: 12px 25px;
+            border-radius: 8px;
             font-weight: 600;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(-5px);
         }
 
         h1 {
@@ -498,10 +509,10 @@
                 </div>
             </div>
 
-            <div class="card" style="background: #0a0f1d; text-align: center; margin-top: 40px;">
-                <p style="color: var(--text-dim); font-style: italic;">
-                    "Esta solución de BI permite a los tomadores de decisiones reaccionar ante cambios en la demanda del mercado en minutos, asegurando rentabilidad y eficiencia operativa."
-                </p>
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="../index.html" class="back-link" style="margin-bottom: 0;">
+                    <i class="fas fa-arrow-left"></i> Explorar Más Proyectos
+                </a>
             </div>
         </section>
 
