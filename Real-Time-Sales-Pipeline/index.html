@@ -6,6 +6,7 @@
     <title>Real-Time Sales Pipeline | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme: 'dark', themeVariables: { primaryColor: '#3b82f6', edgeLabelBackground: '#0f172a', tertiaryColor: '#1e293b' }});</script>
     <style>
         :root {
             --primary: #0f172a;
@@ -255,11 +256,12 @@
             transform: scale(1.02);
         }
 
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: center;
+        .mermaid {
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 20px 0;
         }
 
         .tab-content { display: block; margin-bottom: 60px; }
@@ -347,33 +349,63 @@
         </section>
 
         <section id="architecture">
-            <h2><i class="fas fa-network-wired"></i> Arquitectura Técnica</h2>
+            <h2><i class="fas fa-network-wired"></i> Arquitectura Funcional</h2>
             <div class="architecture-grid">
                 <div>
-                    <img src="ETLdiagrama.png" alt="Arquitectura ETL Pipeline" class="diagram-img">
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "RECOLECCIÓN"
+                                OR["Origen de Datos <br/>(ERP Transaccional)"]
+                                Z1[("Zona de Recepción <br/>(Cifrado)")]
+                            end
+                            
+                            subgraph "PROCESAMIENTO"
+                                Z2[("Zona de Refinamiento <br/>(Validación)")]
+                                SP{{"Motor de Reglas <br/>(Cómputo Elástico)"}}
+                            end
+                            
+                            subgraph "OPTIMIZACIÓN"
+                                Z3[("Capa Semántica <br/>(Analytical Model)")]
+                                BI["Dashboard de Control <br/>(Insights)"]
+                            end
+
+                            OR ==> Z1
+                            Z1 --> SP
+                            SP --> Z2
+                            Z2 --> Z3
+                            Z3 --> BI
+
+                            style OR fill:#1e293b,color:#fff,stroke:#3b82f6
+                            style BI fill:#1e293b,color:#3b82f6,stroke:#3b82f6
+                            style SP fill:#0f172a,color:#fff,stroke:#3b82f6
+                            style Z1 fill:#0f172a,stroke-dasharray: 5 5
+                            style Z2 fill:#0f172a,stroke-dasharray: 5 5
+                            style Z3 fill:#0f172a,stroke-dasharray: 5 5
+                    </div>
                 </div>
-                <div>
-                    <p>Se implementó un esquema de <strong>Medallion Architecture</strong> sobre Google Cloud Storage, orquestado por Cloud Composer.</p>
-                    <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim);">
-                        Este flujo garantiza la integridad de los datos desde la extracción incremental en SAP HANA hasta la materialización de tablas semánticas optimizadas para BigQuery.
+                <p class="description">
+                Diseño e implementación de una infraestructura de datos de alta disponibilidad capaz de procesar millones de transacciones diarias con integridad absoluta, optimizando la toma de decisiones estratégica a través de una arquitectura elástica y escalable.
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim);">
+                        Este flujo garantiza la integridad y el gobierno de los datos desde la extracción segura en sistemas transaccionales hasta la capa analítica.
                     </p>
                     <ul style="color: var(--text-dim); font-size: 0.9rem;">
-                        <li><strong>Landing:</strong> Almacenamiento en crudo (RAW).</li>
-                        <li><strong>Staging:</strong> Limpieza y deduplicación.</li>
-                        <li><strong>Model:</strong> Enriquecimiento y reglas de negocio.</li>
+                        <li><strong>Fase 1: Recolección</strong> - Ingesta segura y persistencia de datos crudos con mínima latencia.</li>
+                        <li><strong>Fase 2: Procesamiento</strong> - Transformación multietapa y validación de reglas financieras.</li>
+                        <li><strong>Fase 3: Optimización</strong> - Materialización de vistas semánticas optimizadas para el rendimiento de BI.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="pipeline">
-            <h2><i class="fas fa-cogs"></i> Pipeline Efímero (FinOps)</h2>
-            <p>Para optimizar los costos de cómputo, el pipeline crea clusters de Dataproc bajo demanda (e2-standard-4) que se auto-eliminan al finalizar el procesamiento (TTL automático).</p>
+            <h2><i class="fas fa-cogs"></i> Pipeline Elástico (Estrategia FinOps)</h2>
+            <p>Para optimizar los costos operativos, el pipeline utiliza recursos de cómputo elásticos que se crean bajo demanda y se auto-eliminan al finalizar el procesamiento pesado de datos (TTL automático).</p>
         </section>
 
         <section id="results">
             <h2><i class="fas fa-chart-bar" style="color: var(--success);"></i> Dashboard de Control Multi-Vista</h2>
-            <p>Este componente interactivo replica las 4 vistas del <strong>Cubo de Ventas</strong> corporativo, permitiendo ver el pulso de la operación con 100% de paridad SAP.</p>
+            <p>Este componente interactivo replica la visibilidad del flujo operativo, permitiendo monitorear el pulso del negocio con integridad de datos garantizada.</p>
             
             <div class="kpi-container" style="margin-bottom: 30px;">
                 <div class="kpi-box">
@@ -477,7 +509,7 @@
 
                 <!-- Section: Cubo -->
                 <div class="tab-content">
-                    <div class="tab-title">03. Cubo Operativo (Data Lake Semantic Zone)</div>
+                    <div class="tab-title">03. Detalle Operativo del Data Lake</div>
                     <div style="overflow-x: auto;">
                         <table class="data-table">
                             <thead>
