@@ -229,10 +229,12 @@
         .furniture { background: #4A5D23; width: 10%; }
 
         .diagram-img {
+            display: block;
+            max-width: 600px;
             width: 100%;
+            margin: 40px auto;
             border-radius: 12px;
             border: 1px solid var(--border);
-            margin: 20px 0;
             filter: grayscale(0.2) brightness(0.9);
             transition: filter 0.3s ease;
         }
@@ -367,15 +369,15 @@
             
             <div class="kpi-container" style="margin-bottom: 30px;">
                 <div class="kpi-box">
-                    <span class="kpi-value">$1.29 M</span>
-                    <span class="kpi-label">Venta Neta Hoy</span>
+                    <span class="kpi-value">$2.45 M</span>
+                    <span class="kpi-label">Venta Neta (Mock)</span>
                 </div>
                 <div class="kpi-box">
-                    <span class="kpi-value">$553.0 K</span>
-                    <span class="kpi-label">Utilidad Bruta</span>
+                    <span class="kpi-value">$890.0 K</span>
+                    <span class="kpi-label">Margen Bruto</span>
                 </div>
                 <div class="kpi-box" style="border-color: var(--success);">
-                    <span class="kpi-value">$220,40</span>
+                    <span class="kpi-value">$350,00</span>
                     <span class="kpi-label">Ticket Promedio</span>
                 </div>
             </div>
@@ -405,27 +407,27 @@
                             </div>
                         </div>
                         <div class="chart-box">
-                            <div class="chart-title">VENTA POR CATEGORÍA</div>
+                            <div class="chart-title">VENTA POR CATEGORÍA (MOCK)</div>
                             <div class="category-list">
                                 <div class="cat-item">
-                                    <span style="width: 80px;">Papelería</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 95%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$498k</span>
+                                    <span style="width: 80px;">Línea A</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 85%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$950k</span>
                                 </div>
                                 <div class="cat-item">
-                                    <span style="width: 80px;">CopyMax</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill charcoal" style="width: 48%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$237k</span>
+                                    <span style="width: 80px;">Línea B</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill charcoal" style="width: 60%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$540k</span>
                                 </div>
                                 <div class="cat-item">
-                                    <span style="width: 80px;">Tech</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill tech" style="width: 26%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$131k</span>
+                                    <span style="width: 80px;">Línea C</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill tech" style="width: 45%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$430k</span>
                                 </div>
                                 <div class="cat-item">
-                                    <span style="width: 80px;">Muebles</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill furniture" style="width: 25%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$130k</span>
+                                    <span style="width: 80px;">Línea D</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill furniture" style="width: 30%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$310k</span>
                                 </div>
                             </div>
                         </div>
@@ -442,26 +444,26 @@
                                 <circle cx="18" cy="18" r="15.915" fill="none" stroke="#E6A700" stroke-width="4" stroke-dasharray="38.5 61.5" stroke-dashoffset="25"></circle>
                                 <circle cx="18" cy="18" r="15.915" fill="none" stroke="#003B5C" stroke-width="4" stroke-dasharray="20 80" stroke-dashoffset="-13.5"></circle>
                                 <circle cx="18" cy="18" r="15.915" fill="none" stroke="#4A5D23" stroke-width="4" stroke-dasharray="18.4 81.6" stroke-dashoffset="-33.5"></circle>
-                                <text x="18" y="20" font-size="3" text-anchor="middle" fill="white">Papelería 38%</text>
+                                <text x="18" y="20" font-size="3" text-anchor="middle" fill="white">Distribución %</text>
                             </svg>
                         </div>
                         <div class="chart-box">
-                            <div class="chart-title">TOP SKU POR CATEGORÍA</div>
+                            <div class="chart-title">TOP SKU - RANKING (MOCK DATA)</div>
                             <div class="category-list">
                                 <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">SKU 500298</span>
+                                    <span style="font-size: 0.6rem;">ITEM-001</span>
                                     <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 90%;"></div></div>
-                                    <span>$43k</span>
+                                    <span>$95k</span>
                                 </div>
                                 <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">SKU 501062</span>
+                                    <span style="font-size: 0.6rem;">ITEM-002</span>
                                     <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 82%;"></div></div>
-                                    <span>$40k</span>
+                                    <span>$80k</span>
                                 </div>
                                 <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">SKU 500844</span>
+                                    <span style="font-size: 0.6rem;">ITEM-003</span>
                                     <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 65%;"></div></div>
-                                    <span>$31k</span>
+                                    <span>$61k</span>
                                 </div>
                             </div>
                         </div>
@@ -483,17 +485,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>T010 - Cancun</td><td>$43,76 mil</td><td>$16,55 mil</td><td>0,38%</td><td>2.1 mil</td><td>$275,21</td></tr>
-                                <tr><td>T044 - Pachuca</td><td>$38,32 mil</td><td>$10,67 mil</td><td>0,28%</td><td>479</td><td>$491,26</td></tr>
-                                <tr><td>T055 - Cd. Carmen</td><td>$38,27 mil</td><td>$13,89 mil</td><td>0,36%</td><td>424</td><td>$1.125,59</td></tr>
-                                <tr><td>T033 - Gonzalitos</td><td>$37,77 mil</td><td>$15,53 mil</td><td>0,41%</td><td>1.7 mil</td><td>$281,89</td></tr>
+                                <tr><td>A01 - Región Alpha</td><td>$84k</td><td>$26k</td><td>0,31%</td><td>2.5k</td><td>$340,00</td></tr>
+                                <tr><td>A02 - Región Beta</td><td>$72k</td><td>$21k</td><td>0,29%</td><td>1.8k</td><td>$410,00</td></tr>
+                                <tr><td>A03 - Región Gamma</td><td>$68k</td><td>$19k</td><td>0,28%</td><td>1.2k</td><td>$520,00</td></tr>
+                                <tr><td>A04 - Región Delta</td><td>$55k</td><td>$15k</td><td>0,27%</td><td>900</td><td>$290,00</td></tr>
                                 <tr style="background: rgba(16,185,129,0.1)">
-                                    <td><strong>TOTAL MUESTRAS</strong></td>
-                                    <td><strong>$1,29 M</strong></td>
-                                    <td><strong>$553,02 mil</strong></td>
-                                    <td><strong>0,43%</strong></td>
-                                    <td><strong>65 mil</strong></td>
-                                    <td><strong>$220,40</strong></td>
+                                    <td><strong>TOTAL GLOBAL (DEMO)</strong></td>
+                                    <td><strong>$2,45 M</strong></td>
+                                    <td><strong>$890,00 k</strong></td>
+                                    <td><strong>0,36%</strong></td>
+                                    <td><strong>120 k</strong></td>
+                                    <td><strong>$350,00</strong></td>
                                 </tr>
                             </tbody>
                         </table>
