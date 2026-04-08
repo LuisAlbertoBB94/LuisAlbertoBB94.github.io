@@ -3,936 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Barragán | Data Scientist & Analyst Portfolio</title>
-    <style>
-        /* (Los estilos se mantienen igual) */
-    </style>
+    <title>Luis Barragán, PhD | Senior BI Lead Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <header>
-        
-        <h1>Luis Alberto Barragan Bonilla</h1>
-        <div class="tagline">Analista de Datos  | Mi Portafolio</div>
-        
-        <div class="specialty-tags">
-            <div class="specialty-tag">Business Intelligence</div>
-            <div class="specialty-tag">Data Visualization</div>
-        </div>
-    </header>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --powerbi: #f2c811;
-            --python: #3776ab;
-            --sql: #e38c00;
-            --tableau: #4f5a7e;
-            --excel: #1d6f42;
-            --matlab: #d95319;
-            --git: #f14e32;
-            --ml: #5c64a5;
-            --stats: #9c27b0;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
-            --success: #27ae60;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        
-        header {
-            text-align: center;
-            padding: 60px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
-            background-size: cover;
-            opacity: 0.3;
-        }
-        
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-        
-        h1, h2, h3, h4 {
-            color: var(--primary);
-            position: relative;
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 20px;
-            position: relative;
-        }
-        
-        .specialty-tags {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .specialty-tag {
-            background: rgba(255,255,255,0.15);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            margin: 50px 0 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
-            position: relative;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: var(--accent);
-        }
-        
-        .section {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-        }
-        
-		.project-img-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            background: #f5f7fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-            padding: 20px;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .project-card:hover .project-img {
-            transform: scale(1.03);
-        }
-        
-        .project-content {
-            padding: 25px;
-        }
-        
-        .project-content h3 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .project-content p {
-            color: var(--gray);
-            margin-bottom: 15px;
-        }
-        
-        .project-content ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .project-content li {
-            margin-bottom: 8px;
-            position: relative;
-        }
-        
-        .project-content li::before {
-            content: "▹";
-            position: absolute;
-            left: -20px;
-            color: var(--secondary);
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .project-tag {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .tag-powerbi {
-            background-color: rgba(242, 200, 17, 0.1);
-            border: 1px solid var(--powerbi);
-            color: var(--powerbi);
-        }
-        
-        .tag-python {
-            background-color: rgba(55, 118, 171, 0.1);
-            border: 1px solid var(--python);
-            color: var(--python);
-        }
-        
-        .tag-sql {
-            background-color: rgba(227, 140, 0, 0.1);
-            border: 1px solid var(--sql);
-            color: var(--sql);
-        }
-        
-        .tag-stats {
-            background-color: rgba(156, 39, 176, 0.1);
-            border: 1px solid #9c27b0;
-            color: #9c27b0;
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --card-bg: #1e293b;
+            --border: #334155;
         }
 
-        .tag-ai {
-            background-color: rgba(124, 58, 237, 0.1);
-            border: 1px solid #7c3aed;
-            color: #7c3aed;
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
         }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            margin: 10px 5px;
-            transition: all 0.3s;
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid var(--accent);
         }
-        
-        .btn:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -1px;
         }
-        
-        .btn i {
-            margin-right: 8px;
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-weight: 300;
         }
-        
-        .btn-powerbi {
-            background: var(--powerbi);
-            color: #333;
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-        
-        .btn-python {
-            background: var(--python);
-        }
-        
-        .btn-sql {
-            background: var(--sql);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        .featured-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-            border-left: 5px solid var(--secondary);
-            padding: 40px;
-            margin: 40px 0;
-            border-radius: 0 10px 10px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .featured-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%233498db" opacity="0.05"><circle cx="50" cy="50" r="40"/></svg>');
-            background-size: contain;
-        }
-        
+
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin: 30px 0;
+            margin-top: -60px;
+            margin-bottom: 60px;
         }
-        
+
         .kpi-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        
-        .kpi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-        
+
         .kpi-value {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 10px 0;
-            line-height: 1;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
         }
-        
+
         .kpi-label {
-            color: var(--gray);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 40px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            background: #334155;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-right: 5px;
+            color: #cbd5e1;
+        }
+
+        .project-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: var(--text-dim);
             font-size: 0.95rem;
         }
-        
-        /* New Skills Grid Styles */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .skill-card {
-            padding: 20px;
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
             border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-        
-        .skill-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-        }
-        
-        .skill-card strong {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-        
-        .skill-card p {
-            margin: 3px 0;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .skill-logo {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-            object-fit: contain;
-        }
-        
-        /* Certification Styles */
-        .certification-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .certification-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .certification-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-        
-        .certification-card h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        .certification-card p {
-            margin-bottom: 0;
-            color: var(--gray);
-        }
-        
-        .certification-card a {
-            color: var(--secondary);
             text-decoration: none;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 10px;
+            margin-top: 20px;
+            transition: opacity 0.3s;
         }
-        
-        .certification-card a:hover {
-            text-decoration: underline;
+
+        .btn:hover {
+            opacity: 0.9;
         }
-        
-        .certification-card a i {
-            margin-left: 5px;
+
+        .skill-tag {
+            display: inline-block;
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: 8px;
+            margin: 5px;
             font-size: 0.9rem;
+            background: rgba(255,255,255,0.02);
         }
-        
-        .certification-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
+
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            color: var(--gray);
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 60px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
         }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            color: var(--primary);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--secondary);
-        }
-        
+
         @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section, .featured-section {
-                padding: 25px;
-            }
-            
-            .kpi-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .certification-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .kpi-grid, .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .specialty-tags {
-                gap: 10px;
-            }
-            
-            .specialty-tag {
-                padding: 6px 15px;
-                font-size: 0.85rem;
-            }
+            h1 { font-size: 2.2rem; }
+            .kpi-grid { margin-top: 0; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Sección de Presentación -->
-    <div class="section">
-        <h2>About My Work</h2>
-        <p>I transform complex data into actionable insights through advanced analytics, statistical modeling, and interactive visualizations. My approach combines technical expertise with business acumen to drive data-informed decisions.</p>
+
+    <header>
+        <div class="profile-badge">SENIOR BI LEAD & PhD</div>
+        <h1>Luis Alberto Barragán Bonilla</h1>
+        <div class="subtitle">Estratega de Datos | Arquitecto de Pipelines | Experto en IA</div>
+        
+        <div style="margin-top: 30px;">
+            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:lualbe041@gmail.com" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <div class="container">
         
         <div class="kpi-grid">
             <div class="kpi-card">
-                <div class="kpi-value">100%</div>
-                <div class="kpi-label">Data-Driven Decisions</div>
+                <span class="kpi-value">+321M</span>
+                <span class="kpi-label">Registros Procesados</span>
             </div>
             <div class="kpi-card">
-                <div class="kpi-value">10M+</div>
-                <div class="kpi-label">Data Points Analyzed</div>
+                <span class="kpi-value">60%</span>
+                <span class="kpi-label">Reducción Costos Nube</span>
             </div>
-
-        </div>
-    </div>
-
-    <!-- Sección de Habilidades -->
-    <div class="section">
-        <h2>Technical Expertise</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="logo_PB.png" alt="Business Intelligence" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>Business Intelligence</h3>
-                    <p>Interactive dashboards and data visualization for business insights.</p>
-                    <div class="project-tags">
-                        <span class="project-tag tag-powerbi">Power BI</span>
-                        <span class="project-tag tag-powerbi">DAX</span>
-                        <span class="project-tag tag-powerbi">Power Query</span>
-                    </div>
-                    <ul>
-                        <li>Data modeling</li>
-                        <li>KPI dashboards</li>
-                        <li>Data storytelling</li>
-                        <li>Automated reporting</li>
-                    </ul>
-                    <a href="PowerBI-Dashboards/index.html" class="btn btn-powerbi">
-                        <i class="fas fa-chart-bar"></i> BI Portfolio
-                    </a>
-                </div>
+            <div class="kpi-card">
+                <span class="kpi-value">100%</span>
+                <span class="kpi-label">Paridad Financiera</span>
             </div>
         </div>
-    </div>
 
-    <!-- Sección Destacada de Proyectos -->
-    <div class="featured-section">
-        <h2>Featured Data Projects</h2>
-        <p>Explore my portfolio of data analysis projects showcasing statistical modeling, data visualization, and business intelligence solutions.</p>
-        
-        <div class="projects-container">
-            <div class="project-card" style="border: 2px solid #7c3aed; background: linear-gradient(to bottom, #fff, #f5f3ff);">
-                <div class="project-img-container" style="background: #0f172a;">
-                    <img src="Maxter-AI-Analytics/img/hero_architecture.png" alt="Maxter AI Analytics" class="project-img">
-                </div>
-                <div class="project-content">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="margin: 0; font-size: 1.5rem; color: #2c3e50;">Maxter AI Analytics</h3>
-                        <span style="background: #7c3aed; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">TOP PROJECT</span>
-                    </div>
-                    <p style="margin-top: 10px;">Autonomous AI Multi-Agent system orchestrated by Gemini for high-scale financial insights.</p>
-                    <div class="project-tags">
-                        <span class="project-tag tag-ai">Generative AI</span>
-                        <span class="project-tag tag-python">Python</span>
-                        <span class="project-tag tag-sql">BigQuery</span>
-                    </div>
-                    <ul>
-                        <li>Multi-Agent Hive Architecture</li>
-                        <li>Analysis of +321M Records</li>
-                        <li>100% Financial Parity (SAP)</li>
-                        <li>Autonomous SQL Auditing</li>
-                    </ul>
-                    <a href="Maxter-AI-Analytics/index.html" class="btn" style="background: #7c3aed; color: white;">
-                        <i class="fas fa-robot"></i> View AI System
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="Car Insurance Claims Analysis_logo.png" alt="Insurance Analysis" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>Car Insurance Claims Analysis</h3>
-                    <p>Comprehensive EDA of auto insurance claims data to identify risk factors and claim patterns.</p>
-                    <div class="project-tags">
-                        <span class="project-tag tag-python">Python</span>
-                        <span class="project-tag tag-powerbi">Power BI</span>
-                        <span class="project-tag tag-stats">Risk Analysis</span>
-                    </div>
-                    <ul>
-                        <li>Data cleaning and transformation</li>
-                        <li>Outlier detection and treatment</li>
-                        <li>Comparative visual analysis</li>
-                        <li>Statistical hypothesis testing</li>
-                    </ul>
-                    <a href="Python-Data-Analysis/Analisis_seguros/index.html" class="btn btn-outline">
-                        <i class="fas fa-car-crash"></i> View Project
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="Sales Performance Dashboard_logo.png" alt="Business Dashboard" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>Sales Performance Dashboard</h3>
-                    <p>Interactive business intelligence dashboard for tracking sales performance metrics.</p>
-                    <div class="project-tags">
-                        <span class="project-tag tag-powerbi">Power BI</span>
-                        <span class="project-tag tag-sql">SQL</span>
-                        <span class="project-tag tag-stats">Business Analytics</span>
-                    </div>
-                    <ul>
-                        <li>Data modeling and transformation</li>
-                        <li>Key performance indicators</li>
-                        <li>Drill-through capabilities</li>
-                        <li>Automated reporting</li>
-                    </ul>
-                    <a href="SQL-PowerBI/reporte.html" class="btn btn-outline">
-                        <i class="fas fa-tachometer-alt"></i> View Dashboard
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="Linear Regression.png" alt="Regression Analysis" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>Linear Regression Analysis: SAT vs GPA</h3>
-                    <p>Statistical modeling project examining the relationship between SAT scores and college GPA.</p>
-                    <div class="project-tags">
-                        <span class="project-tag tag-python">Python</span>
-                        <span class="project-tag tag-stats">Statistics</span>
-                        <span class="project-tag tag-sql">SQL</span>
-                    </div>
-                    <ul>
-                        <li>Exploratory data analysis</li>
-                        <li>Linear regression modeling</li>
-                        <li>Statistical significance testing</li>
-                        <li>Interactive visualizations</li>
-                    </ul>
-                    <a href="Python-Data-Analysis/Regresion/index.html" class="btn btn-outline">
-                        <i class="fas fa-chart-line"></i> View Analysis
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Technical Skills 🛠️</h2>
-        <h3>Data Analysis & Visualization</h3>
-        <div class="skills-grid">
-            <div class="skill-card" style="background-color: rgba(242, 200, 17, 0.1); border: 1px solid var(--powerbi);">
-                <img src="logo_PB.png" alt="Power BI" class="skill-logo">
-                <strong>Power BI</strong>
-                <p>Dashboard Development</p>
-                <p>DAX | Power Query</p>
-            </div>
-           
-            <div class="skill-card" style="background-color: rgba(55, 118, 171, 0.1); border: 1px solid var(--python);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" alt="Python" class="skill-logo">
-                <strong>Python</strong>
-                <p>Pandas | NumPy</p>
-                <p>Matplotlib | Seaborn</p>
-            </div>
-            
-            <div class="skill-card" style="background-color: rgba(227, 140, 0, 0.1); border: 1px solid var(--sql);">
-                <img src="https://cdn-icons-png.flaticon.com/512/2772/2772128.png" alt="SQL" class="skill-logo">
-                <strong>SQL</strong>
-                <p>Complex Queries</p>
-                <p>Data Modeling</p>
-            </div>
-            
-            <div class="skill-card" style="background-color: rgba(79, 90, 126, 0.1); border: 1px solid var(--tableau);">
-                <img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" class="skill-logo">
-                <strong>Tableau</strong>
-                <p>Data Visualization</p>
-                <p>Storytelling</p>
-            </div>
-        </div>
-        
-        <h3>Additional Skills</h3>
-        <div class="skills-grid">
-            <div class="skill-card" style="background-color: rgba(29, 111, 66, 0.1); border: 1px solid var(--excel);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Microsoft_Excel_2013-2019_logo.svg/2086px-Microsoft_Excel_2013-2019_logo.svg.png" alt="Excel" class="skill-logo">
-                <strong>Excel</strong>
-                <p>Advanced Formulas</p>
-                <p>Pivot Tables | VBA</p>
-            </div>
-            
-            <div class="skill-card" style="background-color: rgba(217, 83, 25, 0.1); border: 1px solid var(--matlab);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/667px-Matlab_Logo.png" alt="MATLAB" class="skill-logo">
-                <strong>MATLAB</strong>
-                <p>Numerical Computing</p>
-                <p>Simulink</p>
-            </div>
-            
-            <div class="skill-card" style="background-color: rgba(241, 78, 50, 0.1); border: 1px solid var(--git);">
-                <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git" class="skill-logo">
-                <strong>Git</strong>
-                <p>Version Control</p>
-                <p>GitHub | GitLab</p>
-            </div>
-            
-    
-            
-            <div class="skill-card" style="background-color: rgba(156, 39, 176, 0.1); border: 1px solid var(--stats);">
-                <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="Statistics" class="skill-logo">
-                <strong>Statistics</strong>
-                <p>Hypothesis Testing</p>
-                <p>Regression Analysis</p>
-            </div>
-        </div>
-    </div>
-	
-	
-    <!-- Sección de Certificaciones -->
-    <div class="section">
-        <h2>Certifications 📜</h2>
-        <div class="certification-grid">
-            <div class="certification-card">
-                <div class="certification-badge">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <h3>The Data Science Course: Complete Data Science Bootcamp 2025</h3>
-                <p><i class="fas fa-university"></i> Udemy</p>
-                <p><i class="fas fa-calendar-alt"></i> Issued 2025</p>
-                <a href="https://www.udemy.com/certificate/UC-195d9570-4a45-404b-835b-3f69d2e43897/" target="_blank">
-                    View Credential <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-            
-            <div class="certification-card">
-                <div class="certification-badge">
-                    <i class="fas fa-award"></i>
-                </div>
-                <h3>Data Fundamentals</h3>
-                <p><i class="fas fa-university"></i> Credly</p>
-                <p><i class="fas fa-calendar-alt"></i> Issued 2024</p>
-                <a href="https://www.credly.com/badges/e395110f-cb5d-4cd5-94d7-7469b528bda1/linked_in_profile" target="_blank">
-                    View Badge <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-            
-            <div class="certification-card">
-                <div class="certification-badge">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <h3>Microsoft Office Specialist: Excel Associate</h3>
-                <p><i class="fas fa-university"></i> Microsoft</p>
-                <p><i class="fas fa-calendar-alt"></i> Issued 2023</p>
-                <a href="https://www.credly.com/badges/e1027462-8208-4483-9364-d1f36c6f6577/linked_in_profile" target="_blank">
-                    View Certification <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sección de Experiencia Profesional -->
-    <div class="section">
-        <h2>Professional Experience</h2>
-        <div class="project-card">
-            <div class="project-content">
-                <h3>Data Programming & Visualization Instructor</h3>
-                <p><strong>Universidad del Valle de México</strong> | 2024–2025</p>
-                <ul>
-                    <li>Designed and led <strong>Data Analytics bootcamps</strong> teaching Power BI and Tableau</li>
-                    <li>Guided students in developing <strong>interactive dashboards</strong> for real-world datasets</li>
-                    <li>Created curriculum for SQL and Python data analysis courses</li>
-                </ul>
+        <section id="featured">
+            <h2>Casos de Éxito y Proyectos</h2>
+            <div class="project-grid">
                 
-                <h3>Control Systems Professor</h3>
-                <p><strong>Instituto Politécnico Nacional</strong> | 2021–2023</p>
-                <ul>
-                    <li>Developed <strong>data analysis</strong> scripts for system modeling</li>
-                    <li>Applied statistical methods to analyze system performance</li>
-                    <li>Implemented data visualization techniques for research papers</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+                <a href="Maxter-AI-Analytics/index.html" class="project-card">
+                    <div class="project-img">
+                        <img src="Maxter-AI-Analytics/img/hero_architecture.png" alt="Maxter AI" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <span class="project-tag">AI Agents</span>
+                            <span class="project-tag">Gemini</span>
+                            <span class="project-tag">BigQuery</span>
+                        </div>
+                        <h3>Maxter AI Analytics</h3>
+                        <p>Sistema multi-agente autónomo para el análisis de Big Data mediante lenguaje natural con 100% de paridad SAP.</p>
+                        <span style="color: var(--accent); font-weight: 600;">Ver Detalles del Proyecto →</span>
+                    </div>
+                </a>
 
-    <!-- Sección de Otros Proyectos -->
-    <div class="section">
-        <h2>Other Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="Control-Maquinaria-Arduino/Interfaz.png" alt="IoT System" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>IoT Control System</h3>
-                    <p>Machinery Monitoring with Arduino</p>
-                    <a href="Control-Maquinaria-Arduino/index.html" class="btn">
-                        <i class="fas fa-microchip"></i> View Project
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-img-container">
-                    <img src="MATLAB-Projects/PDMP.png" alt="MATLAB Control" class="project-img">
-                </div>
-                <div class="project-content">
-                    <h3>Control Systems Designer</h3>
-                    <p>PD/PID MATLAB Tool</p>
-                    <a href="MATLAB-Projects/index.html" class="btn">
-                        <i class="fas fa-cog"></i> View Project
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+                <a href="PowerBI-Dashboards/index.html" class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <span class="project-tag">Business Intelligence</span>
+                            <span class="project-tag">Finanzas</span>
+                        </div>
+                        <h3>Estrategia BI & Dashboards</h3>
+                        <p>Habilitación de Business Intelligence para la Dirección General, optimizando la visibilidad de KPIs críticos.</p>
+                        <span style="color: var(--accent); font-weight: 600;">Ver Portafolio BI →</span>
+                    </div>
+                </a>
 
-    <!-- Sección de Publicaciones -->
-    <div class="section">
-        <h2>Publications</h2>
-        <div class="project-card">
-            <div class="project-content">
-                <ul>
-                    <li><a href="https://doi.org/10.1016/j.jprocont.2024.103299">Modified Smith Predictor for high-order delayed processes</a> - Journal of Process Control, 2024</li>
-                    <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914">Observer-predictor control for unstable high-order delay systems</a> - Asian Journal of Control, 2023</li>
-                  </ul>
+                <a href="MATLAB-Projects/index.html" class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="project-content">
+                        <div>
+                            <span class="project-tag">Control Systems</span>
+                            <span class="project-tag">PhD Research</span>
+                        </div>
+                        <h3>Investigación y Publicaciones</h3>
+                        <p>Modelado matemático avanzado y algoritmos de control predictivo desarrollados durante el Doctorado.</p>
+                        <span style="color: var(--accent); font-weight: 600;">Ver Publicaciones JCR →</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        </section>
+
+        <section id="expertise">
+            <h2>Ecosistema Tecnológico</h2>
+            <div style="text-align: center;">
+                <span class="skill-tag">Google Cloud (GCP)</span>
+                <span class="skill-tag">BigQuery / Airflow</span>
+                <span class="skill-tag">Gemini & Vertex AI</span>
+                <span class="skill-tag">Tableau / Looker</span>
+                <span class="skill-tag">Python (Data Stack)</span>
+                <span class="skill-tag">FinOps / MLOps</span>
+                <span class="skill-tag">SQL Avanzado</span>
+                <span class="skill-tag">Metodologías Ágiles</span>
+            </div>
+        </section>
+
     </div>
 
     <footer>
-        <h3>Let's Work Together</h3>
-        <p>I'm always interested in new challenges and opportunities to apply data science to solve real-world problems.</p>
-        
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/LuisAlbertoBB94" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:luis.bto08@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://medium.com/@luisbarragan" target="_blank"><i class="fab fa-medium"></i></a>
-        </div>
-        
-        <p>© 2024 Luis Alberto Barragán Bonilla | Data Science Portfolio</p>
+        <p>&copy; 2026 Luis Alberto Barragán Bonilla, PhD. <br> 
+        Diseñado para la excelencia analítica.</p>
     </footer>
+
 </body>
 </html>
