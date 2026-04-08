@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luis Barragan, PhD | Senior BI Lead Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0f172a;
             --secondary: #1e293b;
             --accent: #3b82f6;
+            --accent-hover: #2563eb;
             --tech-purple: #7c3aed;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
@@ -24,6 +27,47 @@
             margin: 0;
             line-height: 1.6;
         }
+
+        /* Sticky Nav */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sticky-nav .nav-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        .sticky-nav .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .sticky-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .sticky-nav a:hover { color: white; }
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem !important;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--accent-hover) !important; color: white !important; }
 
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
@@ -243,22 +287,37 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .kpi-grid { margin-top: 0; }
+            .sticky-nav .nav-links a:not(.nav-cta) { display: none; }
         }
     </style>
 </head>
 <body>
 
+    <nav class="sticky-nav">
+        <span class="nav-name">Luis Barragan, PhD</span>
+        <div class="nav-links">
+            <a href="#executive">Proyectos</a>
+            <a href="#labs">Labs</a>
+            <a href="#stack">Stack</a>
+            <a href="mailto:lualbe041@gmail.com" class="nav-cta">
+                <i class="fas fa-envelope"></i> Contactar
+            </a>
+        </div>
+    </nav>
+
     <header>
         <div class="profile-badge">SENIOR BI LEAD & PhD</div>
         <h1>Luis Barragan</h1>
         <div class="subtitle">
-            Habilitando Business Intelligence mediante <strong>IA Generativa</strong> y arquitecturas de datos masivas en <strong>Google Cloud</strong>. PhD en Modelado Matemático.
+            Habilitando <strong>Business Intelligence</strong> mediante IA Generativa y arquitecturas de datos masivas en <strong>Google Cloud</strong>. PhD en Modelado Matemático.
         </div>
         
-        <div style="margin-top: 30px;">
-            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:lualbe041@gmail.com" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/LuisAlbertoBB94" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-github"></i></a>
+        <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: center;">
+            <a href="mailto:lualbe041@gmail.com" style="background: var(--accent); color: white; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-envelope"></i> Contactar
+            </a>
+            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: white; font-size: 1.5rem; margin: 0 5px;"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/LuisAlbertoBB94" style="color: white; font-size: 1.5rem; margin: 0 5px;"><i class="fab fa-github"></i></a>
         </div>
     </header>
 
@@ -281,7 +340,7 @@
 
         <!-- Sección 1: Impacto Ejecutivo -->
         <section id="executive">
-            <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Casos de Éxito: Retail & IA</h2>
+        <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Casos de Éxito</h2>
             <p class="section-desc">Estrategias de alto impacto implementadas para la Dirección General en una <span style="color: white; font-weight: 600;">Empresa Líder en Retail</span>.</p>
             
             <div class="project-grid">
@@ -293,8 +352,10 @@
                         <span class="tag">GEMINI AI</span>
                     </div>
                     <h3>GenAI Data Analyst Agent</h3>
-                    <p>Sistema multi-agente que permite consultas sobre +321M de registros mediante lenguaje natural con 100% paridad financiera.</p>
-                    <span style="color: var(--tech-purple); font-weight: 700; font-size: 0.8rem;">Ver Detalles →</span>
+                    <p>Sistema multi-agente que permite consultas sobre +321M de registros en lenguaje natural con integridad financiera garantizada.</p>
+                    <div style="margin-top: 15px;">
+                        <span style="display: inline-block; background: var(--tech-purple); color: white; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.8rem;">Ver Caso de Éxito →</span>
+                    </div>
                 </a>
 
                 <a href="Real-Time-Sales-Pipeline/index.html" class="project-card">
@@ -306,10 +367,12 @@
                         <span class="tag">AIRFLOW</span>
                         <span class="tag">DATAPROC</span>
                     </div>
-                    <span style="color: var(--accent); font-weight: 700; font-size: 0.8rem;">Ver Detalles →</span>
+                    <div style="margin-top: 15px;">
+                        <span style="display: inline-block; background: var(--accent); color: white; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.8rem;">Ver Caso de Éxito →</span>
+                    </div>
                 </a>
 
-                <div class="project-card" style="opacity: 0.7; cursor: default;">
+                <div class="project-card" style="opacity: 0.7; pointer-events: none;">
                     <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
                     <div style="display:inline-block; background: rgba(251,191,36,0.1); color: #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fbbf24; margin-bottom: 8px;">EN DOCUMENTACIÓN</div>
                     <h3>Auditoría & Gobierno de Datos</h3>
@@ -320,7 +383,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" style="opacity: 0.7; cursor: default;">
+                <div class="project-card" style="opacity: 0.7; pointer-events: none;">
                     <div class="project-icon"><i class="fas fa-chart-line"></i></div>
                     <div style="display:inline-block; background: rgba(251,191,36,0.1); color: #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fbbf24; margin-bottom: 8px;">EN DOCUMENTACIÓN</div>
                     <h3>Matriz BCG & Rentabilidad</h3>
@@ -331,7 +394,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" style="opacity: 0.7; cursor: default;">
+                <div class="project-card" style="opacity: 0.7; pointer-events: none;">
                     <div class="project-icon"><i class="fas fa-comments"></i></div>
                     <div style="display:inline-block; background: rgba(251,191,36,0.1); color: #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fbbf24; margin-bottom: 8px;">EN DOCUMENTACIÓN</div>
                     <h3>Voice of Customer (NLP)</h3>
@@ -342,7 +405,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" style="opacity: 0.7; cursor: default;">
+                <div class="project-card" style="opacity: 0.7; pointer-events: none;">
                     <div class="project-icon"><i class="fas fa-coins"></i></div>
                     <div style="display:inline-block; background: rgba(251,191,36,0.1); color: #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fbbf24; margin-bottom: 8px;">EN DOCUMENTACIÓN</div>
                     <h3>Loyalty Analytics ROI</h3>
@@ -358,8 +421,8 @@
 
         <!-- Sección 2: Labs & Legado -->
         <section id="labs" style="border-top: 1px solid var(--border); padding-top: 60px;">
-            <h2><i class="fas fa-flask" style="color: var(--success);"></i> Data Science & Engineering Labs</h2>
-            <p class="section-desc">Portafolio técnico, investigación de posdoctorado y experimentación en análisis de datos avanzada.</p>
+        <h2><i class="fas fa-flask" style="color: #10b981;"></i> Proyectos Académicos &amp; Labs</h2>
+        <p class="section-desc">Portafolio técnico, investigación de posdoctorado y experimentación en análisis de datos avanzada.</p>
             
             <div class="project-grid">
                 
@@ -418,7 +481,7 @@
 
         <!-- Stack Tecnológico -->
         <section id="stack">
-            <h2><i class="fas fa-tools"></i> Technical Ecosystem</h2>
+        <h2><i class="fas fa-tools"></i> Stack Tecnológico</h2>
             <div class="skills-container">
                 <div class="skill-box">
                     <h4>Cloud & Engineering</h4>
