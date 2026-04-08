@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty & Customer Frequency | Luis Barragan, PhD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #2563eb;       /* Corporate Zafiro */
+            --tech-purple: #94a3b8;  /* Platinum */
+            --success: #059669;      /* Wealth Green */
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(51, 65, 85, 0.8);
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: white;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+            margin-bottom: 50px;
+        }
+
+        .tag {
+            background: transparent;
+            color: var(--text-dim);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 15px;
+            letter-spacing: -1.5px;
+            font-weight: 900;
+        }
+
+        p.lead {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        /* Mockup de CSS */
+        .dashboard-mockup {
+            background: #161e2e;
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .chart-title {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .fake-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            height: 180px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--accent);
+            border-radius: 4px 4px 0 0;
+            opacity: 0.7;
+            position: relative;
+        }
+        .bar:hover { opacity: 1; }
+
+        h2 {
+            font-size: 2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin-bottom: 30px;
+            margin-top: 60px;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .challenge-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .challenge-card h3 {
+            margin-top: 0;
+            color: var(--text-main);
+            font-size: 1.4rem;
+        }
+
+        .context-tag {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        pre {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .impact {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(5, 150, 105, 0.1);
+            border-left: 3px solid var(--success);
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+        
+        <header>
+            <div class="tag">ANALYTICS & DATA MODELING</div>
+            <h1>Loyalty Analytics & Frecuencia de Compra</h1>
+            <p class="lead">
+                Análisis avanzado del comportamiento de clientes, identificando patrones de lealtad mediante métricas dinámicas y superando sesgos algorítmicos comunes en arquitecturas masivas empresariales.
+            </p>
+        </header>
+
+        <!-- Dashboard Mockup Sintético -->
+        <div class="dashboard-mockup">
+            <div class="chart-title"><i class="fas fa-chart-bar"></i> Distribución Estructural de Frecuencia de Compra (Mock Data)</div>
+            <div class="fake-chart">
+                <div class="bar" style="height: 20%; background: #94a3b8;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">1x</span></div>
+                <div class="bar" style="height: 40%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">2-3x</span></div>
+                <div class="bar" style="height: 70%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">4-6x</span></div>
+                <div class="bar" style="height: 35%;"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">7-10x</span></div>
+                <div class="bar" style="height: 15%; background: var(--success);"><span style="position:absolute; bottom:-30px; left:20%; color:#94a3b8; font-size: 0.8rem;">10x+</span></div>
+            </div>
+        </div>
+
+        <section>
+            <h2>Ingeniería del Modelo Analítico</h2>
+            <p style="color: var(--text-dim); margin-bottom: 30px;">
+                Calcular la frecuencia real de los clientes en entornos corporativos exige superar graves sesgos estadísticos. A continuación, presento los 6 retos arquitectónicos resueltos para este proyecto empleando <strong>SQL / Tableau Level of Detail (LOD)</strong>.
+            </p>
+
+            <div class="challenge-grid">
+                
+                <!-- Reto 1 -->
+                <div class="challenge-card">
+                    <span class="context-tag">01. Agregación</span>
+                    <h3>La "Falsa" Frecuencia Promedio</h3>
+                    <p><strong>El Conflicto:</strong> Al intentar calcular la frecuencia mediante promedios simples de facturas, se generaban agregaciones erróneas que no reflejaban el comportamiento individual por cliente, sino un volcado general global distorsionado.</p>
+                    <p><strong>Resolución:</strong> Implementé Expresiones de Nivel de Detalle (LOD) para etiquetar estáticamente a cada cliente individual con su volumen de facturas únicas antes de inyectarlas en el promedio poblacional.</p>
+<pre><code>// Compras totales bloqueadas por cada cliente único
+{ FIXED [Email Cliente] : COUNTD([Numero Factura]) }</code></pre>
+                </div>
+
+                <!-- Reto 2 -->
+                <div class="challenge-card">
+                    <span class="context-tag">02. Gobierno de Datos</span>
+                    <h3>El Identificador Único Absoluto</h3>
+                    <p><strong>El Conflicto:</strong> La data transaccional venía sin limpieza de los sistemas <em>Core</em>. Requeríamos asegurar que la frecuencia no contara facturas duplicadas artificialmente (ej. por múltiples líneas de productos en una sola orden).</p>
+                    <p><strong>Resolución:</strong> Se desarrolló un campo de validación cruzada mediante manipulación asimétrica de cadenas <em>(string manipulation)</em> que extrae la pureza del ticket omitiendo variables nulas o decimales espurios.</p>
+<pre><code>[Email Cliente] + 
+LEFT(STR([Numero Pedido]), LEN(STR([Numero Pedido])) - 2) + 
+STR([Fecha Pedido])</code></pre>
+                </div>
+
+                <!-- Reto 3 -->
+                <div class="challenge-card">
+                    <span class="context-tag">03. Flexibilidad Analítica</span>
+                    <h3>Ecosistema Temporal Dinámico</h3>
+                    <p><strong>El Conflicto:</strong> La Dirección General requería analizar la frecuencia en "lentes" distintos (Anual, Semestral, Trimestral) desde un único panel maestro, forzando al motor a adaptar el denominador geométricamente.</p>
+                    <p><strong>Resolución:</strong> Se codificó un selector paramétrico robusto capaz de mutar la granularidad temporal al vuelo.</p>
+<pre><code>// 1. Matriz de Periodo Dinámico
+CASE [Elegir Periodo]
+   WHEN "Año" THEN STR(YEAR([Fecha]))
+   WHEN "Semestre" THEN STR(YEAR([Fecha])) + IF MONTH([Fecha]) <= 6 THEN " S1" ELSE " S2" END
+   WHEN "Trimestre" THEN STR(YEAR([Fecha])) + "-Q" + STR(DATEPART('quarter', [Fecha]))
+END
+
+// 2. Ejecución LOD contra la Variación Temporal
+{ FIXED [Email Cliente] : COUNTD([ID_Factura_Unico]) } / 
+{ FIXED [Email Cliente] : COUNTD([Periodo Dinamico]) }</code></pre>
+                </div>
+
+                <!-- Reto 4 -->
+                <div class="challenge-card">
+                    <span class="context-tag">04. Medición de Intervalos</span>
+                    <h3>El Ritmo de Compra (Inter-purchase Time)</h3>
+                    <p><strong>El Conflicto:</strong> Saber cuántas compras hace un cliente informa el <em>Lifetime Value</em> (LTV), pero no el "espacio vital" entre ellas. Debíamos medir los espacios vacíos evitando colapsos matemáticos (división por cero) en usuarios pioneros de solo una compra.</p>
+                    <p><strong>Resolución:</strong> Segmentación matemática midiendo <code>N-1</code> transacciones respecto a los extremos de sus compras vitalicias.</p>
+<pre><code>DATEDIFF('day', {FIXED [Email Cliente]: MIN([Fecha])}, {FIXED [Email Cliente]: MAX([Fecha])}) 
+/ 
+({FIXED [Email Cliente]: COUNTD([ID_Factura_Unico])} - 1)</code></pre>
+                </div>
+
+                <!-- Reto 5 -->
+                <div class="challenge-card">
+                    <span class="context-tag">05. Sesgo Estadístico</span>
+                    <h3>El Defecto de los Racimos (Clustering)</h3>
+                    <p><strong>El Conflicto:</strong> Analíticamente, un usuario realizando 5 tickets fragmentados el mismo día ocasionaba que el "Ritmo" arrojara una ilusión de recurrencia masiva (una vez cada pocos días), ocultando que históricamente el cliente visita la tienda una vez cada 3 meses.</p>
+                    <p><strong>Resolución:</strong> Transición absoluta del enfoque de "Transacciones" a <strong>"Días de Visita Real"</strong>, validando así recurrencia en sustratos geolocalizados válidos.</p>
+<pre><code>// Ritmo Real del Customer Journey
+DATEDIFF('day', MIN([Fecha]), MAX([Fecha])) / (COUNTD([Fecha]) - 1)</code></pre>
+                </div>
+
+                <!-- Reto 6 -->
+                <div class="challenge-card">
+                    <span class="context-tag">06. Control de Daños</span>
+                    <h3>Depuración de Outliers Institucionales</h3>
+                    <p><strong>El Conflicto:</strong> Distorsión de promedios causada por facturas huérfanas o entidades institucionales simulando ser "clientes finales" con historiales de compras que superaban los 14,000 registros.</p>
+                    <p><strong>Resolución:</strong> Inyección de reglas de negocio para depurar <em>Outliers</em> institucionales y proteger la jerarquía, usando Filtros de Contexto de motor profundo para que los filtros funcionen estáticamente antes de las cláusulas FIXED.</p>
+                    <div class="impact">
+                        <strong>Impacto Corporativo:</strong> Al neutralizar el sesgo, la proyección predictiva sobre retención y reactivación de clientes de verdadero volumen incrementó su rentabilidad drásticamente.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 60px;">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Volver a Proyectos
+            </a>
+        </section>
+
+    </div>
+</body>
+</html>
