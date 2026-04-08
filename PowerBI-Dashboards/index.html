@@ -3,195 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Portfolio | Luis Barragán</title>
+    <title>Power BI Dashboards | Luis Barragan, PhD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --powerbi-yellow: #FFB900;
-            --powerbi-dark: #1B3A57;
-            --accent: #00B7C3;
-            --light-bg: #F8F9FA;
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #2563eb;       
+            --tech-purple: #94a3b8;  
+            --success: #059669;      
+            --powerbi: #f2c811;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(51, 65, 85, 0.8);
+            --card-bg: #1e293b;
         }
-        
+
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-main);
+            margin: 0;
             line-height: 1.6;
-            color: #333;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: var(--light-bg);
+            padding: 40px 20px;
         }
-        
+
+        .back-link {
+            text-decoration: none;
+            color: white;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
         header {
-            text-align: center;
-            padding: 40px 0;
-            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+            margin-bottom: 50px;
+            text-align: left;
         }
-        
-        .powerbi-logo {
-            height: 80px;
-            margin-bottom: 20px;
-        }
-        
-        h1, h2, h3 {
-            color: var(--powerbi-dark);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
+
+        .tag {
+            background: transparent;
+            color: var(--text-dim);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+            display: inline-block;
             margin-bottom: 10px;
+            font-weight: 700;
         }
-        
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 15px;
+            letter-spacing: -1.5px;
+            font-weight: 900;
+        }
+
+        p.lead {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
         .dashboard-card {
-            background: white;
+            background: #161e2e;
             border-radius: 8px;
             padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--powerbi-yellow);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(148, 163, 184, 0.3);
+        }
+
+        .dashboard-card h3 {
+            color: var(--text-main);
+            font-size: 1.4rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
         .preview-image {
             width: 100%;
-            max-width: 900px;
+            height: 200px;
+            object-fit: contain;
             border-radius: 6px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: block;
-            margin: 20px auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            filter: grayscale(0.2) brightness(0.9);
+            transition: all 0.3s ease;
+            background: rgba(0,0,0,0.2);
         }
-        
+
+        .dashboard-card:hover .preview-image {
+            filter: grayscale(0) brightness(1);
+        }
+
         .download-btn {
             display: inline-block;
-            background: var(--powerbi-yellow);
-            color: var(--powerbi-dark);
-            padding: 12px 25px;
-            margin: 15px 0;
+            background: transparent;
+            color: var(--text-main);
+            padding: 8px 15px;
             border-radius: 6px;
             text-decoration: none;
+            font-size: 0.85rem;
             font-weight: 600;
+            border: 1px solid var(--border);
             transition: all 0.3s;
+            margin-bottom: 20px;
         }
-        
+
         .download-btn:hover {
-            background: var(--powerbi-dark);
-            color: white;
+            background: rgba(255,255,255,0.05);
+            border-color: var(--text-dim);
         }
-        
+
         .insights {
-            background: rgba(0, 183, 195, 0.1);
+            background: #0f172a;
             padding: 20px;
-            border-radius: 8px;
-            margin: 25px 0;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .tech-badge {
-            display: inline-block;
-            background: var(--powerbi-dark);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            margin: 5px;
+
+        .insights h4 {
+            color: var(--tech-purple);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .insights ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--text-dim);
             font-size: 0.9rem;
         }
-        
-        .back-btn {
+
+        .insights li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .insights li::before {
+            content: "▹";
+            color: var(--accent);
+        }
+
+        .insights strong {
+            color: var(--text-main);
+        }
+
+        .tech-badge {
             display: inline-block;
-            background: var(--powerbi-dark);
-            color: white;
-            padding: 12px 30px;
-            margin: 40px 0;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
+            background: transparent;
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.7rem;
+            border: 1px solid var(--border);
+            letter-spacing: 0.5px;
         }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .dashboard-card {
-                padding: 20px;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://github.com/microsoft/PowerBI-Embedded/raw/master/assets/PowerBI-Logo.png" alt="Power BI Logo" class="powerbi-logo">
-        <h1>Power BI Dashboard Portfolio</h1>
-        <p>Advanced Business Intelligence Solutions</p>
-    </header>
 
-    <div class="dashboard-card">
-        <h2>Global Sales Analysis</h2>
-        <a href="./Ventas.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image">
+    <div class="container">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
         
-        <div class="insights">
-            <h3>Key Insights</h3>
-            <ul>
-                <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
-                <li>Americas generate <strong>39.14%</strong> of profits</li>
-                <li>USA leads with <strong>24.47%</strong> profit margin</li>
-                <li>Clear quarterly growth trends visible</li>
-            </ul>
-        </div>
-    </div>
+        <header>
+            <div class="tag">LABS & EXPERIMENTATION</div>
+            <h1>Power BI Dashboard Portfolio</h1>
+            <p class="lead">
+                Colección de modelos analíticos desarrollados con Microsoft Power BI, combinando orígenes de datos on-premise con métricas DAX avanzadas.
+            </p>
+            <div style="margin-top: 15px;">
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">Excel</span>
+                <span class="tech-badge">SharePoint</span>
+                <span class="tech-badge">REST APIs</span>
+                <span class="tech-badge">DAX</span>
+            </div>
+        </header>
 
-    <div class="dashboard-card">
-        <h2>Corporate Training</h2>
-        <a href="./BD_cursos.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image">
-        
-        <div class="insights">
-            <h3>Key Insights</h3>
-            <ul>
-                <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
-                <li>Night shift has <strong>42.27%</strong> participation</li>
-                <li>Top client generated <strong>€65,500</strong> revenue</li>
-                <li>Average 23.92 training hours per course</li>
-            </ul>
-        </div>
-    </div>
+        <div class="dashboard-grid">
+            
+            <!-- Dashboard 1 -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-globe-americas" style="color: var(--powerbi);"></i> Global Sales Analysis</h3>
+                <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image" onerror="this.style.display='none'">
+                <a href="./Ventas.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+                
+                <div class="insights">
+                    <h4>Key Insights</h4>
+                    <ul>
+                        <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
+                        <li>Americas generate <strong>39.14%</strong> of profits</li>
+                        <li>USA leads with <strong>24.47%</strong> profit margin</li>
+                        <li>Clear quarterly growth trends visible</li>
+                    </ul>
+                </div>
+            </div>
 
-    <div class="dashboard-card">
-        <h2>Client Billing</h2>
-        <a href="./Facturas.pbix" class="download-btn">Download PBIX Report</a>
-        <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image">
-        
-        <div class="insights">
-            <h3>Key Insights</h3>
-            <ul>
-                <li>Top client contributes <strong>29.42%</strong> revenue</li>                
-                <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
-                <li>Madrid leads in billing by province</li>
-            </ul>
-        </div>
-    </div>
+            <!-- Dashboard 2 -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-chalkboard-teacher" style="color: var(--powerbi);"></i> Corporate Training</h3>
+                <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image" onerror="this.style.display='none'">
+                <a href="./BD_cursos.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+                
+                <div class="insights">
+                    <h4>Key Insights</h4>
+                    <ul>
+                        <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
+                        <li>Night shift has <strong>42.27%</strong> participation</li>
+                        <li>Top client generated <strong>€65,500</strong> revenue</li>
+                        <li>Average 23.92 training hours per course</li>
+                    </ul>
+                </div>
+            </div>
 
-    <div class="dashboard-card">
-        <h2>Technical Implementation</h2>
-        <h3>Data Sources</h3>
-        <div>
-            <span class="tech-badge">SQL Server</span>
-            <span class="tech-badge">Excel</span>
-            <span class="tech-badge">SharePoint</span>
-            <span class="tech-badge">REST APIs</span>
-        </div>
-        
-        <h3>Main Features</h3>
-        <ul>
-            <li>Drill-through navigation</li>
-            <li>Dynamic parameter control</li>
-            <li>Custom DAX measures</li>
-            <li>Mobile-responsive design</li>
-        </ul>
-    </div>
+            <!-- Dashboard 3 -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-file-invoice-dollar" style="color: var(--powerbi);"></i> Client Billing</h3>
+                <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image" onerror="this.style.display='none'">
+                <a href="./Facturas.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+                
+                <div class="insights">
+                    <h4>Key Insights</h4>
+                    <ul>
+                        <li>Top client contributes <strong>29.42%</strong> revenue</li>                
+                        <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
+                        <li>Madrid leads in billing by province</li>
+                    </ul>
+                </div>
+            </div>
 
-    <div style="text-align: center;">
-        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Return to Portfolio</a>
+        </div>
+
     </div>
 </body>
 </html>
