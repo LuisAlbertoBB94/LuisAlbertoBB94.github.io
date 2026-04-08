@@ -6,7 +6,6 @@
     <title>Real-Time Sales Pipeline | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true, theme: 'dark'});</script>
     <style>
         :root {
             --primary: #0f172a;
@@ -242,6 +241,56 @@
             filter: grayscale(0) brightness(1);
         }
 
+        /* Tabs Styles */
+        .tabs { margin: 40px 0; }
+        .tab-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Data Table Style */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+        .data-table th {
+            text-align: left;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .charcoal { background: #424242; }
+
         footer {
             border-top: 1px solid var(--border);
             padding-top: 40px;
@@ -301,131 +350,181 @@
             <p>Se implementó un esquema de <strong>Medallion Architecture</strong> sobre Google Cloud Storage, orquestado por Cloud Composer.</p>
             
             <img src="ETLdiagrama.png" alt="Arquitectura ETL Pipeline" class="diagram-img">
-
-            <div class="mermaid">
-                graph LR
-                    subgraph "Origen"
-                        SH[("SAP HANA <br/>(Global POS)")]
-                    end
-                    
-                    subgraph "Orquestación & Cómputo"
-                        AF["Cloud Composer <br/>(Airflow)"]
-                        DP["Google Dataproc <br/>(Spark/Pig Cluster)"]
-                    end
-                    
-                    subgraph "Data Lake (GCS)"
-                        LD[("Landing Zone <br/>(Incremental)")]
-                        ST[("Staging Zone <br/>(Deltas)")]
-                        MD[("Model Zone <br/>(Acumulativo)")]
-                    end
-                    
-                    subgraph "Analytics"
-                        BQ[("BigQuery <br/>(Semantic Zone)")]
-                        LK["Looker Studio <br/>(High Perf)"]
-                    end
-                    
-                    SH --> AF
-                    AF --> DP
-                    DP --> LD
-                    LD --> ST
-                    ST --> MD
-                    MD --> BQ
-                    BQ --> LK
-
-                    style AF fill:#0f172a,color:#fff,stroke:#3b82f6
-                    style BQ fill:#0f172a,color:#fff,stroke:#3b82f6
-                    style DP fill:#0f172a,color:#fff,stroke:#3b82f6
-            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim);">
+                El flujo garantiza la integridad desde la extracción incremental en SAP HANA hasta la materialización de tablas semánticas optimizadas para el consumo masivo en BigQuery.
+            </p>
         </section>
 
         <section id="pipeline">
             <h2><i class="fas fa-cogs"></i> Pipeline Efímero (FinOps)</h2>
-            <p>Para optimizar los costos de cómputo, el pipeline crea clusters de Dataproc bajo demanda que se auto-eliminan al finalizar el procesamiento.</p>
-            
-            <div class="mermaid">
-                graph TD
-                    Start((Inicio)) --> CC["<b>Crear Cluster Dataproc</b><br/>(e2-standard-4)"]
-                    CC --> EX["<b>Extract: SAP → Landing</b><br/>(Incremental)"]
-                    EX --> TF["<b>Transform: Staging → Model</b><br/>(Deltas)"]
-                    TF --> MB["<b>Materialize BI Table</b><br/>(Optimización Looker)"]
-                    MB --> DC["<b>Borrar Cluster Dataproc</b><br/>(Auto-delete)"]
-                    DC --> End((Fin))
-
-                    style Start fill:#1e293b,color:#fff
-                    style End fill:#1e293b,color:#fff
-                    style CC fill:#0f172a,color:#3b82f6,stroke:#3b82f6
-                    style DC fill:#0f172a,color:#ef4444,stroke:#ef4444
-            </div>
+            <p>Para optimizar los costos de cómputo, el pipeline crea clusters de Dataproc bajo demanda (e2-standard-4) que se auto-eliminan al finalizar el procesamiento (TTL automático).</p>
         </section>
 
         <section id="results">
-            <h2><i class="fas fa-chart-bar" style="color: var(--success);"></i> Dashboard de Control Simulado</h2>
-            <p>El siguiente componente replica la visualización del <strong>Cubo de Ventas</strong> en tiempo real, permitiendo ver el pulso de la operación sin exponer datos confidenciales.</p>
+            <h2><i class="fas fa-chart-bar" style="color: var(--success);"></i> Dashboard de Control Multi-Vista</h2>
+            <p>Este componente interactivo replica las 4 vistas del <strong>Cubo de Ventas</strong> corporativo, permitiendo ver el pulso de la operación con 100% de paridad SAP.</p>
             
-            <div class="dashboard-mockup">
-                <div class="kpi-container" style="margin-bottom: 30px;">
-                    <div class="kpi-box">
-                        <span class="kpi-value">$1.29 M</span>
-                        <span class="kpi-label">Venta Neta Hoy</span>
-                    </div>
-                    <div class="kpi-box">
-                        <span class="kpi-value">$553.0 K</span>
-                        <span class="kpi-label">Margen Bruto</span>
-                    </div>
-                    <div class="kpi-box" style="border-color: var(--success);">
-                        <span class="kpi-value">10 min</span>
-                        <span class="kpi-label">Latencia (GCP)</span>
+            <div class="kpi-container" style="margin-bottom: 30px;">
+                <div class="kpi-box">
+                    <span class="kpi-value">$1.29 M</span>
+                    <span class="kpi-label">Venta Neta Hoy</span>
+                </div>
+                <div class="kpi-box">
+                    <span class="kpi-value">$553.0 K</span>
+                    <span class="kpi-label">Utilidad Bruta</span>
+                </div>
+                <div class="kpi-box" style="border-color: var(--success);">
+                    <span class="kpi-value">$220,40</span>
+                    <span class="kpi-label">Ticket Promedio</span>
+                </div>
+            </div>
+
+            <!-- Tabs System -->
+            <div class="tabs">
+                <div class="tab-header">
+                    <button class="tab-btn active" onclick="openTab(event, 'exec')">Ejecutivo (Horario)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'prod')">Producto (Top SKUs)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'cube')">Cubo Operativo</button>
+                </div>
+
+                <!-- Tab: Ejecutivo -->
+                <div id="exec" class="tab-content active">
+                    <div class="chart-row">
+                        <div class="chart-box">
+                            <div class="chart-title">VENTA POR HORA (INTRADÍA)</div>
+                            <div class="pulse-line">
+                                <div class="pulse-bar" style="height: 15%;" data-label="$41k"></div>
+                                <div class="pulse-bar" style="height: 25%;" data-label="$125k"></div>
+                                <div class="pulse-bar" style="height: 12%;" data-label="$37k"></div>
+                                <div class="pulse-bar" style="height: 55%;" data-label="$362k"></div>
+                                <div class="pulse-bar" style="height: 40%;" data-label="$207k"></div>
+                                <div class="pulse-bar" style="height: 65%;" data-label="$162k"></div>
+                                <div class="pulse-bar" style="height: 85%;" data-label="$372k"></div>
+                                <div class="pulse-bar" style="height: 98%;" data-label="$457k"></div>
+                            </div>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">VENTA POR CATEGORÍA</div>
+                            <div class="category-list">
+                                <div class="cat-item">
+                                    <span style="width: 80px;">Papelería</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 95%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$498k</span>
+                                </div>
+                                <div class="cat-item">
+                                    <span style="width: 80px;">CopyMax</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill charcoal" style="width: 48%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$237k</span>
+                                </div>
+                                <div class="cat-item">
+                                    <span style="width: 80px;">Tech</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill tech" style="width: 26%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$131k</span>
+                                </div>
+                                <div class="cat-item">
+                                    <span style="width: 80px;">Muebles</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill furniture" style="width: 25%;"></div></div>
+                                    <span style="font-size: 0.7rem;">$130k</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="chart-row">
-                    <div class="chart-box">
-                        <div class="chart-title">
-                            <span>PULSO DE VENTA POR HORA</span>
-                            <span style="color: var(--success);"><i class="fas fa-caret-up"></i> +12% vs Ayer</span>
+                <!-- Tab: Producto -->
+                <div id="prod" class="tab-content">
+                    <div class="chart-row">
+                        <div class="chart-box" style="text-align: center;">
+                            <div class="chart-title">MIX DE VENTA POR CATEGORÍA (%)</div>
+                            <svg viewBox="0 0 36 36" style="width: 180px; height: 180px;">
+                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="4"></circle>
+                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#E6A700" stroke-width="4" stroke-dasharray="38.5 61.5" stroke-dashoffset="25"></circle>
+                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#003B5C" stroke-width="4" stroke-dasharray="20 80" stroke-dashoffset="-13.5"></circle>
+                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#4A5D23" stroke-width="4" stroke-dasharray="18.4 81.6" stroke-dashoffset="-33.5"></circle>
+                                <text x="18" y="20" font-size="3" text-anchor="middle" fill="white">Papelería 38%</text>
+                            </svg>
                         </div>
-                        <div class="pulse-line">
-                            <div class="pulse-bar" style="height: 30%;"></div>
-                            <div class="pulse-bar" style="height: 45%;"></div>
-                            <div class="pulse-bar" style="height: 40%;"></div>
-                            <div class="pulse-bar" style="height: 60%;"></div>
-                            <div class="pulse-bar" style="height: 85%;"></div>
-                            <div class="pulse-bar" style="height: 95%;"></div>
-                            <div class="pulse-bar" style="height: 70%;"></div>
-                            <div class="pulse-bar" style="height: 50%;"></div>
-                            <div class="pulse-bar" style="height: 40%;"></div>
-                            <div class="pulse-bar" style="height: 35%;"></div>
+                        <div class="chart-box">
+                            <div class="chart-title">TOP SKU POR CATEGORÍA</div>
+                            <div class="category-list">
+                                <div class="cat-item">
+                                    <span style="font-size: 0.6rem;">SKU 500298</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 90%;"></div></div>
+                                    <span>$43k</span>
+                                </div>
+                                <div class="cat-item">
+                                    <span style="font-size: 0.6rem;">SKU 501062</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 82%;"></div></div>
+                                    <span>$40k</span>
+                                </div>
+                                <div class="cat-item">
+                                    <span style="font-size: 0.6rem;">SKU 500844</span>
+                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 65%;"></div></div>
+                                    <span>$31k</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-box">
-                        <div class="chart-title">MIX ESTRATÉGICO</div>
-                        <div class="category-list">
-                            <div class="cat-item">
-                                <span>Tech</span>
-                                <div class="cat-bar-bg"><div class="cat-bar-fill tech"></div></div>
-                                <span>65%</span>
-                            </div>
-                            <div class="cat-item">
-                                <span>Paper</span>
-                                <div class="cat-bar-bg"><div class="cat-bar-fill paper"></div></div>
-                                <span>25%</span>
-                            </div>
-                            <div class="cat-item">
-                                <span>Furniture</span>
-                                <div class="cat-bar-bg"><div class="cat-bar-fill furniture"></div></div>
-                                <span>10%</span>
-                            </div>
-                        </div>
+                </div>
+
+                <!-- Tab: Cubo -->
+                <div id="cube" class="tab-content">
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Tienda</th>
+                                    <th>Venta</th>
+                                    <th>Utilidad</th>
+                                    <th>Margen %</th>
+                                    <th>Piezas</th>
+                                    <th>Ticket Prom</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>T010 - Cancun</td><td>$43,76 mil</td><td>$16,55 mil</td><td>0,38%</td><td>2.1 mil</td><td>$275,21</td></tr>
+                                <tr><td>T044 - Pachuca</td><td>$38,32 mil</td><td>$10,67 mil</td><td>0,28%</td><td>479</td><td>$491,26</td></tr>
+                                <tr><td>T055 - Cd. Carmen</td><td>$38,27 mil</td><td>$13,89 mil</td><td>0,36%</td><td>424</td><td>$1.125,59</td></tr>
+                                <tr><td>T033 - Gonzalitos</td><td>$37,77 mil</td><td>$15,53 mil</td><td>0,41%</td><td>1.7 mil</td><td>$281,89</td></tr>
+                                <tr style="background: rgba(16,185,129,0.1)">
+                                    <td><strong>TOTAL MUESTRAS</strong></td>
+                                    <td><strong>$1,29 M</strong></td>
+                                    <td><strong>$553,02 mil</strong></td>
+                                    <td><strong>0,43%</strong></td>
+                                    <td><strong>65 mil</strong></td>
+                                    <td><strong>$220,40</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div class="card" style="background: #0a0f1d; text-align: center;">
+            <div class="card" style="background: #0a0f1d; text-align: center; margin-top: 40px;">
                 <p style="color: var(--text-dim); font-style: italic;">
-                    "Esta visualización interactiva demuestra la capacidad de la infraestructura para procesar millones de eventos y transformarlos en insights accionables para la Dirección General."
+                    "Esta solución de BI permite a los tomadores de decisiones reaccionar ante cambios en la demanda del mercado en minutos, asegurando rentabilidad y eficiencia operativa."
                 </p>
             </div>
         </section>
+
+        <script>
+            function openTab(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    tabcontent[i].classList.remove("active");
+                }
+                tablinks = document.getElementsByClassName("tab-btn");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].classList.remove("active");
+                }
+                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+            }
+        </script>
 
         <footer>
             <p>Luis Barragan, PhD | Senior BI Lead</p>
