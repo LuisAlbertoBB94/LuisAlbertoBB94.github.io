@@ -1,45 +1,52 @@
-# Luis Alberto Barragán Bonilla, PhD
+# Luis Barragan, PhD
+
 ## Senior Business Intelligence Lead
 
-Bienvenido a mi portafolio profesional. Soy un líder técnico especializado en convertir datos masivos en ventajas competitivas estratégicas mediante el uso de tecnologías de nube de vanguardia e Inteligencia Artificial.
+Doctor en Ciencias y Líder de BI especializado en **Modern Data Stacks** e **IA Generativa**. Mi enfoque es transformar arquitecturas de datos complejas en motores de crecimiento estratégico con 100% de paridad financiera.
 
 ---
 
-## 🌟 Perfil Profesional
-Senior BI Lead y Doctor en Ciencias (PhD) con trayectoria en el diseño de arquitecturas lógicas de datos. Experto en habilitar Business Intelligence para la toma de decisiones ejecutivas en entornos de alta escala.
+## 🏛️ Perfil Profesional
 
-- **Stack Moderno:** Google Cloud Platform (GCP), BigQuery, Airflow, Vertex AI.
-- **Especialidad:** IA Generativa (Multi-Agent Systems), Optimización FinOps y Gobernanza de Datos.
-- **Impacto:** Reducción del 60% en costos de nube y optimización del 70% en tiempos de procesamiento.
+Lidero la habilitación de Business Intelligence mediante la integración de **GCP, BigQuery y Airflow**. Experto en orquestación de **Sistemas Multi-Agente (GenAI)** para análisis financieros autónomos.
 
----
-
-## 🚀 Proyecto Destacado: Maxter AI Analytics
-Sistema de Multi-Agentes (Hive) diseñado para democratizar el acceso a Big Data analítico (+321M registros) mediante lenguaje natural.
-
-- **Tecnología:** Gemini 2.5 Pro / Cloud Run / BigQuery.
-- **Logro:** Paridad financiera absoluta con SAP S/4HANA.
-- **[Ver Detalles del Proyecto](https://luisalbertobb94.github.io/Maxter-AI-Analytics/)**
+- **Senior BI Lead:** Empresa Líder en Retail (Gestión de equipos Scrum, FinOps).
+- **PhD:** Investigador JCR con enfoque en modelado matemático.
+- **Impacto Real:** -60% costos de nube y optimización masiva de pipelines ETL/ELT.
 
 ---
 
-## 🛠️ Stack Tecnológico resumido
-- **Data Eng:** GCP, BigQuery, SQL, Python, Airflow.
-- **BI:** Tableau (Cloud/Server), Looker, Power BI.
-- **IA:** Gemini, Vertex AI, LangChain, Prompt Engineering.
-- **Metodologías:** Scrum (Liderazgo de equipos de alto rendimiento).
+## 🛠️ Stack Tecnológico
+
+- **Cloud/Data:** GCP, BigQuery, Airflow, SAP S/4HANA, SQL Avanzado.
+- **IA:** Gemini, Vertex AI, LangChain, Multi-Agent Architecture.
+- **BI:** Tableau (Server/Cloud), Looker Studio, Power BI.
+- **Engineering:** Python (Pandas/NumPy), Data Lakes, Scrum.
 
 ---
 
-## 💼 Experiencia en el Mundo Real
-- **Senior BI Lead:** Empresa Líder en Retail (CDMX).
-- **Docente e Investigador:** IPN / UVM.
+## 🚀 Proyectos de Impacto
+
+1. **Maxter AI Analytics:** Sistema Multi-Agente para consulta de +321M registros.
+2. **Real-Time Pipeline:** Latencia <10 min para transacciones POS.
+3. **FinOps & Hub-Spoke:** Ahorro del 60% en factura de nube.
+4. **Voice of Customer:** Análisis de sentimiento (NLP) para NPS/CSAT.
+5. **Matriz BCG AI:** Proyección de ventas y optimización de inventarios.
+
+---
+
+## 📜 Certificaciones & Academia
+
+- PhD en Comunicaciones y Electrónica (IPN).
+- Docente de Tecnología (UVM).
+- Microsoft Office Specialist & Scrum Fundamentals.
 
 ---
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=nord" alt="GitHub Stats">
+  <img src="https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=tokyonight" alt="GitHub Stats">
 </p>
 
 ---
-*Para ver el portafolio visual completo, visita: [luisalbertobb94.github.io](https://luisalbertobb94.github.io)*
+
+*Explora el portafolio visual completo en: [luisalbertobb94.github.io](https://luisalbertobb94.github.io)*

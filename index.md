@@ -1,4 +1,5 @@
-# Luis Alberto Barragán Bonilla, PhD
+# Luis Barragan, PhD
+
 ### Senior Business Intelligence Lead
 
 <div align="center">
@@ -11,71 +12,70 @@
 
 ---
 
-## 🏛️ Professional Profile
-Senior BI Lead y Doctor en Ciencias (PhD) especializado en **Arquitecturas Lógicas de Datos** y habilitación de **Business Intelligence estratégico**. Experto en la construcción de pipelines escalables y sistemas de visualización de alto impacto bajo metodologías Ágiles (Scrum).
+## 🏛️ Perfil Profesional
 
-> [!NOTE]
-> Mi enfoque se centra en el **Modern Data Stack (GCP, BigQuery, Airflow)** y la integración disruptiva de **IA Generativa** para optimizar la toma de decisiones ejecutivas.
+Senior BI Lead y Doctor en Ciencias (PhD) especializado en el desarrollo de arquitecturas lógicas de datos y habilitación de Business Intelligence. Experto en la construcción de pipelines técnicos y sistemas de visualización para facilitar la toma de decisiones ejecutivas mediante el uso de **Modern Data Stacks (GCP, BigQuery, Airflow)** e **IA Generativa**.
 
----
+### 🎯 Pilares Estratégicos
 
-## 🚀 Featured AI Project: Maxter Analytics
-
-<div align="center">
-  <a href="Maxter-AI-Analytics/index.html">
-    <img src="Maxter-AI-Analytics/img/hero_architecture.png" alt="Maxter AI System" width="85%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-  </a>
-</div>
-
-**AI-Driven Decision Making**:
-- 🧠 **Multi-Agent System**: Orquestación autónoma de agentes Gemini para análisis financiero detallado.
-- ⚡ **Scale**: Procesamiento en tiempo real de **+321 Millones de registros**.
-- ✅ **Parity**: 100% de paridad financiera validada contra SAP S/4HANA.
-- 🏦 [Explorar Arquitectura y Resultados](Maxter-AI-Analytics/index.html)
+- **Arquitectura y Pipelines:** Implementación de modelos *Hub & Spoke* y pipelines automatizados con paridad financiera del 100%.
+- **Habilitación de BI:** Diseño de lógica analítica avanzada (Tableau, Looker Studio, Power BI) para optimización operativa.
+- **Innovación en IA:** Desarrollo de soluciones con **LLM Agents (Gemini, LangChain)** aplicadas a infraestructuras de datos complejas.
 
 ---
 
-## 💼 Enterprise Experience (Highlights)
+## 🛠️ Stack Tecnológico Completo
+
+| **Cloud & Data Engineering** | **IA & Machine Learning** | **BI & Visualización** |
+| :-------------------------- | :------------------------ | :-------------------- |
+| Google Cloud Platform (GCP) | Google Gemini / Vertex AI | Tableau (Server/Cloud) |
+| BigQuery / Cloud Storage    | Multi-Agent Systems       | Looker Studio / Power BI |
+| Apache Airflow / Cloud Run  | Modelado Predictivo       | DAX / SQL Avanzado    |
+| SAP S/4HANA / SQL Avanzado | Text-to-SQL / Prompt Eng. | UI/UX Data Design     |
+| Data Lake Architectures     | Pandas / NumPy / SciPy   | KPIs Financieros      |
+
+---
+
+## 💼 Experiencia Profesional
 
 ### **Senior Business Intelligence Lead** | Empresa Líder en Retail
-*Julio 2025 – Presente*
+*Julio 2025 – Actual*
 
-- **Liderazgo C-Suite:** Traducción de necesidades de negocio para la Dirección General en rutas analíticas críticas.
-- **FinOps & Cloud Optimization:** Refactorización técnica que redujo un **60% la factura de nube** y un **70% los tiempos de extracción**.
-- **Data Governance:** Responsable de la integridad y disponibilidad de la reportería ejecutiva corporativa.
-- **Proyectos Estratégicos:**
-    - Pipelines de ventas en tiempo real (Latencia < 10 min).
-    - Motores analíticos de rentabilidad (Matriz BCG) e IA para proyección de ventas.
-    - Arquitecturas NPS (Voice of Customer) con análisis de sentimiento mediante LLMs.
+**Liderazgo Estratégico:**
 
----
+- Interacción directa con **C-Suite (Dirección General)** para la traducción de necesidades de negocio.
+- Liderazgo de equipo bajo metodología **Scrum** (Story Points, delegación estratégica).
+- Implementación de FinOps, reduciendo un **60% la factura de nube** y **70% los tiempos de extracción**.
 
-## 🛠️ Technical Ecosystem
+#### 🚀 Proyectos Estratégicos Implementados
 
-| **Data Engineering** | **AI & Machine Learning** | **Business Intelligence** |
-|:---:|:---:|:---:|
-| Google Cloud (GCP) | Gemini / Vertex AI | Tableau (Server/Cloud) |
-| BigQuery / Airflow | LangChain / LLM Agents | Looker Studio |
-| SQL Avanzado / Python | Modelado Predictivo | Power BI / DAX |
-| ETL/ELT Architectures | FinOps & MLOps | UI/UX Data Design |
+- **Real-Time Sales Pipeline:** Arquitectura ETL/ELT con latencia de 10 min para transacciones POS.
+- **Auditoría Forense y Paridad:** Conciliación SAP vs Tableau logrando el 100% de paridad financiera.
+- **Motor Analítico BCG:** Optimización de inventarios y rentabilidad SKU mediante IA proyectiva.
+- **Voice of Customer (NPS/CSAT):** Análisis de sentimiento mediante IA para medir satisfacción.
+- **AI Business Assistant (Maxter):** Ecosistema Multi-Agente (Gemini) para análisis financiero.
+- **Rentabilidad Operativa (P&L):** Estructuración de centros de costos por sucursal.
+- **Analytics de Lealtad:** Monitoreo del ROI en estrategias de fidelización y frecuencia de compra.
 
 ---
 
-## 🎓 Academic Foundations & Research
+## 🎓 Formación y Academia
 
 - **PhD en Comunicaciones y Electrónica** (IPN)
-- **Investigador Científico:** Autor de 4 artículos JCR sobre sistemas de control y modelado matemático complejo.
-- **Docente de Tecnología (UVM):** Capacitación en Python, SQL y BI Storytelling.
+- **Catedrático e Investigador:** Autor de 4 artículos JCR publicados y ponente internacional.
+- **Docente (UVM):** Mentoría técnica en Python, SQL y BI.
 
 ---
 
-<div align="center">
+## 📜 Certificaciones 2025
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=dark)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=LuisAlbertoBB94&layout=compact&theme=dark)
+- **The Data Science Course 2025:** Complete Data Science Bootcamp.
+- **BI Decision Making:** Toma de decisiones con Power BI.
+- **Agile Project Management:** Metodología Scrum.
+- **MOS:** Excel Associate (Microsoft 365).
 
-</div>
+---
 
 <p align="center">
-  <i>"Transformando infraestructuras complejas en motores de crecimiento estratégico."</i>
+  <i>"Liderando la intersección entre la ingeniería de datos masiva y la inteligencia artificial estratégica."</i>
 </p>
