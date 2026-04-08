@@ -1,6 +1,5 @@
 # Luis Barragan, PhD
-
-### Senior Business Intelligence Lead
+### Senior Business Intelligence Lead | AI Strategist
 
 <div align="center">
 
@@ -13,69 +12,59 @@
 ---
 
 ## 🏛️ Perfil Profesional
-
-Senior BI Lead y Doctor en Ciencias (PhD) especializado en el desarrollo de arquitecturas lógicas de datos y habilitación de Business Intelligence. Experto en la construcción de pipelines técnicos y sistemas de visualización para facilitar la toma de decisiones ejecutivas mediante el uso de **Modern Data Stacks (GCP, BigQuery, Airflow)** e **IA Generativa**.
-
-### 🎯 Pilares Estratégicos
-
-- **Arquitectura y Pipelines:** Implementación de modelos *Hub & Spoke* y pipelines automatizados con paridad financiera del 100%.
-- **Habilitación de BI:** Diseño de lógica analítica avanzada (Tableau, Looker Studio, Power BI) para optimización operativa.
-- **Innovación en IA:** Desarrollo de soluciones con **LLM Agents (Gemini, LangChain)** aplicadas a infraestructuras de datos complejas.
+Senior BI Lead y Doctor en Ciencias (PhD) con especialización en **Modern Data Stacks (GCP, BigQuery, Airflow)** e **IA Generativa**. Experto en orquestar soluciones de datos masivos con paridad financiera absoluta y eficiencia FinOps, liderando equipos de alto rendimiento bajo metodologías Ágiles.
 
 ---
 
-## 🛠️ Stack Tecnológico Completo
+## 🚀 Proyectos Estratégicos (Retail & AI)
+*Casos de éxito implementados en una Empresa Líder en Retail*
 
-| **Cloud & Data Engineering** | **IA & Machine Learning** | **BI & Visualización** |
-| :-------------------------- | :------------------------ | :-------------------- |
-| Google Cloud Platform (GCP) | Google Gemini / Vertex AI | Tableau (Server/Cloud) |
-| BigQuery / Cloud Storage    | Multi-Agent Systems       | Looker Studio / Power BI |
-| Apache Airflow / Cloud Run  | Modelado Predictivo       | DAX / SQL Avanzado    |
-| SAP S/4HANA / SQL Avanzado | Text-to-SQL / Prompt Eng. | UI/UX Data Design     |
-| Data Lake Architectures     | Pandas / NumPy / SciPy   | KPIs Financieros      |
-
----
-
-## 💼 Experiencia Profesional
-
-### **Senior Business Intelligence Lead** | Empresa Líder en Retail
-*Julio 2025 – Actual*
-
-**Liderazgo Estratégico:**
-
-- Interacción directa con **C-Suite (Dirección General)** para la traducción de necesidades de negocio.
-- Liderazgo de equipo bajo metodología **Scrum** (Story Points, delegación estratégica).
-- Implementación de FinOps, reduciendo un **60% la factura de nube** y **70% los tiempos de extracción**.
-
-#### 🚀 Proyectos Estratégicos Implementados
-
-- **Real-Time Sales Pipeline:** Arquitectura ETL/ELT con latencia de 10 min para transacciones POS.
-- **Auditoría Forense y Paridad:** Conciliación SAP vs Tableau logrando el 100% de paridad financiera.
-- **Motor Analítico BCG:** Optimización de inventarios y rentabilidad SKU mediante IA proyectiva.
-- **Voice of Customer (NPS/CSAT):** Análisis de sentimiento mediante IA para medir satisfacción.
-- **AI Business Assistant (Maxter):** Ecosistema Multi-Agente (Gemini) para análisis financiero.
-- **Rentabilidad Operativa (P&L):** Estructuración de centros de costos por sucursal.
-- **Analytics de Lealtad:** Monitoreo del ROI en estrategias de fidelización y frecuencia de compra.
+- **🧠 Maxter AI Assistant:** Sistema Multi-Agente (Gemini) para análisis financiero por lenguaje natural sobre +321M registros.
+- **⚡ Real-Time Sales Engine:** Pipeline ELT con latencia <10 min para transacciones POS globales.
+- **🛡️ Auditoría & Paridad:** Conciliación 100% SAP vs Tableau mediante inyección de reglas de negocio complejas.
+- **📊 Matriz BCG AI:** Motor proyectivo de ventas y rentabilidad para optimización de inventarios.
+- **📢 Voice of Customer:** Procesamiento de encuestas (NPS/CSAT) con análisis de sentimiento mediante LLMs.
+- **💸 FinOps Hub & Spoke:** Refactorización que logró una **reducción del 60% en costos de nube**.
+- **💎 Loyalty Analytics:** Modelado de ROI para programas de lealtad y retención de clientes.
 
 ---
 
-## 🎓 Formación y Academia
+## 🧪 Data Science & Engineering Labs
+*Legado de proyectos técnicos y experimentación*
 
+- **🚗 [Car Insurance Claims Analysis](Python-Data-Analysis/Analisis_seguros/index.html):** EDA profundo y análisis de riesgo mediante Python y Power BI.
+- **📈 [Sales Performance Dashboard](SQL-PowerBI/reporte.html):** Dashboards interactivos integrando SQL y Power BI para métricas comerciales.
+- **📉 [Linear Regression: SAT vs GPA](Python-Data-Analysis/Regresion/index.html):** Modelado estadístico y pruebas de significancia.
+- **🤖 [IoT Control System](Control-Maquinaria-Arduino/index.html):** Sistema de control industrial basado en Arduino.
+- **⚙️ [MATLAB Control Designer](MATLAB-Projects/index.html):** Herramientas de diseño de control desarrolladas durante el PhD.
+
+---
+
+## 🛠️ Stack Tecnológico & Logos
+<div align="center">
+
+| | | |
+| :---: | :---: | :---: |
+| ![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white) | ![BigQuery](https://img.shields.io/badge/BigQuery-669DF6?style=for-the-badge&logo=google-cloud&logoColor=white) | ![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=for-the-badge&logo=apache-airflow&logoColor=white) |
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=sqlite&logoColor=white) | ![SAP](https://img.shields.io/badge/SAP_S4/HANA-0FA9E6?style=for-the-badge&logo=sap&logoColor=white) |
+| ![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white) | ![PowerBI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) | ![Gemini](https://img.shields.io/badge/Gemini_AI-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white) |
+
+</div>
+
+---
+
+## 📚 Publicaciones Científicas (JCR)
+- **[Modified Smith Predictor](https://doi.org/10.1016/j.jprocont.2024.103299)** - *Journal of Process Control, 2024*
+- **[Observer-predictor Control](https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914)** - *Asian Journal of Control, 2023*
+
+---
+
+## 📜 Certificaciones & Formación
 - **PhD en Comunicaciones y Electrónica** (IPN)
-- **Catedrático e Investigador:** Autor de 4 artículos JCR publicados y ponente internacional.
-- **Docente (UVM):** Mentoría técnica en Python, SQL y BI.
-
----
-
-## 📜 Certificaciones 2025
-
-- **The Data Science Course 2025:** Complete Data Science Bootcamp.
-- **BI Decision Making:** Toma de decisiones con Power BI.
-- **Agile Project Management:** Metodología Scrum.
-- **MOS:** Excel Associate (Microsoft 365).
-
----
+- **Data Science Bootcamp 2025** (Udemy)
+- **Agile Scrum Foundation**
+- **Microsoft Excel Associate (MOS)**
 
 <p align="center">
-  <i>"Liderando la intersección entre la ingeniería de datos masiva y la inteligencia artificial estratégica."</i>
+  <i>"Liderazgo técnico para un futuro guiado por los datos y la inteligencia artificial."</i>
 </p>

@@ -1,52 +1,45 @@
 # Luis Barragan, PhD
+## Senior Business Intelligence Lead | AI Strategist
 
-## Senior Business Intelligence Lead
-
-Doctor en Ciencias y Líder de BI especializado en **Modern Data Stacks** e **IA Generativa**. Mi enfoque es transformar arquitecturas de datos complejas en motores de crecimiento estratégico con 100% de paridad financiera.
+Doctor en Ciencias y Líder de Datos especializado en **Modern Data Stacks** e **IA Generativa**. Mi enfoque es unificar la ingeniería de datos a escala con la inteligencia estratégica.
 
 ---
 
-## 🏛️ Perfil Profesional
+## 🏛️ Perfil & Impacto
+Lidero la arquitectura de Business Intelligence mediante **GCP, BigQuery y Airflow**, logrando eficiencias de hasta 60% en costos de nube y 100% de paridad financiera institucional en una **Empresa Líder en Retail**.
 
-Lidero la habilitación de Business Intelligence mediante la integración de **GCP, BigQuery y Airflow**. Experto en orquestación de **Sistemas Multi-Agente (GenAI)** para análisis financieros autónomos.
+---
 
-- **Senior BI Lead:** Empresa Líder en Retail (Gestión de equipos Scrum, FinOps).
-- **PhD:** Investigador JCR con enfoque en modelado matemático.
-- **Impacto Real:** -60% costos de nube y optimización masiva de pipelines ETL/ELT.
+## 🚀 Proyectos Estratégicos (Retail & AI)
+1.  **Maxter AI Analytics:** Sistema Multi-Agente para consulta de +321M registros.
+2.  **Real-Time Sales Engine:** Pipeline POS con latencia de 10 min.
+3.  **Auditoría & Paridad:** Conciliación SAP vs Tableau íntegra.
+4.  **Matriz BCG AI:** Optimización de inventarios mediante IA.
+5.  **Voice of Customer:** Análisis de sentimiento NLP (NPS/CSAT).
+
+---
+
+## 🧪 Data Science & Engineering Labs (Legado)
+- **Análisis de Seguros (Python/PowerBI)**
+- **Dashboard de Ventas (SQL/PowerBI)**
+- **Regresión SAT vs GPA (Estadística)**
+- **Sistemas de Control IoT (Arduino)**
+- **Herramientas de Control PhD (MATLAB)**
 
 ---
 
 ## 🛠️ Stack Tecnológico
-
-- **Cloud/Data:** GCP, BigQuery, Airflow, SAP S/4HANA, SQL Avanzado.
-- **IA:** Gemini, Vertex AI, LangChain, Multi-Agent Architecture.
-- **BI:** Tableau (Server/Cloud), Looker Studio, Power BI.
-- **Engineering:** Python (Pandas/NumPy), Data Lakes, Scrum.
-
----
-
-## 🚀 Proyectos de Impacto
-
-1. **Maxter AI Analytics:** Sistema Multi-Agente para consulta de +321M registros.
-2. **Real-Time Pipeline:** Latencia <10 min para transacciones POS.
-3. **FinOps & Hub-Spoke:** Ahorro del 60% en factura de nube.
-4. **Voice of Customer:** Análisis de sentimiento (NLP) para NPS/CSAT.
-5. **Matriz BCG AI:** Proyección de ventas y optimización de inventarios.
-
----
-
-## 📜 Certificaciones & Academia
-
-- PhD en Comunicaciones y Electrónica (IPN).
-- Docente de Tecnología (UVM).
-- Microsoft Office Specialist & Scrum Fundamentals.
+- **Cloud:** GCP, BigQuery, Airflow, SAP S/4HANA.
+- **IA:** Gemini, Vertex AI, LangChain, Prompt Eng.
+- **BI:** Tableau, Looker Studio, Power BI.
+- **Ingeniería:** Python, SQL, Scrum, FinOps.
 
 ---
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=tokyonight" alt="GitHub Stats">
+  <img src="https://github-readme-stats.vercel.app/api?username=LuisAlbertoBB94&show_icons=true&theme=nord" alt="GitHub Stats">
 </p>
 
 ---
 
-*Explora el portafolio visual completo en: [luisalbertobb94.github.io](https://luisalbertobb94.github.io)*
+*Explora mi portafolio completo en: [luisalbertobb94.github.io](https://luisalbertobb94.github.io)*

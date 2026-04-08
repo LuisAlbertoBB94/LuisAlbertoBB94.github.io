@@ -10,7 +10,7 @@
             --primary: #0f172a;
             --secondary: #1e293b;
             --accent: #3b82f6;
-            --success: #10b981;
+            --tech-purple: #7c3aed;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
             --card-bg: #1e293b;
@@ -53,7 +53,7 @@
         .subtitle {
             font-size: 1.4rem;
             color: var(--text-dim);
-            max-width: 800px;
+            max-width: 850px;
             margin: 15px auto;
             font-weight: 300;
         }
@@ -79,7 +79,6 @@
             text-align: center;
             border: 1px solid var(--border);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
         }
 
         .kpi-value {
@@ -106,24 +105,12 @@
             border-left: 5px solid var(--accent);
             padding-left: 20px;
             margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
 
-        /* Success Cases Categories */
-        .category-container {
-            margin-bottom: 60px;
-        }
-
-        .category-title {
-            font-size: 1.2rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            display: block;
-            font-weight: 700;
+        .section-desc {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            max-width: 800px;
         }
 
         .project-grid {
@@ -135,10 +122,13 @@
         .project-card {
             background: #161e2e;
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             border: 1px solid var(--border);
             transition: all 0.3s ease;
-            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -147,113 +137,112 @@
             background: #1e293b;
         }
 
-        .project-card.featured {
-            grid-column: span 1;
-            border-color: var(--accent);
-            background: linear-gradient(135deg, #161e2e 0%, #1e1b4b 100%);
+        .project-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
         }
 
         .project-card h3 {
-            margin: 10px 0;
+            margin: 5px 0 10px;
             font-size: 1.3rem;
             color: white;
         }
 
         .project-card p {
             color: var(--text-dim);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .project-tags {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-top: auto;
         }
 
         .tag {
-            font-size: 0.7rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            padding: 3px 10px;
+            font-size: 0.65rem;
+            background: rgba(255,255,255,0.05);
+            padding: 3px 8px;
             border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .project-card .btn-link {
-            text-decoration: none;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .project-card .btn-link:hover {
-            color: white;
-        }
-
-        /* Technical Stack Section */
-        .stack-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .stack-box {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
+            color: var(--text-dim);
             border: 1px solid var(--border);
         }
 
-        .stack-box h4 {
-            margin: 0 0 15px;
+        /* Tech Logos */
+        .tech-logos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .tech-logo {
+            height: 30px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .tech-logo:hover {
+            opacity: 1;
+        }
+
+        /* Skills box */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .skill-box h4 {
+            margin: 0 0 10px;
             color: var(--accent);
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
         }
 
-        .stack-box ul {
+        .skill-box ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
         }
 
-        .stack-box li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-dim);
+        .skill-box li {
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .stack-box li::before {
+        .skill-box li::before {
             content: "•";
             color: var(--accent);
         }
 
         footer {
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             border-top: 1px solid var(--border);
             color: var(--text-dim);
             background: #0a0f1d;
         }
 
-        .highlight-text {
-            color: white;
-            font-weight: 600;
-        }
-
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .kpi-grid { margin-top: 0; }
-            .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -263,13 +252,13 @@
         <div class="profile-badge">SENIOR BI LEAD & PhD</div>
         <h1>Luis Barragan</h1>
         <div class="subtitle">
-            Habilitando Business Intelligence estratégico mediante <strong>IA Generativa</strong> y arquitecturas de datos en <strong>Google Cloud</strong>. de PhD en modelado matemático.
+            Habilitando Business Intelligence mediante <strong>IA Generativa</strong> y arquitecturas de datos masivas en <strong>Google Cloud</strong>. de PhD en modelado matemático.
         </div>
         
-        <div style="margin-top: 40px;">
-            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: white; font-size: 1.8rem; margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:lualbe041@gmail.com" style="color: white; font-size: 1.8rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/LuisAlbertoBB94" style="color: white; font-size: 1.8rem; margin: 0 15px;"><i class="fab fa-github"></i></a>
+        <div style="margin-top: 30px;">
+            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:lualbe041@gmail.com" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/LuisAlbertoBB94" style="color: white; font-size: 1.5rem; margin: 0 15px;"><i class="fab fa-github"></i></a>
         </div>
     </header>
 
@@ -290,140 +279,186 @@
             </div>
         </div>
 
-        <section id="experience">
-            <h2><i class="fas fa-briefcase"></i> Casos de Éxito Estratégicos</h2>
-            <p style="color: var(--text-dim); margin-bottom: 40px; max-width: 800px;">
-                Trayectoria liderando proyectos de alto impacto financiero y operativo en una <span class="highlight-text">Empresa Líder en Retail</span>, integrando componentes Hands-on con visión C-Suite.
-            </p>
-
-            <!-- Categoría IA -->
-            <div class="category-container">
-                <span class="category-title">AI & Inteligencia Autónoma</span>
-                <div class="project-grid">
-                    <div class="project-card featured">
-                        <div class="project-tags">
-                            <span class="tag">TOP PROJECT</span>
-                            <span class="tag">GEN AI</span>
-                        </div>
-                        <h3>Maxter AI: Multi-Agent System</h3>
-                        <p>Ecosistema de agentes (Gemini) desplegado en Cloud Run que actúa como científico de datos autónomo para la Dirección General.</p>
-                        <a href="Maxter-AI-Analytics/index.html" class="btn-link">Explorar Caso de Estudio <i class="fas fa-arrow-right"></i></a>
+        <!-- Sección 1: Impacto Ejecutivo -->
+        <section id="executive">
+            <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Casos de Éxito: Retail & IA</h2>
+            <p class="section-desc">Estrategias de alto impacto implementadas para la Dirección General en una <span style="color: white; font-weight: 600;">Empresa Líder en Retail</span>.</p>
+            
+            <div class="project-grid">
+                
+                <a href="Maxter-AI-Analytics/index.html" class="project-card" style="border-color: var(--tech-purple);">
+                    <div class="project-icon"><i class="fas fa-robot" style="color: var(--tech-purple);"></i></div>
+                    <div class="project-tags">
+                        <span class="tag">TOP PROJECT</span>
+                        <span class="tag">GEMINI AI</span>
                     </div>
+                    <h3>Maxter AI: Analista Autónomo</h3>
+                    <p>Sistema multi-agente que permite consultas sobre +321M de registros mediante lenguaje natural con 100% paridad financiera.</p>
+                    <span style="color: var(--tech-purple); font-weight: 700; font-size: 0.8rem;">Ver Detalles →</span>
+                </a>
 
-                    <div class="project-card">
-                        <div class="project-tags">
-                            <span class="tag">LLM</span>
-                            <span class="tag">NLP</span>
-                        </div>
-                        <h3>Voice of Customer (NPS/CSAT)</h3>
-                        <p>Consolidación de encuestas omnicanal con análisis de sentimiento mediante IA para medir la felicidad de compra y detección de demanda insatisfecha.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-tags">
-                            <span class="tag">PROFITABILITY</span>
-                            <span class="tag">AI</span>
-                        </div>
-                        <h3>Motor Matriz BCG AI</h3>
-                        <p>Proyección de ventas y medición de rentabilidad por SKU, sugiriendo rotación automatizada para evitar mermas en inventario.</p>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-stream"></i></div>
+                    <h3>Real-Time Sales Pipeline</h3>
+                    <p>Arquitectura ELT en Airflow con latencia de 10 min para transacciones POS globales sobre capas de Landing y Staging.</p>
+                    <div class="project-tags">
+                        <span class="tag">GCP</span>
+                        <span class="tag">AIRFLOW</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Categoría Ingeniería -->
-            <div class="category-container">
-                <span class="category-title">Engineering & FinOps</span>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <div class="project-tags">
-                            <span class="tag">AIRFLOW</span>
-                            <span class="tag">ELT</span>
-                        </div>
-                        <h3>Real-Time Sales Pipeline</h3>
-                        <p>Extracción de transacciones POS en 10 min mediante Airflow, centralizando la verdad de los datos en Google BigQuery.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-tags">
-                            <span class="tag">COST OPTIMIZATION</span>
-                        </div>
-                        <h3>Arquitectura Hub & Spoke</h3>
-                        <p>Refactorización técnica que redujo un <span class="highlight-text">60% la factura de nube</span> y un 70% los tiempos de extracción de datos masivos.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-tags">
-                            <span class="tag">FINANCIAL CONTROL</span>
-                        </div>
-                        <h3>Análisis de P&L Operativo</h3>
-                        <p>Estructuración de centros de costos por sucursal para la visualización de Estados de Resultados operativos detallados.</p>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Auditoría & Paridad SAP</h3>
+                    <p>Conciliación profunda SAP S/4HANA vs Tableau mediante inyección de reglas de negocio para asegurar integridad financiera.</p>
+                    <div class="project-tags">
+                        <span class="tag">S/4HANA</span>
+                        <span class="tag">DATA GOVERNANCE</span>
                     </div>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Matriz BCG & Rentabilidad</h3>
+                    <p>Motor analítico con IA para proyectar ventas y rentabilidad por SKU, optimizando la rotación de inventarios.</p>
+                    <div class="project-tags">
+                        <span class="tag">PYTHON</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Voice of Customer (NLP)</h3>
+                    <p>Arquitectura NPS consolidando encuestas multicanal con análisis de sentimiento mediante IA para medir satisfacción.</p>
+                    <div class="project-tags">
+                        <span class="tag">NLP</span>
+                        <span class="tag">CX</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-coins"></i></div>
+                    <h3>Loyalty Analytics ROI</h3>
+                    <p>Modelado de impacto del Programa de Lealtad en la frecuencia de compra y quema de puntos contra la venta total.</p>
+                    <div class="project-tags">
+                        <span class="tag">BI</span>
+                        <span class="tag">FINOPS</span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
+        <!-- Sección 2: Labs & Legado -->
+        <section id="labs" style="border-top: 1px solid var(--border); padding-top: 60px;">
+            <h2><i class="fas fa-flask" style="color: var(--success);"></i> Data Science & Engineering Labs</h2>
+            <p class="section-desc">Portafolio técnico, investigación de posdoctorado y experimentación en análisis de datos avanzada.</p>
+            
+            <div class="project-grid">
+                
+                <a href="Python-Data-Analysis/Analisis_seguros/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-car-crash" style="color: var(--success);"></i></div>
+                    <h3>Car Insurance Claims</h3>
+                    <p>Análisis exploratorio de datos (EDA) y detección de factores de riesgo en seguros mediante Python y Power BI.</p>
+                    <div class="project-tags">
+                        <span class="tag">PYTHON</span>
+                        <span class="tag">PANDAS</span>
+                    </div>
+                </a>
+
+                <a href="SQL-PowerBI/reporte.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-tachometer-alt" style="color: var(--success);"></i></div>
+                    <h3>Sales Dashboard Pro</h3>
+                    <p>Integración de SQL robusto con Power BI para reporteo de métricas comerciales complejas.</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">DAX</span>
+                    </div>
+                </a>
+
+                <a href="Python-Data-Analysis/Regresion/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-chart-area" style="color: var(--success);"></i></div>
+                    <h3>Regresión: SAT vs GPA</h3>
+                    <p>Modelado estadístico detallado sobre el éxito académico basado en pruebas estandarizadas.</p>
+                    <div class="project-tags">
+                        <span class="tag">STATISTICS</span>
+                        <span class="tag">PYTHON</span>
+                    </div>
+                </a>
+
+                <a href="Control-Maquinaria-Arduino/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-microchip" style="color: var(--success);"></i></div>
+                    <h3>IoT Industrial Control</h3>
+                    <p>Diseño e implementación de sistemas de control embebidos basados en la plataforma Arduino.</p>
+                    <div class="project-tags">
+                        <span class="tag">ARDUINO</span>
+                        <span class="tag">C++</span>
+                    </div>
+                </a>
+
+                <a href="MATLAB-Projects/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-code" style="color: var(--success);"></i></div>
+                    <h3>PhD: Logic Control Tool</h3>
+                    <p>Herramientas avanzadas de diseño de control y modelado matemático desarrolladas durante el Doctorado.</p>
+                    <div class="project-tags">
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">SIMULINK</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Stack Tecnológico -->
         <section id="stack">
-            <h2><i class="fas fa-tools"></i> Stack Tecnológico & Experiencia</h2>
-            <div class="stack-grid">
-                <div class="stack-box">
-                    <h4>Data Engineering</h4>
+            <h2><i class="fas fa-tools"></i> Technical Ecosystem</h2>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <h4>Cloud & Engineering</h4>
                     <ul>
                         <li>GCP (BigQuery, Storage, Run)</li>
                         <li>Apache Airflow</li>
-                        <li>SAP S/4HANA Integration</li>
-                        <li>ETL/ELT Architectures</li>
-                        <li>SQL Avanzado & Python</li>
+                        <li>SAP S/4HANA</li>
+                        <li>ETL/ELT Logic</li>
                     </ul>
                 </div>
-                <div class="stack-box">
+                <div class="skill-box">
                     <h4>IA & Machine Learning</h4>
                     <ul>
-                        <li>Google Gemini / Vertex AI</li>
-                        <li>LangChain (LLM Agents)</li>
-                        <li>Modelado Prophet</li>
-                        <li>Prompt Engineering</li>
-                        <li>NLP / Text-to-SQL</li>
+                        <li>Gemini / Vertex AI</li>
+                        <li>LangChain</li>
+                        <li>Python (Scipy, NumPy)</li>
+                        <li>Prompt Eng.</li>
                     </ul>
                 </div>
-                <div class="stack-box">
-                    <h4>Business Intelligence</h4>
+                <div class="skill-box">
+                    <h4>Visualization & BI</h4>
                     <ul>
-                        <li>Tableau Server/Cloud</li>
+                        <li>Tableau (Cloud/Server)</li>
                         <li>Looker Studio</li>
-                        <li>Power BI (DAX)</li>
-                        <li>Financial KPIs</li>
-                        <li>UI/UX Data Design</li>
+                        <li>Power BI</li>
+                        <li>UI/UX Solutions</li>
                     </ul>
                 </div>
-                <div class="stack-box">
-                    <h4>Metodologías</h4>
+                <div class="skill-box">
+                    <h4>Methods & Governance</h4>
                     <ul>
-                        <li>Scrum Leadership</li>
-                        <li>C-Suite Stakeholding</li>
-                        <li>Data Governance</li>
+                        <li>Agile (Scrum Lead)</li>
                         <li>FinOps Strategy</li>
-                        <li>Liderazgo Técnico</li>
+                        <li>Data Governance</li>
+                        <li>C-Suite Stakeholding</li>
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <section id="academic">
-            <h2><i class="fas fa-graduation-cap"></i> Academia & Certificaciones</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Doctorado (PhD)</h3>
-                    <p>Comunicaciones y Electrónica (IPN). Especialista en modelado matemático complejo y sistemas con retardo.</p>
-                </div>
-                <div class="stack-box">
-                    <h4>Certificaciones 2025</h4>
-                    <ul>
-                        <li>Data Science Bootcamp (Complete)</li>
-                        <li>BI Decision Making (Power BI)</li>
-                        <li>Scrum Master Fundamentals</li>
-                        <li>Microsoft Excel Associate</li>
-                    </ul>
-                </div>
+            <div class="tech-logos">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/BigQuery-669DF6?style=for-the-badge&logo=google-cloud&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/Airflow-017CEE?style=for-the-badge&logo=apache-airflow&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" class="tech-logo">
             </div>
         </section>
 
@@ -432,7 +467,10 @@
     <footer>
         <p><strong>Luis Barragan, PhD</strong><br>
         Senior Business Intelligence Lead</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Portafolio Profesional &copy; 2026</p>
+        <div style="margin-top: 20px; font-size: 0.8rem;">
+            Portafolio Profesional &copy; 2026. <br>
+            Construido para la excelencia en datos e inteligencia estratégica.
+        </div>
     </footer>
 
 </body>
