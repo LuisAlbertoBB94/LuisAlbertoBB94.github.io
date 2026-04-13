@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Ejecutivo - Scrum Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #B8860B;
+            --bg-deep: #f0f4f8; /* Soft light blue-gray for main background */
+            --bg-card: #ffffff; /* White for cards */
+            --text-main: #2c3e50; /* Darker blue for main text */
+            --text-muted: #7f8c8d; /* Muted gray for secondary text */
+            --border-glass: rgba(0, 0, 0, 0.06);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-card); /* Changed from white */
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+            .header h1 {
+                font-size: 2.5rem;
+                color: var(--gold-primary);
+            }
+
+            .header-actions {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                background: var(--gold-primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s;
+            }
+
+            .btn:hover {
+                background: var(--gold-secondary);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            }
+
+            .btn-secondary {
+                background: #e0e0e0;
+                color: var(--text-main);
+            }
+
+            .btn-secondary:hover {
+                background: #d0d0d0;
+            }
+
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .stat-card {
+            background: var(--bg-card); /* Changed from white */
+                border-radius: 12px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+                border-left: 4px solid var(--gold-primary);
+            }
+
+            .stat-label {
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+            }
+
+            .stat-value {
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: var(--text-main);
+            }
+
+            .stat-value.gold {
+                color: var(--gold-primary);
+            }
+
+            .stat-value.green {
+                color: var(--success-color);
+            }
+
+            .stat-value.warning {
+                color: var(--warning-color);
+            }
+
+            .chart-container {
+            background: var(--bg-card); /* Changed from white */
+                border-radius: 12px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+                margin-bottom: 2rem;
+            }
+
+            .chart-container h2 {
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+                color: var(--text-main);
+            }
+
+            .chart-wrapper {
+                position: relative;
+                height: 300px;
+                margin-bottom: 1rem;
+            }
+
+            .details-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .detail-card {
+            background: var(--bg-card); /* Changed from white */
+                border-radius: 12px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            }
+
+            .detail-card h3 {
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+                color: var(--text-main);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .sprint-item {
+                padding: 1rem;
+                background: var(--bg-deep);
+                border-radius: 8px;
+                margin-bottom: 0.8rem;
+                border-left: 4px solid var(--text-muted);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .sprint-item.high {
+                border-left-color: var(--success-color);
+            }
+
+            .sprint-item.medium {
+                border-left-color: var(--warning-color);
+            }
+
+            .sprint-item.low {
+                border-left-color: #ef4444;
+            }
+
+            .sprint-info {
+                flex: 1;
+            }
+
+            .sprint-info strong {
+                display: block;
+                color: var(--text-main);
+            }
+
+            .sprint-info small {
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+
+            .sprint-progress {
+                font-weight: 700;
+                font-size: 1.2rem;
+                text-align: right;
+            }
+
+            .task-item {
+                padding: 0.75rem;
+                background: var(--bg-deep);
+                border-radius: 8px;
+                margin-bottom: 0.6rem;
+                border-left: 4px solid #ef4444;
+                font-size: 0.9rem;
+            }
+
+            .task-item strong {
+                display: block;
+                color: var(--text-main);
+            }
+
+            .task-item small {
+                color: var(--text-muted);
+                font-size: 0.8rem;
+            }
+
+            .no-data {
+                color: var(--text-muted);
+                text-align: center;
+                padding: 2rem;
+                font-style: italic;
+            }
+
+            @media print {
+                body {
+                    background: white;
+                }
+
+                .header-actions {
+                    display: none;
+                }
+
+                .detail-card,
+                .chart-container,
+                .stat-card {
+                    page-break-inside: avoid;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .dashboard-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .details-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .header {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
+
+                .header h1 {
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <div>
+                <h1>📊 Reporte Ejecutivo</h1>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.95rem;">Scrum Platform - Resumen General</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+                <button class="btn btn-secondary" onclick="window.history.back()">← Volver</button>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-label">📊 Avance Global</div>
+                <div class="stat-value gold" id="execProgressValue">0%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">✅ SP Completados</div>
+                <div class="stat-value green" id="execCompletedSP">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">⚡ Velocidad Promedio</div>
+                <div class="stat-value" id="execVelocity">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">🎯 Sprint Actual</div>
+                <div style="color: var(--text-main); font-size: 1.1rem; margin-top: 0.5rem;" id="execCurrentSprint">-</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h2>📈 Progreso de Sprints (Últimos 5)</h2>
+            <div class="chart-wrapper">
+                <canvas id="execChart"></canvas>
+            </div>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3>📋 Detalle de Sprints</h3>
+                <div id="execSprintDetails">
+                    <!-- Inyectado por JS -->
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3>⚠️ Tareas Pendientes Críticas</h3>
+                <div id="execCriticalTasks">
+                    <!-- Inyectado por JS -->
+                </div>
+            </div>
+        </div>
+
+        <script src="data.js?v=20260330"></script>
+        <script src="script.js?v=20260330"></script>
+        <script>
+            // Esperar a que script.js esté completamente cargado
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    console.log('✅ Ejecutando Reporte Fullscreen...');
+                    renderExecutiveReportFullscreen();
+                }, 800);
+            });
+
+            function renderExecutiveReportFullscreen() {
+                try {
+                    const sprints = getSprints();
+                    const sprint = getActiveSprint();
+
+                    // Global calculations - excluir tareas pendientes
+                    let totalPlanned = 0, totalCompleted = 0;
+                    sprints.forEach(s => {
+                        (s.tasks || []).forEach(t => {
+                            if (t.status !== 'Pendiente') {
+                                totalPlanned += parseInt(t.points) || 0;
+                            }
+                            if (t.status === 'Done') totalCompleted += parseInt(t.points) || 0;
+                        });
+                    });
+
+                    const globalProgress = totalPlanned > 0 ? Math.round((totalCompleted / totalPlanned) * 100) : 0;
+
+                    console.log('[ExecutiveReportFullscreen] Métricas calculadas:', {
+                        totalPlanned,
+                        totalCompleted,
+                        globalProgress,
+                        version: 'corregida-excluye-pendientes'
+                    });
+
+                    // Velocity - promedio de puntos completados en los últimos 3 sprints con tareas completadas
+                    let avgVel = 0;
+                    let avgVelPerDay = 0;
+                    const completedSprints = []; // {sprint, completedPts}
+                    sprints.forEach(s => {
+                        const completedPts = (s.tasks || []).reduce((a, t) => t.status === 'Done' ? a + (parseInt(t.points) || 0) : a, 0);
+                        if (completedPts > 0) {
+                            completedSprints.push({sprint: s, completedPts});
+                        }
+                    });
+                    if (completedSprints.length > 0) {
+                        const last3 = completedSprints.slice(-3);
+                        const totalPoints = last3.reduce((sum, item) => sum + item.completedPts, 0);
+                        avgVel = Math.round(totalPoints / last3.length);
+
+                        // Calcular velocidad por día (suma de puntos / suma de días de duración de cada sprint)
+                        let totalDays = 0;
+                        last3.forEach(item => {
+                            const start = item.sprint.start || item.sprint.startDate;
+                            const end = item.sprint.end || item.sprint.endDate;
+                            const days = daysBetween(start, end);
+                            totalDays += days;
+                        });
+                        if (totalDays > 0) {
+                            avgVelPerDay = totalPoints / totalDays;
+                        }
+                    }
+
+                    function daysBetween(startStr, endStr) {
+                        const start = new Date(parseToStandardDate(startStr));
+                        const end = new Date(parseToStandardDate(endStr));
+                        if (isNaN(start) || isNaN(end)) return 7; // fallback
+                        const diff = end - start;
+                        return Math.max(1, diff / (1000 * 60 * 60 * 24));
+                    }
+
+                    console.log('⚡ Velocidad:', avgVel, 'SP/sprint,', avgVelPerDay.toFixed(2), 'SP/día desde', completedSprints.length, 'sprints');
+
+                    // Current sprint
+                    let currentSprintProgress = 0;
+                    if (sprint) {
+                        const spP = (sprint.tasks || []).reduce((sum, t) => t.status !== 'Pendiente' ? sum + (parseInt(t.points) || 0) : sum, 0);
+                        const spC = (sprint.tasks || []).reduce((a, t) => t.status === 'Done' ? a + (parseInt(t.points) || 0) : a, 0);
+                        currentSprintProgress = spP > 0 ? Math.round((spC / spP) * 100) : 0;
+                    }
+
+                    // Update summary cards
+                    document.getElementById('execProgressValue').textContent = globalProgress + '%';
+                    document.getElementById('execCompletedSP').textContent = totalCompleted;
+                    // Mostrar velocidad con unidades y velocidad por día
+                    const velText = avgVel + ' SP/sprint';
+                    const velPerDayText = avgVelPerDay > 0 ? ' (' + avgVelPerDay.toFixed(1) + ' SP/día)' : '';
+                    document.getElementById('execVelocity').innerHTML = velText + velPerDayText;
+                    document.getElementById('execCurrentSprint').textContent = sprint ? sprint.name : '-';
+
+                    // Chart
+                    try {
+                        if (chartsInstance.exec) chartsInstance.exec.destroy();
+                        const last5 = sprints.slice(-5);
+                        const chartNames = last5.map(s => s.name.substring(0, 12));
+                        const chartValues = last5.map(s => (s.tasks || []).reduce((a, t) => t.status === 'Done' ? a + (parseInt(t.points) || 0) : a, 0));
+
+                        const ctxExec = document.getElementById('execChart');
+                        if (ctxExec) {
+                            chartsInstance.exec = new Chart(ctxExec, {
+                                type: 'bar',
+                                data: {
+                                    labels: chartNames,
+                                    datasets: [{
+                                        label: 'SP Completados',
+                                        data: chartValues,
+                                        backgroundColor: '#d4af37',
+                                        borderRadius: 6
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    plugins: { legend: { display: false } },
+                                    scales: { y: { beginAtZero: true } }
+                                }
+                            });
+                        }
+                    } catch (e) {
+                        console.error('[ExecChart]', e);
+                    }
+
+                    // Sprint details - excluir tareas pendientes del planeado
+                    let detailsHtml = '';
+                    sprints.slice(-5).reverse().forEach(s => {
+                        const spP = (s.tasks || []).reduce((sum, t) => t.status !== 'Pendiente' ? sum + (parseInt(t.points) || 0) : sum, 0);
+                        const spC = (s.tasks || []).reduce((a, t) => t.status === 'Done' ? a + (parseInt(t.points) || 0) : a, 0);
+                        const pct = spP > 0 ? Math.round((spC / spP) * 100) : 0;
+                        const statusColor = pct === 100 ? 'high' : pct >= 80 ? 'medium' : 'low';
+
+                        detailsHtml += `<div class="sprint-item ${statusColor}">
+                            <div class="sprint-info">
+                                <strong>${s.name}</strong>
+                                <small>${s.start || '?'} \u2192 ${s.end || '?'}</small>
+                            </div>
+                            <div class="sprint-progress" style="color: ${statusColor === 'high' ? 'var(--success-color)' : statusColor === 'medium' ? 'var(--warning-color)' : '#ef4444'};">
+                                ${pct}% (${spC}/${spP}SP)
+                            </div>
+                        </div>`;
+                    });
+                    document.getElementById('execSprintDetails').innerHTML = detailsHtml;
+
+                    // Critical tasks (excluir tareas pendientes? el usuario dijo que están paradas por terceros, tal vez no sean críticas)
+                    // Mantenemos todas las no completadas (incluyendo Pendiente) pero podríamos filtrar
+                    let criticalHtml = '';
+                    sprints.forEach(s => {
+                        (s.tasks || []).filter(t => t.status !== 'Done').forEach(t => {
+                            criticalHtml += `<div class="task-item">
+                                <strong>${t.name}</strong>
+                                <small>${s.name} • ${t.responsible} • ${t.points} SP</small>
+                            </div>`;
+                        });
+                    });
+                    document.getElementById('execCriticalTasks').innerHTML = criticalHtml || '<div class="no-data">✅ Sin tareas pendientes</div>';
+
+                } catch (err) {
+                    console.error('[ExecutiveReportFullscreen]', err);
+                    document.body.innerHTML += `<div style="padding: 2rem; color: red; background: #ffe0e0; border-radius: 8px; margin: 2rem;">
+                        <strong>⚠️ Error:</strong> ${err.message}<br>
+                        <small>Abre DevTools (F12) → Console para detalles</small>
+                    </div>`;
+                }
+            }
+        </script>
+</body>
+
+</html>

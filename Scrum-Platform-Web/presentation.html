@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Ejecutivo de Portafolio - Scrum Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0057b8;
+            --primary-dark: #004494;
+            --bg-deep: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: var(--bg-card);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- COVER SLIDE --- */
+        .cover-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cover-slide h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .cover-slide h2 {
+            font-size: 2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 4px;
+        }
+
+        /* --- KPI GRID --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .kpi-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.05); }
+
+        .kpi-card .val { font-size: 3.5rem; font-weight: 800; color: var(--accent); display: block; }
+        .kpi-card .lbl { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- CHART SECTION --- */
+        .chart-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            height: 100%; /* Fill parent */
+        }
+
+        .dashboard-charts {
+            margin-top: 1.5rem;
+            height: 300px; /* Fixed height for dashboard stats */
+            width: 100%;
+        }
+
+        .trend-chart-container {
+            flex: 1;
+            width: 100%;
+            margin-top: 1rem;
+            min-height: 0; /* Important for flex child with chart */
+        }
+
+        /* --- PROJECT CATALOG --- */
+        .project-catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-mini-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-mini-card .color-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .project-mini-card .name { font-weight: 600; flex: 1; font-size: 0.9rem; }
+        .project-mini-card .progress-pill { 
+            background: rgba(0,0,0,0.3); 
+            padding: 2px 8px; 
+            border-radius: 10px; 
+            font-size: 0.75rem; 
+            font-weight: 800;
+        }
+
+        /* --- PROJECT SUMMARY SLIDE --- */
+        .summary-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+        .summary-title h1 { font-size: 3rem; color: var(--accent); }
+        .summary-stats { display: flex; gap: 2rem; }
+        .summary-stat { text-align: center; }
+        .summary-stat .big { font-size: 2.5rem; font-weight: 800; display: block; }
+        .summary-stat .small { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+
+        /* --- CONTROLS --- */
+        .controls {
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover { background: var(--primary-dark); transform: scale(1.05); }
+        .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .slide-info { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+    </style>
+</head>
+
+<body>
+    <div class="presentation-container">
+        <div class="slide-content" id="mainContainer">
+            <!-- Portada -->
+            <div class="slide active cover-slide">
+                <h2 id="coverSubtitle" style="color:var(--accent); letter-spacing: 15px; margin-bottom: 0.5rem;">EMPRESA LÍDER EN RETAIL</h2>
+                <h1 id="coverTitle">BI Analytics</h1>
+                <h2>REPORTE EJECUTIVO DE PORTAFOLIO</h2>
+                <div id="filterNotice" style="margin-top:1rem; color:var(--success); font-weight:600; font-size:0.9rem; opacity:0.8;">Históricos Consolidados y Proyectos Vigentes</div>
+                <p id="currentDateDisplay" style="margin-top: 3rem; color: var(--text-muted);"></p>
+            </div>
+
+            <!-- Dashboard Global -->
+            <div class="slide">
+                <h2 style="margin-bottom: 1.5rem;">📊 Estado General del Portafolio (Histórico Completo)</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card"><span class="lbl">Proyectos Totales</span><div id="kpi-projects" class="val">0</div></div>
+                    <div class="kpi-card"><span class="lbl">Sprints Totales</span><div id="kpi-sprints" class="val">0</div></div>
+                    <div class="kpi-card"><span class="lbl">Progreso Global</span><div id="kpi-progress" class="val">0%</div></div>
+                    <div class="kpi-card"><span class="lbl">Total Story Points</span><div id="kpi-sp" class="val">0</div></div>
+                </div>
+                <div class="dashboard-charts">
+                    <div class="chart-wrapper"><h3>Estatus de Proyectos del Portafolio</h3><canvas id="portStatusChart"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Tendencia Acumulada COMBINADA -->
+            <div class="slide">
+                <h2 style="margin-bottom: 2rem;">📈 Rendimiento Cronológico Acumulado (Total Histórico)</h2>
+                <div class="chart-wrapper trend-chart-container">
+                    <canvas id="portTimeTrendChart"></canvas>
+                </div>
+                <p style="color:var(--text-muted); margin-top:1.5rem; font-size:0.9rem;">Crecimiento consolidado de valor entregado incluyendo proyectos activos y cerrados.</p>
+            </div>
+
+            <!-- Tendencia NORMAL COMBINADA -->
+            <div class="slide">
+                <h2 style="margin-bottom: 2rem;">📊 Rendimiento por Hito Temporal (No Acumulado)</h2>
+                <div class="chart-wrapper trend-chart-container">
+                    <canvas id="portTimeTrendNormalChart"></canvas>
+                </div>
+                <p style="color:var(--text-muted); margin-top:1.5rem; font-size:0.9rem;">Ritmo de entrega periódica de acuerdo a la línea de tiempo del equipo.</p>
+            </div>
+
+
+
+            <!-- Catálogo de Proyectos (Slide 5) -->
+            <div class="slide">
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:0.8rem;">
+                    <div>
+                        <h2 style="margin-bottom:0.1rem; font-size:1.6rem;">📁 Catálogo de Proyectos Vigentes</h2>
+                        <p style="color:var(--text-muted); font-size:0.8rem;">Iniciativas estratégicas agrupadas por Área de Negocio.</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:1.5rem; flex:1; min-height:0; overflow:hidden;">
+                    <!-- Columna Izquierda: Leyendas -->
+                    <div style="width:220px; flex-shrink:0; display:flex; flex-direction:column; gap:1.2rem; overflow-y:auto; padding-right:1rem; border-right:1px solid rgba(255,255,255,0.08);">
+                        <div>
+                            <p style="font-size:0.65rem; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.6rem; font-weight:700;">🏢 Áreas de Negocio</p>
+                            <div id="areaLegend" style="display:flex; flex-direction:column; gap:0.4rem;"></div>
+                        </div>
+
+                        <div>
+                            <p style="font-size:0.65rem; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.6rem; font-weight:700;">⚡ Prioridades</p>
+                            <div id="priorityLegend" style="display:flex; flex-direction:column; gap:0.4rem;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Catálogo -->
+                    <div style="flex:1; overflow-y:auto; padding-right:1rem; column-width:280px; column-gap:1.5rem;" id="projectCatalog">
+                        <!-- El contenido se inyecta via JS agrupado por área -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- El resto se genera en JS -->
+            <div id="dynamicSlides"></div>
+        </div>
+
+        <div class="controls">
+            <div class="slide-info">
+                SLIDE <span id="currentSlideNum">1</span> DE <span id="totalSlideNum">5</span>
+                — <span style="margin-left:1rem; opacity:0.6;">SCRUM PLATFORM v4.7 EXECUTIVE</span>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn-nav" id="btnPrev" onclick="prevSlide()">ANTERIOR</button>
+                <button class="btn-nav" id="btnNext" onclick="nextSlide()">SIGUIENTE</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // AREA & PRIORITY CONFIG  (reads from localStorage — same source as main app)
+        // New areas added in Configuración appear here automatically.
+        // ============================================================
+        const DEFAULT_AREA_CONFIG = {
+            'Comercial':               { color: '#0057b8', emoji: '🔵' },
+            'Dirección General':       { color: '#6d28d9', emoji: '🟣' },
+            'Operaciones':             { color: '#ea580c', emoji: '🟠' },
+            'Servicios Empresariales': { color: '#0ea5e9', emoji: '🩵' },
+            'Infraestructura':         { color: '#475569', emoji: '⚫' },
+            'Ecommerce':               { color: '#10b981', emoji: '🟢' },
+            'Lealtad':                 { color: '#f59e0b', emoji: '🟡' },
+            'BI Interno':              { color: '#ec4899', emoji: '🧠' },
+        };
+
+        function _getDynAreaConfig() {
+            try {
+                const raw = localStorage.getItem('scrumAreaConfig');
+                if (raw) {
+                    const p = JSON.parse(raw);
+                    if (p && typeof p === 'object' && !Array.isArray(p)) return p;
+                }
+            } catch(e) {}
+            return { ...DEFAULT_AREA_CONFIG };
+        }
+
+        const AREA_CONFIG = _getDynAreaConfig();
+
+        const PRIORITY_CONFIG = {
+            'Crítico':   { label: 'P1 · Crítico',   border: '#ef4444', text: '#ef4444', bg: 'rgba(239,68,68,0.1)' },
+            'Urgente':   { label: 'P2 · Urgente',   border: '#f97316', text: '#f97316', bg: 'rgba(249,115,22,0.1)' },
+            'Normal':    { label: 'P3 · Normal',    border: '#94a3b8', text: '#94a3b8', bg: 'rgba(148,163,184,0.1)' },
+            'Diferible': { label: 'P4 · Diferible', border: '#3b82f6', text: '#3b82f6', bg: 'rgba(59,130,246,0.1)' },
+        };
+
+        function getAreaColor(area) {
+            return (AREA_CONFIG[area] || {}).color || '#38bdf8';
+        }
+
+        // Platform name helpers — reads from localStorage set by Configuración > General
+        function getPlatformName()     { return localStorage.getItem('scrumPlatformName')     || 'BI Analytics'; }
+        function getPlatformSubtitle() { return localStorage.getItem('scrumPlatformSubtitle') || 'EMPRESA LÍDER EN RETAIL'; }
+
+        // --- DATA LOAD ---
+        function getProjects() {
+            try {
+                const raw = localStorage.getItem('scrumProjects');
+                if (raw) return JSON.parse(raw);
+                return [];
+            } catch (e) { return []; }
+        }
+
+        let currentSlide = 0;
+        let slides = [];
+        let chartInstances = {};
+
+        // --- CALC DATA ---
+        function init() {
+            // Apply platform name & subtitle from localStorage
+            const titleEl    = document.getElementById('coverTitle');
+            const subtitleEl = document.getElementById('coverSubtitle');
+            if (titleEl)    titleEl.textContent    = getPlatformName();
+            if (subtitleEl) subtitleEl.textContent = getPlatformSubtitle();
+
+            // Also update browser title
+            document.title = getPlatformName() + ' — Reporte Ejecutivo';
+
+            const rawProjects = getProjects();
+
+            // Sorter helper (natural sort)
+            const allProjects = rawProjects.sort((a, b) => {
+                const idA = a.displayId || '';
+                const idB = b.displayId || '';
+                return idA.localeCompare(idB, undefined, { numeric: true, sensitivity: 'base' });
+            });
+            
+            // FILTER for Catalog / Individual Slides: Hide 'Cerrado'
+            const activeProjects = allProjects.filter(p => p.status !== 'Cerrado');
+
+            document.getElementById('currentDateDisplay').textContent = new Date().toLocaleDateString('es-MX', { dateStyle: 'long' });
+            
+            // Generate Individual Project Detail Slides
+            generateProjectSlides(activeProjects);
+            
+            slides = document.querySelectorAll('.slide');
+            document.getElementById('totalSlideNum').textContent = slides.length;
+            
+            // Historical Charts (Take ALL projects)
+            renderGlobalDashboard(allProjects);
+            renderTimeCharts(allProjects);
+            
+            // Operational Catalog (Take ONLY active)
+            renderCatalog(activeProjects);
+            renderLegends();
+            
+            showSlide(0);
+        }
+
+        function generateProjectSlides(projects) {
+            const container = document.getElementById('dynamicSlides');
+            let html = '';
+            projects.forEach((p, idx) => {
+                const sprints = p.sprints || [];
+                let totalP = 0, totalD = 0;
+                sprints.forEach(s => {
+                    let pVal = parseInt(s.pointsPlanned) || 0;
+                    if (pVal === 0) pVal = (s.tasks || []).reduce((sum,t) => sum + (parseInt(t.points)||0), 0);
+                    totalP += pVal;
+                    (s.tasks || []).forEach(t => { if(t.status === 'Done') totalD += (parseInt(t.points)||0); });
+                });
+                const progress = totalP > 0 ? Math.round((totalD/totalP)*100) : 0;
+                const statusColor = progress === 100 ? '#10b981' : progress > 0 ? '#38bdf8' : '#94a3b8';
+
+                html += `
+                <div class="slide">
+                    <div class="summary-header">
+                        <div class="summary-title">
+                            <span style="color:var(--text-muted); font-size:0.8rem; letter-spacing:2px;">PROYECTO #${idx+1}</span>
+                            <h1>${p.name}</h1>
+                        </div>
+                        <div class="summary-stats">
+                            <div class="summary-stat"><span class="big" style="color:${statusColor}">${progress}%</span><span class="small">Avance Total</span></div>
+                            <div class="summary-stat"><span class="big">${sprints.length}</span><span class="small">Sprints</span></div>
+                            <div class="summary-stat"><span class="big">${totalD}/${totalP}</span><span class="small">Story Points</span></div>
+                        </div>
+                    </div>
+                    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+                        <div style="background:rgba(255,255,255,0.03); border-radius:20px; padding:2rem; border:1px solid var(--border);">
+                            <h3 style="margin-bottom:1.5rem;">Descripción y Objetivo</h3>
+                            <p style="font-size:1.1rem; line-height:1.6; color:var(--text-muted);">${p.description || 'Sin descripción adicional.'}</p>
+                            <div style="margin-top:2rem; padding:1.5rem; background:rgba(0,0,0,0.2); border-radius:12px;">
+                                <h4 style="margin-bottom:0.5rem; color:var(--accent);">Estado Actual</h4>
+                                <div style="display:flex; align-items:center; gap:1rem;">
+                                    <div style="width:15px; height:15px; border-radius:50%; background:${statusColor}"></div>
+                                    <span style="font-weight:700; font-size:1.2rem;">${progress === 100 ? 'COMPLETADO' : progress > 0 ? 'EN DESARROLLO' : 'LANZAMIENTOPREVIA'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.03); border-radius:20px; padding:2rem; border:1px solid var(--border);">
+                            <h3 style="margin-bottom:1.5rem;">Sprints e Hitos</h3>
+                            <div style="max-height:300px; overflow-y:auto;">
+                                ${sprints.map(s => {
+                                    const spP = parseInt(s.pointsPlanned) || 0;
+                                    const spD = (s.tasks||[]).reduce((a,t)=>t.status==='Done'?a+(parseInt(t.points)||0):a,0);
+                                    const pct = spP > 0 ? Math.round((spD/spP)*100) : 0;
+                                    return `<div style="display:flex; justify-content:space-between; padding:0.8rem; border-bottom:1px solid var(--border); align-items:center;">
+                                        <span style="font-weight:600;">${s.name}</span>
+                                        <span style="font-size:0.8rem; background:${pct===100?'#10b98133':'#38bdf833'}; color:${pct===100?'#10b981':'#38bdf8'}; padding:2px 8px; border-radius:8px;">${pct}%</span>
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderGlobalDashboard(projects) {
+            let totalSP = 0, totalD = 0, totalSps = 0;
+            const statusCount = { 'Activo': 0, 'En Pausa': 0, 'Completado': 0, 'Cancelado': 0, 'Cerrado': 0 };
+
+            projects.forEach(p => {
+                const pSt = p.status || 'Activo';
+                statusCount[pSt] = (statusCount[pSt] || 0) + 1;
+
+                (p.sprints || []).forEach(s => {
+                    totalSps++;
+                    let pVal = parseInt(s.pointsPlanned) || 0;
+                    if (pVal === 0) pVal = (s.tasks || []).reduce((sum,t) => sum + (parseInt(t.points)||0), 0);
+                    totalSP += pVal;
+                    (s.tasks || []).forEach(t => { if(t.status === 'Done') totalD += (parseInt(t.points)||0); });
+                });
+            });
+
+            document.getElementById('kpi-projects').textContent = projects.length;
+            document.getElementById('kpi-sprints').textContent  = totalSps;
+            document.getElementById('kpi-progress').textContent = (totalSP > 0 ? Math.round((totalD/totalSP)*100) : 0) + '%';
+            document.getElementById('kpi-sp').textContent       = totalD;
+
+            // Remove zero count statuses for a cleaner chart
+            const filteredLabels = Object.keys(statusCount).filter(k => statusCount[k] > 0);
+            const filteredData = filteredLabels.map(k => statusCount[k]);
+            
+            // Map colors safely
+            const colorMap = {
+                'Activo': '#38bdf8',
+                'En Pausa': '#f59e0b',
+                'Completado': '#10b981',
+                'Cancelado': '#ef4444',
+                'Cerrado': '#64748b'
+            };
+            const mappedColors = filteredLabels.map(k => colorMap[k] || '#94a3b8');
+
+            // Status Bar Chart
+            new Chart(document.getElementById('portStatusChart'), {
+                type: 'bar',
+                data: {
+                    labels: filteredLabels,
+                    datasets: [{
+                        data: filteredData,
+                        backgroundColor: mappedColors,
+                        borderRadius: 8
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        y: { ticks: { color: '#94a3b8', stepSize: 1 } },
+                        x: { ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+        }
+
+        function renderTimeCharts(projects) {
+            // Aggregate timeline data with TEAM breakdown
+            const dateMap = {}; // date -> { total: 0, luis: 0, alfred: 0 }
+            
+            projects.forEach(p => {
+                const todayStr = new Date().toISOString().split('T')[0];
+
+                (p.sprints || []).forEach(s => {
+                    (s.tasks || []).forEach(t => {
+                        if (t.status === 'Done') {
+                            const pts = parseInt(t.points) || 0;
+                            // Priority: task completion date > sprint end date. 
+                            // Cap at today to prevent future plotting if it's already "Done"
+                            let rawDate = t.completionDate || s.end || s.endDate || todayStr;
+                            
+                            // If the date is in the future, it shouldn't show as "Done" today in a historical chart
+                            // unless we want to see it at today's date (as it IS done now).
+                            if (new Date(rawDate) > new Date()) rawDate = todayStr;
+
+                            if (!dateMap[rawDate]) dateMap[rawDate] = { total: 0, luis: 0, alfred: 0 };
+                            
+                            dateMap[rawDate].total += pts;
+                            if (t.responsible === 'Luis') dateMap[rawDate].luis += pts;
+                            else if (t.responsible === 'Alfred') dateMap[rawDate].alfred += pts;
+                            else if (t.responsible === 'Ambos') {
+                                dateMap[rawDate].luis += pts/2;
+                                dateMap[rawDate].alfred += pts/2;
+                            }
+                        }
+                    });
+                });
+            });
+
+            const sortedDates = Object.keys(dateMap).sort((a,b) => new Date(a) - new Date(b));
+            
+            const cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - 90);
+            
+            let totalSum = 0, luisSum = 0, alfredSum = 0;
+            const labels = [];
+            const d_totalAcc = [], d_luisAcc = [], d_alfredAcc = [];
+            const d_totalVel = [], d_luisVel = [], d_alfredVel = [];
+
+            sortedDates.forEach(d => {
+                const day = dateMap[d];
+                totalSum += day.total;
+                luisSum += day.luis;
+                alfredSum += day.alfred;
+                
+                // Only push to chart arrays if within last 90 days
+                if (new Date(d) >= cutoff) {
+                    labels.push(d);
+                    d_totalAcc.push(totalSum);
+                    d_luisAcc.push(luisSum);
+                    d_alfredAcc.push(alfredSum);
+                    d_totalVel.push(day.total);
+                    d_luisVel.push(day.luis);
+                    d_alfredVel.push(day.alfred);
+                }
+            });
+
+            // --- 1. Combined Cumulative Chart ---
+            new Chart(document.getElementById('portTimeTrendChart'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'Total Portafolio', data: d_totalAcc, borderColor: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.1)', fill: true, tension: 0.5 },
+                        { label: 'Luis', data: d_luisAcc, borderColor: '#0057b8', fill: false, tension: 0.5, pointRadius: 4 },
+                        { label: 'Alfred', data: d_alfredAcc, borderColor: '#cc0000', fill: false, tension: 0.5, pointRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+            });
+
+            // Calculate average for the reference line
+            const avgVelocity = labels.length > 0 ? (d_totalVel.reduce((a, b) => a + b, 0) / labels.length) : 0;
+            const d_avgVel = labels.map(() => avgVelocity.toFixed(1));
+
+            // --- 2. Combined Normal Chart ---
+            new Chart(document.getElementById('portTimeTrendNormalChart'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'Total Portafolio', data: d_totalVel, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.5 },
+                        { label: 'Luis', data: d_luisVel, borderColor: '#0057b8', fill: false, tension: 0.5 },
+                        { label: 'Alfred', data: d_alfredVel, borderColor: '#cc0000', fill: false, tension: 0.5 },
+                        { label: 'Promedio SP/Día (' + avgVelocity.toFixed(1) + ')', data: d_avgVel, borderColor: '#f59e0b', borderDash: [5, 5], fill: false, tension: 0, pointRadius: 0, borderWidth: 2 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+            });
+
+        }
+
+        function renderCatalog(projects) {
+            const container = document.getElementById('projectCatalog');
+            
+            // Agrupar proyectos por área
+            const grouped = {};
+            projects.forEach(p => {
+                const area = p.area || 'Sin Área Definida';
+                if (!grouped[area]) grouped[area] = [];
+                grouped[area].push(p);
+            });
+
+            // Ordenar las llaves de área alfabéticamente (poniendo "Sin Área Definida" al final si existe)
+            const sortedAreas = Object.keys(grouped).sort((a,b) => {
+                if (a === 'Sin Área Definida') return 1;
+                if (b === 'Sin Área Definida') return -1;
+                return a.localeCompare(b);
+            });
+
+            let html = '';
+            sortedAreas.forEach(areaName => {
+                const areaCfg = AREA_CONFIG[areaName] || { color: '#64748b', emoji: '📁' };
+                const aColor = areaCfg.color;
+                
+                html += `
+                <div style="break-inside: avoid; page-break-inside: avoid; display: inline-block; width: 100%; margin-bottom:1.2rem;">
+                    <h3 style="margin-bottom:0.5rem; font-size:0.85rem; display:flex; align-items:center; gap:0.5rem; color:${aColor}; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:0.3rem;">
+                        <span>${areaCfg.emoji}</span> ${areaName} 
+                        <span style="font-size:0.7rem; background:rgba(255,255,255,0.1); color:white; padding:1px 6px; border-radius:12px; margin-left:0.5rem;">${grouped[areaName].length}</span>
+                    </h3>
+                    <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                `;
+                
+                grouped[areaName].forEach(p => {
+                    const totalP = (p.sprints || []).reduce((sum, s) => sum + (parseInt(s.pointsPlanned) || (s.tasks || []).reduce((x,t) => x + (parseInt(t.points)||0), 0)), 0);
+                    const totalD = (p.sprints || []).reduce((sum, s) => sum + (s.tasks || []).reduce((x,t) => t.status==='Done' ? x + (parseInt(t.points)||0) : x, 0), 0);
+                    const pct    = totalP > 0 ? Math.round((totalD/totalP)*100) : 0;
+                    const priCfg = PRIORITY_CONFIG[p.priority] || PRIORITY_CONFIG['Normal'];
+                    
+                    html += `
+                    <div class="project-mini-card" style="border-left:3px solid ${aColor}; padding:0.5rem; gap:0.5rem; min-height:40px;">
+                        <div style="flex:1; min-width:0;">
+                            <div style="font-weight:700; font-size:0.72rem; margin-bottom:0.15rem; color:#f8fafc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${p.name}">${p.name}</div>
+                            <div style="display:flex; gap:0.3rem; flex-wrap:wrap; align-items:center;">
+                                <span style="font-size:0.55rem;font-weight:700;padding:0px 5px;border-radius:10px;border:1px solid ${priCfg.border};color:${priCfg.text};background:${priCfg.bg};">${priCfg.label}</span>
+                            </div>
+                        </div>
+                        <div class="progress-pill" style="color:${aColor}; border:1px solid ${aColor}40; padding:2px 6px; border-radius:8px; font-size:0.65rem; font-weight:800; background:${aColor}15; flex-shrink:0;">${pct}%</div>
+                    </div>`;
+                });
+                
+                html += `</div></div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderLegends() {
+            // Area Legend
+            const areaEl = document.getElementById('areaLegend');
+            if (areaEl) {
+                areaEl.innerHTML = Object.entries(AREA_CONFIG).map(([name, cfg]) =>
+                    `<div style="display:flex;align-items:center;gap:0.4rem;padding:0.2rem 0.5rem;border-radius:8px;font-size:0.68rem;font-weight:700;border:1px solid ${cfg.color}30;color:white;background:${cfg.color}15;">
+                        <span>${cfg.emoji}</span> <span style="flex:1;">${name}</span>
+                    </div>`
+                ).join('');
+            }
+            // Priority Legend
+            const priEl = document.getElementById('priorityLegend');
+            if (priEl) {
+                priEl.innerHTML = Object.entries(PRIORITY_CONFIG).map(([key, cfg]) =>
+                    `<div style="display:flex;align-items:center;padding:0.2rem 0.5rem;border-radius:8px;font-size:0.68rem;font-weight:700;border:1px solid ${cfg.border};color:${cfg.text};background:${cfg.bg};">
+                        ${cfg.label}
+                    </div>`
+                ).join('');
+            }
+        }
+
+        // --- NAVIGATION ---
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlide = index;
+            document.getElementById('currentSlideNum').textContent = index + 1;
+            document.getElementById('btnPrev').disabled = index === 0;
+            document.getElementById('btnNext').disabled = index === slides.length - 1;
+        }
+
+        function nextSlide() { if(currentSlide < slides.length - 1) showSlide(currentSlide + 1); }
+        function prevSlide() { if(currentSlide > 0) showSlide(currentSlide - 1); }
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight') nextSlide();
+            if(e.key === 'ArrowLeft') prevSlide();
+        });
+
+        init();
+    </script>
+</body>
+</html>

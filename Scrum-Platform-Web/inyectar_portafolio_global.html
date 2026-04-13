@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🔄 Portafolio Global V3 - Scrum Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; gap: 2rem; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 3rem; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
+        .icon { font-size: 4rem; margin-bottom: 1rem; }
+        h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .subtitle { color: #94a3b8; font-size: 1rem; margin-bottom: 2rem; line-height: 1.5; }
+        .btn { display: inline-block; background: linear-gradient(135deg, #10b981, #047857); color: white; padding: 1rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: all 0.2s; border: none; cursor: pointer; width: 100%; margin-top:2rem;}
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16,185,129,0.4); }
+        .stats { display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 1rem; text-align: center; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px;}
+        .stat-item { font-size: 0.9rem; color: #cbd5e1; }
+        .stat-val { font-weight: 700; color: #10b981; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="icon">🚀</div>
+    <h1>Inyectar Portafolio Maestro V3</h1>
+    <p class="subtitle">Se han corregido los puntos planeados por sprint para asegurar el 100% de progreso visual.</p>
+    
+    <div class="stats">
+        <div class="stat-item">Total de Proyectos: <span class="stat-val">12</span></div>
+        <div class="stat-item">Estado: <span class="stat-val">Listo para Éxito Total</span></div>
+    </div>
+
+    <button class="btn" id="goBtn" onclick="runRecovery()">⚡ Lanzar Actualización Global</button>
+</div>
+
+<script>
+const PROJECTS_DATA = [
+    {
+        "id": "p0",
+        "name": "Actualización y Mejora: Reporte de Recuperación de Costos E Commerce OPMX",
+        "color": "#0057b8",
+        "status": "Completado",
+        "sprints": [
+            {
+                "id": "p0_s1", "name": "Sprint 1: Despliegue de Lógica de Costos", "status": "Completado",
+                "start": "2026-02-03", "end": "2026-02-16", "pointsPlanned": 27,
+                "tasks": [
+                    {"name":"Compartir reporte y archivos de detalle","responsible":"Alfredo","points":1,"status":"Done","completionDate":"2026-02-03"},
+                    {"name":"E-commerce valida visualización en Dashboard","responsible":"Ximena","points":5,"status":"Done","completionDate":"2026-02-13"},
+                    {"name":"Pedir a Resurtido ID de pedido VTEX en vendedor","responsible":"Ximena","points":3,"status":"Done","completionDate":"2026-02-13"},
+                    {"name":"Modificar OC generadas con costo 0","responsible":"Ximena/Maricela","points":5,"status":"Done","completionDate":"2026-02-13"},
+                    {"name":"Dar OK para pase de lógica a productivo","responsible":"Ximena","points":5,"status":"Done","completionDate":"2026-02-16"},
+                    {"name":"Desplegar nueva lógica de costos a productivo","responsible":"Alfredo","points":8,"status":"Done","completionDate":"2026-02-16"}
+                ]
+            },
+            {
+                "id": "p0_s2", "name": "Sprint 2: Diagnóstico Post-Productivo", "status": "Completado",
+                "start": "2026-02-18", "end": "2026-03-12", "pointsPlanned": 30,
+                "tasks": [
+                    {"name":"Detectar 59 SKUs sin costo tras despliegue","responsible":"Ximena","points":5,"status":"Done","completionDate":"2026-02-18"},
+                    {"name":"Diagnóstico causa raíz costo nulo","responsible":"Alfredo","points":8,"status":"Done","completionDate":"2026-02-18"},
+                    {"name":"Revisar 6 facturas sin costo SAP","responsible":"Guillermo","points":8,"status":"Done","completionDate":"2026-02-19"},
+                    {"name":"Revisar pedidos sin referencia y SKUs servicio","responsible":"Ximena/Guillermo","points":5,"status":"Done","completionDate":"2026-03-04"},
+                    {"name":"Confirmar aplicación correcciones paralelo CUBO","responsible":"Luis","points":1,"status":"Done","completionDate":"2026-03-12"}
+                ]
+            },
+            {
+                "id": "p0_s3", "name": "Sprint 3: Sincronización Final", "status": "Completado",
+                "start": "2026-03-19", "end": "2026-04-09", "pointsPlanned": 55,
+                "tasks": [
+                    {"name":"Omitir transacciones ZREC y 9REC","responsible":"Ximena","points":5,"status":"Done","completionDate":"2026-03-19"},
+                    {"name":"Ximena modifica pedidos específicos","responsible":"Ximena","points":3,"status":"Done","completionDate":"2026-03-19"},
+                    {"name":"Revisar SKUs de servicio Membresías (Memo)","responsible":"Ximena/Guillermo","points":5,"status":"Done","completionDate":"2026-03-19"},
+                    {"name":"Validar con Memo costo no visualizado","responsible":"Ximena/Guillermo","points":5,"status":"Done","completionDate":"2026-03-19"},
+                    {"name":"Mantenimiento recuperación manual costos","responsible":"Alfredo","points":8,"status":"Done","completionDate":"2026-03-30"},
+                    {"name":"Decisión: Casos persistentes e inviabilidad","responsible":"Alfredo/Luis","points":13,"status":"Done","completionDate":"2026-04-07"},
+                    {"name":"Alinear dashboard e-commerce con CUBO","responsible":"Luis","points":13,"status":"Done","completionDate":"2026-04-07"},
+                    {"name":"Confirmar actualización y cuadre final","responsible":"Luis","points":1,"status":"Done","completionDate":"2026-04-09"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p1", "name": "Consolidado de Ventas: TI y TT", "color": "#cc0000", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p1_s1", "name": "Sprint 1: Implementación Inicial", "status": "Completado", "start": "2025-12-15", "end": "2026-01-16", "pointsPlanned": 6,
+                "tasks": [
+                    {"name": "Consolidado Version Jairo", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-16"},
+                    {"name": "Consolidado Tiendas iguales", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2025-12-31"}
+                ]
+            },
+            {
+                "id": "p1_s2", "name": "Sprint 2: Ajustes y Cuadre", "status": "Completado", "start": "2026-01-12", "end": "2026-01-29", "pointsPlanned": 9,
+                "tasks": [
+                    {"name": "Planchar montos Cubo - Consolidado", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-24"},
+                    {"name": "Agregar costos Ecommerce en Cubo", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-29"},
+                    {"name": "Dashboard Tiendas iguales Periodo", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-01-29"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p2", "name": "Dashboard Lealtad MaxPuntos", "color": "#10b981", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p2_s1", "name": "Sprint 1: Consultas Base", "status": "Completado", "start": "2025-12-01", "end": "2025-12-02", "pointsPlanned": 15,
+                "tasks": [
+                    {"name": "Desarrollo de Vistas Detalle", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-02"},
+                    {"name": "Ajuste de filtros en consultas", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-02"},
+                    {"name": "Actualización inicial dashboard", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2025-12-02"},
+                    {"name": "Identificación Puntos Acumulados", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-02"},
+                    {"name": "Actualización extracciones y subida", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2025-12-02"}
+                ]
+            },
+            {
+                "id": "p2_s2", "name": "Sprint 2: Estabilización", "status": "Completado", "start": "2025-12-02", "end": "2025-12-10", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Agregar campo Correo EMAIL", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-10"},
+                    {"name": "Investigación usuarios no cargados", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-10"},
+                    {"name": "Ajuste de Alias", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-10"},
+                    {"name": "Resolver columna ABC", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2025-12-10"}
+                ]
+            },
+            {
+                "id": "p2_s3", "name": "Sprint 3: Extracción", "status": "Completado", "start": "2026-01-05", "end": "2026-02-24", "pointsPlanned": 9,
+                "tasks": [
+                    {"name": "Listado cupones 2025", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-12"},
+                    {"name": "Guardar query MaxPuntos", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-10"},
+                    {"name": "Extracción redenciones cupón 15339", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-24"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p3", "name": "Faltantes y Productos TOP", "color": "#f59e0b", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p3_s1", "name": "Sprint 1: Integración", "status": "Completado", "start": "2026-02-19", "end": "2026-03-09", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Acceso BD etiquetas TOP", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-19"},
+                    {"name": "Reporte inicial Looker", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-19"},
+                    {"name": "Crear directorio tiendas", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2026-02-27"},
+                    {"name": "Dashboard x tienda", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-03-09"}
+                ]
+            },
+            {
+                "id": "p3_s2", "name": "Sprint 2: Despliegue", "status": "Completado", "start": "2026-03-20", "end": "2026-04-06", "pointsPlanned": 9,
+                "tasks": [
+                    {"name": "Validación acceso Dashboard", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-03-20"},
+                    {"name": "Acceso 81 sucursales", "responsible":"Nadia", "points":3, "status":"Done", "completionDate":"2026-03-23"},
+                    {"name": "Indicador semanal", "responsible":"Alfonso", "points":3, "status":"Done", "completionDate":"2026-04-06"}
+                ]
+            },
+            {
+                "id": "p3_s3", "name": "Sprint 3: Revisión", "status": "Completado", "start": "2026-04-06", "end": "2026-04-10", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Falla datos presupuesto", "responsible":"Edith", "points":3, "status":"Done", "completionDate":"2026-04-06"},
+                    {"name": "Sesión revisión cálculos", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2026-04-06"},
+                    {"name": "Cambios validados", "responsible":"Faryd", "points":3, "status":"Done", "completionDate":"2026-04-08"},
+                    {"name": "Revisión final", "responsible":"Ambos", "points":3, "status":"Done", "completionDate":"2026-04-10"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p4", "name": "Reajuste Antolín / Globales", "color": "#8b5cf6", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p4_s1", "name": "Sprint 1: Inicial", "status": "Completado", "start": "2026-01-26", "end": "2026-02-20", "pointsPlanned": 9,
+                "tasks": [
+                    {"name": "Revisión facturas Antolín", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-01-26"},
+                    {"name": "Validación inicial", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-13"},
+                    {"name": "Filtro línea negocio", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-20"}
+                ]
+            },
+            {
+                "id": "p4_s2", "name": "Sprint 2: Reajustes", "status": "Completado", "start": "2026-03-10", "end": "2026-03-30", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Modificaciones Antolín", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-10"},
+                    {"name": "Reportes prueba", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-10"},
+                    {"name": "Reasignación Depto 50", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-30"},
+                    {"name": "Recuperación T998/T999", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-30"}
+                ]
+            },
+            {
+                "id": "p4_s3", "name": "Sprint 3: Liberación", "status": "Completado", "start": "2026-03-30", "end": "2026-04-07", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Aprobación reportes", "responsible":"Jairo", "points":3, "status":"Done", "completionDate":"2026-03-30"},
+                    {"name": "Liberación producción", "responsible":"Jairo", "points":3, "status":"Done", "completionDate":"2026-04-02"},
+                    {"name": "Alinear LN Consolidado", "responsible":"Ele", "points":3, "status":"Done", "completionDate":"2026-04-07"},
+                    {"name": "Validar tableros", "responsible":"Ele", "points":3, "status":"Done", "completionDate":"2026-04-07"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p5", "name": "Dashboard WFM_SAP: Venta/Clientes", "color": "#ec4899", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p5_s1", "name": "Sprint 1: Estructura", "status": "Completado", "start": "2026-04-01", "end": "2026-04-06", "pointsPlanned": 6,
+                "tasks": [
+                    {"name": "Versión actualizada", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-04-06"},
+                    {"name": "Hojas Clientes/Ventas x Hora", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-04-06"}
+                ]
+            },
+            {
+                "id": "p5_s2", "name": "Sprint 2: Pendientes", "status": "Completado", "start": "2026-04-06", "end": "2026-04-10", "pointsPlanned": 3,
+                "tasks": [
+                    {"name": "Resolución observación Link", "responsible":"Elena", "points":3, "status":"Done", "completionDate":"2026-04-06"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p6", "name": "Reporte Logístico Tramos 2", "color": "#0ea5e9", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p6_s1", "name": "Sprint 1: Planeación", "status": "Completado", "start": "2026-03-01", "end": "2026-03-19", "pointsPlanned": 9,
+                "tasks": [
+                    {"name": "Definición Fuentes", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-19"},
+                    {"name": "Objetivo estructurado", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-10"},
+                    {"name": "Requerimientos Arturo", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-19"}
+                ]
+            },
+            {
+                "id": "p6_s2", "name": "Sprint 2: Coordinación", "status": "Completado", "start": "2026-04-10", "end": "2026-04-21", "pointsPlanned": 6,
+                "tasks": [
+                    {"name": "Reunión Automatización", "responsible":"Ele", "points":3, "status":"Done", "completionDate":"2026-04-15"},
+                    {"name": "Reunión Contexto Tramos", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-21"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p7", "name": "Cubo Ventas SAP (Pedro)", "color": "#64748b", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p7_s1", "name": "Sprint 1: Lógica", "status": "Completado", "start": "2025-11-01", "end": "2026-02-12", "pointsPlanned": 15,
+                "tasks": [
+                    {"name": "Separación TI vs TT", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2025-11-11"},
+                    {"name": "Licencias y acceso", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-05"},
+                    {"name": "Validar datos consolidado", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-01-06"},
+                    {"name": "Documentar reglas cálculo", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-03"},
+                    {"name": "Validación dashboards", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-12"}
+                ]
+            },
+            {
+                "id": "p7_s2", "name": "Sprint 2: Post-Validación", "status": "Completado", "start": "2026-03-01", "end": "2026-04-30", "pointsPlanned": 15,
+                "tasks": [
+                    {"name": "Exclusiones cierre parcial", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-15"},
+                    {"name": "Criterios Jairo/Rafa", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-20"},
+                    {"name": "Reintegrar número semana", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-03-17"},
+                    {"name": "Unificar SKU", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-04-06"},
+                    {"name": "Permisos Tableau", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-06"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p8", "name": "Dashboard MSI", "color": "#0057b8", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p8_s1", "name": "Sprint 1: Reportes MSI", "status": "Completado", "start": "2025-06-01", "end": "2026-03-15", "pointsPlanned": 6,
+                "tasks": [
+                    {"name": "Extracción inicial MSI", "responsible":"Jahaziel", "points":3, "status":"Done", "completionDate":"2025-07-15"},
+                    {"name": "Entrega MSI periodos", "responsible":"Itzel", "points":3, "status":"Done", "completionDate":"2026-03-15"}
+                ]
+            },
+            {
+                "id": "p8_s2", "name": "Sprint 2: Detalle", "status": "Completado", "start": "2026-03-01", "end": "2026-03-30", "pointsPlanned": 3,
+                "tasks": [
+                    {"name": "Detalle Tabulación Cruzada", "responsible":"Faryd", "points":3, "status":"Done", "completionDate":"2026-03-30"}
+                ]
+            },
+            {
+                "id": "p8_s3", "name": "Sprint 3: Contado vs Diferido", "status": "Completado", "start": "2026-04-01", "end": "2026-04-30", "pointsPlanned": 6,
+                "tasks": [
+                    {"name": "Modificar dashboard", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-25"},
+                    {"name": "Análisis técnico", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-30"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p9", "name": "Agente Autómata Cubo", "color": "#3b82f6", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p9_s1", "name": "Sprint 1: ETL & GenAI", "status": "Completado", "start": "2026-02-08", "end": "2026-03-31", "pointsPlanned": 34,
+                "tasks": [
+                    {"name": "Inf. a tratar", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-15"},
+                     {"name": "Cloud Run/Interfaz", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-20"},
+                    {"name": "Diagrama orquestación", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-25"},
+                    {"name": "API Gemini 2.5", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-01"},
+                    {"name": "Control Usuario", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-05"},
+                    {"name": "ETL Base", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-10"},
+                    {"name": "Estrés", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-03-15"},
+                     {"name": "Maxpuntos", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-20"},
+                    {"name": "ETL BQ", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-25"},
+                    {"name": "Prueba PC ext", "responsible":"Alfred", "points":3, "status":"Done", "completionDate":"2026-03-30"},
+                    {"name": "Relación Max/Cubo", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-31"},
+                    {"name": "Script Lunes", "responsible":"Alfred", "points":1, "status":"Done", "completionDate":"2026-03-31"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p10", "name": "Rentabilidad SKU Advantage", "color": "#14b8a6", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p10_s1", "name": "Sprint 1: Modelado", "status": "Completado", "start": "2026-02-23", "end": "2026-04-01", "pointsPlanned": 30,
+                "tasks": [
+                    {"name": "Tablas inv/venta", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-02-28"},
+                    {"name": "Catálogo tiendas", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-05"},
+                    {"name": "Modelo 50/70", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-10"},
+                    {"name": "Inv. Inteligente", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-15"},
+                    {"name": "Matriz BCG", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-20"},
+                    {"name": "Proyecciones", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-25"},
+                    {"name": "Subir Cloud Run", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-03-30"},
+                    {"name": "Piloto Advantage", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-05"},
+                    {"name": "Arquitectura Jorge", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-10"},
+                    {"name": "Estrés", "responsible":"Luis", "points":3, "status":"Done", "completionDate":"2026-04-10"}
+                ]
+            }
+        ]
+    },
+    {
+        "id": "p11", "name": "Toolkit SAP BigQuery", "color": "#f97316", "status": "Completado",
+        "sprints": [
+            {
+                "id": "p11_s1", "name": "Sprint 1: Config.", "status": "Completado", "start": "2025-10-01", "end": "2025-10-15", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "SAP GCP", "responsible":"René", "points":3, "status":"Done", "completionDate":"2025-10-06"},
+                    {"name": "RFC", "responsible":"Nicolás", "points":3, "status":"Done", "completionDate":"2025-10-06"},
+                    {"name": "Logs SLG1", "responsible":"Nicolás", "points":3, "status":"Done", "completionDate":"2025-10-06"},
+                    {"name": "Replicación", "responsible":"CSG", "points":3, "status":"Done", "completionDate":"2025-10-06"}
+                ]
+            },
+            {
+                "id": "p11_s2", "name": "Sprint 2: Migración", "status": "Completado", "start": "2025-10-15", "end": "2026-03-04", "pointsPlanned": 12,
+                "tasks": [
+                    {"name": "Firewall", "responsible":"René", "points":3, "status":"Done", "completionDate":"2025-10-06"},
+                    {"name": "HTTP 2", "responsible":"René", "points":3, "status":"Done", "completionDate":"2025-10-06"},
+                    {"name": "Mapeo tablas Iván", "responsible":"Iván", "points":3, "status":"Done", "completionDate":"2026-02-17"},
+                    {"name": "Propuesta René", "responsible":"René", "points":3, "status":"Done", "completionDate":"2026-03-04"}
+                ]
+            }
+        ]
+    }
+];
+
+function runRecovery() {
+    localStorage.clear();
+    localStorage.setItem('scrumProjects', JSON.stringify(PROJECTS_DATA));
+    localStorage.setItem('scrumProjects_backup', JSON.stringify(PROJECTS_DATA));
+    console.log('Carga completa. Redirigiendo...');
+    alert('🟢 Portafolio Maestro V3 Inyectado con Éxito (376 SP)');
+    setTimeout(() => { window.location.href = 'index.html'; }, 500);
+}
+</script>
+</body>
+</html>

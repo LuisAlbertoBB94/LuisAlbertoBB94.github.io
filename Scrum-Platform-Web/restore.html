@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🔄 Recuperando Scrum Platform...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+        .icon { font-size: 4rem; margin-bottom: 1rem; }
+        h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .subtitle { color: #94a3b8; font-size: 1rem; margin-bottom: 2rem; }
+        .status {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: left;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            line-height: 2;
+            min-height: 120px;
+        }
+        .status-line { color: #64748b; }
+        .status-line.ok { color: #10b981; }
+        .status-line.error { color: #ef4444; }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0057b8, #003d82);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,87,184,0.4); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #1e293b;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0057b8, #10b981);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .sprint-count {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0057b8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="icon">🔄</div>
+    <h1>Recuperando Datos</h1>
+    <p class="subtitle">Restaurando tu progreso de Scrum Platform...</p>
+
+    <div class="status" id="statusLog">
+        <div class="status-line" id="line1">⏳ Preparando datos...</div>
+    </div>
+
+    <div class="sprint-count" id="sprintCount">0</div>
+    <p style="color:#94a3b8; font-size:0.85rem; margin-top:0.25rem;">sprints recuperados</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <br><br>
+    <button class="btn" id="goBtn" disabled onclick="window.location.href='index.html'">
+        ✅ Ir a Scrum Platform
+    </button>
+</div>
+
+<script>
+// ============================================================
+// DATOS COMPLETOS RECUPERADOS AL 30/03/2026
+// ============================================================
+const RECOVERED_SPRINTS = [
+  {
+    "id": "sprint_ventas_periodo_1741564800001",
+    "name": "Ventas por Periodo",
+    "status": "Liberado y validacion",
+    "start": "2026-02-09",
+    "end": "2026-03-06",
+    "pointsPlanned": 9,
+    "tasks": [
+      {"name":"Tarea 1 - Crear Dashboard","responsible":"Alfred","points":6,"status":"Done","progress":100,"completionDate":"2026-03-06"},
+      {"name":"Tarea 2 - Documentacion","responsible":"Alfred","points":3,"status":"Done","progress":100,"completionDate":"2026-03-10"}
+    ],
+    "bitacora": {
+      "planning": "",
+      "standup": "1.- Declarar semana de inicio de reporte (comienza el domingo)\n2.- El diseño estético \n",
+      "retro": "Agregar métricas a dos decimales"
+    }
+  },
+  {
+    "id": "sprint_maxpuntos_redenciones_1741564800002",
+    "name": "MaxPuntos Redenciones",
+    "status": "Liberado y validacion",
+    "start": "2026-03-02",
+    "end": "2026-03-06",
+    "pointsPlanned": 9,
+    "tasks": [
+      {"name":"Tarea 1 - Identificar datos","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-05"},
+      {"name":"Tarea 2 - Crear consulta de extracción","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-06"},
+      {"name":"Tarea 3 - Crear Pestaña en Dashboard MaxPuntos","responsible":"Alfred","points":3,"status":"Done","progress":100,"completionDate":"2026-03-06"}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":"No todos los que transaccionan, facturan \n"}
+  },
+  {
+    "id": "sprint_costos_ecommerce_1741564800003",
+    "name": "Lógica de costos de Ecommerce",
+    "status": "En Desarrollo",
+    "start": "2026-02-23",
+    "end": "2026-03-25",
+    "pointsPlanned": 6,
+    "tasks": [
+      {"name":"Tarea 1 - Planchar lógica en Cubo Ventas","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-06"},
+      {"name":"Tarea 2 - Planchar Logica en el Consolidado de Ventas","responsible":"Luis","points":3,"status":"In Progress","progress":60,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_maxpuntos_facturacion_1741564800004",
+    "name": "Clientes que son Maxpuntos y Facturaron",
+    "status": "En Desarrollo",
+    "start": "2026-03-02",
+    "end": "2026-03-06",
+    "pointsPlanned": 9,
+    "tasks": [
+      {"name":"Tarea 1 - Identificar datos en el data-lake","responsible":"Luis","points":3,"status":"In Progress","progress":100,"completionDate":""},
+      {"name":"Tarea 2 - Revisar Datos en SAP","responsible":"Luis","points":3,"status":"In Progress","progress":70,"completionDate":""},
+      {"name":"Tarea 3 - Cruzar información de Maxpuntos con Fuente de Facturación","responsible":"Luis","points":3,"status":"In Progress","progress":10,"completionDate":""}
+    ],
+    "bitacora": {
+      "planning": "Encontrar todos los clientes Maxpuntos que al comprar facturaron ",
+      "standup": "1.- No hay datos de facturación en el data-lake\n2.- Buscar en SAP los datos de facturación\n3.- Apropiadamente el 25% Total Facturan, encontrar el % de Maxpuntos\n",
+      "retro": "No todos los que transaccionan, facturan "
+    }
+  },
+  {
+    "id": "sprint_faltantes_top_1741564800005",
+    "name": "Dashboard de Faltantes - Productos TOP",
+    "status": "En Desarrollo",
+    "start": "2026-02-16",
+    "end": "2026-03-06",
+    "pointsPlanned": 12,
+    "tasks": [
+      {"name":"Tarea 1 - Identificar Tablas de Inventarios","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 2 - Cruzar información de inventario con TOP 900, 500, 100","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 3 - Crear Dashboard en Lokker","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 4 - Integridad de los datos, revisar que cada gerente entre a su propia información","responsible":"Alfred","points":3,"status":"In Progress","progress":30,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_agente_cubo_ventas_1741564800006",
+    "name": "Agente de Cubo de Ventas",
+    "status": "En Desarrollo",
+    "start": "2026-02-08",
+    "end": "2026-03-31",
+    "pointsPlanned": 27,
+    "tasks": [
+      {"name":"Tarea 1 - Definir información a tratar","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 2 - Crear proyecto en Cloud Run con interfaz","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 3 - Crear diagrama de orquestación","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 4 - Implementar API de Gemini 2.5","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 5 - Control de Usuario","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-26"},
+      {"name":"Tarea 6 - Pruebas de estrés","responsible":"Alfred","points":3,"status":"To Do","progress":20,"completionDate":""},
+      {"name":"Tarea 7 - Integrar Maxpuntos al Agente","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Tarea 8 - Crear ETL para generar tabla en BQ","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Tarea 9 - Crear relacion de tabla de Maxpuntos y Cubo de ventas para obtener una sola tabla","responsible":"Luis","points":3,"status":"Pendiente","progress":0,"completionDate":""},
+      {"name":"Tarea 10. Cargar Maxpuntos cada Lunes, Script de prueba","responsible":"Alfred","points":1,"status":"Pendiente","progress":0,"completionDate":""},
+      {"name":"Tarea 11 - Crear ETL","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-20"},
+      {"name":"Tarea 12 - Probar el ETL en otra computadora","responsible":"Alfred","points":1,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_frecuencia_compra_1741564800007",
+    "name": "1.05 Frecuencia de Compra",
+    "status": "En Desarrollo",
+    "start": "2026-02-27",
+    "end": "2026-03-13",
+    "pointsPlanned": 9,
+    "tasks": [
+      {"name":"Tarea 1 - Identificar tablas en el data lake","responsible":"Alfred","points":3,"status":"Done","progress":100,"completionDate":"2026-03-11"},
+      {"name":"Tarea 2 - Investigar usuarios en SAP","responsible":"Alfred","points":3,"status":"Done","progress":100,"completionDate":"2026-03-11"},
+      {"name":"Tarea 3 - Calcular frecuencia de compra y validar datos","responsible":"Alfred","points":3,"status":"Done","progress":100,"completionDate":"2026-03-13"},
+      {"name":"Tarea 4 - Documentar tablas que contienen información del correo y la consulta","responsible":"Alfred","points":3,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_rentabilidad_sku_1741564800008",
+    "name": "Análisis de Rentabilidad por SKU Tiendas Advantage",
+    "status": "En Desarrollo",
+    "start": "2026-02-23",
+    "end": "2026-04-01",
+    "pointsPlanned": 30,
+    "tasks": [
+      {"name":"Tarea 1- Identificar tablas de inventarios y de ventas","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-18"},
+      {"name":"Tarea 2- Identificar tablas de tipo de tiendas y tablas relacionadas","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-18"},
+      {"name":"Tarea 3 - Definir el modelo de rentabilidad 50/70","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-02-18"},
+      {"name":"Tarea 4- Prueba Piloto Sobre una tienda Advantage","responsible":"Luis","points":3,"status":"In Progress","progress":70,"completionDate":""},
+      {"name":"Tarea 5- Implementar Inventario Inteligente","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-15"},
+      {"name":"Tarea 6 - Implementar Matriz BGC","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-15"},
+      {"name":"Tarea 7 - Analisis Inteligente en Proyecciones","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-20"},
+      {"name":"Tarea 8 - Subir proyecto a Cloud Run","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-25"},
+      {"name":"Tarea 9 - Validar y limpiar el plano que nos va a enviar Jorge (Santa Fe II)","responsible":"Luis","points":3,"status":"Pendiente","progress":0,"completionDate":""},
+      {"name":"Tarea 10 - Pruebas de estrés (filtros, periodos)","responsible":"Luis","points":3,"status":"Pendiente","progress":0,"completionDate":""}
+    ],
+    "bitacora": {
+      "planning": "1.- Limpiar el plano para su presentación\n2.- Definir categorías",
+      "standup": "3.- Validar que los datas sean coherentes\n",
+      "retro": ""
+    }
+  },
+  {
+    "id": "sprint_consolidado_antolin_1741564800009",
+    "name": "Consolidado de Ventas - Ventas Antolin",
+    "status": "En Desarrollo",
+    "start": "2026-03-02",
+    "end": "2026-04-05",
+    "pointsPlanned": 13,
+    "tasks": [
+      {"name":"Tarea 1 - Identificar ventas","responsible":"Luis","points":2,"status":"Done","progress":100,"completionDate":"2026-03-05"},
+      {"name":"Tarea 2 - Planchar correcciones en consolidado","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-10"},
+      {"name":"Tarea 3 - Planchar Reglas en todos los dashboard que reportan venta","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-25"},
+      {"name":"Tarea 4 - Validación de Jairo (Finanzas)","responsible":"Luis","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Tarea 5 - Planchar en el cubo de ventas","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Tarea 6 - Revisar faltante de ventas de COPYMAX que no caen en PYMES/GLOBALES, además de diferencias en los montos del día 17 de marzo","responsible":"Luis","points":3,"status":"Done","progress":100,"completionDate":"2026-03-30"}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_bw_config_1741564800010",
+    "name": "Configuración Tablas BW",
+    "status": "En Desarrollo",
+    "start": "2026-03-09",
+    "end": "2026-03-13",
+    "pointsPlanned": 3,
+    "tasks": [
+      {"name":"Seguimiento Tablas BW - Rene","responsible":"Luis","points":1,"status":"Done","progress":100,"completionDate":"2026-03-13"},
+      {"name":"Seguimiento Tablas BW - Cotización de Julian","responsible":"Luis","points":1,"status":"Done","progress":100,"completionDate":"2026-03-13"},
+      {"name":"Revisar nuevamente cotización","responsible":"Luis","points":1,"status":"Pendiente","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_1773241916793",
+    "name": "Backlog de Nadia",
+    "status": "Planificado",
+    "start": "2026-03-11",
+    "end": "2026-03-27",
+    "pointsPlanned": 14,
+    "tasks": [
+      {"name":"Agregar Regiones a Dashboard Gasto Tienda","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard Cubo Operaciones SAP","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard NPS","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard Presupuesto","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard Sabana Operaciones","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard Venta CopyMax por Región y Tienda","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"Agregar Regiones a Dashboard Venta Diaria y Acumulada por Tienda SAP","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_1773244874416",
+    "name": "ETL CAR",
+    "status": "Planificado",
+    "start": "2026-03-11",
+    "end": "2026-03-20",
+    "pointsPlanned": 8,
+    "tasks": [
+      {"name":"1.- Definir tablas de SAP (revisar Cubo)","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"2.- Crear el ETL","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"3.- Crear el dashboard","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {
+      "planning": "1.- Ver las ventas diarias de las tiendas en tiempo real (cada 3 o 4 horas) por categoría \n2.- Traer únicamente una semana  (15min)\n3.- Dashborad va ser en Looker ",
+      "standup": "",
+      "retro": ""
+    }
+  },
+  {
+    "id": "sprint_clientes_hora_13",
+    "name": "Colocar venta en el Dashboard de clientes x hora",
+    "status": "En Desarrollo",
+    "start": "2026-03-18",
+    "end": "2026-03-31",
+    "pointsPlanned": 6,
+    "tasks": [
+      {"name":"Identificar tablas","responsible":"Alfred","points":2,"status":"Done","progress":100,"completionDate":"2026-03-25"},
+      {"name":"Integrar venta","responsible":"Alfred","points":2,"status":"Done","progress":100,"completionDate":"2026-03-28"},
+      {"name":"Modificar dashboard","responsible":"Alfred","points":2,"status":"Done","progress":100,"completionDate":"2026-03-31"}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_cubo_ventas_tracker_14",
+    "name": "Cubo de ventas de tracker",
+    "status": "Planificado",
+    "start": "2026-03-20",
+    "end": "2026-04-17",
+    "pointsPlanned": 10,
+    "tasks": [
+      {"name":"1.- Identificar la lógica de SAP (principalmente tabla Z – ZSOPTRAP y BLEPOD)","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"2.- Crear o integrar las tablas al ETL","responsible":"Luis","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"3.- Construir una vista en BQ","responsible":"Alfred","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"4.- Crear Dashboard en tableau","responsible":"Alfred","points":3,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"5 .- Dar recordatorio","responsible":"Luis","points":1,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_costos_ecommerce_caso_15",
+    "name": "Caso Costos Ecommerce",
+    "status": "Planificado",
+    "start": "2026-03-23",
+    "end": "2026-03-27",
+    "pointsPlanned": 1,
+    "tasks": [
+      {"name":"1.- Cerrar Tema de Costos","responsible":"Alfred","points":1,"status":"Done","progress":100,"completionDate":"2026-03-27"},
+      {"name":"2.- Generar correo de cierre de costos","responsible":"Alfred","points":1,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  },
+  {
+    "id": "sprint_pendientes_alfred_16",
+    "name": "Pendientes Alfred",
+    "status": "En Desarrollo",
+    "start": "2026-03-30",
+    "end": "2026-04-10",
+    "pointsPlanned": 7,
+    "tasks": [
+      {"name":"1.- Cambiar fuente de datos de los Regionales","responsible":"Alfred","points":3,"status":"In Progress","progress":30,"completionDate":""},
+      {"name":"2.- Grupo de consolidadoventas","responsible":"Alfred","points":1,"status":"Done","progress":100,"completionDate":"2026-04-05"},
+      {"name":"3.- Revisar que información de CAR se extrae, limitar la consulta fija a una dinámica","responsible":"Alfred","points":2,"status":"To Do","progress":0,"completionDate":""},
+      {"name":"4.- Identificar fechas de extraccion de VBRK y VBRP","responsible":"Alfred","points":1,"status":"To Do","progress":0,"completionDate":""}
+    ],
+    "bitacora": {"planning":"","standup":"","retro":""}
+  }
+];
+
+// ============================================================
+// EJECUCIÓN AUTOMÁTICA DE RECUPERACIÓN
+// ============================================================
+function addLog(msg, type = '') {
+    const log = document.getElementById('statusLog');
+    const div = document.createElement('div');
+    div.className = 'status-line ' + type;
+    div.textContent = msg;
+    log.appendChild(div);
+}
+
+function setProgress(pct) {
+    document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function setCount(n) {
+    document.getElementById('sprintCount').textContent = n;
+}
+
+async function runRecovery() {
+    try {
+        addLog('⏳ Validando estructura de datos...');
+        await sleep(400);
+
+        if (!Array.isArray(RECOVERED_SPRINTS) || RECOVERED_SPRINTS.length === 0) {
+            throw new Error('Datos de recuperación inválidos');
+        }
+        addLog('✅ Datos válidos: ' + RECOVERED_SPRINTS.length + ' sprints encontrados', 'ok');
+        setProgress(20);
+        await sleep(400);
+
+        // Limpiar datos viejos
+        addLog('🗑️  Limpiando datos anteriores...');
+        localStorage.removeItem('scrumSprints');
+        localStorage.removeItem('scrumSprints_backup');
+        await sleep(300);
+        setProgress(40);
+
+        // Guardar datos recuperados
+        addLog('💾 Guardando sprints en localStorage...');
+        const dataStr = JSON.stringify(RECOVERED_SPRINTS);
+        localStorage.setItem('scrumSprints', dataStr);
+        localStorage.setItem('scrumSprints_backup', dataStr);
+        await sleep(400);
+        setProgress(70);
+
+        // Verificar
+        const verify = JSON.parse(localStorage.getItem('scrumSprints'));
+        if (!verify || verify.length !== RECOVERED_SPRINTS.length) {
+            throw new Error('Verificación fallida - datos no guardados correctamente');
+        }
+
+        setProgress(90);
+        await sleep(300);
+
+        // Contar y mostrar sprints
+        let count = 0;
+        for (let i = 0; i < RECOVERED_SPRINTS.length; i++) {
+            count++;
+            setCount(count);
+            await sleep(60);
+        }
+
+        setProgress(100);
+        addLog('✅ ¡' + RECOVERED_SPRINTS.length + ' sprints recuperados exitosamente!', 'ok');
+        addLog('🚀 Redirigiendo a Scrum Platform...', 'ok');
+
+        // Habilitar botón y redirigir automáticamente
+        document.getElementById('goBtn').disabled = false;
+        await sleep(1200);
+        window.location.href = 'index.html';
+
+    } catch (err) {
+        addLog('❌ Error: ' + err.message, 'error');
+        document.getElementById('goBtn').disabled = false;
+        document.getElementById('goBtn').textContent = '🔄 Intentar de nuevo';
+        document.getElementById('goBtn').onclick = () => location.reload();
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Ejecutar al cargar
+window.onload = runRecovery;
+</script>
+</body>
+</html>
