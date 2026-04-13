@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización & Capa Semántica | Case Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
+        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
+        p { color: #94a3b8; margin-bottom: 30px; }
+        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
+        <h1>05. Capa Semántica (BigQuery)</h1>
+        <p>Modelado de datos en BigQuery optimizado para Looker Studio, incluyendo el cálculo de márgenes brutos y métricas operativas al vuelo.</p>
+        
+        <h3>Archivo: materialized_view.sql</h3>
+        <pre><code class="language-sql">
+-- Materialización para Capa de BI
+CREATE OR REPLACE VIEW `project.semantic_layer.vw_sales_performance` AS
+SELECT
+    store_id,
+    transaction_date,
+    net_sales_amt,
+    quantity_sold,
+    unit_cost,
+    (net_sales_amt - unit_cost) AS gross_margin,
+    CURRENT_TIMESTAMP() AS processed_at
+FROM
+    `project.model_layer.fact_ticket_detail`
+WHERE
+    status_code = 'SUCCESS';
+        </code></pre>
+    </div>
+</body>
+</html>

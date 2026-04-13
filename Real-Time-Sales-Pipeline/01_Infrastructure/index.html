@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Infraestructura | Case Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
+        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
+        p { color: #94a3b8; margin-bottom: 30px; }
+        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
+        <h1>01. Configuración de Infraestructura</h1>
+        <p>Definición del cluster de Dataproc (Spark) optimizado para costos mediante configuración de borrado automático (TTL).</p>
+        
+        <h3>Archivo: cluster_config.json</h3>
+        <pre><code class="language-json">
+{
+    "cluster_name": "high-performance-etl-cluster",
+    "region": "us-central1",
+    "config": {
+        "master_config": {
+            "num_instances": 1,
+            "machine_type_uri": "e2-standard-4"
+        },
+        "worker_config": {
+            "num_instances": 2,
+            "machine_type_uri": "e2-standard-4"
+        },
+        "lifecycle_config": {
+            "idle_delete_ttl": "3600s"
+        }
+    }
+}
+        </code></pre>
+    </div>
+</body>
+</html>

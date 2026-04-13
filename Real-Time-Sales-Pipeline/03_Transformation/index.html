@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Transformación | Case Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
+        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
+        p { color: #94a3b8; margin-bottom: 30px; }
+        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
+        <h1>03. Lógica de Transformación</h1>
+        <p>Validación de paridad financiera y limpieza de datos (Data Washing) utilizando Apache Spark sobre Google Cloud Storage.</p>
+        
+        <h3>Archivo: transform_logic.sh</h3>
+        <pre><code class="language-bash">
+#!/bin/bash
+# Limpieza y Transformación Staging -> Model
+staging_bucket=$1
+model_bucket=$2
+
+# Sometimiento de Job Spark
+spark-submit \
+    --master yarn \
+    --deploy-mode client \
+    --conf spark.sql.broadcastTimeout=2000 \
+    --jars jars/spark-bigquery-with-dependencies.jar \
+    src/staging_to_model.py
+        </code></pre>
+    </div>
+</body>
+</html>
