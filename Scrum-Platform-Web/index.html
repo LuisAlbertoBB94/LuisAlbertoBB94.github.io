@@ -73,6 +73,9 @@
         
         .cta-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent) 0%, #2563eb 100%); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: 20px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.2); }
         .cta-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6); }
+        
+        .cta-secondary { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); color: var(--text-main); padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; margin-top: 20px; transition: all 0.3s; border: 1px solid var(--border); }
+        .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--text-dim); transform: translateY(-2px); }
 
         .tech-logos { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
         .tech-logo { height: 35px; opacity: 0.8; transition: all 0.3s ease; }
@@ -101,9 +104,14 @@
             <h1>Scrum Portfolio Manager 📊</h1>
             <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 30px;">Una plataforma ágil 100% Serverless, construida para unificar la ejecución técnica con la visibilidad directiva C-Level.</p>
             
-            <a href="app.html" target="_blank" class="cta-primary">
-                <i class="fas fa-play"></i> Probar Aplicación En Vivo
-            </a>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="app.html" target="_blank" class="cta-primary">
+                    <i class="fas fa-play"></i> Probar Aplicación En Vivo
+                </a>
+                <a href="ScrumWeb.zip" download class="cta-secondary">
+                    <i class="fas fa-download"></i> Descargar Código (.zip)
+                </a>
+            </div>
 
             <p style="margin-top: 15px; font-size: 0.9rem; color: var(--success); font-weight: 600;"><i class="fas fa-shield-alt"></i> Todo queda almacenado de forma privada en tu LocalStorage</p>
 
@@ -191,9 +199,14 @@
             <div class="tag" style="background: rgba(255,255,255,0.05); color: var(--text-dim); border-color: var(--text-dim);">¿Listo para interactuar con la plataforma?</div>
             
             <div style="margin-top: 30px;">
-                <a href="app.html" target="_blank" class="cta-primary" style="margin-bottom: 30px;">
-                    <i class="fas fa-external-link-alt"></i> Lanzar Aplicación
-                </a>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                    <a href="app.html" target="_blank" class="cta-primary">
+                        <i class="fas fa-external-link-alt"></i> Lanzar Aplicación
+                    </a>
+                    <a href="ScrumWeb.zip" download class="cta-secondary">
+                        <i class="fas fa-download"></i> Descargar Local (.zip)
+                    </a>
+                </div>
                 <br>
                 <a href="../index.html" style="color: var(--text-dim); text-decoration: none; font-weight: 600;"><i class="fas fa-arrow-left"></i> Volver a Casos de Éxito</a>
             </div>
