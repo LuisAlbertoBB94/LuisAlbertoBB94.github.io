@@ -82,9 +82,10 @@
         .chart-card { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; }
         .chart-title { font-size: 0.8rem; font-weight: 800; margin-bottom: 20px; color: #475569; }
 
-        .bars-container { height: 180px; display: flex; align-items: flex-end; gap: 4%; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .bars-container { height: 180px; display: flex; align-items: flex-end; gap: 4%; border-bottom: 2px solid #e2e8f0; padding-bottom: 0px; margin-bottom: 25px; }
         .bar { flex: 1; background: #eab308; border-radius: 4px 4px 0 0; position: relative; }
-        .bar span { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; font-weight: 700; color: #475569; width: 100%; text-align: center; }
+        .bar span.val { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; font-weight: 700; color: #475569; width: 100%; text-align: center; }
+        .bar span.time { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; font-weight: 600; color: #64748b; width: 100%; text-align: center; }
 
         .db-table-wrapper { overflow-x: auto; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
@@ -243,14 +244,14 @@
                     <!-- Hourly Chart -->
                     <div class="chart-card">
                         <div class="chart-title">RESUMEN DE VENTA POR HORA (INTRADÍA)</div>
-                        <div class="bars-container">
-                            <div class="bar" style="height: 10%;"><span>$41K</span></div>
-                            <div class="bar" style="height: 25%;"><span>$125K</span></div>
-                            <div class="bar" style="height: 15%;"><span>$37K</span></div>
-                            <div class="bar" style="height: 65%;"><span>$362K</span></div>
-                            <div class="bar" style="height: 40%;"><span>$207K</span></div>
-                            <div class="bar" style="height: 85%;"><span>$457K</span></div>
-                            <div class="bar" style="height: 70%;"><span>$285K</span></div>
+                        <div class="bars-container" style="margin-top: 15px;">
+                            <div class="bar" style="height: 10%;"><span class="val">$41K</span><span class="time">10:00</span></div>
+                            <div class="bar" style="height: 25%;"><span class="val">$125K</span><span class="time">11:00</span></div>
+                            <div class="bar" style="height: 15%;"><span class="val">$37K</span><span class="time">12:00</span></div>
+                            <div class="bar" style="height: 65%;"><span class="val">$362K</span><span class="time">13:00</span></div>
+                            <div class="bar" style="height: 40%;"><span class="val">$207K</span><span class="time">14:00</span></div>
+                            <div class="bar" style="height: 85%;"><span class="val">$457K</span><span class="time">15:00</span></div>
+                            <div class="bar" style="height: 70%;"><span class="val">$285K</span><span class="time">16:00</span></div>
                         </div>
                     </div>
 
