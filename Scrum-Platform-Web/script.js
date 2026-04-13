@@ -148,14 +148,8 @@ class StorageManager {
                 }
             }
 
-            // 3) Parse from data.js
-            const fromDataJs = this.parseDataJs();
-            if (fromDataJs.length > 0) {
-                this.saveProjects(fromDataJs);
-                return fromDataJs;
-            }
-
-            return helperSortProjects(fromDataJs);
+            // 3) Return empty array if no data exists
+            return [];
         } catch (err) {
             this.log('❌ getProjects error: ' + err.message);
             return [];
