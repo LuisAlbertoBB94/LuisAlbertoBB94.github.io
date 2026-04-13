@@ -1,1091 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrum Platform Premium</title>
-    <!-- Incluir Chart.js para los gráficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <title>Scrum Portfolio Manager | Luis Barragán, PhD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Premium Light Theme Colors */
-            --primary: #0057b8; /* Brand Blue */
-            --primary-hover: #004494;
-            --primary-light: #f0f7ff;
-            --accent-red: #cc0000; /* Brand Red */
-            --bg-deep: #f0f4f8; /* Soft light blue-gray for main background */
-            --bg-sidebar: #ffffff; /* White for sidebar */
-            --bg-card: #ffffff; /* White for cards */
-            --text-main: #2c3e50; /* Darker blue for main text */
-            --text-muted: #7f8c8d; /* Muted gray for secondary text */
-            --border-glass: #e2e8f0;
-            --border-hover: #cbd5e1;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --primary: #020617;
+            --secondary: #0f172a;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+            --card-bg: #1e293b;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Outfit', -apple-system, sans-serif;
-        }
-
+        * { box-sizing: border-box; }
         body {
-            background-color: var(--bg-deep);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
             color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            background-image:
-                radial-gradient(circle at 10% 50%, rgba(0, 87, 184, 0.03), transparent 25%),
-                radial-gradient(circle at 90% 10%, rgba(204, 0, 0, 0.03), transparent 25%);
+            margin: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
+            padding: 15px 0;
         }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 20px; align-items: center; }
+        .nav-brand { font-weight: 800; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
+        .nav-brand span { color: var(--accent); }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(200, 200, 200, 0.1);
-        }
+        /* Typography & Layout */
+        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px 40px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .tag { display: inline-block; background: rgba(59, 130, 246, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; border: 1px solid var(--accent); }
+        h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; line-height: 1.1; }
+        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+        p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 20px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
+        .grid-2.reverse { direction: rtl; }
+        .grid-2.reverse > * { direction: ltr; }
 
-        ::-webkit-scrollbar-thumb {
-            background: rgba(100, 100, 100, 0.3);
-            border-radius: 4px;
-        }
+        /* Icon Cards & Points */
+        .icon-list { list-style: none; padding: 0; margin: 0; }
+        .icon-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; color: var(--text-main); }
+        .icon-list i { color: var(--accent); font-size: 1.2rem; margin-top: 5px; }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
+        .feature-card { background: var(--secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .feature-card h3 { font-size: 1.3rem; margin-top: 0; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .feature-card i { color: var(--accent); }
 
-        /* Sidebar Styles */
-        .sidebar {
-            width: 280px;
-            background: var(--bg-sidebar);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-right: 1px solid var(--border-glass);
-            display: flex;
-            flex-direction: column;
-            padding: 2.5rem 1.5rem;
-            position: fixed;
-            height: 100vh;
-            z-index: 100;
-            box-shadow: var(--shadow-sm);
-        }
+        .screenshot-box { border-radius: 15px; overflow: hidden; border: 1px solid var(--border); width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transition: transform 0.3s; }
+        .screenshot-box:hover { transform: scale(1.02); }
+        .screenshot-box img { width: 100%; display: block; border-radius: 15px; }
 
-        .logo-container {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-glass);
-        }
+        .full-width-image { width: 100%; max-width: 1100px; margin: 0 auto 80px; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; }
+        .full-width-image img { width: 100%; display: block; }
 
-        .logo-container p {
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            letter-spacing: 2.5px;
-            color: var(--primary);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--border); margin-top: 60px; }
+        
+        .cta-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent) 0%, #2563eb 100%); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: 20px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.2); }
+        .cta-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6); }
 
-        .nav-menu {
-            flex: 1;
-        }
+        .tech-logos { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
+        .tech-logo { height: 35px; opacity: 0.8; transition: all 0.3s ease; }
+        .tech-logo:hover { opacity: 1; transform: translateY(-2px); }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.2rem;
-            margin-bottom: 0.5rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            color: var(--text-muted);
-            font-weight: 500;
-            border: 1px solid transparent;
-            font-size: 0.95rem;
-            border-left: 3px solid transparent;
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            .grid-2.reverse { direction: ltr; }
         }
-
-        .nav-item:hover {
-            background: var(--primary-light);
-            color: var(--primary);
-            transform: translateX(4px);
-        }
-
-        .nav-item.active {
-            background: var(--primary-light);
-            color: var(--primary);
-            font-weight: 700;
-            border-left-color: var(--primary);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 2.5rem 3rem;
-            max-width: calc(100% - 280px);
-            background: transparent;
-        }
-
-        .header-bar {
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent; /* Changed from var(--bg-card) to transparent */
-        }
-
-        .header-bar h1 {
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.2;
-        }
-
-        .header-bar h1 span {
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        /* Global Selector Style */
-        .global-filter {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--bg-sidebar); /* Changed from var(--bg-card) */
-            padding: 0.8rem 1.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.2s;
-        }
-
-        .global-filter:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .global-filter label {
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .global-filter select {
-            background: transparent;
-            color: var(--text-main);
-            border: none;
-            outline: none;
-            font-weight: 600;
-            font-size: 1rem;
-            min-width: 250px;
-            cursor: pointer;
-            font-family: 'Outfit';
-        }
-
-        .global-filter select option {
-            background: white;
-            color: var(--text-main);
-        }
-
-        /* Grid System */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .glass-card {
-            background: #ffffff; /* Changed from var(--bg-card) */
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-glass);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .tab-pane {
-            display: none;
-        }
-
-        .tab-pane.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Progress Bars */
-        .progress-container {
-            height: 8px;
-            background: #f1f5f9;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 1.5rem 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), #3b82f6);
-            width: 0%;
-            transition: width 1s ease-out;
-            border-radius: 8px;
-        }
-
-        h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.3px;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-
-        .stat-value {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1;
-        }
-
-        /* Forms */
-        .form-field { margin-bottom: 1.2rem; }
-        .form-field label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-        }
-
-        .form-field input, .form-field select, .form-field textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--primary-light); /* Changed from #f8fafc */
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.1);
-            background: #fff;
-        }
-
-        .form-field textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        /* Buttons */
-        button.btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        button.btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
-
-        button.btn-secondary {
-            background: #f1f5f9;
-            color: var(--text-main);
-            border: 1px solid #e2e8f0;
-            box-shadow: none;
-        }
-
-        button.btn-secondary:hover {
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-            color: var(--text-main);
-            box-shadow: none;
-        }
-
-        button.btn-danger {
-            background: var(--danger-color);
-            color: white;
-            box-shadow: none;
-        }
-
-        button.btn-danger:hover {
-            background: #dc2626;
-            box-shadow: none;
-        }
-
-        .date-badge {
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 87, 184, 0.1);
-        }
-
-        /* TABLES */
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 0.9rem;
-        }
-
-        th {
-            text-align: left;
-            padding: 1rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--border-glass);
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-glass);
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        tr:hover td {
-            background: #f8fafc;
-        }
-
-        /* Status Colors Helpers */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .status-done-bg { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-        .status-progress-bg { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
-        .status-todo-bg { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
-
-        /* Bitacora Layout */
-        .bitacora-container {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            gap: 1.5rem;
-        }
-
-        .task-item {
-            padding: 1rem;
-            background: #f8fafc;
-            margin-bottom: 0.8rem;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .project-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,87,184,0.12);
-        }
-        .project-card--active {
-            box-shadow: 0 0 0 2px var(--primary), 0 8px 20px rgba(0,87,184,0.15);
-        }
-        #projectsGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        /* Analytics grids */
-        .analytics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .kpi-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .kpi-chip {
-            background: white;
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 1.2rem;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-        }
-        .kpi-chip .val { font-size: 2rem; font-weight: 800; color: var(--primary); }
-        .kpi-chip .lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.2rem; }
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(4px);
-            z-index: 999;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-overlay.open { display: flex; }
-        .modal-box {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            width: 520px;
-            max-width: 95vw;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
-            animation: fadeIn 0.2s ease;
-        }
-        .modal-box h2 { margin-bottom: 1.5rem; }
-        .color-pick { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-        .color-swatch {
-            width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
-            border: 3px solid transparent; transition: border 0.15s;
-        }
-        .color-swatch.selected { border-color: #1e293b; }
     </style>
 </head>
-
 <body>
 
-    <aside class="sidebar">
-        <div class="logo-container">
-            <!-- Logo custom autogenerado -->
-            <img src="logo-custom.png" alt="Scrum Platform Logo"
-                style="max-width: 70px; border-radius: 12px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); margin-bottom: 0.5rem;">
-            <p>Scrum Platform</p>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">Luis Barragán <span>PhD</span></a>
+            <div style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;">CASO DE ÉXITO: INGENIERÍA DE PRODUCTO</div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- SLIDE 1: PORTADA -->
+        <section class="section-header" style="margin-top: 40px;">
+            <div class="tag">Product Management & Ingeniería Frontend</div>
+            <h1>Scrum Portfolio Manager 📊</h1>
+            <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 30px;">Una plataforma ágil 100% Serverless, construida para unificar la ejecución técnica con la visibilidad directiva C-Level.</p>
+            
+            <a href="app.html" target="_blank" class="cta-primary">
+                <i class="fas fa-play"></i> Probar Aplicación En Vivo
+            </a>
+
+            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--success); font-weight: 600;"><i class="fas fa-shield-alt"></i> Todo queda almacenado de forma privada en tu LocalStorage</p>
+
+            <div class="tech-logos" style="margin-top: 50px;">
+                <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" class="tech-logo">
+                <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" class="tech-logo">
+                <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" class="tech-logo">
+            </div>
+        </section>
+
+        <!-- FULL WIDTH DASHBOARD IMAGE -->
+        <div class="full-width-image">
+            <img src="assets/Resumen.png" alt="Resumen Global del Portafolio">
         </div>
 
-        <nav class="nav-menu">
-            <div class="nav-item active" data-tab="dashboard-home">🏠 Resumen del Portafolio</div>
-            <div class="nav-item" data-tab="projects-view">📁 Proyectos</div>
-            <div class="nav-item" data-tab="team-analytics">📊 Analytics Equipo</div>
-            <div class="nav-item" data-tab="project-analytics">📈 Analytics Proyecto</div>
-            <div class="nav-item" onclick="window.open('presentation.html', '_blank')" style="cursor:pointer;">📋 Reporte Ejecutivo</div>
-            <div class="nav-item" data-tab="bitacora-presentation">📝 Bitácora</div>
-            <div class="nav-item" data-tab="admin-panel">⚙️ Configuración</div>
-        </nav>
-    </aside>
-
-    <main class="main-content">
-        <header class="header-bar">
+        <!-- SLIDE 2: EL PROBLEMA -->
+        <section class="grid-2">
             <div>
-                <h1><span id="platformNameHeader">BI Analytics</span> <span style="color: var(--text-muted); font-weight:300; margin:0 10px;">/</span> <span
-                        id="currentViewTitle">Resumen del Portafolio</span></h1>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;">Proyecto: <strong id="currentProjectTitle" style="color:var(--primary);">—</strong></p>
+                <div class="tag">El Desafío</div>
+                <h2>El Gap entre Data Engineering y la Dirección</h2>
+                <p>En mi experiencia como Líder Técnico, noté una fricción constante: plataformas como Jira o Azure DevOps son excelentes para los tickets de ingeniería corporativa, pero terribles para reportar de forma ejecutiva al C-Suite sin perder horas configurando reportes.</p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <span><strong>Falta de Visión Global:</strong> Difícil consolidar múltiples proyectos de Datos en un solo panel de salud.</span></li>
+                    <li><i class="fas fa-clock" style="color: var(--warning);"></i> <span><strong>Generación Manual de Reportes:</strong> Se perdían incontables horas extrayendo gráficas a PowerPoint para las juntas directivas.</span></li>
+                    <li><i class="fas fa-money-bill-wave"></i> <span><strong>Costos de Infraestructura:</strong> Sistemas sobredimensionados para equipos ágiles pequeños/híbridos.</span></li>
+                </ul>
             </div>
-            <div style="display:flex; gap:1rem; align-items:center;">
-                <div class="global-filter">
-                    <label for="globalProjectSelect" style="white-space:nowrap;">📁 Proyecto:</label>
-                    <select id="globalProjectSelect" style="min-width:160px;"></select>
-                </div>
-                <div class="global-filter">
-                    <label for="globalSprintSelect" style="white-space:nowrap;">🚀 Sprint:</label>
-                    <select id="globalSprintSelect" style="min-width:180px;"></select>
-                </div>
-            </div>
-        </header>
-
-        <!-- PROJECTS VIEW -->
-        <section id="projects-view" class="tab-pane">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                <h1 style="color:var(--primary); font-size:1.6rem;">📁 Portafolio de Proyectos</h1>
-                <button class="btn-primary" onclick="adminCreateNewProject()">➕ Nuevo Proyecto</button>
-            </div>
-            <div id="projectsGrid">
-                <!-- Rendered by JS -->
+            <div class="screenshot-box">
+                <img src="assets/Proyectos.png" alt="Gestión de Proyectos Scrum">
             </div>
         </section>
 
-        <!-- DASHBOARD HOME (Holistic with Charts) -->
-        <section id="dashboard-home" class="tab-pane active">
-            <div class="dashboard-grid">
-                <!-- KPI Textuals -->
-                <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center;">
-                    <h2>📑 Estatus Global</h2>
-                    <div style="margin-bottom: 2rem; margin-top: 1rem; display: flex; gap: 2rem;">
-                        <div>
-                            <p class="stat-label">Sprints Totales</p>
-                            <span class="stat-value" id="globalTotalSprints">0</span>
-                        </div>
-                        <div>
-                            <p class="stat-label">Sprints Finalizados</p>
-                            <span class="stat-value" id="globalSprintsDone" style="color:var(--success-color);">0</span>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="stat-label">Story Points (Done / Total)</p>
-                        <span class="stat-value"><span id="globalSPCompleted">0</span> <span
-                                style="font-size:1.5rem; color:#64748b;">/</span> <span
-                                style="font-size:1.5rem; color:#64748b;" id="globalSPPlanned">0</span></span>
-                    </div>
-                </div>
-
-                <!-- Burn Up Chart -->
-                <div class="glass-card">
-                    <h2>🔥 Progreso SP</h2>
-                    <div style="height: 180px; position: relative;">
-                        <canvas id="burnupChart"></canvas>
-                    </div>
-                </div>
-
-
+        <!-- SLIDE 3: LA SOLUCIÓN TÉCNICA -->
+        <section class="grid-2 reverse">
+            <div>
+                <div class="tag">La Arquitectura</div>
+                <h2>Ingeniería Serverless & Cero Fricción</h2>
+                <p>Diseñé y programé una solución desde cero enfocada en la autonomía y la instantaneidad. Sin servidores, sin bases de datos externas, sin login.</p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-microchip"></i> <span><strong>100% Client-Side:</strong> Desarrollado en Vanilla JavaScript aprovechando al máximo la manipulación síncrona del DOM.</span></li>
+                    <li><i class="fas fa-database"></i> <span><strong>Motor LocalStorage:</strong> Un wrapper estructurado que guarda, versiona y vincula Sprints y Proyectos en la memoria local del navegador garantizando total privacidad.</span></li>
+                    <li><i class="fas fa-paint-brush"></i> <span><strong>Glassmorphism UI:</strong> Interfaz premium de rápida adopción basada en CSS moderno y flexbox.</span></li>
+                </ul>
             </div>
-
-            <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end;">
-                <button class="btn-primary" onclick="generateGlobalActiveReport()" style="background: var(--accent-red);">
-                    📄 Reporte Global Activos (PDF)
-                </button>
-            </div>
-
-            <!-- Listado de Sprints Activos -->
-            <div class="glass-card" style="margin-top: 1.5rem;">
-                <h2>🚀 Sprints Activos</h2>
-                <div id="activeSprintsTable" style="margin-top: 1rem; overflow-x: auto;">
-                    <!-- Tabla generada dinámicamente -->
-                </div>
-            </div>
-
-            <!-- Listado de Sprints Cerrados -->
-            <div class="glass-card" style="margin-top: 2rem; opacity: 0.85;">
-                <h2 style="color: var(--text-muted);">📚 Histórico de Sprints Cerrados</h2>
-                <div id="closedSprintsTable" style="margin-top: 1rem; overflow-x: auto;">
-                    <!-- Tabla generada dinámicamente -->
-                </div>
+            <div class="screenshot-box">
+                <img src="assets/Analytics de Equipo.png" alt="Analytics Individual del Equipo">
             </div>
         </section>
 
-
-
-        <!-- BITÁCORA Y PRESENTACIÓN (Combined) -->
-        <section id="bitacora-presentation" class="tab-pane">
-            <div class="bitacora-container">
-                <!-- Zona de Toma de Notas -->
-                <div class="glass-card">
-                    <h2>📝 Notas Scrum</h2>
-                    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:2rem;">Registros de: <strong
-                            id="bitacoraSprintName" style="color:var(--primary);">Sprint</strong></p>
-
-                    <div class="form-field">
-                        <label>📋 Planning (Lunes) - Objetivos & Capacity</label>
-                        <textarea id="notePlanning"
-                            placeholder="Ej. El SP total acordado fue... Las ausencias en la semana..."></textarea>
-                    </div>
-
-                    <div class="form-field">
-                        <label>⚡ Dailys/Standups (Hallazgos y Bloqueos)</label>
-                        <textarea id="noteStandups"
-                            placeholder="Ej. Miércoles: Problemas con acceso a base de datos. Jueves: Resuelto."></textarea>
-                    </div>
-
-                    <div class="form-field">
-                        <label>🔍 Retrospectiva Final (Logros y áreas de mejora)</label>
-                        <textarea id="noteRetro"
-                            placeholder="Ej. Buena comunicación, pero faltó definición al inicio. Acción p/siguiente: Mejor refinamiento."></textarea>
-                    </div>
-
-                    <div style="margin-top:2rem; padding:1.5rem; background:#f8fafc; border:1px solid var(--border-glass); border-radius:12px;">
-                        <h3 style="margin-bottom:1rem; color:var(--primary); font-size:1.1rem;">📅 Log Diario / Seguimiento por Fecha</h3>
-                        <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
-                            <input type="date" id="dailyNoteDate" style="width:auto; padding:0.5rem;">
-                            <select id="dailyNoteType" style="width:auto; padding:0.5rem; border-radius:8px; border:1px solid #cbd5e1;">
-                                <option value="Standup">Standup</option>
-                                <option value="Planning">Planning</option>
-                                <option value="Retro">Retro</option>
-                                <option value="Bloqueo">Bloqueo</option>
-                                <option value="General">General</option>
-                            </select>
-                        </div>
-                        <textarea id="dailyNoteText" placeholder="Escribe aquí los comentarios de la reunión o del día..." style="min-height:80px; margin-bottom:0.5rem;"></textarea>
-                        <button class="btn-primary" onclick="addDailyNote()" style="width:100%; font-size:0.85rem;">➕ Agregar Nota al Historial</button>
-                        
-                        <div id="dailyLogHistory" style="margin-top:1.5rem; max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:0.8rem;">
-                            <!-- Notas históricas -->
-                        </div>
-                    </div>
-
-                    <h3 style="margin-top:2rem; margin-bottom:1rem; color:var(--text-main);">✅ Marcar Tareas Completadas</h3>
-                    <div id="bitacoraTasksList" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.5rem;">
-                        <!-- Inyectado por JS -->
-                    </div>
-
-                    <div style="display:flex; gap:1rem; margin-top:1.5rem;">
-                        <button class="btn-primary" onclick="saveBitacora()" style="flex:1; padding: 1rem;">💾 Guardar Resumen</button>
-                        <button class="btn-primary" onclick="generatePrintableReport()" style="flex:1; padding: 1rem; background:var(--accent-red);">📄 Reporte PDF / Impresión</button>
-                    </div>
-                </div>
-
-                <!-- Zona de Presentación Automática -->
-                <div class="glass-card"
-                    style="background: #ffffff; border: 1px solid var(--border-glass); display:flex; flex-direction:column; min-height: 600px;">
-                    <div
-                        style="display:flex; justify-content: space-between; align-items:center; border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem;">
-                        <h2 style="border:none; margin:0; padding:0; color:var(--primary);">📊 Proyección Ejecutiva
-                        </h2>
-                        <span id="slideCounter" style="color:var(--text-muted); font-size:0.9rem; font-weight:700;">1 /
-                            4</span>
-                    </div>
-
-                    <div id="presentationSlides"
-                        style="flex:1; display:flex; align-items:center; justify-content:center; padding:2rem;">
-                        <!-- Inyectado por JS -->
-                    </div>
-
-                    <div
-                        style="display: flex; justify-content: center; gap: 1rem; border-top:1px solid var(--border-glass); padding-top:1.5rem;">
-                        <button class="btn-primary btn-secondary" onclick="previousSlide()"
-                            style="padding: 0.8rem 2rem;">⬅️ Anterior</button>
-                        <button class="btn-primary" onclick="nextSlide()" style="padding: 0.8rem 2rem;">Siguiente
-                            ➡️</button>
-                    </div>
-                </div>
+        <!-- SLIDE 4: BI AUTOMATIZADO -->
+        <section class="grid-2">
+            <div>
+                <div class="tag">Algoritmia Analítica</div>
+                <h2>Métricas y Curvas de Rendimiento Out-of-the-box</h2>
+                <p>La plataforma cuenta con un motor analítico (impulsado por Chart.js) que lee en tiempo real el progreso de las tareas (Story Points) y genera los insights clave del marco ágil automáticamente.</p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-fire"></i> <span><strong>Burndown & Burnup Carts:</strong> Seguimiento automático de la desviación contra el plan.</span></li>
+                    <li><i class="fas fa-user-astronaut"></i> <span><strong>Analytics de Equipo:</strong> Distribución de carga por integrante y curvas de velocidad histórica por perfil individual.</span></li>
+                </ul>
+            </div>
+            <div class="screenshot-box">
+                <img src="assets/Analytics del Proyecto.png" alt="Analítica de Proyecto y Sprints">
             </div>
         </section>
 
-        <!-- PANEL DE CONFIGURACIÓN -->
-        <section id="admin-panel" class="tab-pane">
-            <!-- Config Tabs -->
-            <div style="display:flex; gap:0.5rem; margin-bottom:1.5rem; border-bottom:2px solid var(--border-glass); padding-bottom:0;">
-                <button id="cfgTab-general" onclick="switchConfigTab('general')" class="cfg-tab" style="padding:0.7rem 1.4rem; border:none; background:none; cursor:pointer; font-weight:600; font-size:0.9rem; color:var(--text-muted); border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s;">🏷️ General</button>
-                <button id="cfgTab-sprints" onclick="switchConfigTab('sprints')" class="cfg-tab cfg-tab--active" style="padding:0.7rem 1.4rem; border:none; background:none; cursor:pointer; font-weight:700; font-size:0.9rem; color:var(--primary); border-bottom:3px solid var(--primary); margin-bottom:-2px; transition:all 0.2s;">⚙️ Sprints</button>
-                <button id="cfgTab-areas" onclick="switchConfigTab('areas')" class="cfg-tab" style="padding:0.7rem 1.4rem; border:none; background:none; cursor:pointer; font-weight:600; font-size:0.9rem; color:var(--text-muted); border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s;">🏢 Áreas de Negocio</button>
-                <button id="cfgTab-team" onclick="switchConfigTab('team')" class="cfg-tab" style="padding:0.7rem 1.4rem; border:none; background:none; cursor:pointer; font-weight:600; font-size:0.9rem; color:var(--text-muted); border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s;">👥 Equipo</button>
+        <!-- SLIDE 5: EJECUCIÓN VS PRESENTACIÓN -->
+        <section class="grid-2 reverse">
+            <div>
+                <div class="tag">Modo Ejecutivo</div>
+                <h2>De la Bitácora a la Mesa Directiva en 1 clic</h2>
+                <p>Implementé un módulo específico para resolver la burocracia de los reportes. El sistema permite llevar la bitácora técnica diaria (Standups, Plannings) y, paralelamente, renderiza una <strong>Presentación Ejecutiva en "FullScreen"</strong>.</p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-file-contract"></i> <span><strong>Bitácora Integrada:</strong> Registro histórico de impedimentos y decisiones.</span></li>
+                    <li><i class="fas fa-chalkboard-teacher"></i> <span><strong>Presentation Mode:</strong> Slides auto-generados listos para proyectar a Directores en tu siguiente junta de Portfolio.</span></li>
+                </ul>
             </div>
-
-            <!-- TAB: GENERAL -->
-            <div id="cfg-general" class="cfg-pane" style="display:none;">
-                <div class="glass-card">
-                    <h2 style="margin-bottom:0.3rem;">🏷️ Configuración General</h2>
-                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:2rem;">Ajustes globales que impactan toda la plataforma.</p>
-
-                    <!-- Platform Name -->
-                    <div style="padding:1.5rem 2rem; background:linear-gradient(135deg, var(--primary-light) 0%, #f0f4ff 100%); border:1px solid rgba(0,87,184,0.15); border-radius:16px; margin-bottom:1.5rem;">
-                        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;">
-                            <div style="width:36px; height:36px; border-radius:10px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1rem;">🏷️</div>
-                            <div>
-                                <div style="font-weight:800; font-size:1rem; color:var(--text-main);">Nombre de la Plataforma</div>
-                                <div style="font-size:0.78rem; color:var(--text-muted);">Aparece en el header principal y en el Reporte Ejecutivo</div>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:1rem; align-items:flex-end;">
-                            <div class="form-field" style="flex:1; margin-bottom:0;">
-                                <label>Nombre visible</label>
-                                <input type="text" id="platformNameInput" placeholder="Ej: BI Analytics" oninput="updatePlatformNamePreview()">
-                            </div>
-                            <button class="btn-primary" onclick="savePlatformName()" style="padding:0.8rem 1.5rem; white-space:nowrap;">💾 Guardar</button>
-                        </div>
-                        <!-- Live Preview -->
-                        <div style="margin-top:1rem; padding:0.8rem 1.2rem; background:white; border-radius:10px; border:1px solid var(--border-glass); display:flex; align-items:center; gap:0.5rem;">
-                            <span style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; font-weight:600;">Preview header:</span>
-                            <span id="platformNamePreview" style="font-weight:700; font-size:1rem; color:var(--text-main);">BI Analytics</span>
-                            <span style="color:var(--text-muted); font-weight:300; margin:0 6px;">/</span>
-                            <span style="color:var(--text-muted); font-size:0.95rem;">Vista Actual</span>
-                        </div>
-                    </div>
-
-                    <!-- Subtitle (Top label in presentation) -->
-                    <div style="padding:1.5rem 2rem; background:#f8fafc; border:1px solid var(--border-glass); border-radius:16px;">
-                        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.2rem;">
-                            <div style="width:36px; height:36px; border-radius:10px; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:1rem;">📊</div>
-                            <div>
-                                <div style="font-weight:800; font-size:1rem; color:var(--text-main);">Subtítulo del Reporte Ejecutivo</div>
-                                <div style="font-size:0.78rem; color:var(--text-muted);">La línea pequeña que aparece sobre el título principal en la portada</div>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:1rem; align-items:flex-end;">
-                            <div class="form-field" style="flex:1; margin-bottom:0;">
-                                <label>Subtítulo de portada</label>
-                                <input type="text" id="platformSubtitleInput" placeholder="Ej: Reporte Ejecutivo de Resultados">
-                            </div>
-                            <button class="btn-primary" onclick="savePlatformSubtitle()" style="padding:0.8rem 1.5rem; white-space:nowrap;">💾 Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end cfg-general -->
-
-            <!-- TAB: SPRINTS -->
-            <div id="cfg-sprints" class="cfg-pane">
-            <div class="glass-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <h2 style="margin-bottom:0.3rem;">⚙️ Administrar Sprints</h2>
-                        <p style="font-size:0.85rem; color:var(--text-muted);">Proyecto activo: <strong id="adminCurrentProject" style="color:var(--primary);">—</strong></p>
-                    </div>
-                    <button class="btn-primary" onclick="adminCreateNewSprint()">➕ Crear Sprint Vacío</button>
-                </div>
-
-                <div style="margin-top:2rem; padding: 2rem; background: #f8fafc; border: 1px solid var(--border-glass); border-radius: 16px;">
-                    <h3 style="margin-bottom:1.5rem; color:var(--primary); font-size: 1.2rem;">Detalles del Sprint Actual</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                        <div class="form-field" style="grid-column: span 2;"><label>Nombre del Sprint</label><input type="text" id="adminName"></div>
-                        <div class="form-field"><label>Estado</label>
-                            <select id="adminStatus">
-                                <option>Planificado</option>
-                                <option>En Desarrollo</option>
-                                <option>In Progress</option>
-                                <option>Liberado y validacion</option>
-                                <option>Completado</option>
-                            </select>
-                        </div>
-                        <div class="form-field"><label>S P Planeados</label><input type="number" id="adminSP" min="0"></div>
-                        <div class="form-field"><label>Fecha Inicio</label><input type="date" id="adminStart"></div>
-                        <div class="form-field"><label>Fecha Fin</label><input type="date" id="adminEnd"></div>
-                    </div>
-                    <div style="display:flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-                        <button class="btn-primary" onclick="adminSaveSprint()">💾 Actualizar Atributos</button>
-                        <button class="btn-primary" style="background:#10b981;" onclick="adminSetStatus('Completado')">✔️ Marcar como CERRADO</button>
-                        <button class="btn-primary" style="background:#0ea5e9;" onclick="adminSetStatus('En Desarrollo')">🚀 Marcar como ACTIVO</button>
-                        <button class="btn-primary btn-danger" onclick="adminDeleteSprint()" id="adminDeleteBtn">🗑️ Borrar Sprint</button>
-                    </div>
-                </div>
-
-                <div style="margin-top: 3rem;">
-                    <h3 style="margin-bottom:1.5rem; color:var(--text-main);">Gestión de Tareas (Detalles del Sprint Actual)</h3>
-                    <div id="adminTasksContainer" style="margin-top: 1rem; display:flex; flex-direction:column; gap:0.8rem;"></div>
-                    <button class="btn-primary btn-secondary" style="margin-top: 1.5rem;" onclick="adminAddTask()">➕ Agregar Tarea</button>
-                </div>
-
-                <div style="margin-top: 4rem; border-top: 1px solid var(--border-glass); padding-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
-                    <button class="btn-primary" style="background:var(--bg-sidebar); color: #000000;" onclick="downloadAllData()">💾 Descargar Todo (JSON)</button>
-                    <button class="btn-primary btn-secondary" style="background:var(--bg-sidebar);" onclick="importTasksFromDocument()">📤 Importar Tareas / JSON</button>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 1.5rem; background: #fff8e1; border-left: 4px solid #ffc107; border-radius: 8px; font-size: 0.9rem;">
-                    <strong>💡 Tip de Sincronización:</strong> Los cambios se guardan localmente en su navegador. Para verlos en su celular u otra PC:
-                    <ol style="margin-top: 0.5rem; margin-left: 1.5rem;">
-                        <li>Haga clic en <strong>"Descargar Todo (JSON)"</strong> en esta máquina.</li>
-                        <li>Envíe el archivo a su otro dispositivo.</li>
-                        <li>En el otro dispositivo, use <strong>"Importar Tareas / JSON"</strong> para cargar los datos.</li>
-                    </ol>
-                </div>
-
-                <!-- DANGER ZONE -->
-                <div style="margin-top: 3rem; padding: 1.5rem; background: #fef2f2; border: 1px solid #fee2e2; border-radius: 12px;">
-                    <h3 style="color: #991b1b; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span>⚠️</span> Zona de Peligro</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <button class="btn-primary" style="background: #ef4444; font-size: 0.8rem;" onclick="adminDeleteProject()">🗑️ Borrar Proyecto Actual</button>
-                        <button class="btn-primary" style="background: #b91c1c; font-size: 0.8rem;" onclick="adminResetAllData()">💣 LIMPIAR TODO EL SISTEMA</button>
-                    </div>
-                    <p style="color: #991b1b; font-size: 0.75rem; margin-top: 0.8rem; text-align: center;">Estas acciones son permanentes y borrarán los datos del navegador.</p>
-                </div>
+            <div class="screenshot-box">
+                <img src="assets/REPORTE EJECUTIVO DE PORTAFOLIO_1.png" alt="Reporte Ejecutivo Generado Automáticamente">
             </div>
-            </div><!-- end cfg-sprints -->
-
-            <!-- TAB: ÁREAS DE NEGOCIO -->
-            <div id="cfg-areas" class="cfg-pane" style="display:none;">
-                <div class="glass-card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-                        <div>
-                            <h2 style="margin-bottom:0.3rem;">🏢 Áreas de Negocio</h2>
-                            <p style="font-size:0.85rem; color:var(--text-muted);">Define las áreas, sus colores y emojis para categorizar proyectos.</p>
-                        </div>
-                        <button class="btn-primary" onclick="openAreaModal(null)">➕ Nueva Área</button>
-                    </div>
-                    <div id="areasListContainer" style="display:flex; flex-direction:column; gap:0.8rem;"></div>
-                </div>
-            </div><!-- end cfg-areas -->
-
-            <!-- TAB: EQUIPO -->
-            <div id="cfg-team" class="cfg-pane" style="display:none;">
-                <div class="glass-card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-                        <div>
-                            <h2 style="margin-bottom:0.3rem;">👥 Integrantes del Equipo</h2>
-                            <p style="font-size:0.85rem; color:var(--text-muted);">Agrega o edita los miembros del equipo. Aparecerán como opciones en las tareas.</p>
-                        </div>
-                        <button class="btn-primary" onclick="openTeamMemberModal(null)">➕ Agregar Integrante</button>
-                    </div>
-                    <div id="teamMembersContainer" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;"></div>
-                </div>
-            </div><!-- end cfg-team -->
-
         </section>
 
-        <!-- ===================== TEAM ANALYTICS ===================== -->
-        <section id="team-analytics" class="tab-pane">
-            <h1 style="color:var(--primary); font-size:1.6rem; margin-bottom:0.5rem;">📊 Analytics de Equipo</h1>
-            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">Tendencias de desempeño por integrante a través de todos los sprints del proyecto activo.</p>
-
-            <!-- KPIs globales del equipo -->
-            <div class="kpi-bar" id="teamKpiBar"></div>
-
-            <div class="analytics-grid">
-                <!-- Gráfica SP por sprint por miembro -->
-                <div class="glass-card">
-                    <h2>📈 SP Completados por Sprint</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Tendencia individual de cada miembro del equipo</p>
-                    <div style="height:260px; position:relative;"><canvas id="teamTrendChart"></canvas></div>
-                </div>
-
-                <!-- Distribución de tareas por miembro -->
-                <div class="glass-card">
-                    <h2>🥧 Distribución de Tareas</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Total de tareas asignadas por integrante</p>
-                    <div style="height:260px; position:relative;"><canvas id="teamDistChart"></canvas></div>
-                </div>
-
-                <!-- Tarjeta Luis -->
-                <div class="glass-card" id="memberCardLuis" style="border-left: 5px solid #0057b8;">
-                    <h2 style="color:#0057b8;">👤 Luis — Perfil Individual</h2>
-                    <div id="memberStatsLuis"></div>
-                    <div style="height:200px; position:relative; margin-top:1rem;"><canvas id="memberChartLuis"></canvas></div>
-                </div>
-
-                <!-- Tarjeta Alfred -->
-                <div class="glass-card" id="memberCardAlfred" style="border-left: 5px solid #cc0000;">
-                    <h2 style="color:#cc0000;">👤 Alfred — Perfil Individual</h2>
-                    <div id="memberStatsAlfred"></div>
-                    <div style="height:200px; position:relative; margin-top:1rem;"><canvas id="memberChartAlfred"></canvas></div>
-                </div>
-
-                <!-- Tabla comparativa -->
-
-
-                <!-- NUEVA: Tendencia Temporal Acumulada -->
-                <div class="glass-card" style="grid-column: 1/-1;">
-                    <h2>📈 Rendimiento Cronológico Acumulado (SP)</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Crecimiento de valor entregado por el equipo a través de la línea de tiempo real.</p>
-                    <div style="height:350px; position:relative;"><canvas id="teamTimeChart"></canvas></div>
-                </div>
+        <!-- CALL TO ACTION -->
+        <footer style="text-align: center; margin-top: 80px; margin-bottom: 40px;">
+            <div class="tag" style="background: rgba(255,255,255,0.05); color: var(--text-dim); border-color: var(--text-dim);">¿Listo para interactuar con la plataforma?</div>
+            
+            <div style="margin-top: 30px;">
+                <a href="app.html" target="_blank" class="cta-primary" style="margin-bottom: 30px;">
+                    <i class="fas fa-external-link-alt"></i> Lanzar Aplicación
+                </a>
+                <br>
+                <a href="../index.html" style="color: var(--text-dim); text-decoration: none; font-weight: 600;"><i class="fas fa-arrow-left"></i> Volver a Casos de Éxito</a>
             </div>
-
-
-        </section>
-
-        <!-- ===================== PROJECT ANALYTICS ===================== -->
-        <section id="project-analytics" class="tab-pane">
-            <h1 style="color:var(--primary); font-size:1.6rem; margin-bottom:0.5rem;">📈 Analytics del Proyecto</h1>
-            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">Métricas de velocidad, tendencia y salud del proyecto activo.</p>
-
-            <div class="kpi-bar" id="projectKpiBar"></div>
-
-            <div class="analytics-grid">
-
-
-                <!-- Burnup acumulado -->
-                <div class="glass-card">
-                    <h2>🔥 Burn-Up Acumulado</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Progreso acumulado vs. objetivo total del proyecto</p>
-                    <div style="height:260px; position:relative;"><canvas id="projBurnupChart"></canvas></div>
-                </div>
-
-
-
-                <!-- Estado de sprints donut -->
-                <div class="glass-card">
-                    <h2>🥇 Estado de Sprints</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Distribución por estatus de sprint</p>
-                    <div style="height:260px; position:relative;"><canvas id="projStatusChart"></canvas></div>
-                </div>
-
-                <!-- NUEVA: Velocidad por Fecha (Reemplaza Comparativa) -->
-                <div class="glass-card" style="grid-column:1/-1;">
-                    <h2>🚀 Comportamiento de Velocidad por Fecha</h2>
-                    <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Visualización del volumen de entrega (Story Points) mapeado contra la escala temporal del proyecto.</p>
-                    <div style="height:350px; position:relative;"><canvas id="projTimeTrendChart"></canvas></div>
-                </div>
+            
+            <div style="margin-top: 50px;">
+                <p style="font-size: 0.9rem; color: var(--text-dim);">Luis Barragán, PhD | Senior BI Lead & Data Strategist</p>
             </div>
+        </footer>
 
-
-        </section>
-
-    </main>
-
-    <!-- ===================== PROJECT MODAL ===================== -->
-    <div class="modal-overlay" id="projectModal">
-        <div class="modal-box">
-            <h2 id="modalTitle">➕ Nuevo Proyecto</h2>
-            <input type="hidden" id="modalProjectId" value="">
-
-            <div style="display:grid; grid-template-columns: 100px 1fr; gap:1.5rem;">
-                <div class="form-field">
-                    <label>ID</label>
-                    <input type="text" id="modalProjectDisplayId" placeholder="Ej: 1">
-                </div>
-                <div class="form-field">
-                    <label>Nombre del Proyecto *</label>
-                    <input type="text" id="modalProjectName" placeholder="Ej: Costos Ecommerce Q2">
-                </div>
-            </div>
-            <div class="form-field">
-                <label>Descripción</label>
-                <input type="text" id="modalProjectDesc" placeholder="Breve descripción del objetivo">
-            </div>
-            <div class="form-field">
-                <label>Estado</label>
-                <select id="modalProjectStatus">
-                    <option>Activo</option>
-                    <option>En Pausa</option>
-                    <option>Completado</option>
-                    <option>Cancelado</option>
-                    <option>Cerrado</option>
-                </select>
-            </div>
-            <div class="form-field">
-                <label>🏢 Área de Negocio</label>
-                <select id="modalProjectArea"></select>
-            </div>
-            <div class="form-field">
-                <label>⚡ Prioridad del Proyecto</label>
-                <select id="modalProjectPriority">
-                    <option value="Normal">🟡 P3 — Normal</option>
-                    <option value="Crítico">🔴 P1 — Crítico</option>
-                    <option value="Urgente">🟠 P2 — Urgente</option>
-                    <option value="Diferible">🔵 P4 — Diferible</option>
-                </select>
-            </div>
-
-            <div style="display:flex; gap:1rem; margin-top:2rem;">
-                <button class="btn-primary" onclick="saveProjectFromModal()" style="flex:1;">💾 Guardar Proyecto</button>
-                <button onclick="closeProjectModal()" style="flex:1; padding:0.8rem; border:1px solid #e2e8f0; border-radius:12px; cursor:pointer; background:white; font-weight:600;">✖ Cancelar</button>
-            </div>
-        </div>
     </div>
-
-    <!-- ===================== AREA MODAL ===================== -->
-    <div class="modal-overlay" id="areaModal">
-        <div class="modal-box" style="width:460px;">
-            <h2 id="areaModalTitle">🏢 Nueva Área de Negocio</h2>
-            <input type="hidden" id="areaModalKey" value="">
-            <div class="form-field">
-                <label>Nombre del Área *</label>
-                <input type="text" id="areaModalName" placeholder="Ej: Supply Chain">
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                <div class="form-field">
-                    <label>Emoji</label>
-                    <input type="text" id="areaModalEmoji" placeholder="🔵" style="font-size:1.5rem; text-align:center;">
-                </div>
-                <div class="form-field">
-                    <label>Color del Área</label>
-                    <div style="display:flex; align-items:center; gap:0.8rem;">
-                        <input type="color" id="areaModalColor" value="#0057b8" style="width:50px; height:40px; border:none; background:none; cursor:pointer; padding:0;">
-                        <input type="text" id="areaModalColorHex" value="#0057b8" placeholder="#0057b8" style="flex:1;" oninput="syncColorFromHex()">
-                    </div>
-                </div>
-            </div>
-            <!-- Preview -->
-            <div style="margin-top:0.5rem; padding:0.8rem 1rem; border-radius:10px; border:1px solid var(--border-glass); background:#f8fafc; display:flex; align-items:center; gap:0.8rem;">
-                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Preview:</span>
-                <span id="areaPreviewBadge" style="display:inline-flex;align-items:center;gap:0.25rem;padding:0.2rem 0.65rem;border-radius:20px;font-size:0.75rem;font-weight:700;">🔵 Mi Área</span>
-            </div>
-            <!-- Palette quick pick -->
-            <div style="margin-top:1rem;">
-                <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; font-weight:600;">Paleta Rápida</label>
-                <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-                    <div onclick="pickAreaColor('#0057b8')" title="Azul" style="width:28px;height:28px;background:#0057b8;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#6d28d9')" title="Violeta" style="width:28px;height:28px;background:#6d28d9;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#ea580c')" title="Naranja" style="width:28px;height:28px;background:#ea580c;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#0ea5e9')" title="Cielo" style="width:28px;height:28px;background:#0ea5e9;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#475569')" title="Gris" style="width:28px;height:28px;background:#475569;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#10b981')" title="Verde" style="width:28px;height:28px;background:#10b981;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#f59e0b')" title="Amarillo" style="width:28px;height:28px;background:#f59e0b;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#ec4899')" title="Rosa" style="width:28px;height:28px;background:#ec4899;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#cc0000')" title="Rojo" style="width:28px;height:28px;background:#cc0000;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#059669')" title="Esmeralda" style="width:28px;height:28px;background:#059669;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#7c3aed')" title="Índigo" style="width:28px;height:28px;background:#7c3aed;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div onclick="pickAreaColor('#0891b2')" title="Teal" style="width:28px;height:28px;background:#0891b2;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>
-                </div>
-            </div>
-            <div style="display:flex; gap:1rem; margin-top:2rem;">
-                <button class="btn-primary" onclick="saveAreaFromModal()" style="flex:1;">💾 Guardar Área</button>
-                <button onclick="closeAreaModal()" style="flex:1; padding:0.8rem; border:1px solid #e2e8f0; border-radius:12px; cursor:pointer; background:white; font-weight:600;">✖ Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================== TEAM MEMBER MODAL ===================== -->
-    <div class="modal-overlay" id="teamMemberModal">
-        <div class="modal-box" style="width:420px;">
-            <h2 id="teamMemberModalTitle">👤 Nuevo Integrante</h2>
-            <input type="hidden" id="teamMemberModalKey" value="">
-            <div class="form-field">
-                <label>Nombre *</label>
-                <input type="text" id="teamMemberName" placeholder="Ej: Carlos">
-            </div>
-            <div class="form-field">
-                <label>Rol / Puesto</label>
-                <input type="text" id="teamMemberRole" placeholder="Ej: Data Engineer">
-            </div>
-            <div class="form-field">
-                <label>Color de Identificación</label>
-                <div style="display:flex; align-items:center; gap:0.8rem;">
-                    <input type="color" id="teamMemberColor" value="#0057b8" style="width:50px;height:40px;border:none;background:none;cursor:pointer;padding:0;">
-                    <span id="teamMemberColorPreview" style="flex:1;padding:0.5rem 1rem;border-radius:8px;font-weight:700;background:#0057b815;color:#0057b8;font-size:0.9rem;">Vista previa</span>
-                </div>
-            </div>
-            <div style="display:flex; gap:1rem; margin-top:2rem;">
-                <button class="btn-primary" onclick="saveTeamMemberFromModal()" style="flex:1;">💾 Guardar Integrante</button>
-                <button onclick="closeTeamMemberModal()" style="flex:1; padding:0.8rem; border:1px solid #e2e8f0; border-radius:12px; cursor:pointer; background:white; font-weight:600;">✖ Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
-
 </html>
