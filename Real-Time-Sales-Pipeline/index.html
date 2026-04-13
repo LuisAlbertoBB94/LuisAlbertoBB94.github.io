@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Sales Pipeline | Luis Barragan, PhD</title>
+    <title>Pipeline de Ventas en Tiempo Real | Luis Barragán, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true, theme: 'dark', themeVariables: { primaryColor: '#3b82f6', edgeLabelBackground: '#0f172a', tertiaryColor: '#1e293b' }});</script>
+    <script>mermaid.initialize({startOnLoad:true, theme: 'dark'});</script>
     <style>
         :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
+            --primary: #020617;
+            --secondary: #0f172a;
             --accent: #3b82f6;
-            --success: #10b981;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --border: #334155;
             --card-bg: #1e293b;
+            --border: #334155;
         }
 
         body {
@@ -27,85 +27,124 @@
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 40px;
-            margin-bottom: 60px;
-        }
-
-        .back-link {
-            text-decoration: none;
-            color: white;
-            background: var(--secondary);
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: translateX(-5px);
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 10px;
-            letter-spacing: -1px;
-        }
-
-        .meta-tags {
+        /* Hero Styling */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.8)), 
+                        url('images/slide_1.png');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            max-width: 800px;
             margin-top: 20px;
         }
 
-        .tag {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            border: 1px solid var(--accent);
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        section {
-            margin-bottom: 80px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin-bottom: 40px;
-        }
-
-        .grid {
+        /* Case Study Sections */
+        .section-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 120px;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
+        .section-split.reverse {
+            direction: rtl;
+        }
+
+        .section-split.reverse .text-content {
+            direction: ltr;
+        }
+
+        .image-content img {
+            width: 100%;
             border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             border: 1px solid var(--border);
         }
 
-        .kpi-container {
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        h3 {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        /* Technical Cards */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .tech-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .tech-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        /* Live Sim Styling (From previous version but polished) */
+        .dashboard-sim {
+            background: var(--secondary);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-top: 100px;
+        }
+
+        .kpi-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
@@ -113,459 +152,162 @@
         }
 
         .kpi-box {
-            background: #161e2e;
+            background: var(--primary);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             border: 1px solid var(--border);
         }
 
-        .kpi-box span {
-            display: block;
+        .kpi-value { font-size: 2rem; font-weight: 800; color: var(--accent); }
+        .kpi-label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
         }
 
-        .kpi-value {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .kpi-label {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .mermaid {
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
+        .btn-back {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
             border: 1px solid var(--border);
-        }
-
-        /* Live Dashboard Simulations */
-        .dashboard-mockup {
-            background: #0a0f1d;
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid var(--border);
-            margin: 40px 0;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .chart-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .chart-box {
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .chart-title {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Pulse Line Chart Simulation */
-        .pulse-line {
-            height: 150px;
-            display: flex;
-            align-items: flex-end;
-            gap: 8px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pulse-bar {
-            flex: 1;
-            background: linear-gradient(to top, var(--accent), #60a5fa);
-            border-radius: 4px 4px 0 0;
-            transition: height 1s ease;
-            position: relative;
-        }
-
-        .pulse-bar::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        /* Category Mix Simulation */
-        .category-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .cat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-        }
-
-        .cat-bar-bg {
-            flex: 1;
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .cat-bar-fill {
-            height: 100%;
-            border-radius: 4px;
-        }
-
-        .tech { background: #003B5C; width: 65%; }
-        .paper { background: #E6A700; width: 25%; }
-        .furniture { background: #4A5D23; width: 10%; }
-
-        .diagram-img {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: contain;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            filter: grayscale(0.2) brightness(0.9);
-            transition: all 0.3s ease;
-        }
-
-        .diagram-img:hover {
-            filter: grayscale(0) brightness(1);
-            transform: scale(1.02);
-        }
-
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .mermaid {
-            background: rgba(255,255,255,0.02);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin: 0;
-        }
-
-        .tab-content { display: block; margin-bottom: 60px; }
-        .tab-title { 
-            font-size: 1.2rem; 
-            color: var(--accent); 
-            margin-bottom: 20px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-        }
-
-        /* Data Table Style */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            margin-top: 20px;
-        }
-        .data-table th {
-            text-align: left;
-            background: rgba(255,255,255,0.05);
-            padding: 12px;
-            color: var(--text-dim);
-            border-bottom: 1px solid var(--border);
-        }
-        .data-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .charcoal { background: #424242; }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding-top: 40px;
-            text-align: center;
-            color: var(--text-dim);
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
-            .grid, .kpi-container, .chart-row, .architecture-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; }
-            .meta-tags { flex-wrap: wrap; gap: 6px; }
-            .back-link { padding: 10px 16px; font-size: 0.85rem; }
-            .kpi-value { font-size: 1.4rem; }
-            .data-table { font-size: 0.75rem; }
-            .data-table th, .data-table td { padding: 8px 6px; }
+            .section-split { grid-template-columns: 1fr; gap: 30px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .kpi-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <nav class="back-nav">
+        <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver</a>
+    </nav>
+
+    <header class="hero">
+        <h3>Caso de Éxito: Retail Analytics</h3>
+        <h1>Real-Time Sales Engine</h1>
+        <p>Arquitectura de datos de alta disponibilidad para el monitoreo global de transacciones con latencia inferior a 1 hora.</p>
+    </header>
+
     <div class="container">
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
-        
-        <header>
-            <div class="tag" style="display: inline-block; margin-bottom: 10px;">EXECUTIVE SUCCESS CASE</div>
-            <h1>Real-Time Sales Pipeline</h1>
-            <p class="text-dim" style="font-size: 1.2rem; max-width: 800px;">
-                Arquitectura ELT de alta disponibilidad escalada para una <strong>Empresa Líder en Retail</strong>, permitiendo el monitoreo global de transacciones POS con latencia inferios a 10 minutos.
-            </p>
-            
-            <div class="meta-tags">
-                <img src="https://img.shields.io/badge/Airflow-017CEE?style=flat&logo=apache-airflow&logoColor=white" alt="Airflow">
-                <img src="https://img.shields.io/badge/GCP-4285F4?style=flat&logo=google-cloud&logoColor=white" alt="GCP">
-                <img src="https://img.shields.io/badge/Dataproc-669DF6?style=flat&logo=google-cloud&logoColor=white" alt="Dataproc">
-                <img src="https://img.shields.io/badge/BigQuery-669DF6?style=flat&logo=google-cloud&logoColor=white" alt="BigQuery">
-            </div>
-        </header>
 
-        <section id="challenge">
-            <h2><i class="fas fa-exclamation-triangle" style="color: #fbbf24;"></i> El Desafío</h2>
-            <div class="grid">
-                <div>
-                    <p>La operación global de retail generaba millones de transacciones por hora que se procesaban en batches diarios. Esto impedía a la Dirección General tomar decisiones rápidas sobre inventarios y promociones durante el horario comercial.</p>
-                    <p>Necesitábamos una solución que:</p>
-                    <ul style="color: var(--text-dim);">
-                        <li>Redujo la latencia de datos de 24 horas a menos de 10 minutos.</li>
-                        <li>Procesamiento confiable con integridad total del dato de origen.</li>
-                        <li>Arquitectura pensada para eficiencia de costos (FinOps).</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h4 style="margin-top: 0; color: var(--accent);">Impacto de Negocio</h4>
-                    <p style="font-size: 0.9rem;">La visibilidad en tiempo real permitió reducir el quiebre de stock en un 15% durante eventos de alta demanda y optimizar la rotación de productos perecederos.</p>
-                </div>
+        <!-- FASE 1: EL DESAFÍO -->
+        <section class="section-split">
+            <div class="text-content">
+                <h3>01. El Problema</h3>
+                <h2>Decisiones de "Ayer" no sirven Hoy</h2>
+                <p>En el mundo del retail, los datos procesados en batches diarios ocultan crisis de inventario y oportunidades de venta perdidas. </p>
+                <p>Implementamos un motor capaz de reducir la latencia de **24 horas a minutos**, permitiendo que la dirección reaccione al pulso real del negocio.</p>
+            </div>
+            <div class="image-content">
+                <img src="images/slide_2.png" alt="Data Latency Problem">
             </div>
         </section>
 
-        <section id="architecture">
-            <h2><i class="fas fa-network-wired"></i> Arquitectura Funcional</h2>
-            <div class="architecture-grid">
-                <div>
-                    <div class="mermaid">
-                        graph TD
-                            subgraph "RECOLECCIÓN"
-                                OR["Origen de Datos <br/>(ERP Transaccional)"]
-                                Z1[("Zona de Recepción <br/>(Cifrado)")]
-                            end
-                            
-                            subgraph "PROCESAMIENTO"
-                                Z2[("Zona de Refinamiento <br/>(Validación)")]
-                                SP{{"Motor de Reglas <br/>(Cómputo Elástico)"}}
-                            end
-                            
-                            subgraph "OPTIMIZACIÓN"
-                                Z3[("Capa Semántica <br/>(Analytical Model)")]
-                                BI["Dashboard de Control <br/>(Insights)"]
-                            end
-
-                            OR ==> Z1
-                            Z1 --> SP
-                            SP --> Z2
-                            Z2 --> Z3
-                            Z3 --> BI
-
-                            style OR fill:#1e293b,color:#fff,stroke:#3b82f6
-                            style BI fill:#1e293b,color:#3b82f6,stroke:#3b82f6
-                            style SP fill:#0f172a,color:#fff,stroke:#3b82f6
-                            style Z1 fill:#0f172a,stroke-dasharray: 5 5
-                            style Z2 fill:#0f172a,stroke-dasharray: 5 5
-                            style Z3 fill:#0f172a,stroke-dasharray: 5 5
-                    </div>
+        <!-- FASE 2: ARQUITECTURA -->
+        <section class="section-split reverse">
+            <div class="text-content">
+                <h3>02. La Solución</h3>
+                <h2>Arquitectura de Grado Industrial</h2>
+                <p>Diseñamos un pipeline modular basado en **GCP**, utilizando **Cloud Composer** para la orquestación y **Spark en Dataproc** para el procesamiento pesado.</p>
+                <div class="mermaid">
+                    graph TD
+                        Source[SAP HANA] --> Landing[GCS Landing]
+                        Landing --> Spark[Dataproc Spark]
+                        Spark --> Model[GCS Model]
+                        Model --> BQ[BigQuery]
+                        BQ --> BI[Looker Studio]
                 </div>
-                <div style="display: flex; flex-direction: column; justify-content: center;">
-                    <p>Diseño e implementación de una infraestructura de datos de alta disponibilidad para el procesamiento masivo de transacciones en tiempo real.</p>
-                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-dim);">
-                        Este flujo garantiza la integridad y el gobierno de los datos desde la extracción segura en sistemas transaccionales hasta la capa analítica optimizada.
-                    </p>
-                    <ul style="color: var(--text-dim); font-size: 0.9rem; margin-top: 15px;">
-                        <li><strong>Fase 1: Recolección</strong> — Ingesta segura con mínima latencia.</li>
-                        <li><strong>Fase 2: Procesamiento</strong> — Transformación multietapa y validación financiera.</li>
-                        <li><strong>Fase 3: Optimización</strong> — Materialización de vistas para consumo analítico de alto rendimiento.</li>
-                    </ul>
-                </div>
+            </div>
+            <div class="image-content">
+                <img src="images/slide_3.png" alt="Architecture Blueprint">
             </div>
         </section>
 
-        <section id="pipeline">
-            <h2><i class="fas fa-cogs"></i> Pipeline Elástico (Estrategia FinOps)</h2>
-            <p>Para optimizar los costos operativos, el pipeline utiliza recursos de cómputo elásticos que se crean bajo demanda y se auto-eliminan al finalizar el procesamiento pesado de datos (TTL automático).</p>
+        <!-- FASE 3: FINOPS -->
+        <section class="section-split">
+            <div class="text-content">
+                <h3>03. Estrategia FinOps</h3>
+                <h2>Cómputo Efímero y Eficiencia</h2>
+                <p>No desperdiciamos recursos. El pipeline utiliza **Clusters Transientes** que se crean solo para procesar la carga incremental y se auto-destruyen al finalizar.</p>
+                <p>Esta estrategia permitió una **reducción del 40% en los costos operativos de nube** sin sacrificar rendimiento.</p>
+            </div>
+            <div class="image-content">
+                <img src="images/slide_4.png" alt="FinOps Strategy">
+            </div>
         </section>
 
-        <section id="results">
-            <h2><i class="fas fa-chart-bar" style="color: var(--success);"></i> Dashboard de Control Multi-Vista</h2>
-            <p>Este componente interactivo replica la visibilidad del flujo operativo, permitiendo monitorear el pulso del negocio con integridad de datos garantizada.</p>
-            
-            <div class="kpi-container" style="margin-bottom: 30px;">
-                <div class="kpi-box">
-                    <span class="kpi-value">$2.45 M</span>
-                    <span class="kpi-label">Venta Neta (Mock)</span>
-                </div>
-                <div class="kpi-box">
-                    <span class="kpi-value">$890.0 K</span>
-                    <span class="kpi-label">Margen Bruto</span>
-                </div>
-                <div class="kpi-box" style="border-color: var(--success);">
-                    <span class="kpi-value">$350,00</span>
-                    <span class="kpi-label">Ticket Promedio</span>
-                </div>
+        <!-- FASE 4: SAP INTEGRATION -->
+        <section class="section-split reverse">
+            <div class="text-content">
+                <h3>04. Reto Técnico</h3>
+                <h2>Paridad Financiera SAP HANA</h2>
+                <p>El mayor desafío fue mantener una paridad del 100% con los sistemas legacy financieros. Desarrollamos reglas de negocio complejas inyectadas directamente en la capa de transformación.</p>
+                <p>Puenteamos la robustez de SAP con la agilidad de la nube.</p>
             </div>
-
-            <!-- Dashboard Sections Unrolled -->
-            <div class="dashboard-sections">
-                
-                <!-- Section: ejecutivo -->
-                <div class="tab-content">
-                    <div class="tab-title">01. Vista Ejecutiva (Venta Intradía)</div>
-                    <div class="chart-row">
-                        <div class="chart-box">
-                            <div class="chart-title">VENTA POR HORA (INTRADÍA)</div>
-                            <div class="pulse-line">
-                                <div class="pulse-bar" style="height: 15%;" data-label="$41k"></div>
-                                <div class="pulse-bar" style="height: 25%;" data-label="$125k"></div>
-                                <div class="pulse-bar" style="height: 12%;" data-label="$37k"></div>
-                                <div class="pulse-bar" style="height: 55%;" data-label="$362k"></div>
-                                <div class="pulse-bar" style="height: 40%;" data-label="$207k"></div>
-                                <div class="pulse-bar" style="height: 65%;" data-label="$162k"></div>
-                                <div class="pulse-bar" style="height: 85%;" data-label="$372k"></div>
-                                <div class="pulse-bar" style="height: 98%;" data-label="$457k"></div>
-                            </div>
-                        </div>
-                        <div class="chart-box">
-                            <div class="chart-title">VENTA POR CATEGORÍA (MOCK)</div>
-                            <div class="category-list">
-                                <div class="cat-item">
-                                    <span style="width: 80px;">Línea A</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 85%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$950k</span>
-                                </div>
-                                <div class="cat-item">
-                                    <span style="width: 80px;">Línea B</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill charcoal" style="width: 60%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$540k</span>
-                                </div>
-                                <div class="cat-item">
-                                    <span style="width: 80px;">Línea C</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill tech" style="width: 45%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$430k</span>
-                                </div>
-                                <div class="cat-item">
-                                    <span style="width: 80px;">Línea D</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill furniture" style="width: 30%;"></div></div>
-                                    <span style="font-size: 0.7rem;">$310k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Producto -->
-                <div class="tab-content">
-                    <div class="tab-title">02. Análisis de Mix & Performance</div>
-                    <div class="chart-row">
-                        <div class="chart-box" style="text-align: center;">
-                            <div class="chart-title">MIX DE VENTA POR CATEGORÍA (%)</div>
-                            <svg viewBox="0 0 36 36" style="width: 180px; height: 180px;">
-                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="4"></circle>
-                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#E6A700" stroke-width="4" stroke-dasharray="38.5 61.5" stroke-dashoffset="25"></circle>
-                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#003B5C" stroke-width="4" stroke-dasharray="20 80" stroke-dashoffset="-13.5"></circle>
-                                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#4A5D23" stroke-width="4" stroke-dasharray="18.4 81.6" stroke-dashoffset="-33.5"></circle>
-                                <text x="18" y="20" font-size="3" text-anchor="middle" fill="white">Distribución %</text>
-                            </svg>
-                        </div>
-                        <div class="chart-box">
-                            <div class="chart-title">TOP SKU - RANKING (MOCK DATA)</div>
-                            <div class="category-list">
-                                <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">ITEM-001</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 90%;"></div></div>
-                                    <span>$95k</span>
-                                </div>
-                                <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">ITEM-002</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 82%;"></div></div>
-                                    <span>$80k</span>
-                                </div>
-                                <div class="cat-item">
-                                    <span style="font-size: 0.6rem;">ITEM-003</span>
-                                    <div class="cat-bar-bg"><div class="cat-bar-fill paper" style="width: 65%;"></div></div>
-                                    <span>$61k</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section: Cubo -->
-                <div class="tab-content">
-                    <div class="tab-title">03. Detalle Operativo del Data Lake</div>
-                    <div style="overflow-x: auto;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Tienda</th>
-                                    <th>Venta</th>
-                                    <th>Utilidad</th>
-                                    <th>Margen %</th>
-                                    <th>Piezas</th>
-                                    <th>Ticket Prom</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>A01 - Región Alpha</td><td>$84k</td><td>$26k</td><td>0,31%</td><td>2.5k</td><td>$340,00</td></tr>
-                                <tr><td>A02 - Región Beta</td><td>$72k</td><td>$21k</td><td>0,29%</td><td>1.8k</td><td>$410,00</td></tr>
-                                <tr><td>A03 - Región Gamma</td><td>$68k</td><td>$19k</td><td>0,28%</td><td>1.2k</td><td>$520,00</td></tr>
-                                <tr><td>A04 - Región Delta</td><td>$55k</td><td>$15k</td><td>0,27%</td><td>900</td><td>$290,00</td></tr>
-                                <tr style="background: rgba(16,185,129,0.1)">
-                                    <td><strong>TOTAL GLOBAL (DEMO)</strong></td>
-                                    <td><strong>$2,45 M</strong></td>
-                                    <td><strong>$890,00 k</strong></td>
-                                    <td><strong>0,36%</strong></td>
-                                    <td><strong>120 k</strong></td>
-                                    <td><strong>$350,00</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="image-content">
+                <img src="images/slide_5.png" alt="SAP HANA Integration">
             </div>
+        </section>
 
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="../index.html" class="back-link" style="margin-bottom: 0;">
-                    <i class="fas fa-arrow-left"></i> Explorar Más Proyectos
+        <!-- RECURSOS TÉCNICOS -->
+        <section style="margin-top: 100px;">
+            <h2 style="text-align: center;">Deep Dive: Repositorio Técnico</h2>
+            <p style="text-align: center; color: var(--text-dim);">Explora los componentes de código que hacen posible esta solución.</p>
+            <div class="tech-grid">
+                <a href="01_Infrastructure/" class="tech-card">
+                    <i class="fas fa-server"></i>
+                    <h4>Infraestructura</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Dataproc & Config</p>
+                </a>
+                <a href="02_Extraction/" class="tech-card">
+                    <i class="fas fa-file-export"></i>
+                    <h4>Extracción</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">SAP HANA Spark Scripts</p>
+                </a>
+                <a href="03_Transformation/" class="tech-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Transformación</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Data Cleaning & Logic</p>
+                </a>
+                <a href="04_Orchestration/" class="tech-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h4>Orquestación</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Airflow DAGs</p>
                 </a>
             </div>
         </section>
 
-        <footer>
-            <p>Luis Barragan, PhD | Senior BI Lead</p>
-            <div style="margin-top: 15px;">
-                <a href="https://www.linkedin.com/in/LuisBarraganBonilla" style="color: var(--text-dim); margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/LuisAlbertoBB94" style="color: var(--text-dim); margin: 0 10px;"><i class="fab fa-github"></i></a>
+        <!-- DASHBOARD SIM -->
+        <section class="dashboard-sim">
+            <h3>Visualización en Tiempo Real</h3>
+            <h2>El Pulso del Negocio</h2>
+            <div class="kpi-row">
+                <div class="kpi-box"><span class="kpi-value">$2.45M</span><br/><span class="kpi-label">Venta Neta</span></div>
+                <div class="kpi-box"><span class="kpi-value">120K</span><br/><span class="kpi-label">Transacciones</span></div>
+                <div class="kpi-box"><span class="kpi-value">31%</span><br/><span class="kpi-label">Margen Bruto</span></div>
             </div>
+            <div style="text-align: center;">
+                <img src="images/slide_6.png" style="width: 100%; max-width: 800px; border-radius: 10px; border: 1px solid var(--border);" alt="Dashboard Example">
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 100px; border-top: 1px solid var(--border); padding-top: 40px;">
+            <p>Luis Barragán, PhD | Senior BI Lead</p>
+            <img src="https://img.shields.io/badge/LinkedIn-Luis%20Barragan-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn">
         </footer>
+
     </div>
 
 </body>
