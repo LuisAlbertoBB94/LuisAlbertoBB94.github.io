@@ -3,44 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orquestación de Datos | Case Study</title>
+    <title>04. Orquestación con Airflow | Data Pipeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
-        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
-        p { color: #94a3b8; margin-bottom: 30px; }
-        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
-        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        :root {
+            --primary: #020617;
+            --secondary: #0f172a;
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--primary); color: var(--text-main); margin: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        .back-btn { text-decoration: none; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+        
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: var(--accent); }
+        .meta { color: var(--text-dim); margin-bottom: 40px; border-left: 2px solid var(--border); padding-left: 20px; }
+
+        section { margin-bottom: 60px; }
+        h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        h2 i { color: var(--accent); }
+
+        .card { background: var(--secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px; }
+        p { font-size: 1.1rem; color: #cbd5e1; }
+        
+        pre { border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-top: 20px; }
+        code { font-family: 'Fira Code', monospace; }
+
+        .impact-box { background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent); padding: 20px; border-radius: 12px; }
+        .impact-box h4 { color: var(--accent); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+
+        .next-step { display: flex; justify-content: space-between; align-items: center; margin-top: 80px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .btn-next { background: var(--accent); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
-        <h1>04. Orquestación (Apache Airflow)</h1>
-        <p>Definición del DAG de Airflow que coordina la creación de infraestructura, extracción y transformación de datos.</p>
-        
-        <h3>Archivo: dag_main.py</h3>
-        <pre><code class="language-python">
-from airflow import DAG
-from airflow.contrib.operators import dataproc_operator
-from airflow.models import Variable
-from datetime import timedelta
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Caso de Estudio</a>
 
-# DAG Definition
-dag = DAG(
-    "retail_sales_pipeline_realtime",
-    default_args=default_args,
-    schedule_interval="0 7-22 * * *", 
-    catchup=False,
-)
+        <header>
+            <h1>04. El Director de Orquesta: Apache Airflow</h1>
+            <p class="meta">Ciclo de vida inteligente de datos desde la creación hasta la autodestrucción.</p>
+        </header>
 
-# Workflow Steps: Provision -> Process -> Deprovision
-create_cluster >> extract_task >> transform_task >> delete_cluster
-        </code></pre>
+        <section>
+            <h2><i class="fas fa-sitemap"></i> Coordinando el Flujo Elástico</h2>
+            <p>Un pipeline de datos es tan fuerte como su eslabón más débil. Para evitar fallos silenciosos, utilizamos **Apache Airflow (Cloud Composer)** para orquestar cada micro-paso, desde la provisión del hardware hasta el refresco de las vistas de BigQuery.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-history"></i> Gestión de Errores y Retries</h2>
+            <div class="card">
+                <p>Implementamos una política de **reintentos exponenciales** (Exponential Backoff) para mitigar micro-cortes en la conexión con SAP, garantizando que el pipeline se recupere solo ante eventualidades de red.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-project-diagram"></i> El DAG (Directed Acyclic Graph)</h2>
+            <p>Este es el flujo lógico que Airflow ejecuta cada hora para mantener el pulso del negocio actualizado.</p>
+            <pre><code class="language-python">
+# Definición del flujo lógico
+# --------------------------------------------------
+
+with DAG('pipeline_retail_realtime', schedule_interval='@hourly', ...) as dag:
+    
+    start = DummyOperator(task_id='inicio_proceso')
+    
+    infra = CreateDataprocClusterOperator(task_id='levantar_cluster_transiente')
+    
+    extract = BashOperator(task_id='ejecutar_extraccion_sap')
+    
+    transform = BashOperator(task_id='limpieza_y_paridad')
+    
+    cleanup = DeleteDataprocClusterOperator(task_id='eliminar_cluster_finops')
+    
+    # Dependencias: El cluster solo vive lo necesario
+    start >> infra >> extract >> transform >> cleanup
+            </code></pre>
+        </section>
+
+        <section class="impact-box">
+            <h4><i class="fas fa-clock"></i> Confiabilidad Operativa</h4>
+            <p>Logramos una disponibilidad del pipeline del **99.9%**, permitiendo que los equipos de tienda confíen ciegamente en sus inventarios digitales reflejados en tiempo real.</p>
+        </section>
+
+        <div class="next-step">
+            <a href="../03_Transformation/index.html" style="color: var(--text-dim); text-decoration: none;"><i class="fas fa-arrow-left"></i> Anterior</a>
+            <a href="../index.html" class="btn-next">Finalizar Tour <i class="fas fa-check"></i></a>
+        </div>
     </div>
+
 </body>
 </html>

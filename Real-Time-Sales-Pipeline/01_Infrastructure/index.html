@@ -3,46 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración de Infraestructura | Case Study</title>
+    <title>01. Infraestructura Elástica & FinOps | Data Pipeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
-        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
-        p { color: #94a3b8; margin-bottom: 30px; }
-        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
-        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        :root {
+            --primary: #020617;
+            --secondary: #0f172a;
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--primary); color: var(--text-main); margin: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        .back-btn { text-decoration: none; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+        
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: var(--accent); }
+        .meta { color: var(--text-dim); margin-bottom: 40px; border-left: 2px solid var(--border); padding-left: 20px; }
+
+        section { margin-bottom: 60px; }
+        h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        h2 i { color: var(--accent); }
+
+        .card { background: var(--secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px; }
+        p { font-size: 1.1rem; color: #cbd5e1; }
+        
+        pre { border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-top: 20px; }
+        code { font-family: 'Fira Code', monospace; }
+
+        .impact-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 20px; border-radius: 12px; }
+        .impact-box h4 { color: #10b981; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+
+        .next-step { display: flex; justify-content: space-between; align-items: center; margin-top: 80px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .btn-next { background: var(--accent); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
-        <h1>01. Configuración de Infraestructura</h1>
-        <p>Definición del cluster de Dataproc (Spark) optimizado para costos mediante configuración de borrado automático (TTL).</p>
-        
-        <h3>Archivo: cluster_config.json</h3>
-        <pre><code class="language-json">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Caso de Estudio</a>
+
+        <header>
+            <h1>01. Infraestructura Elástica & FinOps</h1>
+            <p class="meta">Diseño de una arquitectura de cómputo efímero para optimización de presupuestos de nube.</p>
+        </header>
+
+        <section>
+            <h2><i class="fas fa-exclamation-circle"></i> El Desafío Cloud</h2>
+            <p>Mantener un cluster de procesamiento encendido 24/7 para un pipeline que solo corre en intervalos específicos es una ineficiencia financiera crítica. En este proyecto, el objetivo era garantizar recursos de alto rendimiento (Spark) sin disparar los costos de Google Cloud.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-lightbulb"></i> La Estrategia: Clusters Transientes</h2>
+            <div class="card">
+                <p>Implementamos la configuración de **TTL (Time To Live)** e **Idle Deletion**. El cluster se crea dinámicamente, procesa la carga y se destruye automáticamente tras 60 minutos de inactividad o al finalizar el DAG.</p>
+                <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 10px;">
+                    *Tecnologías: Google Cloud Dataproc, e2-standard-4 instances.*
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-code"></i> Configuración de Infraestructura (JSON)</h2>
+            <p>Esta es la definición del cluster que Airflow inyecta en la API de GCP para levantar la infraestructura bajo demanda.</p>
+            <pre><code class="language-json">
 {
-    "cluster_name": "high-performance-etl-cluster",
-    "region": "us-central1",
+    "cluster_name": "pipeline-cluster-dynamic",
     "config": {
         "master_config": {
             "num_instances": 1,
-            "machine_type_uri": "e2-standard-4"
+            "machine_type_uri": "e2-standard-4",
+            "disk_config": { "boot_disk_size_gb": 100 }
         },
         "worker_config": {
             "num_instances": 2,
             "machine_type_uri": "e2-standard-4"
         },
         "lifecycle_config": {
-            "idle_delete_ttl": "3600s"
+            "idle_delete_ttl": "3600s", // Autodestrucción tras 1 hora de ocio
+            "auto_delete_ttl": "7200s"  // Límite máximo de vida de 2 horas
         }
     }
 }
-        </code></pre>
+            </code></pre>
+        </section>
+
+        <section class="impact-box">
+            <h4><i class="fas fa-chart-line"></i> Impacto de Negocio</h4>
+            <p>Gracias a la infraestructura efímera, logramos una **reducción del 40% en la facturación mensual** de Dataproc, manteniendo la capacidad de procesar millones de registros en minutos cuando el negocio lo requiere.</p>
+        </section>
+
+        <div class="next-step">
+            <span>Siguiente Paso: Extracción SAP HANA</span>
+            <a href="../02_Extraction/index.html" class="btn-next">Ver Extracción <i class="fas fa-arrow-right"></i></a>
+        </div>
     </div>
+
 </body>
 </html>

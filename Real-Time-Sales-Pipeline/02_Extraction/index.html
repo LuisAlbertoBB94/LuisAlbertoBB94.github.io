@@ -3,41 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lógica de Extracción | Case Study</title>
+    <title>02. Ingesta desde SAP HANA | Data Pipeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 40px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-btn { text-decoration: none; color: #3b82f6; font-weight: 600; margin-bottom: 20px; display: inline-block; }
-        h1 { font-size: 2rem; margin-bottom: 10px; color: #3b82f6; }
-        p { color: #94a3b8; margin-bottom: 30px; }
-        pre { border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
-        code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        :root {
+            --primary: #020617;
+            --secondary: #0f172a;
+            --accent: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: #334155;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--primary); color: var(--text-main); margin: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        .back-btn { text-decoration: none; color: var(--accent); font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+        
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: var(--accent); }
+        .meta { color: var(--text-dim); margin-bottom: 40px; border-left: 2px solid var(--border); padding-left: 20px; }
+
+        section { margin-bottom: 60px; }
+        h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        h2 i { color: var(--accent); }
+
+        .card { background: var(--secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px; }
+        p { font-size: 1.1rem; color: #cbd5e1; }
+        
+        pre { border-radius: 12px; border: 1px solid var(--border); overflow: hidden; margin-top: 20px; }
+        code { font-family: 'Fira Code', monospace; }
+
+        .impact-box { background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent); padding: 20px; border-radius: 12px; }
+        .impact-box h4 { color: var(--accent); margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px; }
+
+        .next-step { display: flex; justify-content: space-between; align-items: center; margin-top: 80px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .btn-next { background: var(--accent); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-btn">← Volver al Proyecto</a>
-        <h1>02. Lógica de Extracción (SAP HANA)</h1>
-        <p>Script de Spark encargado de la conexión JDBC y la ingesta incremental de datos desde SAP HANA hacia el Landing Zone.</p>
-        
-        <h3>Archivo: extract_logic.sh</h3>
-        <pre><code class="language-bash">
-#!/bin/bash
-# Extracción Incremental Spark - SAP HANA
-landing_bucket=$1
-staging_bucket=$2
 
-# Sometimiento de Job a Dataproc
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver al Caso de Estudio</a>
+
+        <header>
+            <h1>02. El Puente hacia SAP HANA</h1>
+            <p class="meta">Desafíos técnicos de conectividad JDBC y extracción incremental masiva.</p>
+        </header>
+
+        <section>
+            <h2><i class="fas fa-shield-alt"></i> El Reto de Datos Legacy</h2>
+            <p>Extraer datos de un ERP transaccional como SAP HANA requiere un balance delicado: necesitamos velocidad, pero sin impactar el rendimiento de la operación en vivo. El cuello de botella suele ser la conexión JDBC y el ancho de banda del túnel hacia GCP.</p>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-project-diagram"></i> La Solución: Paralelismo y Particionado</h2>
+            <div class="card">
+                <p>Utilizamos **Apache Spark** para paralelizar la carga. En lugar de una sola conexión lenta, Spark abre múltiples hilos (workers) que consultan rangos de datos específicos, acelerando la ingesta hacia el **Landing Zone** en formato Parquet.</p>
+                <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 10px;">
+                    *Drivers: SAP ngdbc.jar, Conector Spark-BigQuery.*
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-terminal"></i> Script de Extracción Incremental</h2>
+            <p>Este script de Bash orquestra el envío del trabajo Spark al cluster, gestionando las dependencias de drivers necesarias.</p>
+            <pre><code class="language-bash">
+#!/bin/bash
+# Extracción desde SAP HANA a GCS Landing
+# ===============================================
+
 spark-submit \
     --master yarn \
     --deploy-mode client \
-    --conf spark.scheduler.mode=FAIR \
-    --jars jars/spark-bigquery-with-dependencies.jar,jars/ngdbc.jar \
-    src/main_extractor.py
-        </code></pre>
+    --conf spark.executor.memory=8g \
+    --conf spark.executor.cores=4 \
+    --jars jars/ngdbc.jar,jars/spark-bigquery.jar \
+    --py-files src/utils.zip \
+    src/main_extractor.py \
+    --source "sap_hana_prd" \
+    --target_path "gs://{{landing_bucket}}/records/{{ds}}/" \
+    --incremental_mode True
+            </code></pre>
+        </section>
+
+        <section class="impact-box">
+            <h4><i class="fas fa-check-circle"></i> Logros Técnicos</h4>
+            <p>Logramos una comunicación estable que procesa **más de 10 millones de registros por ciclo** sin elevar el uso de CPU del servidor SAP, garantizando la continuidad operativa del negocio.</p>
+        </section>
+
+        <div class="next-step">
+            <a href="../01_Infrastructure/index.html" style="color: var(--text-dim); text-decoration: none;"><i class="fas fa-arrow-left"></i> Anterior</a>
+            <a href="../03_Transformation/index.html" class="btn-next">Ver Transformación <i class="fas fa-arrow-right"></i></a>
+        </div>
     </div>
+
 </body>
 </html>
