@@ -32,6 +32,24 @@
             border-radius: 50px; text-decoration: none; font-weight: 800;
             transition: all 0.3s; box-shadow: 0 10px 30px var(--accent-glow);
         }
+
+        .full-width-image {
+            width: 100%; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border); margin: 40px 0 80px;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+            position: relative;
+        }
+        .full-width-image img { width: 100%; display: block; }
+
+        .feature-grid {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -41,83 +59,71 @@
         
         <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Agile Product Management</span>
-            <h1>Scrum Portfolio Manager</h1>
-            <p class="lead" style="max-width: 900px; margin: 0 auto;">Plataforma analítica 100% Serverless diseñada para unificar la ejecución técnica con la visibilidad ejecutiva C-Level.</p>
+            <span class="section-tag">Agile BI Governance & OKR Alignment</span>
+            <h1>Agile Delivery Excellence</h1>
+            <p class="lead" style="max-width: 900px; margin: 0 auto;">Framework integral para la gestión de portafolios de BI, optimizando la ejecución técnica y garantizando transparencia total hacia el C-Suite.</p>
         </header>
-av>
 
     <div class="container">
 
 
-        <!-- FULL WIDTH DASHBOARD IMAGE -->
-        <div class="full-width-image">
-            <img src="assets/Resumen.png" alt="Resumen Global del Portafolio">
-        </div>
 
-        <!-- SLIDE 2: EL PROBLEMA -->
-        <section class="grid-2">
-            <div>
-                <div class="tag">El Desafío</div>
-                <h2>El Gap entre Data Engineering y la Dirección</h2>
-                <p>En mi experiencia como Líder Técnico, noté una fricción constante: plataformas como Jira o Azure DevOps son excelentes para los tickets de ingeniería corporativa, pero terribles para reportar de forma ejecutiva al C-Suite sin perder horas configurando reportes.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <span><strong>Falta de Visión Global:</strong> Difícil consolidar múltiples proyectos de Datos en un solo panel de salud.</span></li>
-                    <li><i class="fas fa-clock" style="color: var(--warning);"></i> <span><strong>Generación Manual de Reportes:</strong> Se perdían incontables horas extrayendo gráficas a PowerPoint para las juntas directivas.</span></li>
-                    <li><i class="fas fa-money-bill-wave"></i> <span><strong>Costos de Infraestructura:</strong> Sistemas sobredimensionados para equipos ágiles pequeños/híbridos.</span></li>
-                </ul>
+        <!-- BLOQUE 1: ESTRATEGIA -->
+        <section class="reveal">
+            <div class="tag">Visión Estratégica</div>
+            <h2>El Gap entre Ingeniería y Dirección</h2>
+            <p style="max-width: 800px; margin-bottom: 40px;">Como Head of BI, identifiqué que la fricción técnica (tickets, pipelines, bugs) a menudo oscurece la visión estratégica para los stakeholders. Este framework resuelve esa falta de visibilidad transformando la bitácora técnica en dashboards de salud organizacional.</p>
+            
+            <div class="full-width-image">
+                <img src="assets/Resumen.png" alt="Resumen Global del Portafolio">
             </div>
-            <div class="screenshot-box">
+
+            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="feature-card">
+                    <i class="fas fa-times-circle" style="color: var(--danger);"></i>
+                    <p><strong>Falta de Visión Global:</strong> Difícil consolidar múltiples proyectos en un solo panel de salud.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock" style="color: var(--warning);"></i>
+                    <p><strong>Generación Manual:</strong> Eliminación de horas perdidas extrayendo gráficas a PowerPoint.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOQUE 2: ARQUITECTURA -->
+        <section class="reveal">
+            <div class="tag">La Arquitectura</div>
+            <h2>Ingeniería Serverless & Cero Fricción</h2>
+            <p style="max-width: 800px; margin-bottom: 40px;">Diseñé una solución enfocada en la autonomía y la instantaneidad. Sin servidores, sin bases de datos externas: privacidad total y velocidad extrema.</p>
+            
+            <div class="full-width-image">
                 <img src="assets/Proyectos.png" alt="Gestión de Proyectos Scrum">
             </div>
         </section>
 
-        <!-- SLIDE 3: LA SOLUCIÓN TÉCNICA -->
-        <section class="grid-2 reverse">
-            <div>
-                <div class="tag">La Arquitectura</div>
-                <h2>Ingeniería Serverless & Cero Fricción</h2>
-                <p>Diseñé y programé una solución desde cero enfocada en la autonomía y la instantaneidad. Sin servidores, sin bases de datos externas, sin login.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-microchip"></i> <span><strong>100% Client-Side:</strong> Desarrollado en Vanilla JavaScript aprovechando al máximo la manipulación síncrona del DOM.</span></li>
-                    <li><i class="fas fa-database"></i> <span><strong>Motor LocalStorage:</strong> Un wrapper estructurado que guarda, versiona y vincula Sprints y Proyectos en la memoria local del navegador garantizando total privacidad.</span></li>
-                    <li><i class="fas fa-paint-brush"></i> <span><strong>Glassmorphism UI:</strong> Interfaz premium de rápida adopción basada en CSS moderno y flexbox.</span></li>
-                </ul>
-            </div>
-            <div class="screenshot-box">
+        <!-- BLOQUE 3: ANALYTICS -->
+        <section class="reveal">
+            <div class="tag">Algoritmia Analítica</div>
+            <h2>Métricas y Curvas de Rendimiento</h2>
+            <p style="max-width: 800px; margin-bottom: 40px;">Motor analítico (impulsado por Chart.js) que lee el progreso de las tareas y genera insights clave del marco ágil automáticamente.</p>
+            
+            <div class="full-width-image">
                 <img src="assets/Analytics de Equipo.png" alt="Analytics Individual del Equipo">
             </div>
-        </section>
 
-        <!-- SLIDE 4: BI AUTOMATIZADO -->
-        <section class="grid-2">
-            <div>
-                <div class="tag">Algoritmia Analítica</div>
-                <h2>Métricas y Curvas de Rendimiento Out-of-the-box</h2>
-                <p>La plataforma cuenta con un motor analítico (impulsado por Chart.js) que lee en tiempo real el progreso de las tareas (Story Points) y genera los insights clave del marco ágil automáticamente.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-fire"></i> <span><strong>Burndown & Burnup Carts:</strong> Seguimiento automático de la desviación contra el plan.</span></li>
-                    <li><i class="fas fa-user-astronaut"></i> <span><strong>Analytics de Equipo:</strong> Distribución de carga por integrante y curvas de velocidad histórica por perfil individual.</span></li>
-                </ul>
-            </div>
-            <div class="screenshot-box">
+            <div class="full-width-image">
                 <img src="assets/Analytics del Proyecto.png" alt="Analítica de Proyecto y Sprints">
             </div>
         </section>
 
-        <!-- SLIDE 5: EJECUCIÓN VS PRESENTACIÓN -->
-        <section class="grid-2 reverse">
-            <div>
-                <div class="tag">Modo Ejecutivo</div>
-                <h2>De la Bitácora a la Mesa Directiva en 1 clic</h2>
-                <p>Implementé un módulo específico para resolver la burocracia de los reportes. El sistema permite llevar la bitácora técnica diaria (Standups, Plannings) y, paralelamente, renderiza una <strong>Presentación Ejecutiva en "FullScreen"</strong>.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-file-contract"></i> <span><strong>Bitácora Integrada:</strong> Registro histórico de impedimentos y decisiones.</span></li>
-                    <li><i class="fas fa-chalkboard-teacher"></i> <span><strong>Presentation Mode:</strong> Slides auto-generados listos para proyectar a Directores en tu siguiente junta de Portfolio.</span></li>
-                </ul>
-            </div>
-            <div class="screenshot-box">
-                <img src="assets/REPORTE EJECUTIVO DE PORTAFOLIO_1.png" alt="Reporte Ejecutivo Generado Automáticamente">
+        <!-- BLOQUE 4: MODO EJECUTIVO -->
+        <section class="reveal">
+            <div class="tag">Modo Ejecutivo</div>
+            <h2>De la Bitácora a la Mesa Directiva en 1 clic</h2>
+            <p style="max-width: 800px; margin-bottom: 40px;">Módulo específico para resolver la burocracia de los reportes. El sistema permite llevar la bitácora técnica diaria y renderiza presentaciones ejecutivas automatizadas.</p>
+            
+            <div class="full-width-image" style="background: transparent; border: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+                <img src="assets/REPORTE EJECUTIVO DE PORTAFOLIO_1.png" alt="Reporte Ejecutivo Generado Automáticamente" style="border-radius: 12px; border: 1px solid var(--border);">
             </div>
         </section>
 
@@ -136,7 +142,7 @@ av>
                 for (let i = 0; i < reveals.length; i++) {
                     const windowHeight = window.innerHeight;
                     const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
+                    const elementVisible = 100;
                     if (elementTop < windowHeight - elementVisible) {
                         reveals[i].classList.add('active');
                     }
@@ -144,7 +150,7 @@ av>
             };
             window.addEventListener('scroll', revealOnScroll);
             revealOnScroll();
-            document.querySelectorAll('section, .feature-card, .screenshot-box').forEach(el => el.classList.add('reveal'));
+            document.querySelectorAll('section, .feature-card, .screenshot-box, .grid-2').forEach(el => el.classList.add('reveal'));
         });
     </script>
 </body>

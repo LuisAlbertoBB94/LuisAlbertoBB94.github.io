@@ -4,309 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI Data Analyst Agent | Luis Barragan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        :root {
-            --ai-purple: #7c3aed;
-            --ai-deep: #2e1065;
-            --ai-glow: #a855f7;
-            --data-green: #10b981;
-            --bg-dark: #0f172a;
-            --text-light: #f8fafc;
+        .ai-shell {
+            background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border);
+            padding: 40px; margin-top: 40px; backdrop-filter: blur(20px);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
         }
+        .ai-header { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 40px; }
+        .ai-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: #fff; }
         
-        body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            line-height: 1.6;
-            color: var(--text-light);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
-            background-color: var(--bg-dark);
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+        .feature-card {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 30px; border-radius: 16px; transition: all 0.4s;
+            position: relative; overflow: hidden;
         }
-        
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: radial-gradient(circle at center, #1e293b 0%, var(--bg-dark) 100%);
-            border-bottom: 1px solid #1e293b;
+        .feature-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+            animation: rotateGlow 10s linear infinite;
         }
-        
-        .hero-img {
-            width: 100%;
-            max-width: 900px;
-            max-height: 500px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin: 40px auto;
-            display: block;
-            border: 1px solid rgba(124, 58, 237, 0.5);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            background: linear-gradient(to right, #fff, var(--ai-glow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .badge-container {
-            margin: 20px 0;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(124, 58, 237, 0.2);
-            border: 1px solid var(--ai-purple);
-            color: var(--ai-glow);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin: 5px;
-            font-weight: 500;
-        }
-        
-        .container {
-            padding: 40px 20px;
-        }
-        
-        .section-card {
-            background: #1e293b;
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 50px;
-            border: 1px solid #334155;
-            transition: transform 0.3s ease;
-        }
-        
-        .section-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--ai-purple);
-        }
-        
-        h2 {
-            font-size: 2rem;
-            color: var(--ai-glow);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .grid-modules {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .module-item {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-        }
-        
-        .module-item strong {
-            display: block;
-            color: var(--ai-glow);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-        
-        .diagram-container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-        
-        .diagram-img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        
-        .screenshot-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .screenshot-item {
-            text-align: center;
-        }
-        
-        .screenshot-item img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .highlight-box {
-            background: linear-gradient(45deg, var(--ai-deep), #1e1b4b);
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            margin: 40px 0;
-            border-left: 5px solid var(--ai-purple);
-        }
-        
-        .highlight-box span {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--data-green);
-            display: block;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            margin: 60px 0;
-            padding: 12px 24px;
-            background: rgba(124, 58, 237, 0.1);
-            color: var(--ai-glow);
-            text-decoration: none;
-            border-radius: 30px;
-            border: 1px solid var(--ai-purple);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
-        }
-        
-        .back-btn:hover {
-            background: var(--ai-purple);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
-        }
+        @keyframes rotateGlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+        .feature-card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--accent); 
+            background: rgba(59, 130, 246, 0.05); 
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+        }
+        .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; display: block; }
+        .feature-card h3 { font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-dim); font-weight: 300; }
+
+        .diagram-box {
+            background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid var(--border);
+            padding: 40px; margin: 40px 0; text-align: center;
+        }
+        .diagram-img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+        
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .screenshot-container { grid-template-columns: 1fr; }
-            .section-card { padding: 25px; }
+            .ai-shell { padding: 25px; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="badge-container">
-            <span class="badge">Next-Gen Analytics</span>
-            <span class="badge">Multi-Agent System</span>
-            <span class="badge">Big Data Integration</span>
-        </div>
-        <h1>GenAI Data Analyst Agent</h1>
-        <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 20px auto;">
-            Empoderando la toma de decisiones ejecutivas en una Empresa Líder en Retail mediante Inteligencia Artificial y consulta directa de +321 Millones de registros.
-        </p>
-
-    </header>
-
-    <div class="container">
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
         
-        <div class="highlight-box">
-            <p>Poder de Procesamiento</p>
-            <span>+321,000,000</span>
-            <p>Registros analizados con 100% de paridad financiera SAP.</p>
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Next-Gen Business Intelligence</span>
+            <h1>GenAI Data Analyst Agent</h1>
+            <p class="lead" style="max-width: 900px; margin: 0 auto;">Estrategia de democratización analítica mediante una arquitectura multi-agente orquestada para la toma de decisiones C-Level.</p>
+        </header>
+
+        <div class="impact-box reveal delay-2" style="margin-bottom: 40px; text-align: center; font-size: 1.1rem; padding: 30px;">
+            <i class="fas fa-chart-line" style="margin-right: 10px;"></i> 
+            Impacto Estratégico: <strong>Acceso instantáneo a +321M de registros</strong> y reducción del 70% en el tiempo de preparación de reportes ejecutivos.
         </div>
 
-        <div class="section-card">
-            <h2>🧠 Arquitectura "Hive" de Multi-Agentes</h2>
-            <p>A diferencia de los chatbots convencionales, este agente utiliza un sistema orquestado de agentes especializados basados en <strong>Gemini 2.5 Pro</strong>:</p>
+        <section class="ai-shell reveal delay-3">
+            <div class="ai-header">
+                <span class="ai-title"><i class="fas fa-brain" style="color:var(--accent);margin-right:15px;"></i>Arquitectura Hive: Multi-Agent System</span>
+            </div>
             
-            <div class="grid-modules">
-                <div class="module-item">
-                    <strong>SQL Agent</strong>
-                    Traduce lenguaje natural a queries complejos de BigQuery con conocimiento profundo del esquema transaccional.
+            <p style="color: var(--text-dim); font-weight: 300; font-size: 1.1rem; margin-bottom: 30px;">
+                Como Head of BI, mi visión fue transformar la interacción con los datos. No se trata de un chatbot; es un ecosistema coordinado de agentes especializados diseñados para escalar la capacidad analítica de la organización.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>SQL Engineering Agent</h3>
+                    <p>Traduce intenciones de negocio en queries complejos de BigQuery, integrando el 100% de las reglas financieras origen.</p>
                 </div>
-                <div class="module-item">
-                    <strong>Strategic Analyst</strong>
-                    Aplica frameworks de negocio (Pareto, BCG, Elasticidad) para transformar datos crudos en estrategias.
+                <div class="feature-card">
+                    <i class="fas fa-search-dollar"></i>
+                    <h3>Strategic Analyst</h3>
+                    <p>Aplica frameworks de negocio (Pareto, BCG, Elasticidad) para convertir datos crudos en estrategias accionables.</p>
                 </div>
-                <div class="module-item">
-                    <strong>Data Auditor</strong>
-                    Sistema de control de calidad que valida la integridad del SQL y corrige errores antes de la ejecución.
+                <div class="feature-card">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Data Auditor</h3>
+                    <p>Garantiza la integridad de las cifras mediante validas cruzadas automáticas antes de presentar resultados al ejecutivo.</p>
                 </div>
             </div>
 
-            <div class="section-card">
-                <h2>📐 Arquitectura Multi-Agente</h2>
-                <div class="diagram-container" style="background: transparent; padding: 0;">
-                    <img src="img/diagram_multiagent.png" alt="Arquitectura Multi-Agente" class="diagram-img" style="max-width: 80%; margin: 0 auto; display: block; border-radius: 12px; border: 1px solid #334155;">
-                </div>
+            <div class="diagram-box">
+                <h3 style="margin-bottom: 25px; font-family: 'Outfit', sans-serif;">Modular Orchestration Flow</h3>
+                <img src="img/diagram_multiagent.png" alt="Arquitectura Multi-Agente" class="diagram-img">
+                <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-dim);">Flujo de trabajo multi-capa: Desde el Lenguaje Natural hasta la paridad financiera absoluta.</p>
             </div>
+        </section>
 
-            <div class="section-card">
-                <h2>⚙️ Orquestación del Sistema</h2>
-                <div class="diagram-container" style="background: transparent; padding: 0;">
-                    <img src="img/diagram_orchestrator.png" alt="Diagrama de Orquestación" class="diagram-img" style="max-width: 80%; margin: 0 auto; display: block; border-radius: 12px; border: 1px solid #334155;">
-                </div>
-                <p style="text-align: center; font-size: 0.9rem; color: #94a3b8; margin-top: 20px;">Flujo de trabajo multi-capa: Desde el lenguaje natural hasta la paridad de datos.</p>
-            </div>
-
-
-        </div>
-
-        <div class="section-card">
-            <h2>🚀 Análisis Estratégicos Rápidos</h2>
-            <p>El agente integra módulos de consultoría automatizados para obtener respuestas en segundos sobre periodos anuales completos:</p>
+        <section class="reveal">
+            <h2 class="section-title">Valor Estratégico & ROI</h2>
+            <p class="section-desc">El agente automatiza análisis que anteriormente requerían días de trabajo de un equipo de analistas senior.</p>
             
-            <div class="grid-modules">
-                <div class="module-item"><strong>💰 Elasticidad de Precio</strong> Impacto de cambios de precio en la demanda.</div>
-                <div class="module-item"><strong>📊 Pareto 80/20</strong> Concentración de SKUs y optimización de portafolio.</div>
-                <div class="module-item"><strong>⚠️ Fugas de Rentabilidad</strong> Identificación de erosión de margen por canal o tienda.</div>
-                <div class="module-item"><strong>🌟 Áreas de Oportunidad</strong> Motores de crecimiento no explotados.</div>
-                <div class="module-item"><strong>📈 Tendencia de Ventas</strong> Evolución estacional y proyecciones.</div>
-                <div class="module-item"><strong>📢 Estrategia de Promociones</strong> Diseño de campañas basadas en data histórica.</div>
-                <div class="module-item"><strong>📊 Mix de Productos (BCG)</strong> Mapeo de rentabilidad y participación de mercado.</div>
-                <div class="module-item"><strong>🔍 Correlaciones Clave</strong> Relaciones ocultas entre volumen, precio y utilidad.</div>
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h2>📊 Interfaz y Resultados</h2>
-            <p>Visualización avanzada integrada en Streamlit, ofreciendo una experiencia de usuario fluida y profesional.</p>
-            
-            <div class="screenshot-container">
-                <div class="screenshot-item">
-                    <img src="img/screenshot_trends.png" alt="Análisis de Tendencias">
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: #94a3b8;">Análisis de estacionalidad y comportamiento de tienda.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Elasticidad de Precios</h3>
+                    <p>Simulaciones en segundos sobre el impacto de cambios de precio en la demanda histórica.</p>
                 </div>
-                <div class="screenshot-item">
-                    <img src="img/screenshot_pareto.png" alt="Análisis de Pareto">
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: #94a3b8;">Clasificación de productos ABC y motores de venta.</p>
+                <div class="feature-card">
+                    <h3>Insights de Rentabilidad</h3>
+                    <p>Identificación instantánea de fugas de margen por cluster, tienda o categoría de producto.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Estrategia Promocional</h3>
+                    <p>Optimización del diseño de campañas basado en el performance de datos históricos masivos.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="section-card">
-            <h2>🛠️ Stack Tecnológico</h2>
-            <div class="grid-modules">
-                <div class="module-item">
-                    <strong>Core AI</strong>
-                    Gemini 2.5 Pro / Flash Orchestration
-                </div>
-                <div class="module-item">
-                    <strong>Data Engine</strong>
-                    Google BigQuery / SQL Templates
-                </div>
-                <div class="module-item">
-                    <strong>Frontend</strong>
-                    Streamlit / Python / CSS
-                </div>
-                <div class="module-item">
-                    <strong>Cloud</strong>
-                    Google Cloud Run / Cloud Build
+        <section class="reveal">
+            <h2 class="section-title">Business Interface</h2>
+            <div class="ai-shell" style="background: rgba(0,0,0,0.2);">
+                <div class="grid-modules" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <img src="img/screenshot_trends.png" alt="Trends UI" style="width: 100%; border-radius: 12px; border: 1px solid var(--border);">
+                    <img src="img/screenshot_pareto.png" alt="Pareto UI" style="width: 100%; border-radius: 12px; border: 1px solid var(--border);">
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div style="text-align: center;">
-            <a href="../index.html" class="back-btn">← Volver al Portafolio Principal</a>
-        </div>
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:30px; opacity:0.6; font-size: 0.8rem;">
+                Strategic AI Portfolio &copy; 2026
+            </div>
+        </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
 </body>
 </html>

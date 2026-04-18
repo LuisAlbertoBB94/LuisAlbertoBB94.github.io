@@ -25,8 +25,12 @@
         .kpi-value { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; }
 
         /* Chart-Specific Styles */
-        .chart-container { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 30px; border: 1px solid var(--border); height: 350px; position: relative; }
-        .line-svg { width: 100%; height: 200px; }
+        .chart-container { 
+            background: rgba(0,0,0,0.3); border-radius: 12px; padding: 40px 30px; 
+            border: 1px solid var(--border); height: 350px; position: relative; 
+            overflow: hidden;
+        }
+        .line-svg { width: 100%; height: 200px; position: relative; z-index: 2; }
         .waterfall-line { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: drawPath 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
         .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -46,9 +50,9 @@
 
         <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Strategic Supply Chain AI</span>
-            <h1>Prevención de Quiebre de Stock</h1>
-            <p class="lead">Un motor de simulación avanzada que transforma métricas de inventario físico en proyecciones de <strong>Continuidad de Negocio</strong> y <strong>Resiliencia Financiera</strong>.</p>
+            <span class="section-tag">Supply Chain Resilience & P&L Protection</span>
+            <h1>Inventory Resilience Strategy</h1>
+            <p class="lead">Motor de simulación avanzada que traduce el riesgo logístico en impacto financiero, asegurando la <strong>Continuidad de Negocio</strong> y protegiendo el margen operativo.</p>
         </header>
 
         <!-- --- Living Dashboard Shell --- -->
@@ -157,10 +161,10 @@
         </div>
 
         <footer>
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
             <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
             <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
-                Portafolio Estratégico &copy; 2026
+                Strategic Portfolio &copy; 2026
             </div>
         </footer>
     </div>
