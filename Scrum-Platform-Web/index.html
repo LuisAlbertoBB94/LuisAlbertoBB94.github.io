@@ -5,123 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrum Portfolio Manager | Luis Barragán, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        :root {
-            --primary: #020617;
-            --secondary: #0f172a;
-            --accent: #3b82f6;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --border: #334155;
-            --card-bg: #1e293b;
+        .feature-card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+        }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+        .screenshot-box {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+            transition: transform 0.3s;
         }
 
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary);
-            color: var(--text-main);
-            margin: 0;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            z-index: 1000; border-bottom: 1px solid var(--border);
-            padding: 15px 0;
-        }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 20px; align-items: center; }
-        .nav-brand { font-weight: 800; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
-        .nav-brand span { color: var(--accent); }
-
-        /* Typography & Layout */
-        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px 40px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .tag { display: inline-block; background: rgba(59, 130, 246, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; border: 1px solid var(--accent); }
-        h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; line-height: 1.1; }
-        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
-        p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 20px; }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
-        .grid-2.reverse { direction: rtl; }
-        .grid-2.reverse > * { direction: ltr; }
-
-        /* Icon Cards & Points */
-        .icon-list { list-style: none; padding: 0; margin: 0; }
-        .icon-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; color: var(--text-main); }
-        .icon-list i { color: var(--accent); font-size: 1.2rem; margin-top: 5px; }
-
-        .feature-card { background: var(--secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .feature-card h3 { font-size: 1.3rem; margin-top: 0; color: #fff; display: flex; align-items: center; gap: 10px; }
-        .feature-card i { color: var(--accent); }
-
-        .screenshot-box { border-radius: 15px; overflow: hidden; border: 1px solid var(--border); width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.6); transition: transform 0.3s; }
-        .screenshot-box:hover { transform: scale(1.02); }
-        .screenshot-box img { width: 100%; display: block; border-radius: 15px; }
-
-        .full-width-image { width: 100%; max-width: 1100px; margin: 0 auto 80px; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; }
-        .full-width-image img { width: 100%; display: block; }
-
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--border); margin-top: 60px; }
-        
-        .cta-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent) 0%, #2563eb 100%); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: 20px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.2); }
-        .cta-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6); }
-        
-        .cta-secondary { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); color: var(--text-main); padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; margin-top: 20px; transition: all 0.3s; border: 1px solid var(--border); }
-        .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--text-dim); transform: translateY(-2px); }
-
-        .tech-logos { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
-        .tech-logo { height: 35px; opacity: 0.8; transition: all 0.3s ease; }
-        .tech-logo:hover { opacity: 1; transform: translateY(-2px); }
-
-        @media (max-width: 900px) {
-            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
-            .grid-2.reverse { direction: ltr; }
+        .cta-primary {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--accent); color: white; padding: 18px 40px;
+            border-radius: 50px; text-decoration: none; font-weight: 800;
+            transition: all 0.3s; box-shadow: 0 10px 30px var(--accent-glow);
         }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="nav-container">
-            <a href="../index.html" class="nav-brand">Luis Barragán <span>PhD</span></a>
-            <div style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;">CASO DE ÉXITO: INGENIERÍA DE PRODUCTO</div>
-        </div>
-    </nav>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+        
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Agile Product Management</span>
+            <h1>Scrum Portfolio Manager</h1>
+            <p class="lead" style="max-width: 900px; margin: 0 auto;">Plataforma analítica 100% Serverless diseñada para unificar la ejecución técnica con la visibilidad ejecutiva C-Level.</p>
+        </header>
+av>
 
     <div class="container">
 
-        <!-- SLIDE 1: PORTADA -->
-        <section class="section-header" style="margin-top: 40px;">
-            <div class="tag">Product Management & Ingeniería Frontend</div>
-            <h1>Scrum Portfolio Manager 📊</h1>
-            <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 30px;">Una plataforma ágil 100% Serverless, construida para unificar la ejecución técnica con la visibilidad directiva C-Level.</p>
-            
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="app.html" target="_blank" class="cta-primary">
-                    <i class="fas fa-play"></i> Probar Aplicación En Vivo
-                </a>
-                <a href="ScrumWeb.zip" download class="cta-secondary">
-                    <i class="fas fa-download"></i> Descargar Código (.zip)
-                </a>
-            </div>
-
-            <p style="margin-top: 15px; font-size: 0.9rem; color: var(--success); font-weight: 600;"><i class="fas fa-shield-alt"></i> Todo queda almacenado de forma privada en tu LocalStorage</p>
-
-            <div class="tech-logos" style="margin-top: 50px;">
-                <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" class="tech-logo">
-                <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" class="tech-logo">
-                <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" class="tech-logo">
-                <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" class="tech-logo">
-            </div>
-        </section>
 
         <!-- FULL WIDTH DASHBOARD IMAGE -->
         <div class="full-width-image">
@@ -194,28 +121,31 @@
             </div>
         </section>
 
-        <!-- CALL TO ACTION -->
-        <footer style="text-align: center; margin-top: 80px; margin-bottom: 40px;">
-            <div class="tag" style="background: rgba(255,255,255,0.05); color: var(--text-dim); border-color: var(--text-dim);">¿Listo para interactuar con la plataforma?</div>
-            
-            <div style="margin-top: 30px;">
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
-                    <a href="app.html" target="_blank" class="cta-primary">
-                        <i class="fas fa-external-link-alt"></i> Lanzar Aplicación
-                    </a>
-                    <a href="ScrumWeb.zip" download class="cta-secondary">
-                        <i class="fas fa-download"></i> Descargar Local (.zip)
-                    </a>
-                </div>
-                <br>
-                <a href="../index.html" style="color: var(--text-dim); text-decoration: none; font-weight: 600;"><i class="fas fa-arrow-left"></i> Volver a Casos de Éxito</a>
-            </div>
-            
-            <div style="margin-top: 50px;">
-                <p style="font-size: 0.9rem; color: var(--text-dim);">Luis Barragán, PhD | Senior BI Lead & Data Strategist</p>
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:30px; opacity:0.6; font-size: 0.8rem;">
+                Agile Engineering Portfolio &copy; 2026
             </div>
         </footer>
-
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+            document.querySelectorAll('section, .feature-card, .screenshot-box').forEach(el => el.classList.add('reveal'));
+        });
+    </script>
 </body>
 </html>
