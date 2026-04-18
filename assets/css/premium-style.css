@@ -134,3 +134,48 @@ p.lead { font-size: 1.2rem; color: var(--text-dim); max-width: 850px; font-weigh
 footer { 
     border-top: 1px solid var(--border); padding: 60px 20px; text-align: center; color: var(--text-dim); margin-top: 100px; 
 }
+
+/* --- Technical Ecosystem --- */
+.tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.tech-category {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 16px;
+    transition: all 0.3s;
+}
+.tech-category:hover {
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.05);
+}
+.tech-category h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-main);
+}
+.tech-category h3 i {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tech-tags span {
+    background: rgba(255,255,255,0.05);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.1);
+}
