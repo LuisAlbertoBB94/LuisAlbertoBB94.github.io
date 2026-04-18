@@ -4,168 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Control de Maquinaria | Luis Barragán</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        :root {
-            --arduino-blue: #00878F;
-            --arduino-dark: #2C3E50;
-            --accent: #E74C3C;
-            --light-bg: #F5F5F5;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--light-bg);
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, var(--arduino-dark), var(--arduino-blue));
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .arduino-logo {
-            height: 80px;
-            margin-bottom: 20px;
-        }
-        
-        h1, h2, h3 {
-            color: var(--arduino-dark);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            border-bottom: 3px solid var(--arduino-blue);
-            padding-bottom: 8px;
-            margin: 50px 0 30px;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            color: var(--arduino-blue);
-            margin-top: 40px;
-        }
-        
         .project-card {
-            background: white;
-            border-radius: 8px;
+            background: var(--glass);
+            border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--success);
         }
         
         .component-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
             margin: 25px 0;
         }
         
         .component-card {
-            background: white;
+            background: rgba(255,255,255,0.03);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-top: 3px solid var(--arduino-blue);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
-        
+        .component-card:hover { background: rgba(255,255,255,0.08); border-color: var(--success); }
+
         .screenshot {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin: 25px auto;
-            display: block;
+            width: 100%; max-width: 800px; border-radius: 12px;
+            border: 1px solid var(--border); margin: 30px auto;
         }
-        
-        .btn {
-            display: inline-block;
-            background: var(--arduino-blue);
-            color: white;
-            padding: 12px 25px;
-            margin: 15px 5px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background: var(--arduino-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        
+
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            margin: 40px 0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            background: var(--arduino-dark);
-            color: white;
-            padding: 12px 30px;
-            margin: 40px 0;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: var(--accent);
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
-        }
-        
-        @media (max-width: 768px) {
-            .component-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
+            border-radius: 16px; overflow: hidden; border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg" alt="Arduino Logo" class="arduino-logo">
-        <h1>Sistema de Control y Monitoreo de Maquinaria</h1>
-        <p>Control remoto con Arduino, GSM/GPS y aplicación web</p>
-    </header>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+        
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">IoT & Industrial Automation</span>
+            <h1>Sistema de Control y Monitoreo</h1>
+            <p class="lead">Arquitectura de telemetría IoT basada en Arduino y comunicación GSM/GPS para la gestión de activos industriales de alto valor.</p>
+        </header>
 
     <div class="project-card">
         <h2>Objetivo del proyecto</h2>
@@ -273,8 +162,31 @@
         </ol>
     </div>
 
-    <div style="text-align: center;">
-        <a href="https://luisalbertobb94.github.io/" class="back-btn">← Volver al Portafolio</a>
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
+                Applied Science Portfolio &copy; 2026
+            </div>
+        </footer>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+            document.querySelectorAll('.project-card').forEach(el => el.classList.add('reveal'));
+        });
+    </script>
 </body>
 </html>

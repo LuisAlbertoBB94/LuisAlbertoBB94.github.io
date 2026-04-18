@@ -34,15 +34,25 @@ st.markdown("This application projects the **Burn-down** of inventory over the n
 
 @st.cache_data
 def load_data():
-    file_path = os.path.join(os.path.dirname(__file__), "inventory_status.csv")
-    if not os.path.exists(file_path):
+    try:
+        # Resolve the absolute path relative to this script
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_path, "inventory_status.csv")
+        
+        if not os.path.exists(file_path):
+            st.warning(f"File not found: {file_path}")
+            return pd.DataFrame()
+            
+        return pd.read_csv(file_path)
+    except Exception as e:
+        st.error(f"Error loading CSV: {e}")
         return pd.DataFrame()
-    return pd.read_csv(file_path)
 
 df = load_data()
 
-if df.empty:
-    st.error("⚠️ Data not found! Please run `python generate_dummy_data.py` first to generate the local CSV.")
+if df is None or df.empty:
+    st.error("⚠️ Database unavailable or Data not found!")
+    st.info("Ensure 'inventory_status.csv' is present in the repository and has been pushed.")
     st.stop()
 
 # --- Sidebar Filters ---
