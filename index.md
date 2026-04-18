@@ -1,5 +1,5 @@
 # Luis Barragan, PhD
-### Senior Business Intelligence Lead | AI Strategist
+### Head of Data & Business Intelligence | AI Strategist
 
 <div align="center">
 
@@ -10,61 +10,63 @@
 
 ---
 
-## 🏛️ Perfil Profesional
-Senior BI Lead y Doctor en Ciencias (PhD) con especialización en **Modern Data Stacks (GCP, BigQuery, Airflow)** e **IA Generativa**. Experto en orquestar soluciones de datos masivos con paridad financiera absoluta y eficiencia FinOps, liderando equipos de alto rendimiento bajo metodologías Ágiles.
+## 🏛️ Perfil Ejecutivo
+Head of Data & Business Intelligence y Doctor en Ciencias (PhD) especializado en liderar la transformación digital mediante **Modern Data Stacks** e **IA Generativa**. Experto en orquestar soluciones de datos masivos con **paridad financiera absoluta**, logrando eficiencias del 60% en FinOps y una **adopción institucional del 100%** de plataformas analíticas corporativas. Lidero equipos de alto rendimiento bajo metodología Scrum, reportando resultados estratégicos directamente a la Dirección General (C-Suite).
 
 ---
 
 ## 🚀 Proyectos Estratégicos (Retail & AI)
-*Casos de éxito implementados en una Empresa Líder en Retail*
+*Iniciativas de alto impacto implementadas en una Empresa Líder en Retail*
 
 - **🧠 GenAI Data Analyst Agent:** Sistema Multi-Agente (Gemini) para análisis financiero por lenguaje natural sobre +321M registros.
 - **⚡ [Real-Time Sales Engine](Real-Time-Sales-Pipeline/README.md):** Pipeline ELT con latencia <10 min para transacciones POS globales. [Tutorial Paso a Paso]
-- **🛡️ Auditoría & Paridad:** Conciliación 100% ERP Transaccional vs Tableau mediante inyección de reglas de negocio complejas.
+- **🛡️ Auditoría & Paridad:** Liderazgo en conciliación 100% ERP vs Business Intelligence mediante inyección de reglas de negocio institucionales.
 - **📉 [Prevención de Quiebre de Stock (Waterfall)](Inventory-Waterfall-Analytics/index.html):** Motor analítico de proyección en cascada para predecir escenarios de agotamiento e impacto en presupuesto diario.
-- **📊 Matriz BCG AI:** Motor proyectivo de ventas y rentabilidad para optimización de inventarios.
-- **📢 Voice of Customer:** Procesamiento de encuestas (NPS/CSAT) con análisis de sentimiento mediante LLMs.
-- **💸 FinOps Hub & Spoke:** Refactorización que logró una **reducción del 60% en costos de nube**.
-- **💎 Loyalty Analytics:** Modelado de ROI para programas de lealtad y retención de clientes.
+- **📊 Matriz BCG AI:** Estrategia proyectiva de ventas y rentabilidad para optimización estratégica de inventarios.
+- **📢 Voice of Customer:** Arquitectura de escucha activa multicanal con análisis de sentimiento mediante IA.
+- **💸 FinOps Strategy:** Rediseño arquitectónico que logró una **reducción del 60% en costos de infraestructura de nube**.
+- **💎 Loyalty Analytics:** Modelado de ROI para programas de lealtad y retención estratégica de clientes.
 
 ---
 
-## 🧪 Data Science & Engineering Labs
-*Legado de proyectos técnicos y experimentación*
+## 💼 Enterprise Solutions Portfolio
+*Soluciones de inteligencia de negocio y análisis profesional*
 
-- **🚗 [Car Insurance Claims Analysis](Python-Data-Analysis/Analisis_seguros/index.html):** EDA profundo y análisis de riesgo mediante Python y Power BI.
-- **📈 [Sales Performance Dashboard](SQL-PowerBI/reporte.html):** Dashboards interactivos integrando SQL y Power BI para métricas comerciales.
-- **📉 [Linear Regression: SAT vs GPA](Python-Data-Analysis/Regresion/index.html):** Modelado estadístico y pruebas de significancia.
-- **🤖 [IoT Control System](Control-Maquinaria-Arduino/index.html):** Sistema de control industrial basado en Arduino.
-- **⚙️ [MATLAB Control Designer](MATLAB-Projects/index.html):** Herramientas de diseño de control desarrolladas durante el PhD.
+- **🚗 [Predictive Risk Analytics](Python-Data-Analysis/Analisis_seguros/index.html):** Análisis profundo de factores de riesgo y detección de siniestralidad en el sector seguros.
+- **📈 [Sales Performance Intelligence](SQL-PowerBI/reporte.html):** Ecosistema de dashboards interactivos integrando SQL robusto para métricas comerciales complejas.
+- **📉 [Statistical Modeling: Analytics](Python-Data-Analysis/Regresion/index.html):** Modelado estadístico detallado y pruebas de significancia para el análisis de éxito académico.
 
 ---
 
-## 🛠️ Stack Tecnológico & Logos
+## 🔬 R&D & Scientific Foundation (PhD)
+*Investigación científica y sistemas de control avanzado desarrollados durante el Doctorado*
+
+- **[Modified Smith Predictor](https://doi.org/10.1016/j.jprocont.2024.103299)** - *Journal of Process Control, 2024*
+- **[Observer-predictor Control](https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914)** - *Asian Journal of Control, 2023*
+- **🤖 [IoT Industrial Control](Control-Maquinaria-Arduino/index.html):** Diseño de sistemas de control embebidos para procesos automatizados.
+- **⚙️ [Advanced Control Designer](MATLAB-Projects/index.html):** Herramientas de modelado matemático y diseño de control desarrolladas durante el PhD.
+
+---
+
+## 🛠️ Stack Tecnológico & Liderazgo
 <div align="center">
 
 | | | |
 | :---: | :---: | :---: |
 | ![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white) | ![BigQuery](https://img.shields.io/badge/BigQuery-669DF6?style=for-the-badge&logo=google-cloud&logoColor=white) | ![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=for-the-badge&logo=apache-airflow&logoColor=white) |
-| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=sqlite&logoColor=white) | ![Sistemas Core](https://img.shields.io/badge/Sistemas_Core-0FA9E6?style=for-the-badge&logo=databricks&logoColor=white) |
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=sqlite&logoColor=white) | ![Scrum](https://img.shields.io/badge/Scrum-00ADEE?style=for-the-badge&logo=scrumalliance&logoColor=white) |
 | ![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white) | ![PowerBI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) | ![Gemini](https://img.shields.io/badge/Gemini_AI-8E75B2?style=for-the-badge&logo=google-gemini&logoColor=white) |
 
 </div>
 
 ---
 
-## 📚 Publicaciones Científicas (JCR)
-- **[Modified Smith Predictor](https://doi.org/10.1016/j.jprocont.2024.103299)** - *Journal of Process Control, 2024*
-- **[Observer-predictor Control](https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914)** - *Asian Journal of Control, 2023*
-
----
-
-## 📜 Certificaciones & Formación
+## 📜 Certificaciones Directivas
 - **PhD en Comunicaciones y Electrónica** (IPN)
+- **Agile Scrum Foundation** (Gestión de Proyectos)
 - **Data Science Bootcamp 2025** (Udemy)
-- **Agile Scrum Foundation**
 - **Microsoft Excel Associate (MOS)**
 
 <p align="center">
-  <i>"Liderazgo técnico para un futuro guiado por los datos y la inteligencia artificial."</i>
+  <i>"Liderazgo estratégico y excelencia técnica para un futuro guiado por los datos y la inteligencia artificial."</i>
 </p>

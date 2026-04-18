@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Barragan, PhD | Senior BI Lead Portfolio</title>
+    <title>Luis Barragan, PhD | Head of Data Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/premium-style.css">
     <style>
+        /* Specific page tweaks that build on global style */
         :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #2563eb;       /* Corporate Zafiro */
-            --accent-hover: #1e40af; 
-            --tech-purple: #94a3b8;  /* Platinum */
-            --success: #059669;      /* Wealth Green */
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --card-bg: #1e293b;
-            --border: rgba(51, 65, 85, 0.8);
-            --glow: rgba(37, 99, 235, 0.15); /* Soft light */
+            --primary: #020617;      /* Deep Midnight */
+            --secondary: #0f172a;    /* Slate Dark */
+            --accent: #3b82f6;       /* Sapphire Blue */
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --success: #10b981;      /* Emerald Green */
+            --text-main: #f8fafc;    /* Platinum white */
+            --text-dim: #94a3b8;     /* Slate */
+            --card-bg: rgba(30, 41, 59, 0.4); /* Glassmorphism base */
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(15, 23, 42, 0.6);
         }
 
         * {
@@ -42,25 +42,26 @@
         .sticky-nav {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--border);
-            padding: 16px 32px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         .sticky-nav .nav-name {
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 900;
+            font-size: 1.1rem;
             color: var(--text-main);
-            letter-spacing: 0.5px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
         }
         .sticky-nav .nav-name span {
             color: var(--accent);
+            opacity: 0.8;
         }
         .sticky-nav .nav-links {
             display: flex;
@@ -171,19 +172,20 @@
         }
 
         .kpi-card {
-            background: #161e2e;
-            padding: 40px 30px;
-            border-radius: 8px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 50px 30px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .kpi-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(148, 163, 184, 0.4);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.1);
         }
 
         .kpi-value {
@@ -235,23 +237,37 @@
         }
 
         .project-card {
-            background: #161e2e;
-            border-radius: 8px;
-            padding: 35px;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 40px;
             border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(148, 163, 184, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: scale(1.02) translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
         }
 
         .project-icon {
@@ -429,24 +445,30 @@
 <body>
 
     <nav class="sticky-nav">
-        <span class="nav-name">Luis <span>Barragan</span>, PhD</span>
-        <div class="nav-links">
-            <a href="#executive">Proyectos</a>
-            <a href="#labs">Labs</a>
-            <a href="#stack">Stack</a>
-            <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank" class="nav-cta" style="background: #0a66c2;">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
+        <div class="nav-container">
+            <span class="nav-name">Luis <span>Barragan</span>, PhD</span>
+            <button class="hamburger" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <div class="nav-links" id="nav-links">
+                <a href="#executive">Estrategia</a>
+                <a href="#solutions">Soluciones</a>
+                <a href="#scientific">R&D</a>
+                <a href="#stack">Stack</a>
+                <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank" class="nav-cta" style="background: #0a66c2;">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
         </div>
     </nav>
 
-    <header>
-        <div class="profile-badge">SENIOR BI LEAD & PhD</div>
+    <header class="reveal" style="position: relative; overflow: hidden; padding-bottom: 120px;">
+        <div class="data-mesh"></div>
+        <div class="profile-badge">HEAD OF DATA & PhD</div>
         <h1>Luis Barragan</h1>
         <div class="subtitle">
-            Habilitando <strong>Business Intelligence</strong> mediante IA Generativa y arquitecturas de datos masivas en <strong>Google Cloud</strong>. PhD en Modelado Matemático.
+            Liderazgo estratégico de <strong>Datos e IA Generativa</strong>. Head of BI especializado en arquitecturas masivas con reporte directo a C-Suite. 
         </div>
         
+        <div style="margin-top: 40px;">
             <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank"
                style="background: #0a66c2; color: white; padding: 14px 32px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(10,102,194,0.4); transition: all 0.3s ease;">
                 <i class="fab fa-linkedin"></i> Ver Perfil en LinkedIn
@@ -459,22 +481,22 @@
         <div class="kpi-grid">
             <div class="kpi-card">
                 <span class="kpi-value"><span>+</span>321M</span>
-                <span class="kpi-label">Registros Procesados</span>
+                <span class="kpi-label">Registros Validados</span>
             </div>
             <div class="kpi-card">
                 <span class="kpi-value">60%</span>
-                <span class="kpi-label">Ahorro en Cómputo (FinOps)</span>
+                <span class="kpi-label">Ahorro Estratégico FinOps</span>
             </div>
             <div class="kpi-card">
-                <span class="kpi-value">&lt;10 min</span>
-                <span class="kpi-label">Latencia de Datos en Producción</span>
+                <span class="kpi-value">100%</span>
+                <span class="kpi-label">Adopción Institucional</span>
             </div>
         </div>
 
         <!-- Sección 1: Impacto Ejecutivo -->
         <section id="executive">
-        <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Casos de Éxito</h2>
-            <p class="section-desc">Estrategias de alto impacto implementadas para la Dirección General en una <span style="color: white; font-weight: 600;">Empresa Líder en Retail</span>.</p>
+        <h2><i class="fas fa-rocket" style="color: var(--accent);"></i> Iniciativas Estratégicas</h2>
+            <p class="section-desc">Estrategias de transformación digital y liderazgo de datos para la Dirección General en una <span style="color: white; font-weight: 600;">Empresa Líder en Retail</span>.</p>
             
             <div class="project-grid">
                 
@@ -569,73 +591,92 @@
             </div>
         </section>
 
-        <!-- Sección 2: Labs & Legado -->
-        <section id="labs" style="border-top: 1px solid var(--border); padding-top: 60px;">
-        <h2><i class="fas fa-flask" style="color: #10b981;"></i> Proyectos Académicos &amp; Labs</h2>
-        <p class="section-desc">Portafolio técnico, investigación de posdoctorado y experimentación en análisis de datos avanzada.</p>
+        <!-- Sección 2: Enterprise Portfolio -->
+        <section id="solutions" style="border-top: 1px solid var(--border); padding-top: 60px;">
+        <h2><i class="fas fa-briefcase" style="color: #60a5fa;"></i> Enterprise Solutions Portfolio</h2>
+        <p class="section-desc">Soluciones profesionales de inteligencia de negocio, análisis predictivo y ecosistemas de visualización corporativa.</p>
             
             <div class="project-grid">
                 
                 <a href="Python-Data-Analysis/Analisis_seguros/index.html" class="project-card">
                     <div class="project-icon"><i class="fas fa-car-crash" style="color: var(--success);"></i></div>
-                    <h3>Car Insurance Claims</h3>
-                    <p>Análisis exploratorio de datos (EDA) y detección de factores de riesgo en seguros mediante Python y Power BI.</p>
+                    <h3>Predictive Risk Analytics</h3>
+                    <p>Análisis profundo de factores de riesgo y detección de siniestralidad en el sector seguros mediante Python y Power BI.</p>
                     <div class="project-tags">
-                        <span class="tag">PYTHON</span>
-                        <span class="tag">PANDAS</span>
-                    </div>
-                </a>
-
-                <a href="PowerBI-Dashboards/index.html" class="project-card">
-                    <div class="project-icon"><i class="fas fa-chart-pie" style="color: var(--success);"></i></div>
-                    <h3>Power BI Dashboards</h3>
-                    <p>Colección de modelos analíticos desarrollados con Microsoft Power BI y DAX avanzado.</p>
-                    <div class="project-tags">
-                        <span class="tag">POWER BI</span>
-                        <span class="tag">DAX</span>
-                        <span class="tag">SQL</span>
+                        <span class="tag">INSURANCE</span>
+                        <span class="tag">PREDICTIVE</span>
                     </div>
                 </a>
 
                 <a href="SQL-PowerBI/reporte.html" class="project-card">
                     <div class="project-icon"><i class="fas fa-tachometer-alt" style="color: var(--success);"></i></div>
-                    <h3>Sales Dashboard Pro</h3>
-                    <p>Integración de SQL robusto con Power BI para reporteo de métricas comerciales complejas.</p>
+                    <h3>Sales Performance Intelligence</h3>
+                    <p>Ecosistema de dashboards interactivos integrando SQL robusto para métricas comerciales complejas y reporte de ventas.</p>
                     <div class="project-tags">
                         <span class="tag">SQL</span>
+                        <span class="tag">ENTERPRISE BI</span>
+                    </div>
+                </a>
+
+                <a href="PowerBI-Dashboards/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-chart-pie" style="color: var(--success);"></i></div>
+                    <h3>Corporate BI Dashboards</h3>
+                    <p>Colección de modelos analíticos desarrollados con Microsoft Power BI y DAX avanzado para áreas operativas.</p>
+                    <div class="project-tags">
+                        <span class="tag">POWER BI</span>
                         <span class="tag">DAX</span>
                     </div>
                 </a>
 
                 <a href="Python-Data-Analysis/Regresion/index.html" class="project-card">
                     <div class="project-icon"><i class="fas fa-chart-area" style="color: var(--success);"></i></div>
-                    <h3>Regresión: SAT vs GPA</h3>
-                    <p>Modelado estadístico detallado sobre el éxito académico basado en pruebas estandarizadas.</p>
+                    <h3>Statistical Modeling: Analytics</h3>
+                    <p>Modelado estadístico detallado y pruebas de significancia aplicadas al análisis de éxito y tendencias institucionales.</p>
                     <div class="project-tags">
                         <span class="tag">STATISTICS</span>
-                        <span class="tag">PYTHON</span>
+                        <span class="tag">DATA SCIENCE</span>
                     </div>
                 </a>
 
-                <a href="Control-Maquinaria-Arduino/index.html" class="project-card">
-                    <div class="project-icon"><i class="fas fa-microchip" style="color: var(--success);"></i></div>
-                    <h3>IoT Industrial Control</h3>
-                    <p>Diseño e implementación de sistemas de control embebidos basados en la plataforma Arduino.</p>
-                    <div class="project-tags">
-                        <span class="tag">ARDUINO</span>
-                        <span class="tag">C++</span>
-                    </div>
-                </a>
+            </div>
+        </section>
+
+        <!-- Sección 3: Applied Science & Innovation -->
+        <section id="scientific" style="border-top: 1px solid var(--border); padding-top: 80px;">
+        <h2><i class="fas fa-microscope" style="color: var(--success);"></i> Applied Science & Innovation</h2>
+        <p class="section-desc">Investigación científica de posgrado, sistemas de control inteligente y modelado matemático avanzado desarrollado durante el Doctorado (PhD).</p>
+            
+            <div class="project-grid">
 
                 <a href="MATLAB-Projects/index.html" class="project-card">
                     <div class="project-icon"><i class="fas fa-code" style="color: var(--success);"></i></div>
-                    <h3>PhD: Logic Control Tool</h3>
-                    <p>Herramientas avanzadas de diseño de control y modelado matemático desarrolladas durante el Doctorado.</p>
+                    <h3>PhD: Advanced Control Tools</h3>
+                    <p>Herramientas de modelado matemático de alto orden y diseño de control predictivo desarrolladas durante el Doctorado.</p>
                     <div class="project-tags">
                         <span class="tag">MATLAB</span>
                         <span class="tag">SIMULINK</span>
                     </div>
                 </a>
+                
+                <a href="Control-Maquinaria-Arduino/index.html" class="project-card">
+                    <div class="project-icon"><i class="fas fa-microchip" style="color: var(--success);"></i></div>
+                    <h3>IoT Industrial Systems</h3>
+                    <p>Diseño e implementación de sistemas de control embebidos y automatización basados en plataforma Arduino.</p>
+                    <div class="project-tags">
+                        <span class="tag">IOT</span>
+                        <span class="tag">C++</span>
+                    </div>
+                </a>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-book" style="color: var(--success);"></i></div>
+                    <h3>Publicaciones Científicas JCR</h3>
+                    <p>Investigación publicada en revistas de alto impacto (Journal of Process Control, Asian Journal of Control) sobre sistemas con retardo.</p>
+                    <div class="project-tags">
+                        <span class="tag">JCR</span>
+                        <span class="tag">RESEARCH</span>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -695,13 +736,50 @@
     </div>
 
     <footer>
-        <p><strong>Luis Barragan, PhD</strong><br>
-        Senior Business Intelligence Lead</p>
+        <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+        <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
         <div style="margin-top: 20px; font-size: 0.8rem;">
             Portafolio Profesional &copy; 2026. <br>
             Construido para la excelencia en datos e inteligencia estratégica.
         </div>
     </footer>
 
+    <script>
+        // Interactivity & Scroll Effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-active');
+                menuBtn.querySelector('i').classList.toggle('fa-bars');
+                menuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Scroll Reveal Animation
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Initial check
+        });
+
+        // Add 'reveal' class to sections for animation
+        document.querySelectorAll('section, .kpi-card, .project-card').forEach((el, index) => {
+            el.classList.add('reveal');
+            if (index % 3 === 0) el.classList.add('reveal-delay-1');
+            if (index % 3 === 1) el.classList.add('reveal-delay-2');
+            if (index % 3 === 2) el.classList.add('reveal-delay-3');
+        });
+    </script>
 </body>
 </html>
