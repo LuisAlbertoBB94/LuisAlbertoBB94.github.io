@@ -21,6 +21,7 @@ Senior BI Lead y Doctor en Ciencias (PhD) con especialización en **Modern Data 
 - **🧠 GenAI Data Analyst Agent:** Sistema Multi-Agente (Gemini) para análisis financiero por lenguaje natural sobre +321M registros.
 - **⚡ [Real-Time Sales Engine](Real-Time-Sales-Pipeline/README.md):** Pipeline ELT con latencia <10 min para transacciones POS globales. [Tutorial Paso a Paso]
 - **🛡️ Auditoría & Paridad:** Conciliación 100% ERP Transaccional vs Tableau mediante inyección de reglas de negocio complejas.
+- **📉 [Prevención de Quiebre de Stock (Waterfall)](Inventory-Waterfall-Analytics/index.html):** Motor analítico de proyección en cascada para predecir escenarios de agotamiento e impacto en presupuesto diario.
 - **📊 Matriz BCG AI:** Motor proyectivo de ventas y rentabilidad para optimización de inventarios.
 - **📢 Voice of Customer:** Procesamiento de encuestas (NPS/CSAT) con análisis de sentimiento mediante LLMs.
 - **💸 FinOps Hub & Spoke:** Refactorización que logró una **reducción del 60% en costos de nube**.
