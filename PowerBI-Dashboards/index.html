@@ -5,208 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power BI Dashboards | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #2563eb;       
-            --tech-purple: #94a3b8;  
-            --success: #059669;      
-            --powerbi: #f2c811;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --border: rgba(51, 65, 85, 0.8);
-            --card-bg: #1e293b;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary);
-            color: var(--text-main);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .back-link {
-            text-decoration: none;
-            color: white;
-            background: rgba(37, 99, 235, 0.1);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        header {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 40px;
-            margin-bottom: 50px;
-            text-align: left;
-        }
-
-        .tag {
-            background: transparent;
-            color: var(--text-dim);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            border: 1px solid var(--border);
-            display: inline-block;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 15px;
-            letter-spacing: -1.5px;
-            font-weight: 900;
-        }
-
-        p.lead {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 800px;
-            font-weight: 300;
-        }
-
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .dashboard-card {
-            background: #161e2e;
-            border-radius: 8px;
+            background: var(--card-bg);
+            border-radius: 20px;
             padding: 30px;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
         .dashboard-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(148, 163, 184, 0.3);
-        }
-
-        .dashboard-card h3 {
-            color: var(--text-main);
-            font-size: 1.4rem;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .preview-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 20px 0;
-            filter: grayscale(0.2) brightness(0.9);
-            transition: all 0.3s ease;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .dashboard-card:hover .preview-image {
-            filter: grayscale(0) brightness(1);
-        }
-
-        .download-btn {
-            display: inline-block;
-            background: transparent;
-            color: var(--text-main);
-            padding: 8px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .download-btn:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: var(--text-dim);
+            width: 100%; height: 200px; object-fit: cover; border-radius: 12px;
+            margin: 20px 0; border: 1px solid var(--border);
         }
 
         .insights {
-            background: #0f172a;
+            background: rgba(0,0,0,0.2);
             padding: 20px;
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .insights h4 {
-            color: var(--tech-purple);
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .insights ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .insights li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .insights li::before {
-            content: "▹";
-            color: var(--accent);
-        }
-
-        .insights strong {
-            color: var(--text-main);
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
         .tech-badge {
             display: inline-block;
-            background: transparent;
+            background: rgba(255,255,255,0.05);
             color: var(--text-dim);
-            padding: 4px 10px;
-            border-radius: 4px;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin: 0 5px 5px 0;
             font-size: 0.7rem;
             border: 1px solid var(--border);
-            letter-spacing: 0.5px;
+            font-weight: 600;
         }
+    </style>
 
     </style>
 </head>
