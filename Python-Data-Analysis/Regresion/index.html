@@ -4,126 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis de Regresión Lineal: SAT vs GPA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/premium-style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        
-        h1 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .date {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-        
         .code-block {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
+            background-color: rgba(0,0,0,0.3);
+            padding: 24px;
+            border-radius: 12px;
             overflow-x: auto;
             margin: 20px 0;
-            font-family: monospace;
-            border-left: 4px solid #3498db;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid var(--accent);
+            color: #d1d5db;
         }
         
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        table {
+            width: 100%; border-collapse: collapse; margin: 30px 0;
+            background: rgba(255,255,255,0.02); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border);
         }
-        
-        .data-table th, .data-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .data-table th {
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .data-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-        
-        .result-table th, .result-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .result-table th {
-            background-color: #2c3e50;
-            color: white;
-        }
-        
-        .image-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
+        th { background: rgba(59, 130, 246, 0.1); color: var(--text-main); padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+
         .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 16px; border: 1px solid var(--border);
+            transition: transform 0.3s ease;
         }
-        
-        .image-caption {
-            font-style: italic;
-            color: #7f8c8d;
-            margin-top: 10px;
-        }
-        
+
         .notes {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-left: 4px solid #3498db;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 25px;
+            border-left: 4px solid var(--accent);
             margin: 20px 0;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            margin: 15px 0;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .download-btn:hover {
-            background-color: #2980b9;
+            border-radius: 0 12px 12px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Análisis de Regresión Lineal: SAT vs GPA</h1>
-    <div class="date">July 16, 2025</div>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+        
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Applied Statistical Research</span>
+            <h1>Predictive Modeling: Academic Success</h1>
+            <p class="lead">Análisis de regresión lineal para cuantificar la arquitectura de correlación entre métricas pre-universitarias (SAT) y el rendimiento académico institucional (GPA).</p>
+        </header>
     
     <h2>Descargar Datos</h2>
     <a href="Simpl linear regression.csv" class="download-btn">Descargar archivo CSV de datos</a>
@@ -367,5 +294,32 @@
         plt.ylabel('GPA', fontsize = 20)<br>
         plt.show()
     </div>
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
+                Portafolio Estratégico &copy; 2026
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+            
+            document.querySelectorAll('h2, .code-block, table, .image-container').forEach(el => el.classList.add('reveal'));
+        });
+    </script>
 </body>
 </html>

@@ -3,300 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Insights Comerciales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
-            --success: #27ae60;
-            --powerbi: #f2c811;
-            --python: #3776ab;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            margin-bottom: 20px;
-        }
-        
-        h1, h2, h3, h4 {
-            color: var(--primary);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin: 40px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-        }
-        
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .project-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin: 0;
-        }
-        
-        .project-subtitle {
-            color: var(--gray);
-            margin-top: 5px;
-        }
-        
-        .project-tools {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .tool-tag {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .sql-tag {
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            color: #333;
-        }
-        
-        .powerbi-tag {
-            background-color: rgba(242, 200, 17, 0.1);
-            border: 1px solid var(--powerbi);
-            color: var(--powerbi);
-        }
-        
-        .python-tag {
-            background-color: rgba(55, 118, 171, 0.1);
-            border: 1px solid var(--python);
-            color: var(--python);
-        }
-        
-        .excel-tag {
-            background-color: rgba(33, 115, 70, 0.1);
-            border: 1px solid #217346;
-            color: #217346;
-        }
-        
         .sql-code {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 24px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
             overflow-x: auto;
-            margin: 15px 0;
-            border-left: 4px solid var(--secondary);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
             margin: 20px 0;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #e9e9e9;
-        }
-        
-        .highlight {
-            background-color: #fffde7;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        
-        .insight-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-left: 4px solid var(--accent);
+            color: #d1d5db;
         }
-        
-        .insight-card h4 {
-            margin-top: 0;
-            color: var(--accent);
+
+        .insight-card {
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-left: 5px solid var(--accent);
         }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px 5px;
-            transition: all 0.3s;
+
+        table {
+            width: 100%; border-collapse: collapse; margin: 30px 0;
+            background: rgba(255,255,255,0.02); border-radius: 12px; overflow: hidden;
         }
-        
-        .btn:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .btn-download {
-            background: var(--success);
-        }
-        
-        .btn-powerbi {
-            background: var(--powerbi);
-            color: #333;
-        }
-        
-        .btn-python {
-            background: var(--python);
-        }
-        
-        .dashboard-preview {
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .process-step {
-            display: flex;
-            margin-bottom: 30px;
-        }
-        
+        th { background: rgba(59, 130, 246, 0.1); color: var(--text-main); padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+
+        .process-step { display: flex; gap: 25px; margin-bottom: 40px; }
         .step-number {
-            background: var(--secondary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-right: 20px;
-            flex-shrink: 0;
+            background: var(--accent); color: white; width: 45px; height: 45px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; flex-shrink: 0; box-shadow: 0 0 20px var(--accent-glow);
         }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: var(--gray);
-        }
-        
-        @media (max-width: 768px) {
-            .project-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .project-tools {
-                margin-top: 15px;
-            }
-            
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            .process-step {
-                flex-direction: column;
-            }
-            
-            .step-number {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
+
+        .dashboard-preview {
+            border-radius: 16px; border: 1px solid var(--border); margin: 25px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://miro.medium.com/max/2048/1*OohqW5DGh9CQS4hLY5FXzA.png" alt="Profile" class="profile-img">
-        <h1>Análisis de Insights Comerciales</h1>
-    </header>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+        
+        <header class="reveal" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Commercial Intelligence</span>
+            <h1>Análisis de Insights Comerciales</h1>
+            <p class="lead">Arquitectura de consultas SQL y modelado analítico para la optimización de ventas y comportamiento del consumidor.</p>
+        </header>
 
     <div class="section">
-        <div class="project-header">
-            <div>
-                <h2 class="project-title">Análisis de Insights Comerciales</h2>
-                <p class="project-subtitle">Análisis integral de ventas, productos y comportamiento de clientes</p>
-            </div>
-            <div class="project-tools">
-                <span class="tool-tag sql-tag">SQL</span>
-                <span class="tool-tag powerbi-tag">Power BI</span>
-                <span class="tool-tag excel-tag">Excel</span>
-            </div>
+        <div class="reveal">
+            <h2 class="section-title">Análisis de Desempeño Comercial</h2>
         </div>
         
         <h3>Objetivo del Proyecto</h3>
@@ -454,10 +219,32 @@
         </ul>
     </div>
 
-    <footer>
-        <p>© 2024 Luis Alberto Barragán Bonilla | Portafolio de Análisis de Datos</p>
-        <p>Contacto: <a href="mailto:luis.bto08@gmail.com">luis.bto08@gmail.com</a> | 
-           <a href="https://www.linkedin.com/in/LuisBarraganBonilla">LinkedIn</a></p>
-    </footer>
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
+                Portafolio Estratégico &copy; 2026
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+            
+            document.querySelectorAll('h3, .process-step, .insight-card, table, .section').forEach(el => el.classList.add('reveal'));
+        });
+    </script>
 </body>
 </html>
