@@ -55,19 +55,18 @@
             font-weight: 600;
         }
     </style>
-
-    </style>
 </head>
 <body>
-
-    <div class="container">
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 40px;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
         
-        <header>
-            <div class="tag">LABS & EXPERIMENTATION</div>
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Enterprise BI & Analytics</span>
             <h1>Power BI Dashboard Portfolio</h1>
             <p class="lead">
-                Colección de modelos analíticos desarrollados con Microsoft Power BI, combinando orígenes de datos on-premise con métricas DAX avanzadas.
+                Modelos analíticos estratégicos diseñados para la toma de decisiones ejecutiva, integrando orígenes de datos on-premise y métricas DAX de alto impacto.
             </p>
             <div style="margin-top: 15px;">
                 <span class="tech-badge">SQL Server</span>
@@ -132,6 +131,30 @@
 
         </div>
 
+        <footer class="reveal">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
+            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
+                Portafolio Estratégico &copy; 2026
+            </div>
+        </footer>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+        });
+    </script>
 </body>
 </html>
