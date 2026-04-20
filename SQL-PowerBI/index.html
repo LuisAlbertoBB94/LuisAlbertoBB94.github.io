@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Intelligence | SQL Engineering Architecture | Luis Barragan, PhD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
+    <style>
+        .sql-panel {
+            background: rgba(0,0,0,0.4); border-radius: 16px; border: 1px solid var(--border);
+            padding: 25px; margin: 30px 0; font-family: 'Fira Code', 'Courier New', monospace;
+            overflow-x: auto; position: relative;
+        }
+        .sql-panel::before {
+            content: "SQL QUERY ENGINE"; position: absolute; top: 10px; right: 20px;
+            font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 2px;
+        }
+        .sql-code { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
+        .sql-code b { color: var(--accent); }
+
+        .metric-table-wrapper { width: 100%; overflow-x: auto; margin: 40px 0; border-radius: 16px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.01); }
+        th { background: rgba(59, 130, 246, 0.05); color: #fff; padding: 20px; text-align: left; font-family: 'Outfit'; font-size: 0.9rem; }
+        td { padding: 20px; border-bottom: 1px solid var(--border); color: var(--text-dim); font-size: 0.9rem; }
+
+        .dashboard-frame {
+            border-radius: 20px; border: 1px solid var(--border); overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4); margin: 40px 0; background: var(--glass);
+        }
+        .dashboard-frame img { width: 100%; display: block; filter: brightness(0.9); }
+
+        .exec-insight {
+            background: var(--glass); border: 1px solid var(--border); border-radius: 20px;
+            padding: 30px; margin-bottom: 25px; border-left: 4px solid var(--accent);
+            transition: 0.3s;
+        }
+        .exec-insight:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.03); }
+
+        @media (max-width: 768px) {
+            .exec-header { text-align: center; }
+            .metric-table-wrapper { font-size: 0.8rem; }
+            th, td { padding: 12px; }
+            .sql-panel { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 60px;">
+        
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
+            <div class="data-mesh"></div>
+            <span class="section-tag">Enterprise Data Architecture</span>
+            <h1>Commercial Intelligence & SQL Engineering</h1>
+            <p class="lead">Desarrollo de ecosistemas analíticos de alta fidelidad para la optimización de ingresos y gobernanza del comportamiento del consumidor a escala corporativa.</p>
+        </header>
+
+        <!-- --- Executive Summary --- -->
+        <section class="reveal delay-2" style="margin-top: 60px;">
+            <div class="method-grid">
+                <div class="exec-insight">
+                    <h3 style="font-family:'Outfit'; color:#fff; margin-bottom:15px;">Visión Arquitectónica</h3>
+                    <p style="color:var(--text-dim); font-size:0.95rem;">Liderazgo del proceso E2E desde la ingesta de transacciones masivas en SQL hasta el despliegue de modelos de BI interactivos que habilitan decisiones basadas en hechos.</p>
+                </div>
+                <div class="exec-insight" style="border-left-color: var(--success);">
+                    <h3 style="font-family:'Outfit'; color:#fff; margin-bottom:15px;">Impacto Operativo</h3>
+                    <p style="color:var(--text-dim); font-size:0.95rem;">Detección de patrones de elasticidad de demanda y segmentación de clientes con un enfoque de <b>ROI incrementado</b> y mitigación de latencia analítica.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SQL Engineering Section --- -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag" style="color:var(--accent)">Engineering Layer</span>
+            <h2 class="section-title">High-Efficiency SQL Querying</h2>
+            <p class="section-desc">Diseño de consultas optimizadas para el procesamiento de millones de registros, asegurando integridad referencial y precisión financiera.</p>
+            
+            <div class="sql-panel">
+                <div class="sql-code">
+                    <b>-- Análisis de Elasticidad Temporal de Ingresos</b><br>
+                    <b>SELECT</b> strftime('%Y-%m', fecha) <b>AS</b> mes, <b>SUM</b>(precio_total) <b>AS</b> ingreso_segmentado<br>
+                    <b>FROM</b> tickets<br>
+                    <b>GROUP BY</b> mes <b>ORDER BY</b> mes;
+                </div>
+            </div>
+            
+            <a href="Análisis de Insights.pdf" target="_blank" class="btn-executive btn-primary">
+                <i class="fas fa-code"></i> Ver Repositorio de Consultas (PDF)
+            </a>
+        </section>
+
+        <!-- --- Results Table --- -->
+        <section class="reveal" style="margin-top: 80px;">
+            <div class="metric-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicador Estratégico</th>
+                            <th>Métrica Consolidada</th>
+                            <th>Impacto en P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ingreso Total de Operaciones</td>
+                            <td style="color:#fff; font-weight:700;">$39.8M MXN</td>
+                            <td>Volumen de flujo de caja anual monitoreado.</td>
+                        </tr>
+                        <tr>
+                            <td>Concentración Departamental</td>
+                            <td style="color:var(--danger); font-weight:700;">92.8% (Depto. 4)</td>
+                            <td>Identificación de riesgo por dependencia operativa.</td>
+                        </tr>
+                        <tr>
+                            <td>Eficiencia de Ticket Promedio</td>
+                            <td style="color:var(--accent); font-weight:700;">$219.09</td>
+                            <td>Línea base para estrategias de Up-selling.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- --- BI Ecosystem Section --- -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag" style="color:var(--success)">Intelligence Layer</span>
+            <h2 class="section-title">Executive Dashboard Ecosystem</h2>
+            <p class="section-desc">Visualización avanzada en Power BI diseñada para stakeholders, eliminando el ruido y resaltando las métricas críticas para la salud del negocio.</p>
+            
+            <div class="dashboard-frame">
+                <img src="Dashboard_Análisis_de_Insights.jpg" alt="Executive Dashboard Architecture">
+            </div>
+
+            <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:30px;">
+                <a href="Dashboard_Análisis_de_Insights.pbix" class="btn-executive btn-primary">
+                    <i class="fas fa-chart-pie"></i> Descargar PBIX Dashboard
+                </a>
+                <a href="Conclusiones Análisis de Insights.pdf" target="_blank" class="btn-executive">
+                    <i class="fas fa-file-pdf"></i> Reporte Executivo Final
+                </a>
+            </div>
+        </section>
+
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

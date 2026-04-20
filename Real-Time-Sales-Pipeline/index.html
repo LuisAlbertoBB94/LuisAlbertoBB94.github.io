@@ -3,323 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipeline de Ventas en Tiempo Real | Luis Barragán, PhD</title>
+    <title>Real-Time Enterprise Architecture | Cloud Governance | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
-        mermaid.initialize({startOnLoad:true, theme: 'dark', themeVariables: { primaryColor: '#3b82f6' }});
+        mermaid.initialize({startOnLoad:true, theme: 'dark', themeVariables: { primaryColor: '#3b82f6', background: 'transparent' }});
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
         .feature-card {
-            background: var(--glass);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
+            background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border);
+            backdrop-filter: blur(20px); transition: all 0.3s ease;
         }
         .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
         .diagram-box {
-            background: rgba(0,0,0,0.3); border-radius: 20px; padding: 30px;
-            border: 1px solid var(--border); margin: 30px 0;
+            background: rgba(0,0,0,0.3); border-radius: 24px; padding: clamp(20px, 5vw, 40px);
+            border: 1px solid var(--border); margin: 40px 0; overflow-x: auto;
         }
 
-        .dashboard-container {
-            background: #f8fafc; color: #1e293b; border-radius: 20px;
-            padding: 30px; margin-top: 40px; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.7);
+        /* Premium Dashboard Theme */
+        .db-shell-internal {
+            background: #020617; border-radius: 24px; padding: clamp(15px, 3vw, 30px);
+            border: 1px solid var(--border); margin-top: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
-        
-        .kpi-box { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
-        .chart-card { background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; }
-        .db-table-wrapper { border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }
-        
-        .cta-button {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: var(--accent); color: white; padding: 18px 40px;
-            border-radius: 50px; text-decoration: none; font-weight: 800;
-            transition: all 0.3s; box-shadow: 0 10px 30px var(--accent-glow);
+        .kpi-mini-box { 
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border); 
+            padding: 20px; border-radius: 16px; text-align: center;
         }
+        .kpi-mini-box strong { display: block; font-size: 1.8rem; color: #fff; font-family: 'Outfit'; margin-top: 5px; }
+        .kpi-mini-box span { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
 
-        /* Mermaid Flow Animation */
-        .mermaid svg { max-width: 100% !important; height: auto !important; }
-        .mermaid .edgePath path {
-            stroke-dasharray: 10;
-            animation: flow 20s linear infinite;
-            stroke: var(--accent) !important;
-            stroke-width: 2px !important;
-        }
-        @keyframes flow {
-            from { stroke-dashoffset: 200; }
-            to { stroke-dashoffset: 0; }
-        }
-        .mermaid .node rect, .mermaid .node polygon, .mermaid .node circle {
-            animation: pulse-node 3s ease-in-out infinite;
-        }
-        @keyframes pulse-node {
-            0%, 100% { filter: drop-shadow(0 0 5px var(--accent-glow)); }
-            50% { filter: drop-shadow(0 0 15px var(--accent)); }
-        }
-
-        /* Restoration of hourly chart CSS */
         .bars-container {
             display: flex; align-items: flex-end; justify-content: space-between;
-            height: 150px; padding-top: 30px; gap: 10px;
+            height: 180px; padding-top: 40px; gap: 8px; margin-top: 20px;
         }
         .bar {
-            flex: 1; background: linear-gradient(to top, var(--accent), var(--accent-glow));
-            position: relative; border-radius: 4px 4px 0 0; min-width: 20px;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: growBar 1.5s ease-out forwards; transform-origin: bottom;
+            flex: 1; background: linear-gradient(to top, var(--accent), #1d4ed8);
+            position: relative; border-radius: 4px 4px 0 0; min-width: 12px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .bar:hover { filter: brightness(1.3); transform: scaleX(1.1); }
-        .bar .val {
-            position: absolute; top: -25px; left: 50%; transform: translateX(-50%);
-            font-size: 0.65rem; font-weight: 800; color: var(--accent);
-        }
-        .bar .time {
-            position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%);
-            font-size: 0.6rem; color: #64748b; font-weight: 600;
-        }
-        @keyframes growBar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .bar:hover { filter: brightness(1.3); }
+        .bar .val { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: #fff; font-weight: 700; }
+        .bar .time { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: var(--text-dim); }
 
-        .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        @media (max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } }
+        .db-table-wrapper { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { background: rgba(255,255,255,0.03); color: #fff; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 30px; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .kpi-row { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
-        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="container" style="padding-top: 60px;">
         
-        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 80px 0; text-align: center;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Enterprise BI Architecture</span>
-            <h1>Real-Time Sales Architecture</h1>
-            <p class="lead" style="max-width: 900px; margin: 0 auto;">Liderazgo estratégico en la transición de ecosistemas Batch a arquitecturas de monitoreo continuo (Cloud GCP) con enfoque en <strong>ROI y Eficiencia Operativa</strong>.</p>
+            <span class="section-tag">Enterprise Governance & FinOps</span>
+            <h1>Real-Time Enterprise Flow</h1>
+            <p class="lead">Arquitectura de monitoreo continuo diseñada para eliminar la latencia operativa y optimizar el consumo de recursos cloud en un entorno de Retail masivo.</p>
         </header>
 
-    <div class="container">
-
-
-        <!-- SLIDE 2: EL DESAFÍO -->
-        <section class="grid-2">
+        <section class="reveal" style="margin-top: 60px; display:grid; grid-template-columns: 1fr 1fr; gap: 40px;" class="grid-2">
             <div>
-                <div class="tag">El Desafío Operativo</div>
-                <h2>¿Datos de ayer para decisiones de hoy?</h2>
-                <p>En el entorno del Retail moderno, esperar resulta en pérdidas. Monitorear las ventas mediante cierres nocturnos (procesamiento batch diario) ocultaba oportunidades e ineficiencias críticas.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <span><strong>Latencia de 24h:</strong> Imposibilidad de reacción intradía en campañas promocionales.</span></li>
-                    <li><i class="fas fa-box-open" style="color: var(--warning);"></i> <span><strong>Riesgo de Quiebre de Stock:</strong> Inventarios no actualizados causaban pérdida de ventas.</span></li>
-                    <li><i class="fas fa-history"></i> <span><strong>Decisiones en diferido:</strong> Análisis basados exclusivamente en ventas del día anterior.</span></li>
-                </ul>
+                <span class="section-tag" style="color:var(--danger)">The Challenge</span>
+                <h2 style="font-family:'Outfit'; color:#fff; font-size:2rem; margin-bottom:20px;">¿Datos vencidos para decisiones críticas?</h2>
+                <p style="color:var(--text-dim); margin-bottom:25px;">En el retail moderno, la latencia de 24 horas es una debilidad financiera. Monitorear cierres nocturnos ocultaba rupturas de stock y oportunidades de venta intradía.</p>
+                <div class="exec-insight" style="display:flex; gap:15px; align-items:center;">
+                    <i class="fas fa-clock" style="font-size: 2rem; color: var(--danger);"></i>
+                    <p style="margin:0; font-weight:700;">Zero-Day Latency Strategy: Transición de Procesamiento Batch a Streaming Event-Driven.</p>
+                </div>
             </div>
-            <div class="feature-card" style="text-align: center; padding: 50px 30px;">
-                <i class="fas fa-clock" style="font-size: 4rem; color: var(--danger); margin-bottom: 20px;"></i>
-                <h3>El Retail moderno no espera.</h3>
-                <p style="margin-bottom: 0;">El negocio requería una actualización en tiempo real, capaz de procesar el volumen masivo de transacciones a nivel nacional de forma continua.</p>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; display:block;"></i>
+                <h4 style="font-family:'Outfit'; color:#fff; margin-bottom:10px;">Gobernanza & FinOps</h4>
+                <p style="font-size:0.9rem; color:var(--text-dim);">Reducción del 40% en costos de infraestructura cloud mediante el uso de clusters efímeros y orquestación inteligente (Airflow).</p>
             </div>
         </section>
 
-        <!-- SLIDE 3: LA ARQUITECTURA -->
-        <section class="grid-2 reverse">
-            <div>
-                <div class="tag">La Solución Técnica</div>
-                <h2>Mi enfoque: Orchestration First</h2>
-                <p>Frente al volumen de datos, la escalabilidad y la confiabilidad son primordiales. Diseñé una arquitectura <strong>automatizada de punta a punta</strong> en Google Cloud Platform.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-sitemap"></i> <span><strong>Orquestación:</strong> Cloud Composer (Airflow) para el control absoluto del flujo.</span></li>
-                    <li><i class="fas fa-microchip"></i> <span><strong>Procesamiento:</strong> Dataproc + Apache Spark para paralelizar tareas masivas.</span></li>
-                    <li><i class="fas fa-server"></i> <span><strong>Almacenamiento:</strong> Flujo hacia GCS Landing Zone para finalizar en BigQuery.</span></li>
-                </ul>
-            </div>
+        <!-- Mermaid Section -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Cloud Engineering</span>
+            <h2 class="section-title">High-Availability Architecture</h2>
             <div class="diagram-box">
                 <div class="mermaid">
-                    graph TD
-                        EXT[Extracción SAP HANA] --> LND[GCS Landing Zone]
-                        LND --> SPK{{"Dataproc + Spark"}}
-                        SPK --> BQ[BigQuery Data Warehouse]
+                    graph LR
+                        SAP[SAP S/4HANA] --> LND[GCS Landing]
+                        LND --> SPK[Spark / Dataproc]
+                        SPK --> BQ[BigQuery DW]
+                        BQ --> LKR[Looker Dashboard]
                         
-                        style EXT fill:#0f172a,stroke:#334155,color:#ffffff,stroke-width:2px
-                        style SPK fill:#1e3a8a,stroke:#3b82f6,color:#ffffff,stroke-width:2px
-                        style BQ fill:#064e3b,stroke:#10b981,color:#ffffff,stroke-width:2px
+                        classDef cloud fill:#2563eb,stroke:#fff,stroke-width:2px,color:#fff
+                        class SPK,BQ,LKR cloud
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 4: FINOPS -->
-        <section class="grid-2">
-            <div>
-                <div class="tag">Ingeniería de Valor</div>
-                <h2>¿Cómo reduje un 40% los costos de nube? 💸</h2>
-                <p>Mantener servidores encendidos 24/7 es un desperdicio financiero. Apliqué la disciplina <strong>FinOps</strong> al diseño del pipeline utilizando infraestructura efímera.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-play-circle"></i> <span><strong>On-Demand:</strong> Provisionar el cluster automáticamente al iniciar el DAG.</span></li>
-                    <li><i class="fas fa-sync-alt"></i> <span><strong>Proceso Incremental:</strong> Cargar exclusivamente los deltas de información por hora.</span></li>
-                    <li><i class="fas fa-trash-alt"></i> <span><strong>Auto-destrucción:</strong> Eliminar la infraestructura en la nube al finalizar el procesamiento.</span></li>
-                </ul>
-            </div>
-            <div class="feature-card" style="border-color: var(--success);">
-                <h3 style="color: var(--success);"><i class="fas fa-leaf" style="color: var(--success);"></i> Eficiencia Técnica = Ahorro Financiero</h3>
-                <p>La arquitectura transiente garantiza capacidad de cómputo ilimitada durante los minutos de procesamiento exactos, reduciendo drásticamente la factura mensual en GCP.</p>
-            </div>
-        </section>
-
-        <!-- SLIDE 5: EXTRACCIÓN Y PARIDAD -->
-        <section class="grid-2 reverse">
-            <div>
-                <div class="tag">Resolución de Complejidad</div>
-                <h2>Extracción Híbrida & Paridad SAP</h2>
-                <p>El mayor reto de ingeniería de datos no es mover la información, es garantizar que los modelos analíticos tengan <strong>paridad del 100%</strong> con los sistemas financieros origen.</p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-plug"></i> <span><strong>Desafío SAP HANA:</strong> Extracción balanceada y concurrente mediante drivers JDBC en Spark.</span></li>
-                    <li><i class="fas fa-balance-scale"></i> <span><strong>Reglas Inyectadas:</strong> Diferenciación de modelos de costos (Ej: Retail vs Servicios) aplicada en la capa de transformación.</span></li>
-                    <li><i class="fas fa-history"></i> <span><strong>Late Arriving Data:</strong> Gestión robusta de datos atrasados y anulación de transacciones.</span></li>
-                </ul>
-            </div>
-            <div class="feature-card" style="text-align: center;">
-                <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
-                <h3>Datos en los que el Negocio confía.</h3>
-                <p style="margin-bottom: 0;">Un pipeline no aporta valor si sus cifras no cuadran con el Libro Mayor. Garantizamos auditoría de paridad completa antes de la visualización.</p>
-            </div>
-        </section>
-
-        <!-- SLIDE 6: EL RESULTADO FINAL (DASHBOARD RECONSTRUCTION) -->
-        <section>
-            <div class="section-header" style="margin-bottom: 40px;">
-                <div class="tag">La Entrega</div>
-                <h2>Impacto Real y Resultados Operativos</h2>
-                <p>Las mejoras arquitectónicas se tradujeron directamente en capacidades analíticas inmediatas, cambiando la cultura reactiva a una proactiva.</p>
-                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap;">
-                    <div style="background: rgba(16, 185, 129, 0.1); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--success); color: var(--success); font-weight: 800;">⏱️ Latencia: < 1 hora (vs 24h)</div>
-                    <div style="background: rgba(59, 130, 246, 0.1); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--accent); color: var(--accent); font-weight: 800;">💰 Ahorro Cloud: 40%</div>
-                    <div style="background: rgba(16, 185, 129, 0.1); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--success); color: var(--success); font-weight: 800;">🛡️ Paridad: 100%</div>
-                </div>
-            </div>
-
-            <!-- Dashboard Re-construction -->
-            <div class="dashboard-container">
-                <div class="db-title">
-                    Vista Generada: Cubo de Ventas | Retail Engine
-                    <span>Actualización: Tiempo Real</span>
+        <!-- Simulated Dashboard -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Directorial Visibility</span>
+            <h2 class="section-title">Real-Time Context Monitor</h2>
+            
+            <div class="db-shell-internal">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <div style="font-family:'Outfit'; font-weight:900; color:#fff; font-size:1.1rem;">
+                        <i class="fas fa-circle" style="color:var(--success); font-size:0.6rem; vertical-align:middle; margin-right:10px;"></i>
+                        Enterprise Retail Monitor
+                    </div>
+                    <span class="db-badge">Live Contextually</span>
                 </div>
 
-                <!-- KPIs -->
-                <div class="kpi-row">
-                    <div class="kpi-box"><span>Venta Global Acumulada</span><strong>$1.29 M</strong></div>
-                    <div class="kpi-box"><span>Utilidad Bruta</span><strong>$553.0 K</strong></div>
-                    <div class="kpi-box"><span>Margen Promedio</span><strong>0.43%</strong></div>
-                    <div class="kpi-box"><span>Ticket Promedio Diario</span><strong>$220.40</strong></div>
+                <div class="kpi-row" style="display:grid; grid-template-columns: repeat(4, 1fr); gap:15px;">
+                    <div class="kpi-mini-box"><span>Venta Intradía</span><strong>$1.29 M</strong></div>
+                    <div class="kpi-mini-box"><span>Utilidad Bruta</span><strong>$553.0 K</strong></div>
+                    <div class="kpi-mini-box"><span>Margen</span><strong>43%</strong></div>
+                    <div class="kpi-mini-box"><span>Ticket Prom.</span><strong>$220.40</strong></div>
                 </div>
 
-                <div class="charts-grid">
-                    <!-- Hourly Chart -->
-                    <div class="chart-card">
-                        <div class="chart-title">RESUMEN DE VENTA POR HORA (INTRADÍA)</div>
-                        <div class="bars-container" style="margin-top: 15px;">
+                <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:30px; margin-top:30px;" class="charts-grid">
+                    <div style="background:rgba(255,255,255,0.01); border:1px solid var(--border); border-radius:20px; padding:25px;">
+                        <h4 style="font-family:'Outfit'; font-size:0.8rem; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px;">Hourly Revenue Velocity</h4>
+                        <div class="bars-container">
                             <div class="bar" style="height: 10%;"><span class="val">$41K</span><span class="time">10:00</span></div>
                             <div class="bar" style="height: 25%;"><span class="val">$125K</span><span class="time">11:00</span></div>
                             <div class="bar" style="height: 15%;"><span class="val">$37K</span><span class="time">12:00</span></div>
-                            <div class="bar" style="height: 65%;"><span class="val">$362K</span><span class="time">13:00</span></div>
+                            <div class="bar" style="height: 75%;"><span class="val">$362K</span><span class="time">13:00</span></div>
                             <div class="bar" style="height: 40%;"><span class="val">$207K</span><span class="time">14:00</span></div>
-                            <div class="bar" style="height: 85%;"><span class="val">$457K</span><span class="time">15:00</span></div>
-                            <div class="bar" style="height: 70%;"><span class="val">$285K</span><span class="time">16:00</span></div>
+                            <div class="bar" style="height: 95%;"><span class="val">$457K</span><span class="time">15:00</span></div>
+                            <div class="bar" style="height: 60%;"><span class="val">$285K</span><span class="time">16:00</span></div>
                         </div>
                     </div>
-
-                    <!-- Top Categories -->
-                    <div class="chart-card">
-                        <div class="chart-title">PRINCIPALES UNIDADES DE NEGOCIO</div>
-                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 30px;">
-                            <div style="font-size: 0.75rem; color: #475569; font-weight: 600;">Unidad Categoría A ($498K) <div style="height:8px; background:#e2e8f0; border-radius:4px; margin-top:5px;"><div style="width:100%; height:100%; background:#3b82f6; border-radius:4px;"></div></div></div>
-                            <div style="font-size: 0.75rem; color: #475569; font-weight: 600;">Unidad Categoría B ($237K) <div style="height:8px; background:#e2e8f0; border-radius:4px; margin-top:5px;"><div style="width:47%; height:100%; background:#94a3b8; border-radius:4px;"></div></div></div>
-                            <div style="font-size: 0.75rem; color: #475569; font-weight: 600;">Unidad Categoría C ($131K) <div style="height:8px; background:#e2e8f0; border-radius:4px; margin-top:5px;"><div style="width:26%; height:100%; background:#0f172a; border-radius:4px;"></div></div></div>
+                    <div style="background:rgba(255,255,255,0.01); border:1px solid var(--border); border-radius:20px; padding:25px;">
+                        <h4 style="font-family:'Outfit'; font-size:0.8rem; text-transform:uppercase; color:var(--text-dim); margin-bottom:20px;">Strategic Yield by Category</h4>
+                        <div style="display:flex; flex-direction:column; gap:15px;">
+                            <div style="font-size:0.75rem; color:var(--text-dim);">Category A ($498K) <div style="height:6px; background:var(--accent); border-radius:3px; margin-top:5px; width:100%;"></div></div>
+                            <div style="font-size:0.75rem; color:var(--text-dim);">Category B ($237K) <div style="height:6px; background:var(--text-dim); border-radius:3px; margin-top:5px; width:47%;"></div></div>
+                            <div style="font-size:0.75rem; color:var(--text-dim);">Category C ($131K) <div style="height:6px; background:var(--border); border-radius:3px; margin-top:5px; width:26%;"></div></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Table -->
                 <div class="db-table-wrapper">
                     <table>
                         <thead>
                             <tr>
-                                <th>Región / Clúster Operativo</th>
-                                <th>Venta ($)</th>
-                                <th>Costo ($)</th>
-                                <th>Utilidad ($)</th>
-                                <th>Volumen (Piezas)</th>
-                                <th>Ticket Prom.</th>
+                                <th>Cluster Operativo</th>
+                                <th>Revenue</th>
+                                <th>Yield</th>
+                                <th>Tickets</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Región Metropolitana Norte - 101</strong></td><td>$43,763</td><td>$27,491</td><td><span class="val-pill">$16,272</span></td><td>2,140</td><td>$275.21</td></tr>
-                            <tr><td><strong>Región Pacífico Centro - 204</strong></td><td>$38,321</td><td>$27,825</td><td><span class="val-pill">$10,496</span></td><td>479</td><td>$491.26</td></tr>
-                            <tr><td><strong>Región Bajío Industrial - 302</strong></td><td>$38,275</td><td>$24,498</td><td><span class="val-pill">$13,777</span></td><td>424</td><td>$1,125.59</td></tr>
-                            <tr><td><strong>Región Sureste Costera - 408</strong></td><td>$37,761</td><td>$23,235</td><td><span class="val-pill">$14,526</span></td><td>642</td><td>$858.15</td></tr>
+                            <tr><td>Metropolitana Norte</td><td>$43,763</td><td style="color:var(--success)">$16,272</td><td>2,140</td></tr>
+                            <tr><td>Pacífico Centro</td><td>$38,321</td><td style="color:var(--success)">$10,496</td><td>479</td></tr>
+                            <tr><td>Bajío Industrial</td><td>$38,275</td><td style="color:var(--success)">$13,777</td><td>424</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:30px; opacity:0.6; font-size: 0.8rem;">
-                Strategic Portfolio &copy; 2026
-            </div>
-        <section class="reveal">
-            <h2 class="section-title">Foundation & Technical Ecosystem</h2>
-            <div class="tech-stack-grid">
-                <div class="tech-category">
-                    <h3><i class="fas fa-network-wired"></i> Architecture</h3>
-                    <div class="tech-tags">
-                        <span>Streaming ETL</span>
-                        <span>Google BigQuery</span>
-                        <span>SAP S/4HANA Connector</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-shield-alt"></i> Governance</h3>
-                    <div class="tech-tags">
-                        <span>Cloud FinOps</span>
-                        <span>Data Integrity Audit</span>
-                        <span>IAM Security</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-rocket"></i> Scalability</h3>
-                    <div class="tech-tags">
-                        <span>Google Cloud Platform</span>
-                        <span>Looker Studio BI</span>
-                        <span>Real-Time Monitoring</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-            document.querySelectorAll('section, .feature-card, .diagram-box, .dashboard-container').forEach(el => el.classList.add('reveal'));
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

@@ -3,158 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Dashboards | Luis Barragan, PhD</title>
+    <title>Executive Intelligence Ecosystems | Power BI | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+        .dashboard-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px; margin-top: 60px;
         }
-
+        
         .dashboard-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            background: var(--glass); border-radius: 24px; border: 1px solid var(--border);
+            padding: 30px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex; flex-direction: column;
         }
-
-        .dashboard-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        .dashboard-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
 
         .preview-image {
-            width: 100%; height: 200px; object-fit: cover; border-radius: 12px;
-            margin: 20px 0; border: 1px solid var(--border);
+            width: 100%; height: 220px; object-fit: cover; border-radius: 16px;
+            margin: 20px 0; border: 1px solid var(--border); background: #000;
         }
 
-        .insights {
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+        .insights-panel {
+            background: rgba(0,0,0,0.3); padding: 25px; border-radius: 16px;
+            border: 1px solid var(--border); margin-bottom: 25px; flex-grow: 1;
         }
+        .insights-panel h4 { font-family: 'Outfit'; color: #fff; margin-bottom: 15px; font-size: 1rem; }
+        .insights-panel ul { list-style: none; padding: 0; margin: 0; }
+        .insights-panel li { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px; display: flex; gap: 12px; }
+        .insights-panel li::before { content: "▹"; color: var(--accent); font-weight: 900; }
 
-        .tech-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-dim);
-            padding: 4px 12px;
-            border-radius: 50px;
-            margin: 0 5px 5px 0;
-            font-size: 0.7rem;
-            border: 1px solid var(--border);
-            font-weight: 600;
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; gap: 25px; }
+            .preview-image { height: 180px; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
-        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="container" style="padding-top: 60px;">
         
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
         <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Enterprise BI & Analytics</span>
-            <h1>Power BI Dashboard Portfolio</h1>
-            <p class="lead">
-                Modelos analíticos estratégicos diseñados para la toma de decisiones ejecutiva, integrando orígenes de datos on-premise y métricas DAX de alto impacto.
-            </p>
-            <div style="margin-top: 15px;">
-                <span class="tech-badge">SQL Server</span>
-                <span class="tech-badge">Excel</span>
-                <span class="tech-badge">SharePoint</span>
-                <span class="tech-badge">REST APIs</span>
-                <span class="tech-badge">DAX</span>
+            <span class="section-tag">Executive Intelligence</span>
+            <h1>Intelligence Ecosystems Suite</h1>
+            <p class="lead">Soluciones de visualización corporativa diseñadas para stakeholders, transformando orígenes de datos complejos en narrativas de impacto directivo.</p>
+            
+            <div class="tech-tags" style="margin-top: 25px;">
+                <span>SQL Server</span><span>Advanced DAX</span><span>BigQuery</span><span>API Integration</span>
             </div>
         </header>
 
         <div class="dashboard-grid">
             
-            <!-- Dashboard 1 -->
-            <div class="dashboard-card">
-                <h3><i class="fas fa-globe-americas" style="color: var(--powerbi);"></i> Global Sales Analysis</h3>
-                <img src="./Ventas-preview.jpg" alt="Global Sales Dashboard" class="preview-image" onerror="this.style.display='none'">
-                <a href="./Ventas.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+            <!-- Analysis 1 -->
+            <div class="dashboard-card reveal">
+                <h3 style="font-family:'Outfit'; color:#fff;"><i class="fas fa-chart-line" style="color: var(--accent); margin-right: 15px;"></i> Global Revenue Operations</h3>
+                <img src="./Ventas-preview.jpg" alt="Sales Intelligence" class="preview-image" onerror="this.src='../assets/img/placeholder.jpg'">
                 
-                <div class="insights">
-                    <h4>Key Insights</h4>
+                <div class="insights-panel">
+                    <h4>Directorial Insights</h4>
                     <ul>
-                        <li><strong>$671M</strong> total profit (19.95% avg margin)</li>
-                        <li>Americas generate <strong>39.14%</strong> of profits</li>
-                        <li>USA leads with <strong>24.47%</strong> profit margin</li>
-                        <li>Clear quarterly growth trends visible</li>
+                        <li><b>$671M</b> de utilidad total identificada.</li>
+                        <li>América lidera con el <b>39.14%</b> de la contribución.</li>
+                        <li>Optimización de margen identificada en USA (24.47%).</li>
                     </ul>
                 </div>
+                
+                <a href="./Ventas.pbix" class="btn-executive btn-primary"><i class="fas fa-download"></i> Descargar PBIX Source</a>
             </div>
 
-            <!-- Dashboard 2 -->
-            <div class="dashboard-card">
-                <h3><i class="fas fa-chalkboard-teacher" style="color: var(--powerbi);"></i> Corporate Training</h3>
-                <img src="./BD_cursos_page-0001.jpg" alt="Training Dashboard" class="preview-image" onerror="this.style.display='none'">
-                <a href="./BD_cursos.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+            <!-- Analysis 2 -->
+            <div class="dashboard-card reveal delay-1">
+                <h3 style="font-family:'Outfit'; color:#fff;"><i class="fas fa-users" style="color: var(--accent); margin-right: 15px;"></i> Human Capital Governance</h3>
+                <img src="./BD_cursos_page-0001.jpg" alt="Training Analytics" class="preview-image" onerror="this.src='../assets/img/placeholder.jpg'">
                 
-                <div class="insights">
-                    <h4>Key Insights</h4>
+                <div class="insights-panel">
+                    <h4>Directorial Insights</h4>
                     <ul>
-                        <li>Excel most demanded (<strong>24.62%</strong> training hours)</li>
-                        <li>Night shift has <strong>42.27%</strong> participation</li>
-                        <li>Top client generated <strong>€65,500</strong> revenue</li>
-                        <li>Average 23.92 training hours per course</li>
+                        <li>Eficiencia de capacitación: 23.9 horas/curso.</li>
+                        <li>Shift Analysis: 42.27% participacion nocturna.</li>
+                        <li>Ingreso por unidad de capacitación: €65.5K (Top Client).</li>
                     </ul>
                 </div>
+                
+                <a href="./BD_cursos.pbix" class="btn-executive btn-primary"><i class="fas fa-download"></i> Descargar PBIX Source</a>
             </div>
 
-            <!-- Dashboard 3 -->
-            <div class="dashboard-card">
-                <h3><i class="fas fa-file-invoice-dollar" style="color: var(--powerbi);"></i> Client Billing</h3>
-                <img src="./Facturas-preview.jpg" alt="Billing Dashboard" class="preview-image" onerror="this.style.display='none'">
-                <a href="./Facturas.pbix" class="download-btn"><i class="fas fa-download"></i> Download PBIX</a>
+            <!-- Analysis 3 -->
+            <div class="dashboard-card reveal delay-2">
+                <h3 style="font-family:'Outfit'; color:#fff;"><i class="fas fa-file-invoice-dollar" style="color: var(--accent); margin-right: 15px;"></i> Financial Flow Intelligence</h3>
+                <img src="./Facturas-preview.jpg" alt="Billing Intelligence" class="preview-image" onerror="this.src='../assets/img/placeholder.jpg'">
                 
-                <div class="insights">
-                    <h4>Key Insights</h4>
+                <div class="insights-panel">
+                    <h4>Directorial Insights</h4>
                     <ul>
-                        <li>Top client contributes <strong>29.42%</strong> revenue</li>                
-                        <li>Consulting most frequent service (<strong>133 cases</strong>)</li>
-                        <li>Madrid leads in billing by province</li>
+                        <li>Concentración de ingresos: 29.42% (Top Account).</li>
+                        <li>Segmentación de servicios: Consulting lidera (133 cases).</li>
+                        <li>Optimización geográfica de facturación (Madrid focus).</li>
                     </ul>
                 </div>
+                
+                <a href="./Facturas.pbix" class="btn-executive btn-primary"><i class="fas fa-download"></i> Descargar PBIX Source</a>
             </div>
 
         </div>
 
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
-                Portafolio Estratégico &copy; 2026
-            </div>
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

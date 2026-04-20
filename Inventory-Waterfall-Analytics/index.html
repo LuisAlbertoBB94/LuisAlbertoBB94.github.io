@@ -5,50 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Resilience Engine | Strategic Supply Chain Protection | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
         /* Project-Specific UI Logic only */
         .db-shell {
-            background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border);
-            overflow: hidden; backdrop-filter: blur(20px); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            margin: 40px 0 80px; position: relative;
+            background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border);
+            overflow: hidden; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            margin: 40px 0 80px; position: relative; box-shadow: 0 40px 80px rgba(0,0,0,0.5);
         }
-        .db-topbar { background: rgba(255,255,255,0.03); padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
-        .db-body { padding: 30px; display: flex; flex-direction: column; gap: 20px; }
+        .db-topbar { background: rgba(255,255,255,0.03); padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+        .db-body { padding: clamp(20px, 5vw, 40px); display: flex; flex-direction: column; gap: 30px; }
         
         .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .kpi-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; text-align: center; transition: all 0.3s; }
+        .kpi-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 24px 20px; text-align: center; transition: all 0.3s; }
         .kpi-box:hover { background: rgba(255,255,255,0.05); transform: translateY(-5px); border-color: var(--accent); }
         .kpi-box.danger { border-color: rgba(239, 68, 68, 0.4); animation: pulseGlow 3s infinite; }
-        .kpi-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 700; }
-        .kpi-value { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; }
-
+        
         /* Chart-Specific Styles */
         .chart-container { 
-            background: rgba(0,0,0,0.3); border-radius: 12px; padding: 40px 30px; 
-            border: 1px solid var(--border); height: 350px; position: relative; 
-            overflow: hidden;
+            background: rgba(0,0,0,0.2); border-radius: 20px; padding: clamp(20px, 5vw, 40px); 
+            border: 1px solid var(--border); position: relative; overflow: hidden;
         }
-        .line-svg { width: 100%; height: 200px; position: relative; z-index: 2; }
-        .waterfall-line { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: drawPath 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .line-svg { width: 100%; height: clamp(200px, 30vh, 300px); position: relative; z-index: 2; }
+        
+        .waterfall-line { 
+            fill: none; stroke-width: 4; stroke-linecap: round; 
+            stroke-dasharray: 1200; stroke-dashoffset: 1200; 
+            transition: stroke-dashoffset 3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-active .waterfall-line { stroke-dashoffset: 0; }
 
         .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .method-card { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: all 0.4s; backdrop-filter: blur(10px); }
+        .method-card { background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid var(--border); transition: all 0.4s; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
         .method-card:hover { transform: translateY(-10px); border-color: var(--success); background: rgba(16, 185, 129, 0.05); }
 
         @media (max-width: 768px) {
-            .db-body { padding: 15px; }
+            .db-topbar { flex-direction: column; gap: 15px; text-align: center; }
             .kpi-row { grid-template-columns: 1fr 1fr; }
+            .cta-container { flex-direction: column; width: 100%; }
+            .cta-container a { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container" style="padding-top: 40px;">
+    <div class="bg-glow"></div>
+    <div class="container" style="padding-top: 60px;">
         
         <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
 
-        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0;">
             <div class="data-mesh"></div>
             <span class="section-tag">Financial Resilience & P&L Protection</span>
             <h1>Supply Chain Stability Engine</h1>
@@ -70,25 +76,25 @@
                 <div class="kpi-row">
                     <div class="kpi-box">
                         <div class="kpi-label">Artículos Monitoreados</div>
-                        <div class="kpi-value">5,402</div>
+                        <div class="kpi-value" style="font-size:2.2rem; font-family:'Outfit'; font-weight:900;">5,402</div>
                     </div>
                     <div class="kpi-box">
                         <div class="kpi-label">Stock de Seguridad (u)</div>
-                        <div class="kpi-value">1.2M</div>
+                        <div class="kpi-value" style="font-size:2.2rem; font-family:'Outfit'; font-weight:900;">1.2M</div>
                     </div>
                     <div class="kpi-box">
                         <div class="kpi-label">Cumplimiento Global</div>
-                        <div class="kpi-value" style="color:var(--success)">88.4%</div>
+                        <div class="kpi-value" style="color:var(--success); font-size:2.2rem; font-family:'Outfit'; font-weight:900;">88.4%</div>
                     </div>
                     <div class="kpi-box danger">
                         <div class="kpi-label">Exposición al Riesgo ($)</div>
-                        <div class="kpi-value" style="color:var(--danger)">$19.2M</div>
+                        <div class="kpi-value" style="color:var(--danger); font-size:2.2rem; font-family:'Outfit'; font-weight:900;">$19.2M</div>
                     </div>
                 </div>
 
                 <!-- Animated Chart -->
-                <div class="chart-container">
-                    <div class="chart-title">Monitor de Continuidad de Facturación (Riesgo a 30 Días)</div>
+                <div class="chart-container reveal">
+                    <div class="chart-title" style="margin-bottom:20px; font-weight:700; opacity:0.8;">Monitor de Continuidad de Facturación (Riesgo a 30 Días)</div>
                     <svg class="line-svg" viewBox="0 0 1000 200" preserveAspectRatio="none">
                         <!-- BG Lines -->
                         <line x1="0" y1="20" x2="1000" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
@@ -99,32 +105,32 @@
                         <text x="10" y="155" fill="var(--success)" font-size="10" font-weight="700" opacity="0.6">SAFETY BUFFER</text>
                         
                         <!-- Accesorios (Stable Blue) -->
-                        <path class="waterfall-line" stroke="#2563eb" style="animation-delay: 0.5s;"
+                        <path class="waterfall-line" stroke="#2563eb" style="transition-delay: 0.5s;"
                                d="M0,40 Q250,42 500,48 T1000,55"/>
                         <!-- Electrónica (Warning Gold) -->
-                        <path class="waterfall-line" stroke="#d97706" style="animation-delay: 1s;"
+                        <path class="waterfall-line" stroke="#d97706" style="transition-delay: 1s;"
                                d="M0,40 Q200,50 400,80 T700,120 T1000,140"/>
-                        <!-- Ropa (Critical Red) - Controlled drop, not "falling off" -->
-                        <path class="waterfall-line" stroke="#ef4444" style="animation-delay: 1.5s;"
+                        <!-- Ropa (Critical Red) -->
+                        <path class="waterfall-line" stroke="#ef4444" style="transition-delay: 1.5s;"
                                d="M0,40 L150,45 L300,90 L450,130 L600,165 L1000,165"/>
                     </svg>
                     <div class="axis-labels">
-                        <span class="axis-label">Día 0 (Stock Full)</span>
-                        <span class="axis-label">Día 15 (Trigger de Compra)</span>
-                        <span class="axis-label">Día 30 (Límite Financiero)</span>
+                        <span class="axis-label">Día 0 (Full)</span>
+                        <span class="axis-label">Día 15 (Trigger)</span>
+                        <span class="axis-label">Día 30 (Límite)</span>
                     </div>
                     <div class="legend">
                         <div class="legend-item"><div class="legend-dot" style="background:#2563eb;"></div>Flujo Garantizado</div>
                         <div class="legend-item"><div class="legend-dot" style="background:#d97706;"></div>Monitoreo Activo</div>
-                        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div>Riesgo de Quiebre Identificado</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div>Riesgo de Quiebre</div>
                     </div>
                 </div>
 
-                <div class="cta-container">
-                    <a href="Inventory-Waterfall-Package.zip" class="btn-premium btn-download">
+                <div class="cta-container" style="display:flex; gap:20px; justify-content:center;">
+                    <a href="Inventory-Waterfall-Package.zip" class="btn-executive btn-primary" style="padding: 18px 30px;">
                         <i class="fas fa-file-archive"></i> Descargar Full Package
                     </a>
-                    <a href="https://luis-inventory-waterfall.streamlit.app/" target="_blank" class="btn-premium btn-demo">
+                    <a href="https://luis-inventory-waterfall.streamlit.app/" target="_blank" class="btn-executive" style="padding: 18px 30px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);">
                         <i class="fas fa-play-circle"></i> Lanzar Simulador Online
                     </a>
                 </div>
@@ -133,68 +139,27 @@
 
         <!-- --- Strategic Methodology --- -->
         <div class="reveal delay-3">
-            <h2 class="section-title">Visión Estratégica & Liderazgo de Datos</h2>
-            <p class="section-desc">Como Head of BI, mi enfoque trasciende la visualización; se trata de construir sistemas de alerta temprana que protejan la rentabilidad y habiliten decisiones directivas de alto impacto.</p>
+            <h2 class="section-title">Estrategia & Liderazgo de Datos</h2>
+            <p class="section-desc">Como Head of BI, mi enfoque trasciende la visualización; se trata de construir sistemas de alerta temprana que protejan la rentabilidad.</p>
 
             <div class="method-grid">
-                <div class="method-card">
-                    <span class="method-num">ESTRATEGIA 01</span>
-                    <h3>Ingeniería de Valor (P&L)</h3>
-                    <p>Transformación de métricas logísticas en impacto financiero directo. Traducimos el stock out en "Venta Perdida Proyectada", permitiendo a la mesa directiva priorizar el capital de trabajo.</p>
-                    <div class="impact-box">Alineación estratégica de KPIs con el Estado de Resultados.</div>
+                <div class="method-card reveal">
+                    <span class="section-tag" style="color:var(--accent)">Estrategia 01</span>
+                    <h3 style="font-family:'Outfit'; font-weight:800; margin-bottom:15px; color:#fff;">Ingeniería de Valor (P&L)</h3>
+                    <p style="color:var(--text-dim); font-size:0.95rem;">Transformación de métricas logísticas en impacto financiero directo. Traducimos el stock out en "Venta Perdida Proyectada".</p>
+                    <div class="impact-box" style="margin-top:20px;">Alineación estratégica de KPIs con el Estado de Resultados.</div>
                 </div>
 
-                <div class="method-card">
-                    <span class="method-num">ESTRATEGIA 02</span>
-                    <h3>Modelado de Resiliencia</h3>
-                    <p>Implementación de algoritmos de depleción inteligente que consideran la estacionalidad y el lead time, garantizando que el "Waterfall" sea una herramienta de prevención, no de autopsia.</p>
-                    <div class="impact-box">Detección de fracturas operativas con 15-20 días de antelación.</div>
-                </div>
-
-                <div class="method-card">
-                    <span class="method-num">ESTRATEGIA 03</span>
-                    <h3>Gobierno de Datos Ágil</h3>
-                    <p>Arquitectura orientada a la acción. Eliminamos el ruido estadístico para entregar visualizaciones que fuerzan la toma de decisiones, reduciendo la latencia de respuesta ante crisis de suministro.</p>
-                    <div class="impact-box">Optimización del 40% en la eficiencia de compra de emergencia.</div>
+                <div class="method-card reveal delay-1">
+                    <span class="section-tag" style="color:var(--accent)">Estrategia 02</span>
+                    <h3 style="font-family:'Outfit'; font-weight:800; margin-bottom:15px; color:#fff;">Modelado de Resiliencia</h3>
+                    <p style="color:var(--text-dim); font-size:0.95rem;">Implementación de algoritmos de depleción inteligente que consideran la estacionalidad y el lead time.</p>
+                    <div class="impact-box" style="margin-top:20px;">Detección de fracturas operativas con 15-20 días de antelación.</div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align:center; margin-top:80px;" class="reveal">
-            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Explorar otros proyectos</a>
-        </div>
-
-        <section class="reveal">
-            <h2 class="section-title">Foundation & Technical Ecosystem</h2>
-            <div class="tech-stack-grid">
-                <div class="tech-category">
-                    <h3><i class="fas fa-microchip"></i> Analytics Engine</h3>
-                    <div class="tech-tags">
-                        <span>Predictive Modeling</span>
-                        <span>Inventory Burn-Down Logic</span>
-                        <span>Monte Carlo Simulation</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-code"></i> Engineering</h3>
-                    <div class="tech-tags">
-                        <span>Python (Core)</span>
-                        <span>Pandas Analytics</span>
-                        <span>Supply Chain Logic</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-shuttle-van"></i> Deployment</h3>
-                    <div class="tech-tags">
-                        <span>Streamlit Cloud</span>
-                        <span>GitHub Integration</span>
-                        <span>Real-Time Context</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
+        <footer class="reveal" style="margin-top:100px;">
             <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
             <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
             <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
@@ -204,16 +169,13 @@
     </div>
 
     <script>
-        // Simple Intersection Observer to trigger entrance animations
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.animationPlayState = "running";
+                    entry.target.classList.add('reveal-active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>

@@ -3,323 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Regresión Lineal: SAT vs GPA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Predictive Modeling Architecture | SAT vs GPA | Luis Barragan, PhD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/premium-style.css">
     <style>
-        .code-block {
-            background-color: rgba(0,0,0,0.3);
-            padding: 24px;
-            border-radius: 12px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            border-left: 4px solid var(--accent);
-            color: #d1d5db;
+        .analysis-card {
+            background: var(--glass); border-radius: 24px; border: 1px solid var(--border);
+            padding: clamp(20px, 5vw, 40px); margin: 30px 0; backdrop-filter: blur(20px);
         }
         
-        table {
-            width: 100%; border-collapse: collapse; margin: 30px 0;
-            background: rgba(255,255,255,0.02); border-radius: 12px; overflow: hidden;
-            border: 1px solid var(--border);
+        .code-panel {
+            background: rgba(0,0,0,0.4); border-radius: 16px; border: 1px solid var(--border);
+            padding: 25px; margin: 20px 0; font-family: 'Fira Code', monospace;
+            font-size: 0.85rem; color: #94a3b8; border-left: 4px solid var(--accent);
+            overflow-x: auto;
         }
-        th { background: rgba(59, 130, 246, 0.1); color: var(--text-main); padding: 15px; text-align: left; }
+        .code-panel b { color: var(--accent); }
+
+        .table-responsive { width: 100%; overflow-x: auto; border-radius: 16px; border: 1px solid var(--border); margin: 30px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: rgba(255,255,255,0.01); }
+        th { background: rgba(59, 130, 246, 0.05); color: #fff; padding: 15px; text-align: left; }
         td { padding: 15px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
 
-        .image-container img {
-            border-radius: 16px; border: 1px solid var(--border);
-            transition: transform 0.3s ease;
+        .viz-box {
+            background: #000; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border); margin: 30px 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
+        .viz-box img { width: 100%; display: block; filter: brightness(0.9); }
 
-        .notes {
-            background: rgba(59, 130, 246, 0.05);
-            padding: 25px;
-            border-left: 4px solid var(--accent);
-            margin: 20px 0;
-            border-radius: 0 12px 12px 0;
+        @media (max-width: 768px) {
+            .code-panel { font-size: 0.75rem; padding: 15px; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
-        <a href="../../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="container" style="padding-top: 60px;">
         
+        <a href="../../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
         <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Applied Statistical Research</span>
-            <h1>Predictive Modeling: Academic Success</h1>
-            <p class="lead">Análisis de regresión lineal para cuantificar la arquitectura de correlación entre métricas pre-universitarias (SAT) y el rendimiento académico institucional (GPA).</p>
+            <span class="section-tag">Statistical Analytics & ML</span>
+            <h1>Predictive Modeling & Correlation</h1>
+            <p class="lead">Análisis de regresión lineal para cuantificar la arquitectura de correlación entre métricas pre-universitarias y el rendimiento académico institucional.</p>
         </header>
-    
-    <h2>Descargar Datos</h2>
-    <a href="Simpl linear regression.csv" class="download-btn">Descargar archivo CSV de datos</a>
-    
-    <h2>Importación de Bibliotecas</h2>
-    <div class="code-block">
-        import numpy as np<br>
-        import pandas as pd<br>
-        import matplotlib.pyplot as plt<br>
-        import statsmodels.api as sm
-    </div>
-    
-    <h2>Carga de Datos</h2>
-    <div class="code-block">
-        data = pd.read_csv('1.01.*Simple+linear+regression.csv')
-    </div>
-    
-    <h2>Visualización de Datos</h2>
-    <table class="data-table">
-        <tr>
-            <th>SAT</th>
-            <th>GPA</th>
-        </tr>
-        <tr>
-            <td>1714</td>
-            <td>2.40</td>
-        </tr>
-        <tr>
-            <td>1664</td>
-            <td>2.52</td>
-        </tr>
-        <tr>
-            <td>1760</td>
-            <td>2.54</td>
-        </tr>
-        <tr>
-            <td>1685</td>
-            <td>2.74</td>
-        </tr>
-        <tr>
-            <td>1693</td>
-            <td>2.83</td>
-        </tr>
-        <tr>
-            <td colspan="2">... (84 filas en total)</td>
-        </tr>
-    </table>
-    
-    <h2>Estadísticas Descriptivas</h2>
-    <table class="data-table">
-        <tr>
-            <th></th>
-            <th>SAT</th>
-            <th>GPA</th>
-        </tr>
-        <tr>
-            <td>count</td>
-            <td>84.000000</td>
-            <td>84.000000</td>
-        </tr>
-        <tr>
-            <td>mean</td>
-            <td>1845.273810</td>
-            <td>3.330238</td>
-        </tr>
-        <tr>
-            <td>std</td>
-            <td>104.530661</td>
-            <td>0.271617</td>
-        </tr>
-        <tr>
-            <td>min</td>
-            <td>1634.000000</td>
-            <td>2.400000</td>
-        </tr>
-        <tr>
-            <td>25%</td>
-            <td>1772.000000</td>
-            <td>3.190000</td>
-        </tr>
-        <tr>
-            <td>50%</td>
-            <td>1846.000000</td>
-            <td>3.380000</td>
-        </tr>
-        <tr>
-            <td>75%</td>
-            <td>1934.000000</td>
-            <td>3.502500</td>
-        </tr>
-        <tr>
-            <td>max</td>
-            <td>2050.000000</td>
-            <td>3.810000</td>
-        </tr>
-    </table>
-    
-    <h2>Preparación de Variables</h2>
-    <div class="code-block">
-        y = data['GPA']<br>
-        x1 = data['SAT']
-    </div>
-    
-    <h2>Gráfico de Dispersión</h2>
-    <div class="image-container">
-        <img src="GPA_SAT.png" alt="Gráfico de dispersión SAT vs GPA">
-        <div class="image-caption">Relación entre puntajes SAT y GPA</div>
-    </div>
-    
-    <h2>Modelo de Regresión Lineal</h2>
-    <div class="code-block">
-        x = sm.add_constant(x1)<br>
-        result = sm.OLS(y,x).fit()<br>
-        result.summary()
-    </div>
-    
-    <h3>Resultados del Modelo</h3>
-    <table class="result-table">
-        <tr>
-            <th>Dep. Variable:</th>
-            <td>GPA</td>
-            <th>R-squared:</th>
-            <td>0.406</td>
-        </tr>
-        <tr>
-            <th>Model:</th>
-            <td>OLS</td>
-            <th>Adj. R-squared:</th>
-            <td>0.399</td>
-        </tr>
-        <tr>
-            <th>Method:</th>
-            <td>Least Squares</td>
-            <th>F-statistic:</th>
-            <td>56.05</td>
-        </tr>
-        <tr>
-            <th>Date:</th>
-            <td>Tue, 08 Jul 2025</td>
-            <th>Prob (F-statistic):</th>
-            <td>7.20e-11</td>
-        </tr>
-        <tr>
-            <th>Time:</th>
-            <td>16:03:54</td>
-            <th>Log-Likelihood:</th>
-            <td>12.672</td>
-        </tr>
-        <tr>
-            <th>No. Observations:</th>
-            <td>84</td>
-            <th>AIC:</th>
-            <td>-21.34</td>
-        </tr>
-        <tr>
-            <th>Df Residuals:</th>
-            <td>82</td>
-            <th>BIC:</th>
-            <td>-16.48</td>
-        </tr>
-    </table>
-    
-    <h3>Coeficientes</h3>
-    <table class="result-table">
-        <tr>
-            <th></th>
-            <th>coef</th>
-            <th>std err</th>
-            <th>t</th>
-            <th>P>|t|</th>
-            <th>[0.025</th>
-            <th>0.975]</th>
-        </tr>
-        <tr>
-            <td><strong>const</strong></td>
-            <td>0.2750</td>
-            <td>0.409</td>
-            <td>0.673</td>
-            <td>0.503</td>
-            <td>-0.538</td>
-            <td>1.088</td>
-        </tr>
-        <tr>
-            <td><strong>SAT</strong></td>
-            <td>0.0017</td>
-            <td>0.000</td>
-            <td>7.487</td>
-            <td>0.000</td>
-            <td>0.001</td>
-            <td>0.002</td>
-        </tr>
-    </table>
-    
-    <h3>Diagnósticos</h3>
-    <table class="result-table">
-        <tr>
-            <th>Omnibus:</th>
-            <td>12.839</td>
-            <th>Durbin-Watson:</th>
-            <td>0.950</td>
-        </tr>
-        <tr>
-            <th>Prob(Omnibus):</th>
-            <td>0.002</td>
-            <th>Jarque-Bera (JB):</th>
-            <td>16.155</td>
-        </tr>
-        <tr>
-            <th>Skew:</th>
-            <td>-0.722</td>
-            <th>Prob(JB):</th>
-            <td>0.000310</td>
-        </tr>
-        <tr>
-            <th>Kurtosis:</th>
-            <td>4.590</td>
-            <th>Cond. No.</th>
-            <td>3.29e+04</td>
-        </tr>
-    </table>
-    
-    <div class="notes">
-        <strong>Notas:</strong>
-        <ol>
-            <li>Standard Errors assume that the covariance matrix of the errors is correctly specified.</li>
-            <li>The condition number is large, 3.29e+04. This might indicate that there are strong multicollinearity or other numerical problems.</li>
-        </ol>
-    </div>
-    
-    <h2>Línea de Regresión</h2>
-    <div class="image-container">
-        <img src="GPA_SAT_regresion.png" alt="Gráfico de regresión SAT vs GPA">
-        <div class="image-caption">Línea de regresión ajustada a los datos</div>
-    </div>
-    
-    <div class="code-block">
-        plt.scatter(x1,y)<br>
-        yhat = 0.0017*x1 + 0.275<br>
-        fig = plt.plot(x1,yhat, lw=4, c='orange', label ='regression line')<br>
-        plt.xlabel('SAT', fontsize = 20)<br>
-        plt.ylabel('GPA', fontsize = 20)<br>
-        plt.show()
-    </div>
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
-                Portafolio Estratégico &copy; 2026
+
+        <section class="reveal delay-2" style="margin-top: 40px;">
+            <div class="analysis-card">
+                <span class="section-tag" style="color:var(--accent)">Case Study Perspective</span>
+                <h2 style="font-family:'Outfit'; color:#fff; font-size:1.8rem; margin-bottom:20px;">Modelado de Probabilidad Académica</h2>
+                <p style="color:var(--text-dim); line-height: 1.8;">Implementación de un motor de regresión OLS (Ordinary Least Squares) para validar hipótesis de éxito académico, asegurando significancia estadística y robustez en los coeficientes.</p>
+                
+                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:30px;">
+                    <a href="Simpl linear regression.csv" class="btn-executive btn-primary"><i class="fas fa-download"></i> Descargar Dataset</a>
+                </div>
             </div>
+        </section>
+
+        <!-- Python Implementation -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Implementation Layer</span>
+            <h2 class="section-title">Statistical Pipeline in Python</h2>
+            <div class="code-panel">
+                <b># Orquestación de Modelo de Regresión</b><br>
+                import statsmodels.api as sm<br>
+                y = data['GPA']<br>
+                x = sm.add_constant(data['SAT'])<br>
+                model = sm.OLS(y, x).fit()<br>
+                print(model.summary())
+            </div>
+        </section>
+
+        <!-- Results Table -->
+        <section class="reveal" style="margin-top: 80px;">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable Estratégica</th>
+                            <th>Coeficiente</th>
+                            <th>p-value</th>
+                            <th>Significancia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Intercepto (const)</td>
+                            <td>0.2750</td>
+                            <td>0.503</td>
+                            <td style="color:var(--text-dim)">Línea Base</td>
+                        </tr>
+                        <tr>
+                            <td>Puntaje SAT</td>
+                            <td style="color:#fff; font-weight:700;">0.0017</td>
+                            <td style="color:var(--success); font-weight:700;">0.000</td>
+                            <td style="color:var(--success)">Crítica (p < 0.05)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Visualization</span>
+            <h2 class="section-title">Regression Line Architecture</h2>
+            <div class="viz-box">
+                <img src="GPA_SAT_regresion.png" alt="Regression Plot" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-            
-            document.querySelectorAll('h2, .code-block, table, .image-container').forEach(el => el.classList.add('reveal'));
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

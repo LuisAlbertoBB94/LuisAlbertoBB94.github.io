@@ -3,190 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenAI Data Analyst Agent | Luis Barragan</title>
+    <title>GenAI Data Analyst | AI Democratization Architecture | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
         .ai-shell {
             background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border);
-            padding: 40px; margin-top: 40px; backdrop-filter: blur(20px);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
+            padding: clamp(20px, 5vw, 50px); margin-top: 40px; backdrop-filter: blur(30px);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6); position: relative;
         }
-        .ai-header { border-bottom: 1px solid var(--border); padding-bottom: 30px; margin-bottom: 40px; }
-        .ai-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: #fff; }
         
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
-        .feature-card {
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        
+        .agent-card {
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 30px; border-radius: 16px; transition: all 0.4s;
+            padding: 30px; border-radius: 20px; transition: all 0.4s;
             position: relative; overflow: hidden;
         }
-        .feature-card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
-            animation: rotateGlow 10s linear infinite;
-        }
-        @keyframes rotateGlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .feature-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--accent); 
-            background: rgba(59, 130, 246, 0.05); 
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
-        }
-        .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; display: block; }
-        .feature-card h3 { font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
-        .feature-card p { font-size: 0.95rem; color: var(--text-dim); font-weight: 300; }
+        .agent-card i { font-size: 2.2rem; color: var(--accent); margin-bottom: 20px; display: block; }
+        .agent-card:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.05); transform: translateY(-5px); }
 
         .diagram-box {
-            background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid var(--border);
+            background: rgba(0,0,0,0.3); border-radius: 20px; border: 1px solid var(--border);
             padding: 40px; margin: 40px 0; text-align: center;
         }
-        .diagram-img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+        .diagram-img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); filter: brightness(0.9); }
         
         @media (max-width: 768px) {
-            .ai-shell { padding: 25px; }
             .feature-grid { grid-template-columns: 1fr; }
+            .grid-modules { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
+    <div class="container" style="padding-top: 80px;">
         <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
         
-        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Next-Gen Business Intelligence</span>
-            <h1>GenAI Data Analyst Agent</h1>
-            <p class="lead" style="max-width: 900px; margin: 0 auto;">Estrategia de democratización analítica mediante una arquitectura multi-agente orquestada para la toma de decisiones C-Level.</p>
+            <span class="section-tag">AI Democratization & ROI</span>
+            <h1>GenAI Data Analyst Architecture</h1>
+            <p class="lead">Estrategia de democratización analítica masiva mediante una arquitectura multi-agente orquestada para transformar el lenguaje natural en insights financieros de alto impacto.</p>
         </header>
 
-        <div class="impact-box reveal delay-2" style="margin-bottom: 40px; text-align: center; font-size: 1.1rem; padding: 30px;">
-            <i class="fas fa-chart-line" style="margin-right: 10px;"></i> 
-            Impacto Estratégico: <strong>Acceso instantáneo a +321M de registros</strong> y reducción del 70% en el tiempo de preparación de reportes ejecutivos.
+        <div class="impact-box reveal delay-2" style="margin-top: 40px; border-left: 4px solid var(--accent); background: rgba(59, 130, 246, 0.05);">
+            <i class="fas fa-bolt" style="margin-right: 12px; color: var(--accent);"></i> 
+            Impacto C-Level: <b>Orquestación de +321M de data points</b> con una reducción del 70% en latencia de reporteo ejecutivo.
         </div>
 
-        <section class="ai-shell reveal delay-3">
-            <div class="ai-header">
-                <span class="ai-title"><i class="fas fa-brain" style="color:var(--accent);margin-right:15px;"></i>Arquitectura Hive: Multi-Agent System</span>
-            </div>
-            
-            <p style="color: var(--text-dim); font-weight: 300; font-size: 1.1rem; margin-bottom: 30px;">
-                Como Head of BI, mi visión fue transformar la interacción con los datos. No se trata de un chatbot; es un ecosistema coordinado de agentes especializados diseñados para escalar la capacidad analítica de la organización.
+        <section class="ai-shell reveal delay-3" style="margin-top: 60px;">
+            <span class="section-tag" style="color:var(--accent)">Orchestration Layer</span>
+            <h2 style="font-family:'Outfit'; font-weight:800; color:#fff; margin-bottom:20px;">The Hive Multi-Agent System</h2>
+            <p style="color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; max-width: 900px; margin-bottom: 40px;">
+                Como Head of BI, mi visión fue trascender el "chatbot". Diseñamos un ecosistema de agentes concurrentes especializados en gobernanza de datos, ingeniería de consultas y modelado estratégico.
             </p>
 
             <div class="feature-grid">
-                <div class="feature-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h3>SQL Engineering Agent</h3>
-                    <p>Traduce intenciones de negocio en queries complejos de BigQuery, integrando el 100% de las reglas financieras origen.</p>
+                <div class="agent-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3 style="font-family:'Outfit'; margin-bottom:10px;">SQL Synthesis Agent</h3>
+                    <p>Traduce intenciones de negocio en estructuras SQL de BigQuery, garantizando la paridad absoluta con las reglas financieras globales.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-search-dollar"></i>
-                    <h3>Strategic Analyst</h3>
-                    <p>Aplica frameworks de negocio (Pareto, BCG, Elasticidad) para convertir datos crudos en estrategias accionables.</p>
+                <div class="agent-card">
+                    <i class="fas fa-chess-knight"></i>
+                    <h3 style="font-family:'Outfit'; margin-bottom:10px;">Strategic Optimizer</h3>
+                    <p>Aplica frameworks directivos (elasticidad, Pareto, tendencias) para transformar resultados crudos en recomendaciones tácticas.</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-user-check"></i>
-                    <h3>Data Auditor</h3>
-                    <p>Garantiza la integridad de las cifras mediante validas cruzadas automáticas antes de presentar resultados al ejecutivo.</p>
+                <div class="agent-card">
+                    <i class="fas fa-lock"></i>
+                    <h3 style="font-family:'Outfit'; margin-bottom:10px;">Audit & Governance</h3>
+                    <p>Capa de validación automatizada que asegura que toda cifra presentada a la C-Suite esté libre de alucinaciones y errores técnicos.</p>
                 </div>
             </div>
 
             <div class="diagram-box">
-                <h3 style="margin-bottom: 25px; font-family: 'Outfit', sans-serif;">Modular Orchestration Flow</h3>
-                <img src="img/diagram_multiagent.png" alt="Arquitectura Multi-Agente" class="diagram-img">
-                <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-dim);">Flujo de trabajo multi-capa: Desde el Lenguaje Natural hasta la paridad financiera absoluta.</p>
+                <h4 style="font-family:'Outfit'; color:#fff; margin-bottom:25px; letter-spacing:1px; text-transform:uppercase; font-size:0.8rem; opacity:0.6;">Modular Orchestration Workflow</h4>
+                <img src="img/diagram_multiagent.png" alt="Multi-Agent Flow Architecture" class="diagram-img" onerror="this.style.display='none'">
             </div>
         </section>
 
-        <section class="reveal">
-            <h2 class="section-title">Valor Estratégico & ROI</h2>
-            <p class="section-desc">El agente automatiza análisis que anteriormente requerían días de trabajo de un equipo de analistas senior.</p>
-            
+        <section class="reveal" style="margin-top: 100px;">
+            <span class="section-tag">Value Proposition</span>
+            <h2 class="section-title">Escalabilidad Analítica</h2>
             <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Elasticidad de Precios</h3>
-                    <p>Simulaciones en segundos sobre el impacto de cambios de precio en la demanda histórica.</p>
+                <div class="agent-card" style="border-left: 3px solid var(--accent);">
+                    <h4 style="font-family:'Outfit'; margin-bottom:10px; color:#fff;">Elasticidad en Segundos</h4>
+                    <p>Simulaciones de impacto en demanda que antes requerían días de analistas senior, ahora ejecutadas al instante.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Insights de Rentabilidad</h3>
-                    <p>Identificación instantánea de fugas de margen por cluster, tienda o categoría de producto.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Estrategia Promocional</h3>
-                    <p>Optimización del diseño de campañas basado en el performance de datos históricos masivos.</p>
+                <div class="agent-card" style="border-left: 3px solid var(--success);">
+                    <h4 style="font-family:'Outfit'; margin-bottom:10px; color:#fff;">Fugas de Margen</h4>
+                    <p>Detección proactiva de erosión de rentabilidad por cluster o categoría de producto con un enfoque de P&L resiliente.</p>
                 </div>
             </div>
         </section>
 
-        <section class="reveal">
-            <h2 class="section-title">Business Interface</h2>
-            <div class="ai-shell" style="background: rgba(0,0,0,0.2);">
-                <div class="grid-modules" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <img src="img/screenshot_trends.png" alt="Trends UI" style="width: 100%; border-radius: 12px; border: 1px solid var(--border);">
-                    <img src="img/screenshot_pareto.png" alt="Pareto UI" style="width: 100%; border-radius: 12px; border: 1px solid var(--border);">
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal">
-            <h2 class="section-title">Foundation & Technical Ecosystem</h2>
-            <div class="tech-stack-grid">
-                <div class="tech-category">
-                    <h3><i class="fas fa-brain"></i> Core AI</h3>
-                    <div class="tech-tags">
-                        <span>Gemini 2.5 Pro</span>
-                        <span>Vertex AI Suite</span>
-                        <span>Multi-Agent Hive</span>
+        <section class="reveal" style="margin-top: 100px;">
+            <span class="section-tag">Directorial UX</span>
+            <h2 class="section-title">Business Interface Portfolio</h2>
+            <div class="ai-shell" style="background: rgba(0,0,0,0.1); border-style: dashed;">
+                <div class="grid-modules" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="border-radius:16px; overflow:hidden; border:1px solid var(--border);">
+                        <img src="img/screenshot_trends.png" alt="Analytics View" style="width:100%; display:block;" onerror="this.parentNode.style.display='none'">
                     </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-database"></i> Data Engine</h3>
-                    <div class="tech-tags">
-                        <span>Google BigQuery</span>
-                        <span>SQL Engineering</span>
-                        <span>Financial Parity Logic</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-server"></i> Deployment</h3>
-                    <div class="tech-tags">
-                        <span>Cloud Run</span>
-                        <span>Docker Containerization</span>
-                        <span>Streamlit UX</span>
+                    <div style="border-radius:16px; overflow:hidden; border:1px solid var(--border);">
+                        <img src="img/screenshot_pareto.png" alt="Pareto View" style="width:100%; display:block;" onerror="this.parentNode.style.display='none'">
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:30px; opacity:0.6; font-size: 0.8rem;">
-                Strategic AI Portfolio &copy; 2026
-            </div>
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

@@ -3,185 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrum Portfolio Manager | Luis Barragán, PhD</title>
+    <title>Agile Delivery Excellence | BI Governance | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
+        .showcase-card {
+            background: var(--glass); border-radius: 24px; border: 1px solid var(--border);
+            padding: clamp(20px, 5vw, 40px); margin: 40px 0; backdrop-filter: blur(20px);
+        }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 30px 0; }
         .feature-card {
-            background: var(--glass);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 25px; border-radius: 16px; transition: all 0.3s;
         }
-        .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .feature-card i { font-size: 1.5rem; color: var(--accent); margin-bottom: 15px; display: block; }
 
-        .screenshot-box {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
-            transition: transform 0.3s;
-        }
-
-        .cta-primary {
-            display: inline-flex; align-items: center; gap: 12px;
-            background: var(--accent); color: white; padding: 18px 40px;
-            border-radius: 50px; text-decoration: none; font-weight: 800;
-            transition: all 0.3s; box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        .full-width-image {
+        .img-container {
             width: 100%; border-radius: 20px; overflow: hidden;
-            border: 1px solid var(--border); margin: 40px 0 80px;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6);
-            position: relative;
+            border: 1px solid var(--border); margin: 30px 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5); background: #000;
         }
-        .full-width-image img { width: 100%; display: block; }
-
-        .feature-grid {
-            display: grid;
-            gap: 24px;
-            margin-bottom: 80px;
-        }
+        .img-container img { width: 100%; display: block; transition: transform 0.5s; }
+        .img-container:hover img { transform: scale(1.02); }
 
         @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .img-container { margin: 20px 0; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
-        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="container" style="padding-top: 60px;">
         
-        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Agile BI Governance & OKR Alignment</span>
+            <span class="section-tag">Agile BI Governance</span>
             <h1>Agile Delivery Excellence</h1>
-            <p class="lead" style="max-width: 900px; margin: 0 auto;">Framework integral para la gestión de portafolios de BI, optimizando la ejecución técnica y garantizando transparencia total hacia el C-Suite.</p>
+            <p class="lead">Framework integral de gestión de portafolios analíticos diseñado para optimizar el ciclo de vida del dato y garantizar transparencia absoluta ante el C-Suite.</p>
         </header>
 
-    <div class="container">
-
-
-
-        <!-- BLOQUE 1: ESTRATEGIA -->
-        <section class="reveal">
-            <div class="tag">Visión Estratégica</div>
-            <h2>El Gap entre Ingeniería y Dirección</h2>
-            <p style="max-width: 800px; margin-bottom: 40px;">Como Head of BI, identifiqué que la fricción técnica (tickets, pipelines, bugs) a menudo oscurece la visión estratégica para los stakeholders. Este framework resuelve esa falta de visibilidad transformando la bitácora técnica en dashboards de salud organizacional.</p>
-            
-            <div class="full-width-image">
-                <img src="assets/Resumen.png" alt="Resumen Global del Portafolio">
-            </div>
-
-            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="feature-card">
-                    <i class="fas fa-times-circle" style="color: var(--danger);"></i>
-                    <p><strong>Falta de Visión Global:</strong> Difícil consolidar múltiples proyectos en un solo panel de salud.</p>
+        <section class="reveal delay-2" style="margin-top: 40px;">
+            <div class="showcase-card">
+                <span class="section-tag" style="color:var(--accent)">Estrategic Vision</span>
+                <h2 style="font-family:'Outfit'; color:#fff; font-size:1.8rem; margin-bottom:20px;">Cerrando el Gap entre Ingeniería y Dirección</h2>
+                <p style="color:var(--text-dim); line-height: 1.8;">Como Head of BI, identifiqué que la fricción técnica a menudo oscurece la visión estratégica. Este framework transforma la bitácora técnica de Scrum en un centro de mando organizacional.</p>
+                
+                <div class="img-container">
+                    <img src="assets/Resumen.png" alt="Executive Portfolio Overview" onerror="this.style.display='none'">
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-clock" style="color: var(--warning);"></i>
-                    <p><strong>Generación Manual:</strong> Eliminación de horas perdidas extrayendo gráficas a PowerPoint.</p>
-                </div>
-            </div>
-        </section>
 
-        <!-- BLOQUE 2: ARQUITECTURA -->
-        <section class="reveal">
-            <div class="tag">La Arquitectura</div>
-            <h2>Ingeniería Serverless & Cero Fricción</h2>
-            <p style="max-width: 800px; margin-bottom: 40px;">Diseñé una solución enfocada en la autonomía y la instantaneidad. Sin servidores, sin bases de datos externas: privacidad total y velocidad extrema.</p>
-            
-            <div class="full-width-image">
-                <img src="assets/Proyectos.png" alt="Gestión de Proyectos Scrum">
-            </div>
-        </section>
-
-        <!-- BLOQUE 3: ANALYTICS -->
-        <section class="reveal">
-            <div class="tag">Algoritmia Analítica</div>
-            <h2>Métricas y Curvas de Rendimiento</h2>
-            <p style="max-width: 800px; margin-bottom: 40px;">Motor analítico (impulsado por Chart.js) que lee el progreso de las tareas y genera insights clave del marco ágil automáticamente.</p>
-            
-            <div class="full-width-image">
-                <img src="assets/Analytics de Equipo.png" alt="Analytics Individual del Equipo">
-            </div>
-
-            <div class="full-width-image">
-                <img src="assets/Analytics del Proyecto.png" alt="Analítica de Proyecto y Sprints">
-            </div>
-        </section>
-
-        <!-- BLOQUE 4: MODO EJECUTIVO -->
-        <section class="reveal">
-            <div class="tag">Modo Ejecutivo</div>
-            <h2>De la Bitácora a la Mesa Directiva en 1 clic</h2>
-            <p style="max-width: 800px; margin-bottom: 40px;">Módulo específico para resolver la burocracia de los reportes. El sistema permite llevar la bitácora técnica diaria y renderiza presentaciones ejecutivas automatizadas.</p>
-            
-            <div class="full-width-image" style="background: transparent; border: none; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-                <img src="assets/REPORTE EJECUTIVO DE PORTAFOLIO_1.png" alt="Reporte Ejecutivo Generado Automáticamente" style="border-radius: 12px; border: 1px solid var(--border);">
-            </div>
-        </section>
-
-        <section class="reveal">
-            <h2 class="section-title">Foundation & Technical Ecosystem</h2>
-            <div class="tech-stack-grid">
-                <div class="tech-category">
-                    <h3><i class="fas fa-layer-group"></i> Architecture</h3>
-                    <div class="tech-tags">
-                        <span>Serverless / Client-Side</span>
-                        <span>LocalStorage Wrappers</span>
-                        <span>Vanilla JS Performance</span>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-eye"></i>
+                        <h4 style="color:#fff; margin-bottom:10px;">Visibilidad 360°</h4>
+                        <p style="font-size:0.9rem; color:var(--text-dim);">Consolidación de múltiples flujos de trabajo en un panel de salud orientado a OKRs.</p>
                     </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-tasks"></i> Project Management</h3>
-                    <div class="tech-tags">
-                        <span>Agile (Scrum) Framework</span>
-                        <span>Velocity Tracking</span>
-                        <span>Story Point Analytics</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h3><i class="fas fa-paint-brush"></i> UI/UX Design</h3>
-                    <div class="tech-tags">
-                        <span>Glassmorphism UI</span>
-                        <span>Responsive Flexbox</span>
-                        <span>FontAwesome Integration</span>
+                    <div class="feature-card">
+                         <i class="fas fa-magic"></i>
+                        <h4 style="color:#fff; margin-bottom:10px;">Reporteo Automatizado</h4>
+                        <p style="font-size:0.9rem; color:var(--text-dim);">Eliminación del trabajo manual en la preparación de QBRs y revisiones mensuales.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:30px; opacity:0.6; font-size: 0.8rem;">
-                Agile Engineering Portfolio &copy; 2026
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Architecture</span>
+            <h2 class="section-title">High-Performance Ecosystem</h2>
+            <p class="section-desc">Diseño serverless enfocado en la privacidad de datos corporativos y velocidad de respuesta instantánea.</p>
+            
+            <div class="img-container">
+                <img src="assets/Proyectos.png" alt="Project Governance View" onerror="this.style.display='none'">
             </div>
+        </section>
+
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Team Growth</span>
+            <h2 class="section-title">Velocity & Performance Analytics</h2>
+            <p class="section-desc">Monitoreo de curvas de aprendizaje y capacidad de entrega mediante métricas ágiles de alta fidelidad.</p>
+            
+            <div class="img-container">
+                <img src="assets/Analytics de Equipo.png" alt="Team Performance Analytics" onerror="this.style.display='none'">
+            </div>
+            <div class="img-container">
+                <img src="assets/Analytics del Proyecto.png" alt="Sprint Velocity Tracking" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-top: 80px; margin-bottom: 80px;">
+            <span class="section-tag" style="color:var(--success)">The Output</span>
+            <h3 style="font-family:'Outfit'; color:#fff; font-size:1.8rem; margin-bottom:20px;">Zero-Bureaucracy Executive Reporting</h3>
+            <p style="color:var(--text-dim); margin-bottom:30px;">Módulo de generación de reportes que proyecta la salud del proyecto directamente a la mesa directiva en formatos ejecutivos de alta calidad.</p>
+            
+            <div class="img-container" style="border-color: var(--success);">
+                <img src="assets/REPORTE EJECUTIVO DE PORTAFOLIO_1.png" alt="Automated Executive Report" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 100;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-            document.querySelectorAll('section, .feature-card, .screenshot-box, .grid-2').forEach(el => el.classList.add('reveal'));
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

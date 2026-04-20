@@ -3,157 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PD/PID Controller Design Tool</title>
+    <title>Advanced Control Systems R&D | Luis Barragan, PhD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
-        .screenshots {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+        .research-card {
+            background: var(--glass); border-radius: 24px; border: 1px solid var(--border);
+            padding: clamp(20px, 5vw, 40px); margin: 30px 0; backdrop-filter: blur(20px);
         }
-        .screenshots img {
-            width: 100%; border-radius: 16px; border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        .screenshot-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; margin: 30px 0;
         }
-        .screenshots img:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .screenshot-box {
+            background: #000; border-radius: 16px; overflow: hidden; border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .screenshot-box:hover { border-color: var(--accent); transform: scale(1.02); }
+        .screenshot-box img { width: 100%; display: block; filter: brightness(0.9); }
 
-        .feature-box {
-            background: var(--glass);
-            padding: 30px;
-            border-left: 5px solid var(--accent);
-            margin: 25px 0;
-            border-radius: 0 20px 20px 0;
-            border: 1px solid var(--border);
-            border-left-width: 5px;
+        .pub-item {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 25px; border-radius: 16px; margin-bottom: 20px;
+            transition: 0.3s; display: block; text-decoration: none;
         }
+        .pub-item:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--accent); }
+        .pub-title { color: #fff; font-family: 'Outfit'; font-weight: 700; margin-bottom: 10px; display: block; }
+        .pub-meta { color: var(--text-dim); font-size: 0.8rem; font-weight: 600; }
 
-        .academic-section {
-            background: rgba(255,255,255,0.02);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            margin: 50px 0;
+        @media (max-width: 768px) {
+            .screenshot-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    <div class="container" style="padding-top: 40px;">
-        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+    <div class="container" style="padding-top: 60px;">
         
-        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 60px 0; text-align: center;">
+        <a href="../index.html" class="project-back-link reveal"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
+        <header class="reveal delay-1" style="position: relative; overflow: hidden; padding: 40px 0;">
             <div class="data-mesh"></div>
-            <span class="section-tag">Advanced Control Systems</span>
-            <h1>PD/PID Controller Design Tool</h1>
-            <p class="lead">Entorno de diseño interactivo basado en MATLAB para el análisis de estabilidad y control de procesos complejos con retardos temporales.</p>
+            <span class="section-tag">Scientific R&D & Control Systems</span>
+            <h1>Applied Advanced Control Engineering</h1>
+            <p class="lead">Desarrollo de algoritmos de control predictivo y herramientas interactivas para el análisis de estabilidad en sistemas industriales con retardos temporales críticos.</p>
         </header>
 
-    <section>
-        <h2>🖥️ Screenshots</h2>
-        <div class="screenshots">
-            <img src="PD.png" alt="PD Controller" width="300">
-            <img src="PID.png" alt="PID Controller" width="300">
-            <img src="PDMP.png" alt="Minimum Phase PD" width="300">
-        </div>
-    </section>
+        <section class="reveal delay-2" style="margin-top: 40px;">
+            <div class="research-card">
+                <span class="section-tag" style="color:var(--accent)">PhD Research Focus</span>
+                <h2 style="font-family:'Outfit'; color:#fff; font-size:1.8rem; margin-bottom:20px;">Orquestación de Estabilidad en Sistemas Complejos</h2>
+                <p style="color:var(--text-dim); line-height: 1.8;">Esta suite interactiva basada en MATLAB permite el diseño de controladores PD/PID para procesos con retardos temporales y polos inestables, aplicando condiciones de estabilidad teóricas derivadas de mi investigación doctoral.</p>
+                
+                <div class="screenshot-grid">
+                    <div class="screenshot-box"><img src="PD.png" alt="PD Architecture" onerror="this.style.display='none'"></div>
+                    <div class="screenshot-box"><img src="PID.png" alt="PID Optimization" onerror="this.style.display='none'"></div>
+                    <div class="screenshot-box"><img src="PDMP.png" alt="Phase Analysis" onerror="this.style.display='none'"></div>
+                </div>
 
-    <section>
-        <h2>📝 Description</h2>
-        <p>MATLAB-based interactive tool for designing and analyzing PD/PID controllers for systems with:</p>
-        <ul>
-            <li>Time delays</li>
-            <li>Two unstable poles</li>
-            <li>Complex conjugate pole pairs</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>✨ Key Features</h2>
-        <div class="feature-box">
-            <h3>Three Control Modules</h3>
-            <ul>
-                <li>Non-minimum phase PD controller</li>
-                <li>Non-minimum phase PID controller</li>
-                <li>Minimum phase PD controller</li>
-            </ul>
-        </div>
-        
-        <div class="feature-box">
-            <h3>Visual Stability Analysis</h3>
-            <ul>
-                <li>Nyquist diagrams</li>
-                <li>Phase margin evaluation</li>
-                <li>Parameter stability regions</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>📥 Download & Installation</h2>
-        <a href="ControllerPD_PID.exe" class="download-btn">Download Executable (Windows)</a>
-        <a href="code.zip" class="download-btn">Download Source Code</a>
-        
-        <h3>🚀 Quick Start</h3>
-        <ol>
-            <li>Run the executable or MATLAB script</li>
-            <li>Enter system parameters in main interface</li>
-            <li>Select controller type (PD/PID)</li>
-            <li>Analyze stability regions and Nyquist plots</li>
-            <li>Export your controller design</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>📚 Academic Background</h2>
-        <p>Developed as part of PhD research in Control Systems at Instituto Politécnico Nacional.</p>
-        <p>Implements theoretical stability conditions from:</p>
-        <ul>
-            <li>Modified Smith Predictor architectures</li>
-            <li>Observer-predictor control frameworks</li>
-            <li>Frequency-domain stability analysis</li>
-        </ul>
-    </section>
-
-    <section class="reveal">
-        <h2>🔗 Related Publications & Academic Profile</h2>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
-            <a href="https://scholar.google.com/citations?hl=es&user=xinV4z8AAAAJ&view_op=list_works" target="_blank" class="download-btn" style="background: var(--success);">
-                <i class="fas fa-graduation-cap"></i> View All Publications (Google Scholar)
-            </a>
-        </div>
-        <ul class="academic-list">
-            <li><a href="https://doi.org/10.1016/j.jprocont.2024.103299">Modified Smith Predictor for high-order delayed processes</a> - Journal of Process Control, 2024</li>
-            <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914">Observer-predictor control for unstable high-order delay systems</a> - Asian Journal of Control, 2023</li>
-        </ul>
-    </section>
-        <footer class="reveal">
-            <p><strong style="color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem;">Luis Barragan, PhD</strong><br>
-            <span style="opacity: 0.8;">Head of Data & Business Intelligence</span></p>
-            <div style="margin-top:20px; opacity:0.6; font-size: 0.8rem;">
-                Applied Science Portfolio &copy; 2026
+                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:10px;">
+                    <a href="ControllerPD_PID.exe" class="btn-executive btn-primary"><i class="fas fa-download"></i> Descargar Ejecutable</a>
+                    <a href="code.zip" class="btn-executive"><i class="fas fa-file-code"></i> Source Code</a>
+                </div>
             </div>
+        </section>
+
+        <!-- Academic Publications -->
+        <section class="reveal" style="margin-top: 80px;">
+            <span class="section-tag">Academic Impact</span>
+            <h2 class="section-title">Scientific Publications & JCR</h2>
+            <p class="section-desc">Contribuciones originales al campo de la automatización y control, publicadas en revistas indexadas de alto impacto.</p>
+            
+            <div style="margin-top:40px;">
+                <a href="https://doi.org/10.1016/j.jprocont.2024.103299" target="_blank" class="pub-item">
+                    <span class="pub-title">Modified Smith Predictor for high-order delayed processes</span>
+                    <span class="pub-meta">Journal of Process Control (Elsevier) • 2024</span>
+                </a>
+                
+                <a href="https://onlinelibrary.wiley.com/doi/10.1002/asjc.2914" target="_blank" class="pub-item">
+                    <span class="pub-title">Observer-predictor control for unstable high-order delay systems</span>
+                    <span class="pub-meta">Asian Journal of Control (Wiley) • 2023</span>
+                </a>
+
+                <a href="https://scholar.google.com/citations?hl=es&user=xinV4z8AAAAJ&view_op=list_works" target="_blank" class="btn-executive" style="margin-top:20px; background:rgba(16, 185, 129, 0.1); border-color:var(--success); color:var(--success);">
+                    <i class="fas fa-graduation-cap"></i> Ver Google Scholar Completo
+                </a>
+            </div>
+        </section>
+
+        <section class="reveal" style="margin-top: 80px; margin-bottom: 80px;">
+            <span class="section-tag">Value Proposition</span>
+            <h2 class="section-title">Scientific R&D to Data Science</h2>
+            <div class="method-grid">
+                <div class="exec-insight" style="background:var(--glass);">
+                    <h4 style="color:#fff; margin-bottom:10px;">Modelado de Alta Fidelidad</h4>
+                    <p style="font-size:0.9rem; color:var(--text-dim);">Capacidad para traducir fenómenos físicos complejos en modelos matemáticos procesables, base fundamental de la ciencia de datos avanzada.</p>
+                </div>
+                <div class="exec-insight" style="background:var(--glass);">
+                    <h4 style="color:#fff; margin-bottom:10px;">Optimización Algorítmica</h4>
+                    <p style="font-size:0.9rem; color:var(--text-dim);">Experiencia en el refinamiento de parámetros de control, directamente aplicable a la sintonización de hiperparámetros en modelos de Machine Learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="reveal" style="margin-top:100px; padding-bottom: 60px;">
+            <p><strong style="color: var(--text-main); font-family: 'Outfit'; font-size: 1.2rem;">Luis Barragan, PhD</strong><br>
+            <span style="opacity: 0.6;">Head of Data & Business Intelligence Leader</span></p>
         </footer>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('active');
-                    }
-                }
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-            document.querySelectorAll('section, .feature-box').forEach(el => el.classList.add('reveal'));
-        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
