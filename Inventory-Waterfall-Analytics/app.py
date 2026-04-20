@@ -112,8 +112,8 @@ with st.sidebar:
 filtered_df = df[df["Category"].isin(selected_cats) & df["LocationID"].isin(selected_locs)].copy()
 
 # --- HEADER SECTION ---
-st.title("Prevención de Quiebre de Stock (Waterfall)")
-st.markdown("Simulación predictiva de 30 días para cuantificar la **Venta en Riesgo** por agotamiento de inventario.")
+st.title("Protección de Continuidad Financiera")
+st.markdown("Motor de resiliencia predictiva que cuantifica la **Venta Protegida vs. Riesgo de Agotamiento** en un horizonte de 30 días.")
 
 # --- KPI CARS (ANIMATED) ---
 kpi1, kpi2, kpi3, kpi4 = st.columns(4)
@@ -173,7 +173,7 @@ with st.spinner("Ejecutando motor de simulación..."):
     waterfall_df = generate_waterfall_data(filtered_df)
 
 # --- CHARTING ---
-st.subheader("Simulación de Desplome de Capacidad (Waterfall)")
+st.subheader("Monitor de Resiliencia: Proyección de Capacidad Operativa")
 
 fig = px.line(
     waterfall_df,
@@ -189,13 +189,17 @@ fig.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     paper_bgcolor="rgba(0,0,0,0)",
     font_family="Inter",
-    xaxis=dict(showgrid=False, title="Días Proyectados (T+0 a T+30)"),
-    yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)", title="Capacidad de Venta (%)"),
-    height=500,
+    xaxis=dict(showgrid=False, title="Horizonte Temporal (T+0 a T+30)"),
+    yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)", title="Capacidad de Facturación (%)", range=[0, 105]),
+    height=550,
     hovermode="x unified",
-    margin=dict(l=0, r=0, t=30, b=0),
+    margin=dict(l=0, r=0, t=40, b=0),
     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
 )
+
+# Add Safety Stock Buffer Line (Visual Floor)
+fig.add_hline(y=15, line_dash="dash", line_color="#10b981", annotation_text="Safety Buffer", annotation_position="bottom right", opacity=0.5)
+
 
 fig.update_traces(line=dict(width=4), hovertemplate="%{y:.1f}%")
 
@@ -206,8 +210,8 @@ st.markdown("---")
 col_l, col_r = st.columns([2, 1])
 with col_l:
     st.markdown("""
-    **Metodología:** Este motor utiliza una depleción de inventario lineal clip-to-zero basada en la atomización de presupuestos comerciales. 
-    Se priorizan los artículos de alta rotación para identificar fracturas en la cadena de facturación antes de que impacten los estados financieros.
+    **Visión Ejecutiva:** Este modelo utiliza una arquitectura de depleción lineal clip-to-zero para identificar fracturas en el flujo de caja antes de que ocurran. 
+    Permite el trigger de compras estratégicas basado en la atomización de presupuestos, protegiendo la rentabilidad de las categorías críticas.
     """)
 with col_r:
     st.markdown(f"**Status:** Model Running on Python 3.11<br>**Sync:** Live CSV Data Store", unsafe_allow_html=True)
