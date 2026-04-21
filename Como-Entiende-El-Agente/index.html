@@ -432,15 +432,20 @@
                 height: 1600px; /* Mucho más espacio vertical para evitar amontonamiento */
             }
             .arch-node {
-                padding: 8px 12px;
-                min-width: 80px;
+                padding: 6px 10px;
+                min-width: 65px;
             }
             .arch-node span {
-                font-size: 0.65rem;
-                letter-spacing: 0.5px;
+                font-size: 0.55rem;
+                letter-spacing: 0.3px;
+                white-space: normal;
+                line-height: 1;
             }
             .arch-node i {
-                font-size: 1.2rem;
+                font-size: 1rem;
+            }
+            .network-container {
+                height: 1200px; /* Reducido al ser más eficiente el espacio */
             }
         }
 
@@ -862,26 +867,27 @@
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // Layout Vertical Optimizado para Móvil - Sin Overlaps
+                // Layout Vertical Optimizado para Móvil - Sin Overlaps y Sin Confusión Secuencial
                 architectureNodes = {
-                    // Preguntas - Espaciado vertical holgado (10% de 1600px)
-                    'q-financial': { x: 50, y: 5, label: 'Financiero', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
-                    'q-strategic': { x: 50, y: 14, label: 'Estrategia', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
-                    'q-customer':  { x: 50, y: 23, label: 'Clientes', icon: 'fa-users', isQuestion: true, topic: 'customer' },
-                    'q-inventory': { x: 50, y: 32, label: 'Inventario', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
-                    'q-trend':     { x: 50, y: 41, label: 'Tendencias', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
-                    'q-conceptual':{ x: 50, y: 50, label: 'Conceptos', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
+                    // Preguntas en Grilla 2x3 (Nodos de Entrada Paralelos)
+                    'q-financial': { x: 30, y: 5, label: 'Finzas', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
+                    'q-strategic': { x: 70, y: 5, label: 'Estrat.', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
+                    'q-customer':  { x: 30, y: 12, label: 'Client.', icon: 'fa-users', isQuestion: true, topic: 'customer' },
+                    'q-inventory': { x: 70, y: 12, label: 'Invent.', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
+                    'q-trend':     { x: 30, y: 19, label: 'Tenden.', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
+                    'q-conceptual':{ x: 70, y: 19, label: 'Concep.', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
 
-                    'ui':   { x: 50, y: 65, label: 'UI Agent', icon: 'fa-desktop' },
-                    'llm':  { x: 50, y: 75, label: 'Orchestrator', icon: 'fa-brain' },
+                    'ui':   { x: 50, y: 32, label: 'UI Agent', icon: 'fa-desktop' },
+                    'llm':  { x: 50, y: 45, label: 'Orchestrator', icon: 'fa-brain' },
                     
-                    // Agentes en grilla (2x2) para ganar ancho
-                    'sql':      { x: 30, y: 86, label: 'SQL', icon: 'fa-database' },
-                    'viz':      { x: 70, y: 86, label: 'Viz', icon: 'fa-chart-pie' },
-                    'table':    { x: 30, y: 92, label: 'Table', icon: 'fa-table' },
-                    'research': { x: 70, y: 92, label: 'Research', icon: 'fa-search' },
+                    // Capa de Agentes (2x2)
+                    'sql':      { x: 30, y: 62, label: 'SQL', icon: 'fa-database' },
+                    'viz':      { x: 70, y: 62, label: 'Viz', icon: 'fa-chart-pie' },
+                    'table':    { x: 30, y: 75, label: 'Table', icon: 'fa-table' },
+                    'research': { x: 70, y: 75, label: 'Research', icon: 'fa-search' },
 
-                    'audit':  { x: 50, y: 97, label: 'Auditor', icon: 'fa-shield-alt' },
+                    'bq':     { x: 50, y: 88, label: 'Data Lake', icon: 'fa-server' },
+                    'audit':  { x: 50, y: 95, label: 'Auditor', icon: 'fa-shield-alt' },
                     'output': { x: 50, y: 101, label: 'Salida', icon: 'fa-check-circle' } 
                 };
             } else {
