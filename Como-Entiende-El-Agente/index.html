@@ -9,7 +9,45 @@
     <link rel="stylesheet" href="../assets/css/premium-style.css">
     <style>
         /* Override y extensiones del tema premium */
-        main { padding: 80px 0 120px; }
+        main { padding: 40px 0 120px; }
+
+        .executive-summary {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .executive-summary h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .strategic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .strategic-item h4 {
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strategic-item p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
 
         /* Hero Section - Idéntico al main index */
         header {
@@ -184,48 +222,130 @@
             max-width: 700px;
         }
 
-        /* SVG Diagram */
-        .flow-diagram-container {
-            overflow-x: auto;
-            margin: 60px 0;
+        /* Custom Architecture Network Graph */
+        .network-container {
+            position: relative;
+            width: 100%;
+            height: 700px; /* Un poco más de aire vertical */
+            margin: 40px auto;
+            border-radius: 30px;
+            background: #0a0f1a;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            overflow: hidden;
         }
 
-        .flow-diagram {
-            min-width: 100%;
-            height: 300px;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
-        }
-
-        .flow-step-node {
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .flow-step-node:hover circle {
-            r: 50;
-            filter: drop-shadow(0 0 20px var(--accent));
-        }
-
-        .flow-step-node text {
+        /* Particle Stars Background */
+        .stars-background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
             pointer-events: none;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            dominant-baseline: middle;
-            text-anchor: middle;
         }
 
-        /* Connector Lines */
-        .flow-connector {
-            stroke: var(--border);
-            stroke-width: 2;
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.5); }
+        }
+
+        /* SVG Connections */
+        .network-svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .base-line {
             fill: none;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 1.5px;
         }
 
-        .flow-connector.active {
-            stroke: var(--accent);
-            stroke-width: 3;
-            filter: drop-shadow(0 0 10px var(--accent));
+        .flow-line {
+            fill: none;
+            stroke-width: 2px;
+            stroke-dasharray: 6 4;
+            animation: dataFlow 1s linear infinite;
+            filter: drop-shadow(0 0 5px currentColor);
+            opacity: 1;
+            transition: stroke 0.4s ease;
+        }
+
+        @keyframes dataFlow {
+            from { stroke-dashoffset: 20; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Executive Stealth Nodes */
+        .arch-node {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 10px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 80px;
+            z-index: 5;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(12px);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .arch-node i {
+            font-size: 1.4rem;
+            color: inherit;
+        }
+
+        .arch-node span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Active / Hover Node */
+        .arch-node.active {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: currentColor;
+            color: #fff;
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 0 20px rgba(255,255,255,0.05), inset 0 0 10px rgba(255,255,255,0.02);
+        }
+
+        .node-pulse {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: inherit;
+            border: 1px solid currentColor;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .active .node-pulse {
+            animation: pulseIn 2s infinite;
+        }
+
+        @keyframes pulseIn {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.4); opacity: 0; }
         }
 
         /* Flow Details */
@@ -369,21 +489,37 @@
         <div class="container">
             <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
             <span class="section-tag">Multi-Agent Intelligence</span>
-            <h1>🧠 Cómo Entiende el Agente</h1>
-            <p class="lead">Sistema inteligente de procesamiento de lenguaje natural que clasifica preguntas, activa agentes especializados y valida respuestas a través de una cascada de 7 auditorías para garantizar precisión, confiabilidad y ausencia de alucinaciones.</p>
+            <h1>🧠 Arquitectura de Inteligencia Conversacional</h1>
+            <p class="lead">Como Head of Data, este proyecto representa la culminación de la democratización de datos: una capa de abstracción estratégica que transforma la complejidad del Data Lake en decisiones ejecutivas mediante agentes especializados con validación de grado empresarial.</p>
         </div>
     </header>
 
     <main class="container">
         
-        <!-- SECTION: QUESTION TYPES -->
-        <section>
-            <h2 class="section-title">Tipos de Preguntas Que Procesa</h2>
-            <p class="section-desc">Selecciona un tipo de pregunta para ver cómo el agente la analiza, enruta y valida en real-time.</p>
-
-            <div class="questions-grid" id="questionsGrid">
-                <!-- JavaScript renderizado -->
+        <!-- SECTION: STRATEGIC IMPORTANCE -->
+        <div class="executive-summary">
+            <h2>Vision Estratégica: El Valor del Agente</h2>
+            <p>Implementar un sistema multi-agente no se trata solo de responder preguntas, sino de asegurar la <strong>Gobernanza</strong> y la <strong>Fiabilidad</strong> del dato en tiempo real. Este motor garantiza que cada consulta sea auditada contra alucinaciones, permitiendo que la organización se mueva a la velocidad del pensamiento sin riesgos de integridad.</p>
+            
+            <div class="strategic-grid">
+                <div class="strategic-item">
+                    <h4><i class="fas fa-brain"></i> Orquestación Inteligente</h4>
+                    <p>Optimiza el costo cognitivo y operativo, seleccionando dinámicamente la herramienta más eficiente (SQL, Research o Visualización) según la intención del usuario.</p>
+                </div>
+                <div class="strategic-item">
+                    <h4><i class="fas fa-shield-alt"></i> Data Trust Framework</h4>
+                    <p>Mediante el Auditor y el Validator, erradicamos errores humanos y técnicos, asegurando que el 100% de los resultados provengan de fuentes de verdad verificadas.</p>
+                </div>
+                <div class="strategic-item">
+                    <h4><i class="fas fa-bolt"></i> Time-to-Insight (TTI)</h4>
+                    <p>Reduce de días a segundos el ciclo de generación de SQL y visualización, eliminando cuellos de botella en los equipos de ingeniería de datos.</p>
+                </div>
             </div>
+        </div>
+        
+        <!-- Se movieron los tipos de pregunta al interior del Dashboard Network para ser nodos interactivos -->
+        <section style="display: none;">
+            <div id="questionsGrid"></div>
         </section>
 
         <!-- SECTION: FLOW DIAGRAM -->
@@ -391,23 +527,19 @@
             <h2 class="flow-title" id="flowTitle">Análisis Financiero</h2>
             <p class="flow-subtitle" id="flowExample">Ej: "Dime el total de venta neta y margen bruto para cada región"</p>
 
-            <!-- SVG Diagram -->
-            <div class="flow-diagram-container">
-                <svg class="flow-diagram" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet">
-                    <!-- Background -->
-                    <defs>
-                        <linearGradient id="gradAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.3" />
-                            <stop offset="100%" style="stop-color:var(--success);stop-opacity:0.1" />
-                        </linearGradient>
-                    </defs>
+            <!-- Network Dashboard UI -->
+            <div class="network-container" id="networkContainer">
+                <!-- Partículas Estelares -->
+                <div id="starsContainer" class="stars-background"></div>
 
-                    <!-- Connectors -->
-                    <g id="connectors"></g>
-
-                    <!-- Steps -->
-                    <g id="stepsGroup"></g>
+                <!-- SVG Connections Layer -->
+                <svg class="network-svg" id="networkSvg" preserveAspectRatio="none">
+                    <g id="baseLines"></g>
+                    <g id="flowLines"></g>
                 </svg>
+
+                <!-- Los nodos HTML se inyectarán aquí vía JS -->
+                <div id="nodesContainer"></div>
             </div>
 
             <!-- Flow Details -->
@@ -586,77 +718,167 @@
             `).join('');
         }
 
-        // Render SVG diagram
-        function renderDiagram(color) {
-            const stepsGroup = document.getElementById('stepsGroup');
-            const connectors = document.getElementById('connectors');
+        // Configuración de Nodos Adaptativa
+        let architectureNodes = {};
+        
+        function updateArchitectureConfig() {
+            const isMobile = window.innerWidth <= 768;
             
-            stepsGroup.innerHTML = '';
-            connectors.innerHTML = '';
+            if (isMobile) {
+                // Layout Vertical para Móvil - Más aire
+                architectureNodes = {
+                    'q-financial': { x: 50, y: 5, label: 'Financiero', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
+                    'q-strategic': { x: 50, y: 12, label: 'Estrategia', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
+                    'q-customer':  { x: 50, y: 19, label: 'Clientes', icon: 'fa-users', isQuestion: true, topic: 'customer' },
+                    'q-inventory': { x: 50, y: 26, label: 'Inventario', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
+                    'q-trend':     { x: 50, y: 33, label: 'Tendencias', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
+                    'q-conceptual':{ x: 50, y: 40, label: 'Conceptos', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
 
-            const stepWidth = 1200 / (steps.length + 1);
-            const xPositions = steps.map((_, i) => stepWidth * (i + 1));
-            const yCenter = 150;
-            const radius = 35;
+                    'ui':   { x: 50, y: 55, label: 'UI Agent', icon: 'fa-desktop' },
+                    'llm':  { x: 50, y: 68, label: 'Orchestrator', icon: 'fa-brain' },
+                    
+                    'sql':      { x: 30, y: 80, label: 'SQL', icon: 'fa-database' },
+                    'viz':      { x: 50, y: 80, label: 'Viz', icon: 'fa-chart-pie' },
+                    'table':    { x: 70, y: 80, label: 'Table', icon: 'fa-table' },
+                    'research': { x: 90, y: 80, label: 'Research', icon: 'fa-search' },
 
-            // Draw connectors
-            for (let i = 0; i < steps.length - 1; i++) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', xPositions[i]);
-                line.setAttribute('y1', yCenter);
-                line.setAttribute('x2', xPositions[i + 1]);
-                line.setAttribute('y2', yCenter);
-                line.setAttribute('class', 'flow-connector active');
-                line.setAttribute('style', `stroke: ${color};`);
-                connectors.appendChild(line);
+                    'audit':  { x: 40, y: 92, label: 'Auditor', icon: 'fa-shield-alt' },
+                    'output': { x: 70, y: 92, label: 'Salida', icon: 'fa-check-circle' } 
+                };
+            } else {
+                // Layout de 4 Zonas Estégicas (Desktop) - MUCHO MÁS ESPACIO
+                architectureNodes = {
+                    // ZONA 1: INTENT (10%)
+                    'q-financial': { x: 10, y: 15, label: 'Finanzas', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
+                    'q-strategic': { x: 10, y: 29, label: 'Estrategia', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
+                    'q-customer':  { x: 10, y: 43, label: 'Clientes', icon: 'fa-users', isQuestion: true, topic: 'customer' },
+                    'q-inventory': { x: 10, y: 57, label: 'Inventario', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
+                    'q-trend':     { x: 10, y: 71, label: 'Tendencias', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
+                    'q-conceptual':{ x: 10, y: 85, label: 'Concepto', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
 
-                // Arrow
-                const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-                const midX = (xPositions[i] + xPositions[i + 1]) / 2;
-                arrow.setAttribute('points', `${midX},${yCenter - 6} ${midX + 8},${yCenter} ${midX},${yCenter + 6}`);
-                arrow.setAttribute('fill', color);
-                arrow.setAttribute('opacity', '0.6');
-                connectors.appendChild(arrow);
+                    // ZONA 2: INTELLIGENCE CORE (35%)
+                    'ui':  { x: 35, y: 40, label: 'Intelligence UI', icon: 'fa-desktop' },
+                    'llm': { x: 35, y: 60, label: 'LLM Orchestrator', icon: 'fa-brain' },
+                    
+                    // ZONA 3: AGENTS (65%)
+                    'sql':      { x: 65, y: 15, label: 'SQL Agent', icon: 'fa-database' },
+                    'viz':      { x: 65, y: 38, label: 'Viz Agent', icon: 'fa-chart-pie' },
+                    'table':    { x: 65, y: 62, label: 'Table Agent', icon: 'fa-table' },
+                    'research': { x: 65, y: 85, label: 'Research Web', icon: 'fa-search' },
+
+                    // ZONA 4: TRUTH & OUTPUT (90%)
+                    'bq':     { x: 90, y: 25, label: 'BigQuery', icon: 'fa-server' },
+                    'audit':  { x: 90, y: 50, label: 'Quality Audit', icon: 'fa-shield-alt' },
+                    'output': { x: 90, y: 75, label: 'Verified Result', icon: 'fa-check-circle' } 
+                };
+            }
+        }
+
+        // Todas las conexiones posibles para dibujar el fondo base (líneas apagadas)
+        const allConnections = [
+            ['q-financial', 'ui'], ['q-strategic', 'ui'], ['q-customer', 'ui'], 
+            ['q-inventory', 'ui'], ['q-trend', 'ui'], ['q-conceptual', 'ui'],
+            ['ui', 'llm'],
+            ['llm', 'sql'], ['llm', 'viz'], ['llm', 'table'], ['llm', 'research'],
+            ['sql', 'bq'], ['viz', 'bq'], ['table', 'bq'], ['research', 'audit'],
+            ['bq', 'audit'], 
+            ['audit', 'output']
+        ];
+
+        // Rutas dinámicas basadas en la selección de la pregunta
+        const flowRoutes = {
+            'financial': ['q-financial', 'ui', 'llm', 'sql', 'bq', 'audit', 'output'],
+            'strategic': ['q-strategic', 'ui', 'llm', 'research', 'audit', 'output'],
+            'customer':  ['q-customer', 'ui', 'llm', 'table', 'bq', 'audit', 'output'],
+            'inventory': ['q-inventory', 'ui', 'llm', 'sql', 'bq', 'audit', 'output'],
+            'trend':     ['q-trend', 'ui', 'llm', 'viz', 'bq', 'audit', 'output'],
+            'conceptual':['q-conceptual', 'ui', 'llm', 'research', 'audit', 'output']
+        };
+
+        // Constructor del Grafo DOM
+        function initNetwork() {
+            const container = document.getElementById('nodesContainer');
+            container.innerHTML = '';
+            
+            // Generar HTML Nodos
+            for(const [id, data] of Object.entries(architectureNodes)) {
+                const nodeE = document.createElement('div');
+                nodeE.className = 'arch-node';
+                nodeE.id = `node-${id}`;
+                nodeE.style.left = `${data.x}%`;
+                nodeE.style.top = `${data.y}%`;
+                
+                nodeE.innerHTML = `
+                    <div class="node-pulse"></div>
+                    <i class="fas ${data.icon}"></i>
+                    <span>${data.label}</span>
+                `;
+                
+                // Si es un nodo de pregunta, hacerlo clickeable
+                if (data.isQuestion) {
+                    nodeE.style.cursor = 'pointer';
+                    nodeE.onclick = () => selectQuestion(data.topic);
+                    
+                    // Añadir un efcto especial a los botones de pregunta para sugerir interactividad
+                    nodeE.style.borderLeft = '3px solid rgba(255,255,255,0.4)';
+                    nodeE.title = "Haz clic para iluminar este flujo";
+                }
+                
+                container.appendChild(nodeE);
             }
 
-            // Draw steps
-            steps.forEach((step, i) => {
-                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                g.setAttribute('class', 'flow-step-node');
-
-                // Circle
-                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                circle.setAttribute('cx', xPositions[i]);
-                circle.setAttribute('cy', yCenter);
-                circle.setAttribute('r', radius);
-                circle.setAttribute('fill', color);
-                circle.setAttribute('opacity', '0.2');
-                circle.setAttribute('stroke', color);
-                circle.setAttribute('stroke-width', '2');
-                g.appendChild(circle);
-
-                // Icon
-                const icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                icon.setAttribute('x', xPositions[i]);
-                icon.setAttribute('y', yCenter - 8);
-                icon.setAttribute('font-size', '24px');
-                icon.setAttribute('text-anchor', 'middle');
-                icon.textContent = step.icon;
-                g.appendChild(icon);
-
-                // Label
-                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                label.setAttribute('x', xPositions[i]);
-                label.setAttribute('y', yCenter + 20);
-                label.setAttribute('font-size', '12px');
-                label.setAttribute('font-weight', '700');
-                label.setAttribute('fill', color);
-                label.setAttribute('text-anchor', 'middle');
-                label.textContent = step.label;
-                g.appendChild(label);
-
-                stepsGroup.appendChild(g);
+            // Dibujar Conexiones Base Estáticas
+            const baseLinesGroup = document.getElementById('baseLines');
+            baseLinesGroup.innerHTML = '';
+            
+            allConnections.forEach(pair => {
+                const n1 = architectureNodes[pair[0]];
+                const n2 = architectureNodes[pair[1]];
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', createCurvedPath(n1, n2));
+                path.setAttribute('class', 'base-line');
+                baseLinesGroup.appendChild(path);
             });
+        }
+
+        function createCurvedPath(p1, p2) {
+            const midX = (p1.x + p2.x) / 2;
+            return `M ${p1.x} ${p1.y} C ${midX} ${p1.y}, ${midX} ${p2.y}, ${p2.x} ${p2.y}`;
+        }
+
+        // Render network animations
+        function renderNetworkFlow(color, routeKey) {
+            // Limpiar activos
+            document.querySelectorAll('.arch-node').forEach(node => {
+                node.classList.remove('active');
+                node.style.color = '';
+            });
+            const flowGroup = document.getElementById('flowLines');
+            flowGroup.innerHTML = '';
+
+            const route = flowRoutes[routeKey] || flowRoutes['financial'];
+            
+            // Dibujar Ruta Dinámica y Activar Nodos
+            for (let i = 0; i < route.length; i++) {
+                const nodeId = route[i];
+                const nodeE = document.getElementById(`node-${nodeId}`);
+                if(nodeE) {
+                    nodeE.classList.add('active');
+                    nodeE.style.color = color;
+                }
+
+                if (i < route.length - 1) {
+                    const nextId = route[i+1];
+                    const p1 = architectureNodes[nodeId];
+                    const p2 = architectureNodes[nextId];
+                    
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', createCurvedPath(p1, p2));
+                    path.setAttribute('class', 'flow-line');
+                    path.setAttribute('stroke', color);
+                    flowGroup.appendChild(path);
+                }
+            }
         }
 
         // Select question
@@ -664,16 +886,15 @@
             const q = questions.find(x => x.id === id);
             if (!q) return;
 
-            // Update active card
-            document.querySelectorAll('.question-card').forEach(card => card.classList.remove('active'));
-            document.querySelector(`[data-id="${id}"]`).classList.add('active');
+            // Escrolar ligeramente hacia el flujo de detalles o diagrama si se desea (opcional)
+            // No hacemos el scrollIntoView abrupto aquí para que el usuario aprecie el diagrama completo al dar tap.
 
             // Update flow title
             document.getElementById('flowTitle').textContent = q.title;
             document.getElementById('flowExample').textContent = `Ejemplo: ${q.example}`;
 
-            // Render diagram
-            renderDiagram(q.color);
+            // Render network overlay
+            renderNetworkFlow(q.color, q.id);
 
             // Agentes
             document.getElementById('agentsList').innerHTML = q.agents
@@ -701,11 +922,47 @@
             }, 100);
         }
 
+        // Generar coordenadas precisas del viewBox SVG al iniciar y redimensionar
+        function syncSVG() {
+            const svg = document.getElementById('networkSvg');
+            // Definir viewBox 0 0 100 100 para que coincida matemáticamente con CSS % 
+            svg.setAttribute('viewBox', '0 0 100 100');
+        }
+
+        // Particle generator
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 50;
+            for(let i=0; i<starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                container.appendChild(star);
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            updateArchitectureConfig();
+            syncSVG();
+            initNetwork();
             renderQuestions();
             selectQuestion('financial');
         });
+
+        window.onresize = () => {
+            updateArchitectureConfig();
+            initNetwork();
+            const activeTopic = document.querySelector('.arch-node.active[data-topic]')?.getAttribute('data-topic') || 'financial';
+            const color = questions.find(q => q.id === activeTopic)?.color || '#3b82f6';
+            renderNetworkFlow(color, activeTopic);
+        };
     </script>
 </body>
 </html>
