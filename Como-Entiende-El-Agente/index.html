@@ -49,6 +49,84 @@
             line-height: 1.6;
         }
 
+        /* NLP Masterclass Section */
+        .masterclass-section {
+            margin-top: 100px;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .masterclass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .masterclass-card {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .masterclass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.4);
+            border-color: var(--accent);
+        }
+
+        .masterclass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .masterclass-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+        }
+
+        .masterclass-card h3 i {
+            color: var(--accent);
+        }
+
+        .curiosity-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .solution-step {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .solution-step span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
         /* Hero Section - Idéntico al main index */
         header {
             padding: 120px 0 80px;
@@ -565,6 +643,47 @@
                 <div class="result-content" id="resultContent"></div>
             </div>
         </div>
+
+        <!-- SECTION: NLP MASTERCLASS & CHALLENGES -->
+        <section class="masterclass-section">
+            <h2 class="section-title">El Desafío Lingüístico</h2>
+            <p class="section-desc">Entender el lenguaje humano no es magia, es ingeniería de precisión. Aquí explicamos cómo resolvemos el "caos" de la comunicación natural.</p>
+
+            <div class="masterclass-grid">
+                <!-- Card 1: Ambigüedad -->
+                <div class="masterclass-card">
+                    <span class="curiosity-tag">Curiosidad #1: La Ambigüedad</span>
+                    <h3><i class="fas fa-language"></i> El Contexto lo es Todo</h3>
+                    <p>En datos de ventas, "un banco" puede ser un mueble de inventario o una entidad financiera. Para una IA tradicional, esto es una moneda al aire.</p>
+                    <div class="solution-step">
+                        <span>¿Cómo lo arreglamos?</span>
+                        <p>Nuestro <strong>Orquestador</strong> utiliza un "Attention Mechanism" que escanea el esquema de la base de datos completa antes de decidir qué agente llamar, eliminando el 99% de los errores de concepto.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Intención -->
+                <div class="masterclass-card">
+                    <span class="curiosity-tag">Curiosidad #2: Intención vs Keyword</span>
+                    <h3><i class="fas fa-bullseye"></i> Más allá de las Palabras</h3>
+                    <p>El usuario rara vez pide "Query SQL de ventas". El usuario dice: "¿Cómo vamos?". Entender esa intención vaga es el reto mayor de la computación afectiva.</p>
+                    <div class="solution-step">
+                        <span>¿Cómo lo arreglamos?</span>
+                        <p>Implementamos una <strong>Clasificación de Intenciones Multicapa</strong> que separa la "Acción" del "Dato". Si pides un gráfico, el sistema activa el Viz Agent incluso si no usaste la palabra "dibujar".</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Alucinaciones -->
+                <div class="masterclass-card">
+                    <span class="curiosity-tag">Curiosidad #3: Alucinaciones</span>
+                    <h3><i class="fas fa-exclamation-triangle"></i> El Miedo al "Inventar"</h3>
+                    <p>Las IAs son famosas por inventar datos estadísticos cuando se sienten inseguras. En BI, una cifra falsa es peor que ninguna respuesta.</p>
+                    <div class="solution-step">
+                        <span>¿Cómo lo arreglamos?</span>
+                        <p>Creamos el <strong>Data Validator</strong>. Este agente actúa como un auditor externo que "niega" la respuesta si detecta que la cifra no tiene un respaldo directo en la tabla de BigQuery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
