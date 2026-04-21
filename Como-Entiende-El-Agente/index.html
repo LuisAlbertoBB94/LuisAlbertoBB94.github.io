@@ -429,23 +429,25 @@
         /* Responsive Architecture Graph */
         @media (max-width: 768px) {
             .network-container {
-                height: 1600px; /* Mucho más espacio vertical para evitar amontonamiento */
+                height: 950px; /* Layout compacto y profesional */
+                background: linear-gradient(to bottom, #0a111a, #080d15);
+                border-radius: 20px;
             }
             .arch-node {
                 padding: 6px 10px;
-                min-width: 65px;
+                min-width: 60px;
+                background: rgba(15, 23, 42, 0.7);
+                border-color: rgba(255, 255, 255, 0.1);
             }
             .arch-node span {
-                font-size: 0.55rem;
-                letter-spacing: 0.3px;
+                font-size: 0.52rem;
+                letter-spacing: 0.2px;
                 white-space: normal;
-                line-height: 1;
+                line-height: 1.1;
+                max-width: 65px;
             }
             .arch-node i {
-                font-size: 1rem;
-            }
-            .network-container {
-                height: 1200px; /* Reducido al ser más eficiente el espacio */
+                font-size: 0.95rem;
             }
         }
 
@@ -867,28 +869,28 @@
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // Layout Vertical Optimizado para Móvil - Sin Overlaps y Sin Confusión Secuencial
+                // Layout Vertical Compacto para Móvil - Máximo Orden, Mínimo 'Stretch'
                 architectureNodes = {
-                    // Preguntas en Grilla 2x3 (Nodos de Entrada Paralelos)
-                    'q-financial': { x: 30, y: 5, label: 'Finzas', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
-                    'q-strategic': { x: 70, y: 5, label: 'Estrat.', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
-                    'q-customer':  { x: 30, y: 12, label: 'Client.', icon: 'fa-users', isQuestion: true, topic: 'customer' },
-                    'q-inventory': { x: 70, y: 12, label: 'Invent.', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
-                    'q-trend':     { x: 30, y: 19, label: 'Tenden.', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
-                    'q-conceptual':{ x: 70, y: 19, label: 'Concep.', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
+                    // Preguntas en Grilla Ultra-Compacta (Entrada Paralela)
+                    'q-financial': { x: 30, y: 4, label: 'Finzas', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
+                    'q-strategic': { x: 70, y: 4, label: 'Estrat.', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
+                    'q-customer':  { x: 30, y: 11, label: 'Client.', icon: 'fa-users', isQuestion: true, topic: 'customer' },
+                    'q-inventory': { x: 70, y: 11, label: 'Invent.', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
+                    'q-trend':     { x: 30, y: 18, label: 'Tenden.', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
+                    'q-conceptual':{ x: 70, y: 18, label: 'Concep.', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
 
-                    'ui':   { x: 50, y: 32, label: 'UI Agent', icon: 'fa-desktop' },
-                    'llm':  { x: 50, y: 45, label: 'Orchestrator', icon: 'fa-brain' },
+                    'ui':   { x: 50, y: 30, label: 'UI Agent', icon: 'fa-desktop' },
+                    'llm':  { x: 50, y: 42, label: 'Orchestrator', icon: 'fa-brain' },
                     
-                    // Capa de Agentes (2x2)
-                    'sql':      { x: 30, y: 62, label: 'SQL', icon: 'fa-database' },
-                    'viz':      { x: 70, y: 62, label: 'Viz', icon: 'fa-chart-pie' },
-                    'table':    { x: 30, y: 75, label: 'Table', icon: 'fa-table' },
-                    'research': { x: 70, y: 75, label: 'Research', icon: 'fa-search' },
+                    // Capa de Agentes (2x2) - Más densa
+                    'sql':      { x: 30, y: 58, label: 'SQL', icon: 'fa-database' },
+                    'viz':      { x: 70, y: 58, label: 'Viz', icon: 'fa-chart-pie' },
+                    'table':    { x: 30, y: 70, label: 'Table', icon: 'fa-table' },
+                    'research': { x: 70, y: 70, label: 'Research', icon: 'fa-search' },
 
-                    'bq':     { x: 50, y: 88, label: 'Data Lake', icon: 'fa-server' },
-                    'audit':  { x: 50, y: 95, label: 'Auditor', icon: 'fa-shield-alt' },
-                    'output': { x: 50, y: 101, label: 'Salida', icon: 'fa-check-circle' } 
+                    'bq':     { x: 50, y: 82, label: 'Data Lake', icon: 'fa-server' },
+                    'audit':  { x: 50, y: 90, label: 'Auditor', icon: 'fa-shield-alt' },
+                    'output': { x: 50, y: 97, label: 'Resultado', icon: 'fa-check-circle' } 
                 };
             } else {
                 // Layout de 4 Zonas Estégicas (Desktop) - MUCHO MÁS ESPACIO
