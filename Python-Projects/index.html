@@ -3,198 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis de Estabilidad - Sistema con Retardo</title>
+    <meta name="description" content="Stability Analysis of Time-Delayed Systems | Research in Advanced Control Systems and Dynamic Stability">
+    <meta name="keywords" content="Control Systems, Stability Analysis, Time-Delayed Systems, MATLAB, Research">
+    <title>Stability Analysis | Time-Delayed Systems | Luis Barragan, PhD</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
+    
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
-        }
+        body { padding-top: 80px; }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
+        .research-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
         }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 10px;
+
+        .research-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .research-subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .research-section {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
-        
-        h1, h2, h3 {
-            color: var(--primary);
+
+        .research-section:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(59,130,246,0.1);
         }
-        
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        .research-section h2 {
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
         }
-        
+
+        .research-section h3 {
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .research-section p {
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .research-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-section li {
+            color: var(--text-dim);
+            padding: 8px 0 8px 25px;
+            position: relative;
+        }
+
+        .research-section li::before {
+            content: "▸";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+        }
+
+        .parameters-box {
+            background: rgba(59,130,246,0.08);
+            border: 1px solid rgba(59,130,246,0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .parameters-box h4 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
         .image-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 35px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
-        
+
         .image-container img {
             max-width: 100%;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.15);
+            transition: transform 0.3s ease;
         }
-        
+
+        .image-container img:hover {
+            transform: scale(1.02);
+        }
+
         .image-caption {
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-size: 0.9rem;
             font-style: italic;
-            color: var(--gray);
-            margin-top: 10px;
         }
-        
-        .parameters {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
+
         .math {
             font-family: "Times New Roman", Times, serif;
-            font-size: 1.1em;
-            background: #f8f9fa;
-            padding: 2px 5px;
-            border-radius: 3px;
+            color: #e0b0ff;
+            background: rgba(224,176,255,0.08);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-style: italic;
         }
-        
-        .conclusion {
-            border-left: 4px solid var(--secondary);
-            padding-left: 20px;
+
+        .conclusion-box {
+            background: rgba(16,185,129,0.08);
+            border-left: 4px solid var(--success);
+            border-radius: 8px;
+            padding: 25px;
             margin: 30px 0;
         }
-        
+
+        .conclusion-box h3 {
+            color: var(--success);
+            margin-top: 0;
+        }
+
+        .conclusion-box ul li::before {
+            color: var(--success);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: rgba(59,130,246,0.1);
+            border-bottom: 2px solid var(--accent);
+            padding: 15px;
+            text-align: left;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-dim);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
         @media (max-width: 768px) {
-            .section {
-                padding: 20px;
-            }
+            .research-section { padding: 25px; }
+            .research-section h2 { font-size: 1.3rem; }
+            .parameters-box { padding: 15px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Análisis de Estabilidad en Sistemas con Retardo</h1>
-        <p>Estudio del Comportamiento de Fase y Criterios de Estabilidad</p>
-    </header>
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html" class="nav-logo"><span class="logo-accent">←</span> Portafolio</a>
+            </div>
+            <div class="nav-center">
+                <span class="nav-project-title">Stability Analysis</span>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">Volver</a>
+                <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank" class="nav-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <button class="hamburger" id="nav-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
 
-    <div class="section">
-        <h2>Introducción</h2>
-        <p>Este reporte analiza el comportamiento de un sistema con dos polos inestables y un retardo, estudiando especialmente el comportamiento de la fase en la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab)</span>.</p>
-        
-        <div class="parameters">
-            <h3>Parámetros del Sistema</h3>
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="../index.html" class="nav-drawer-link">Volver al Portafolio</a>
+        <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank" class="nav-drawer-link">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+    </div>
+
+    <main class="container">
+        <div class="research-header reveal">
+            <span class="section-tag">R&D & SCIENCE</span>
+            <h1 class="research-title">Stability Analysis in Time-Delayed Systems</h1>
+            <p class="research-subtitle">Advanced control theory research on phase behavior and stability criteria for delayed feedback systems | PhD Research</p>
+        </div>
+
+        <section class="research-section reveal">
+            <h2>Introduction</h2>
+            <p>Este reporte analiza el comportamiento de un sistema con dos polos inestables y un retardo, estudiando especialmente el comportamiento de la fase en la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab)</span>. La investigación utiliza modelado matemático avanzado y simulación numérica mediante MATLAB.</p>
+            
+            <div class="parameters-box">
+                <h4><i class="fas fa-cog"></i> Parámetros del Sistema</h4>
+                <ul>
+                    <li>Polo inestable 1 (<span class="math">a</span>): 0.2</li>
+                    <li>Polo inestable 2 (<span class="math">b</span>): 0.5</li>
+                    <li>Retardo actual (<span class="math">τ</span>): 0.1615 s</li>
+                    <li>Ganancia derivativa (<span class="math">k<sub>d</sub></span>): <span class="math">(1/a + 1/b - τ)</span> = 6.8385</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="research-section reveal delay-1">
+            <h2>Phase Behavior Analysis</h2>
+            
+            <div class="image-container">
+                <img src="Comportamiento de la Fase.png" alt="Phase Behavior Graph">
+                <p class="image-caption">Figura 1: Comportamiento de la fase Φ<sub>Q1</sub>(ω) en función de la frecuencia</p>
+            </div>
+            
+            <p>La fase se calcula mediante la siguiente expresión fundamental:</p>
+            <p style="text-align: center; padding: 20px; background: rgba(59,130,246,0.08); border-radius: 8px; margin: 20px 0;">
+                <span class="math">Φ<sub>Q1</sub>(ω) = arctan(ω/a) + arctan(ω/b) - ωτ - π - arctan(k<sub>d</sub>ω)</span>
+            </p>
+            
+            <p>En la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab) = 0.3162 rad/s</span>:</p>
             <ul>
-                <li>Polo inestable 1 (<span class="math">a</span>): 0.2</li>
-                <li>Polo inestable 2 (<span class="math">b</span>): 0.5</li>
-                <li>Retardo actual (<span class="math">τ</span>): 0.1615 s</li>
-                <li>Ganancia derivativa (<span class="math">k<sub>d</sub></span>): <span class="math">(1/a + 1/b - τ)</span> = 6.8385</li>
+                <li><strong>Fase:</strong> -2.7595 rad (valor crítico de operación)</li>
+                <li><strong>Derivada respecto a τ:</strong> -0.3719 (siempre negativa - propiedad monotónica)</li>
+                <li><strong>Implicación:</strong> Relación inversamente proporcional entre retardo y estabilidad</li>
             </ul>
-        </div>
-    </div>
+        </section>
 
-    <div class="section">
-        <h2>Comportamiento de la Fase</h2>
-        
-        <div class="image-container">
-            <img src="Comportamiento de la Fase.png" alt="Gráfico de Comportamiento de la Fase">
-            <p class="image-caption">Figura 1: Comportamiento de la fase Φ<sub>Q1</sub>(ω) en función de la frecuencia</p>
-        </div>
-        
-        <p>La fase se calcula mediante:</p>
-        <p class="math">Φ<sub>Q1</sub>(ω) = arctan(ω/a) + arctan(ω/b) - ωτ - π - arctan(k<sub>d</sub>ω)</p>
-        
-        <p>En la frecuencia crítica <span class="math">ω<sub>s</sub> = √(ab) = 0.3162 rad/s</span>:</p>
-        <ul>
-            <li>Fase: -2.7595 rad</li>
-            <li>Derivada respecto a τ: -0.3719 (siempre negativa)</li>
-        </ul>
-    </div>
+        <section class="research-section reveal delay-2">
+            <h2>Stability Criteria</h2>
+            
+            <div class="image-container">
+                <img src="Comportamiento de la fase en función del retardo.png" alt="Phase vs Delay">
+                <p class="image-caption">Figura 2: Comportamiento de la fase en función del retardo τ</p>
+            </div>
+            
+            <p>El retardo máximo permitido para estabilidad es:</p>
+            <p style="text-align: center; padding: 20px; background: rgba(16,185,129,0.08); border-radius: 8px; margin: 20px 0;">
+                <span class="math">τ<sub>max</sub> = (1/a + 1/b) - √(1/a² + 1/b²) = 1.6148 s</span>
+            </p>
+            
+            <div class="conclusion-box">
+                <h3><i class="fas fa-check-circle"></i> Conclusiones Clave de Estabilidad</h3>
+                <ul>
+                    <li>La derivada dΦ/dτ es siempre negativa, lo que prueba que Φ es monótona decreciente</li>
+                    <li>Para τ &lt; τ<sub>max</sub> se cumple Φ(ω<sub>s</sub>) &gt; -π <strong>(zona estable)</strong></li>
+                    <li>Cuando τ &gt; τ<sub>max</sub>, Φ(ω<sub>s</sub>) ≤ -π <strong>(zona inestable)</strong></li>
+                    <li>Margen de estabilidad: 1.4533 segundos desde operación actual</li>
+                </ul>
+            </div>
+        </section>
 
-    <div class="section">
-        <h2>Análisis de Estabilidad</h2>
-        
-        <div class="image-container">
-            <img src="Comportamiento de la fase en función del retardo.png" alt="Fase en función del retardo">
-            <p class="image-caption">Figura 2: Comportamiento de la fase en función del retardo τ</p>
-        </div>
-        
-        <p>El retardo máximo permitido para estabilidad es:</p>
-        <p class="math">τ<sub>max</sub> = (1/a + 1/b) - √(1/a² + 1/b²) = 1.6148 s</p>
-        
-        <div class="conclusion">
-            <h3>Conclusiones Clave</h3>
+        <section class="research-section reveal delay-3">
+            <h2>Derivative Analysis</h2>
+            
+            <div class="image-container">
+                <img src="Comportamiento de Phi_{Q_1}}{d tau} en omega_s.png" alt="Derivative Analysis">
+                <p class="image-caption">Figura 3: Comportamiento de la derivada de la fase respecto a τ</p>
+            </div>
+            
+            <h3>Propiedades de la Derivada</h3>
+            <p>La derivada de la fase respecto al retardo (dΦ/dτ) presenta el siguiente comportamiento:</p>
             <ul>
-                <li>La derivada dΦ/dτ es siempre negativa, lo que prueba que Φ es monótona decreciente</li>
-                <li>Para τ < τ<sub>max</sub> se cumple Φ(ω<sub>s</sub>) > -π (zona estable)</li>
-                <li>Cuando τ > τ<sub>max</sub>, Φ(ω<sub>s</sub>) ≤ -π (zona inestable)</li>
+                <li><strong>En τ = 0:</strong> -0.2626</li>
+                <li><strong>En τ = τ<sub>max</sub>:</strong> -0.2351</li>
+                <li><strong>Rango:</strong> [-0.2626, 0] para todo τ ≥ 0</li>
+                <li><strong>Conclusión:</strong> La derivada es siempre negativa, demostrando monotonicidad global</li>
             </ul>
+        </section>
+
+        <section class="research-section reveal delay-4">
+            <h2>Numerical Results & Performance Metrics</h2>
+            
+            <h3>Summary Table</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Valor</th>
+                        <th>Unidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frecuencia crítica ω<sub>s</sub></td>
+                        <td>0.3162</td>
+                        <td>rad/s</td>
+                    </tr>
+                    <tr>
+                        <td>Retardo máximo τ<sub>max</sub></td>
+                        <td>1.6148</td>
+                        <td>s</td>
+                    </tr>
+                    <tr>
+                        <td>Fase en τ<sub>max</sub></td>
+                        <td>-3.1213</td>
+                        <td>rad</td>
+                    </tr>
+                    <tr>
+                        <td>Derivada mínima dΦ/dτ</td>
+                        <td>-0.2626</td>
+                        <td>rad/s</td>
+                    </tr>
+                    <tr>
+                        <td>Margen de estabilidad actual</td>
+                        <td>1.4533</td>
+                        <td>s</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Key Performance Indicators</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 25px;">
+                <div style="background: rgba(59,130,246,0.08); border-left: 3px solid #3b82f6; padding: 15px; border-radius: 8px;">
+                    <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">Stability Margin</p>
+                    <p style="color: #3b82f6; font-size: 1.4rem; font-weight: 700;">90.1%</p>
+                </div>
+                <div style="background: rgba(16,185,129,0.08); border-left: 3px solid #10b981; padding: 15px; border-radius: 8px;">
+                    <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">Current Status</p>
+                    <p style="color: #10b981; font-size: 1.4rem; font-weight: 700;">STABLE</p>
+                </div>
+                <div style="background: rgba(224,176,255,0.08); border-left: 3px solid #e0b0ff; padding: 15px; border-radius: 8px;">
+                    <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">Research Impact</p>
+                    <p style="color: #e0b0ff; font-size: 1.4rem; font-weight: 700;">PhD-Level</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Luis Barragan, PhD</h3>
+                    <p class="footer-tagline">Applied Control Theory | Time-Delayed Systems Research</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://scholar.google.com/citations?hl=es&user=xinV4z8AAAAJ" target="_blank" class="footer-link">
+                        <i class="fas fa-graduation-cap"></i> Google Scholar
+                    </a>
+                    <a href="https://www.linkedin.com/in/LuisBarraganBonilla" target="_blank" class="footer-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="../index.html" class="footer-link">
+                        <i class="fas fa-home"></i> Portafolio
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Stability Analysis Research. Advanced Control Systems.</p>
+                <p class="footer-tech">PhD Dissertation | Instituto Politécnico Nacional (IPN)</p>
+            </div>
         </div>
-    </div>
-
-    <div class="section">
-        <h2>Análisis de la Derivada</h2>
-        
-        <div class="image-container">
-            <img src="Comportamiento de Phi_{Q_1}}{d tau} en omega_s.png" alt="Comportamiento de la derivada">
-            <p class="image-caption">Figura 3: Comportamiento de la derivada de la fase respecto a τ</p>
-        </div>
-        
-        <p>La derivada de la fase respecto al retardo muestra:</p>
-        <ul>
-            <li>Valor en τ = 0: -0.2626</li>
-            <li>Valor en τ = τ<sub>max</sub>: -0.2351</li>
-            <li>La derivada es siempre negativa para todo τ ≥ 0</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Resultados Numéricos</h2>
-        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
-            <tr style="background-color: var(--primary); color: white;">
-                <th style="padding: 10px; text-align: left;">Parámetro</th>
-                <th style="padding: 10px; text-align: left;">Valor</th>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-                <td style="padding: 10px;">Frecuencia crítica ω<sub>s</sub></td>
-                <td style="padding: 10px;">0.3162 rad/s</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-                <td style="padding: 10px;">Retardo máximo τ<sub>max</sub></td>
-                <td style="padding: 10px;">1.6148 s</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-                <td style="padding: 10px;">Fase en τ<sub>max</sub></td>
-                <td style="padding: 10px;">-3.1213 rad</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">Derivada mínima</td>
-                <td style="padding: 10px;">[-0.2626, 0]</td>
-            </tr>
-        </table>
-    </div>
-
-    <footer style="text-align: center; margin-top: 50px; padding: 20px; color: var(--gray);">
-        <p>© 2025 Análisis de Sistemas con Retardo | Luis Barragán</p>
     </footer>
+
+    <script>
+        // Intersection Observer para animaciones de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal-active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu Logic
+        const navToggle = document.getElementById('nav-toggle');
+        const navDrawer = document.getElementById('nav-drawer');
+
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                navDrawer.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+
+        document.querySelectorAll('.nav-drawer-link').forEach(link => {
+            link.addEventListener('click', function() {
+                navDrawer.classList.remove('active');
+                if (navToggle) navToggle.querySelector('i').classList.add('fa-bars');
+                if (navToggle) navToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    </script>
 </body>
 </html>

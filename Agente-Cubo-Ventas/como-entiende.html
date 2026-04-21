@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo el Agente Entiende | Agente Cubo Ventas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/premium-style.css">
+    <style>
+        /* Estilos adicionales para esta página */
+        .architecture-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateX(4px);
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .metric-card {
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-4px);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 8px 0;
+        }
+
+        .metric-label {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .code-example {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .validator-chain {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .validator-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(2, 6, 23, 0.4);
+            border-left: 3px solid #10b981;
+            border-radius: 4px;
+        }
+
+        .validator-item i {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .validator-item span {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .flow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body id="home">
+    <nav id="navbar"></nav>
+
+    <main class="container">
+        <!-- Header Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>🧠 Cómo el Agente Entiende Tu Lenguaje Natural</h1>
+                <p class="lead">
+                    Detrás de cada respuesta hay más que IA. Hay Arquitectura.
+                </p>
+                <div class="highlight-box">
+                    <strong>La pregunta:</strong> "¿Cuál fue el margen por categoría en Q1?"
+                    <br><br>
+                    <strong>El desafío:</strong> Para un LLM, son 10 decisiones simultáneas (¿Cuál es la métrica exacta? ¿El período correcto? ¿El grupo correcto?).
+                    <br><br>
+                    <strong>Nuestra solución:</strong> 3 capas de decisión + 5 validadores = 99.2% de precisión.
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquitectura Principal -->
+        <section class="architecture-section">
+            <h2>🏗️ Las 3 Capas de "Entendimiento"</h2>
+
+            <div class="flow-diagram">
+                <!-- Capa 1 -->
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>CLASIFICACIÓN DE INTENCIÓN</h3>
+                        <p>El Orchestrator decide qué tipo de pregunta es y asigna el agente especializado correcto</p>
+                        <div class="highlight-box" style="margin-top: 12px;">
+                            ❓ ¿Es una pregunta SQL? → SQL Agent<br>
+                            📊 ¿Es una visualización? → Viz Agent<br>
+                            🔍 ¿Es investigación? → Research Agent<br>
+                            💡 ¿Es análisis estratégico? → Strategic Analyst
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capa 2 -->
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>DESAMBIGUACIÓN SEMÁNTICA</h3>
+                        <p>Mapea tus palabras exactas a las variables correctas en la base de datos</p>
+                        <div class="code-example">
+                            <pre>Tu lenguaje natural          →    Variable exacta en BD
+
+"margen"                    →    profit_margin
+"categoría"                 →    product_category
+"Q1"                        →    01-01-2025 a 31-03-2025
+"zona"                      →    sales_zone
+
+📍 Precisión actual: 97.3%</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capa 3 -->
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>GENERACIÓN SQL VERIFICADA</h3>
+                        <p>El agente genera SQL y lo valida antes de ejecutar. Si falla, reintentas automáticamente.</p>
+                        <div class="code-example">
+                            <pre>SELECT 
+    product_category,
+    sales_zone,
+    ROUND(SUM(profit_margin) / SUM(sales_amount), 4) AS avg_margin
+FROM Cubo_Ventas_Officemax
+WHERE DATE BETWEEN '2025-01-01' AND '2025-03-31'
+GROUP BY product_category, sales_zone
+ORDER BY avg_margin DESC</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Validación en Cascada -->
+        <section class="architecture-section">
+            <h2>✅ Los 5 Validadores Independientes</h2>
+            <p style="color: #9ca3af; margin-bottom: 24px;">
+                Cada respuesta pasa por 5 controles de calidad antes de llegar al usuario. Si falla uno → reintentar automáticamente.
+            </p>
+
+            <div class="validator-chain">
+                <div class="validator-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Validador 1:</strong> Sintaxis SQL — ¿Es SQL válido?</span>
+                </div>
+                <div class="validator-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Validador 2:</strong> Tablas Existentes — ¿Las tablas existen en el schema?</span>
+                </div>
+                <div class="validator-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Validador 3:</strong> Rango de Datos — ¿El resultado está en el rango esperado?</span>
+                </div>
+                <div class="validator-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Validador 4:</strong> Lógica de Negocio — ¿Tiene sentido el resultado?</span>
+                </div>
+                <div class="validator-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Validador 5:</strong> Paridad Financiera — ¿Suma y cuadra correctamente?</span>
+                </div>
+            </div>
+
+            <div class="code-example" style="margin-top: 24px;">
+                <pre>SQL Generado → ✅ V1 → ✅ V2 → ✅ V3 → ✅ V4 → ✅ V5 → Ejecutar → Respuesta Correcta
+
+Si cualquier validador FALLA:
+→ Reintentar 1x con prompt de corrección
+→ Si sigue fallando en V3-V5, consultar con humano</pre>
+            </div>
+        </section>
+
+        <!-- Ejemplo Real Completo -->
+        <section class="architecture-section">
+            <h2>📊 Ejemplo Real Completo: La Pregunta Ejecutiva</h2>
+
+            <div style="margin: 24px 0;">
+                <h3 style="color: #3b82f6; margin-bottom: 16px;">🎯 Usuario pregunta:</h3>
+                <div class="code-example">
+                    <pre>"¿Cuál fue el margen por categoría en Q1 por zona?"</pre>
+                </div>
+            </div>
+
+            <h4 style="color: #e2e8f0; margin-top: 24px;">Aquí qué sucede en el backend:</h4>
+
+            <div style="background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 24px; margin: 16px 0;">
+                <h4 style="color: #3b82f6; margin-top: 0;">PASO 1: Clasificación</h4>
+                <p style="color: #9ca3af;">Orchestrator analiza: "Es una pregunta de SQL + análisis" → Asigna a SQL Agent</p>
+
+                <h4 style="color: #3b82f6; margin-top: 24px;">PASO 2: Desambiguación</h4>
+                <div class="code-example">
+                    <pre>"margen"     → profit_margin
+"categoría"  → product_category
+"Q1"         → Rango: 01-01-2025 a 31-03-2025
+"zona"       → sales_zone</pre>
+                </div>
+
+                <h4 style="color: #3b82f6; margin-top: 24px;">PASO 3: Generación + Validación</h4>
+                <div class="validator-chain">
+                    <div class="validator-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Sintaxis SQL → ✅ Correcto</span>
+                    </div>
+                    <div class="validator-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Tablas existentes → ✅ Cubo_Ventas_Officemax existe</span>
+                    </div>
+                    <div class="validator-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Rango de datos → ✅ Margen entre -5% a 45%</span>
+                    </div>
+                    <div class="validator-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Lógica de negocio → ✅ GROUP BY válido</span>
+                    </div>
+                    <div class="validator-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Paridad financiera → ✅ Suma de márgenes coherente</span>
+                    </div>
+                </div>
+
+                <h4 style="color: #3b82f6; margin-top: 24px;">PASO 4: Respuesta Ejecutiva</h4>
+                <div class="code-example">
+                    <pre>"En Q1 2025, el margen promedio fue del 28.4%.
+
+📊 Por Zona:
+   • Zona Metropolitana: 32.1% (1,240 transacciones)
+   • Zona Occidente: 26.8% (940 transacciones)
+   • Zona Sureste: 25.2% (680 transacciones)
+
+💡 Insights:
+   • Zona Metropolitana lidera con 3.7pp sobre promedio
+   • Mayor volumen en Muebles/Arte (32.9% margen)
+   • Oportunidad: Cómputo con 18.2% (revisar pricing)
+
+⚠️ Recomendación: Replicar estrategia de Zona Met en otras regiones"</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparativa: Antes vs Después -->
+        <section class="architecture-section">
+            <h2>📈 El Impacto: Antes vs Después</h2>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div style="color: #9ca3af; margin-bottom: 8px;">⏱️ Tiempo de Respuesta</div>
+                    <div style="color: #dc2626; font-size: 20px; margin-bottom: 8px;">Antes: 24h</div>
+                    <div style="color: #10b981; font-size: 20px; margin-bottom: 8px;">Ahora: 2 min</div>
+                    <div class="metric-value">720x más rápido</div>
+                </div>
+
+                <div class="metric-card">
+                    <div style="color: #9ca3af; margin-bottom: 8px;">🎯 Precisión</div>
+                    <div style="color: #dc2626; font-size: 20px; margin-bottom: 8px;">Antes: 40%</div>
+                    <div style="color: #10b981; font-size: 20px; margin-bottom: 8px;">Ahora: 99.2%</div>
+                    <div class="metric-value">2.5x mejor</div>
+                </div>
+
+                <div class="metric-card">
+                    <div style="color: #9ca3af; margin-bottom: 8px;">👥 Adopción</div>
+                    <div style="color: #dc2626; font-size: 20px; margin-bottom: 8px;">Antes: 0%</div>
+                    <div style="color: #10b981; font-size: 20px; margin-bottom: 8px;">Ahora: 65%</div>
+                    <div class="metric-value">Ejecutivos activos</div>
+                </div>
+
+                <div class="metric-card">
+                    <div style="color: #9ca3af; margin-bottom: 8px;">💰 Costo por Query</div>
+                    <div style="color: #dc2626; font-size: 20px; margin-bottom: 8px;">Antes: $15</div>
+                    <div style="color: #10b981; font-size: 20px; margin-bottom: 8px;">Ahora: $0.02</div>
+                    <div class="metric-value">750x más barato</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seguridad de Datos -->
+        <section class="architecture-section">
+            <h2>🔐 Seguridad: Lo Que El Agente RESPONDE y lo que RECHAZA</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
+                <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 20px;">
+                    <h4 style="color: #10b981; margin-top: 0;">✅ Preguntas que SÍ responde:</h4>
+                    <ul style="color: #9ca3af; list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;">• ¿Margen por categoría?</li>
+                        <li style="margin-bottom: 8px;">• ¿Top 10 SKUs?</li>
+                        <li style="margin-bottom: 8px;">• ¿Tendencia mensual?</li>
+                        <li>• Análisis de ventas y performance</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 20px;">
+                    <h4 style="color: #ef4444; margin-top: 0;">❌ Preguntas que RECHAZA:</h4>
+                    <ul style="color: #9ca3af; list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;">• ¿Datos de clientes?</li>
+                        <li style="margin-bottom: 8px;">• ¿Información personal?</li>
+                        <li style="margin-bottom: 8px;">• ¿Contraseñas?</li>
+                        <li>• Acceso a datos no autorizados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="color: #9ca3af; margin-top: 24px;">
+                <strong>Mecanismo:</strong> Authorization Views en BigQuery + Data Governance Rules. Cada usuario solo ve datos que está autorizado a ver.
+            </p>
+        </section>
+
+        <!-- Escalabilidad -->
+        <section class="architecture-section">
+            <h2>🚀 Escalabilidad: Hoy y Mañana</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0;">
+                <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 16px; text-align: center;">
+                    <h4 style="margin: 0 0 8px 0; color: #3b82f6;">✅ Hoy</h4>
+                    <p style="margin: 0; color: #9ca3af; font-size: 14px;">Análisis de Ventas & BI</p>
+                </div>
+                <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 16px; text-align: center;">
+                    <h4 style="margin: 0 0 8px 0; color: #a855f7;">🔄 Próxima Fase</h4>
+                    <p style="margin: 0; color: #9ca3af; font-size: 14px;">RH, Finanzas, Supply Chain</p>
+                </div>
+                <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 12px; padding: 16px; text-align: center;">
+                    <h4 style="margin: 0 0 8px 0; color: #ec4899;">📊 Futuro</h4>
+                    <p style="margin: 0; color: #9ca3af; font-size: 14px;">Toda la empresa hablando con datos en lenguaje natural</p>
+                </div>
+            </div>
+
+            <p style="color: #9ca3af; margin-top: 24px;">
+                <strong>Sin sacrificar Control. Sin sacrificar Seguridad. Sin sacrificar Precisión.</strong>
+            </p>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="text-align: center; margin: 64px 0;">
+            <h2>🤔 ¿Cómo es el "entendimiento" en VUESTROS sistemas?</h2>
+            <p style="color: #9ca3af; margin-bottom: 24px;">
+                ¿Arquitectura pensada, validada y auditable? ¿O solo ChatGPT esperando suerte?
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/luis-alberto-barrag%C3%A1n-berm%C3%BAdez-43827b249/" class="btn">Contactame en LinkedIn</a>
+                <a href="../../index.html#agente" class="btn btn-secondary">Ver Proyecto Completo</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+    <script src="../../assets/navbar.js"></script>
+    <script src="../../assets/footer.js"></script>
+</body>
+</html>

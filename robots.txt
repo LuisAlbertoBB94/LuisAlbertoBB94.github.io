@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+# Sitemap
+Sitemap: https://luisalbertobb94.github.io/sitemap.xml
+
+# Crawl Delay (respeto a servidores)
+Crawl-delay: 1
