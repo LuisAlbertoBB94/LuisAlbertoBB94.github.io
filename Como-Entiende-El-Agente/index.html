@@ -426,6 +426,24 @@
             100% { transform: scale(1.4); opacity: 0; }
         }
 
+        /* Responsive Architecture Graph */
+        @media (max-width: 768px) {
+            .network-container {
+                height: 1600px; /* Mucho más espacio vertical para evitar amontonamiento */
+            }
+            .arch-node {
+                padding: 8px 12px;
+                min-width: 80px;
+            }
+            .arch-node span {
+                font-size: 0.65rem;
+                letter-spacing: 0.5px;
+            }
+            .arch-node i {
+                font-size: 1.2rem;
+            }
+        }
+
         /* Flow Details */
         .flow-details {
             display: grid;
@@ -844,25 +862,27 @@
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // Layout Vertical para Móvil - Más aire
+                // Layout Vertical Optimizado para Móvil - Sin Overlaps
                 architectureNodes = {
+                    // Preguntas - Espaciado vertical holgado (10% de 1600px)
                     'q-financial': { x: 50, y: 5, label: 'Financiero', icon: 'fa-chart-line', isQuestion: true, topic: 'financial' },
-                    'q-strategic': { x: 50, y: 12, label: 'Estrategia', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
-                    'q-customer':  { x: 50, y: 19, label: 'Clientes', icon: 'fa-users', isQuestion: true, topic: 'customer' },
-                    'q-inventory': { x: 50, y: 26, label: 'Inventario', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
-                    'q-trend':     { x: 50, y: 33, label: 'Tendencias', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
-                    'q-conceptual':{ x: 50, y: 40, label: 'Conceptos', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
+                    'q-strategic': { x: 50, y: 14, label: 'Estrategia', icon: 'fa-bullseye', isQuestion: true, topic: 'strategic' },
+                    'q-customer':  { x: 50, y: 23, label: 'Clientes', icon: 'fa-users', isQuestion: true, topic: 'customer' },
+                    'q-inventory': { x: 50, y: 32, label: 'Inventario', icon: 'fa-boxes', isQuestion: true, topic: 'inventory' },
+                    'q-trend':     { x: 50, y: 41, label: 'Tendencias', icon: 'fa-chart-area', isQuestion: true, topic: 'trend' },
+                    'q-conceptual':{ x: 50, y: 50, label: 'Conceptos', icon: 'fa-book-open', isQuestion: true, topic: 'conceptual' },
 
-                    'ui':   { x: 50, y: 55, label: 'UI Agent', icon: 'fa-desktop' },
-                    'llm':  { x: 50, y: 68, label: 'Orchestrator', icon: 'fa-brain' },
+                    'ui':   { x: 50, y: 65, label: 'UI Agent', icon: 'fa-desktop' },
+                    'llm':  { x: 50, y: 75, label: 'Orchestrator', icon: 'fa-brain' },
                     
-                    'sql':      { x: 30, y: 80, label: 'SQL', icon: 'fa-database' },
-                    'viz':      { x: 50, y: 80, label: 'Viz', icon: 'fa-chart-pie' },
-                    'table':    { x: 70, y: 80, label: 'Table', icon: 'fa-table' },
-                    'research': { x: 90, y: 80, label: 'Research', icon: 'fa-search' },
+                    // Agentes en grilla (2x2) para ganar ancho
+                    'sql':      { x: 30, y: 86, label: 'SQL', icon: 'fa-database' },
+                    'viz':      { x: 70, y: 86, label: 'Viz', icon: 'fa-chart-pie' },
+                    'table':    { x: 30, y: 92, label: 'Table', icon: 'fa-table' },
+                    'research': { x: 70, y: 92, label: 'Research', icon: 'fa-search' },
 
-                    'audit':  { x: 40, y: 92, label: 'Auditor', icon: 'fa-shield-alt' },
-                    'output': { x: 70, y: 92, label: 'Salida', icon: 'fa-check-circle' } 
+                    'audit':  { x: 50, y: 97, label: 'Auditor', icon: 'fa-shield-alt' },
+                    'output': { x: 50, y: 101, label: 'Salida', icon: 'fa-check-circle' } 
                 };
             } else {
                 // Layout de 4 Zonas Estégicas (Desktop) - MUCHO MÁS ESPACIO
