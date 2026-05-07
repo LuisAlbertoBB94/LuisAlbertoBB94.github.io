@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retention & Cohort Analytics | Lifecycle Modeling for E-commerce">
+    <meta name="keywords" content="Customer Analytics, Retention, Cohort, Churn, LTV">
+    <title>Retention & Cohort Economics | Luis Barragan, PhD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/premium-style.css">
+    <style>
+        main { padding-top: 40px; }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--accent);
+            background: rgba(59,130,246,0.08);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(59,130,246,0.3);
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(59,130,246,0.15);
+            border-color: var(--accent);
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            margin: 20px 0 15px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--text-main) 0%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p.lead {
+            font-size: 1.15rem;
+            color: var(--text-dim);
+            max-width: 900px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        /* Dashboard Shell */
+        .db-shell {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(59,130,246,0.1);
+            margin: 40px 0 60px;
+        }
+
+        .db-topbar {
+            background: rgba(59,130,246,0.05);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .db-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .db-badge {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .db-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+
+        .filter-chip strong {
+            color: var(--text-main);
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .kpi-box {
+            background: rgba(59,130,246,0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 14px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .kpi-box:hover {
+            border-color: var(--accent);
+            background: rgba(59,130,246,0.1);
+        }
+
+        .kpi-box.highlighted {
+            border-color: var(--accent);
+            background: rgba(59,130,246,0.12);
+            box-shadow: 0 0 20px rgba(59,130,246,0.2);
+        }
+
+        .kpi-label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .kpi-value {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .kpi-value.gold { color: #fbbf24; }
+        .kpi-value.green { color: #10b981; }
+
+        .chart-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 10px;
+        }
+
+        .chart-box-title {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 50px 0 20px;
+        }
+
+        .section-desc {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            max-width: 800px;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .challenge-card {
+            background: rgba(30,41,59,0.5);
+            padding: 28px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .challenge-card:hover {
+            border-color: rgba(59,130,246,0.5);
+            background: rgba(30,41,59,0.7);
+        }
+
+        .c-num {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .challenge-card h3 {
+            color: var(--text-main);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .challenge-card p {
+            color: var(--text-dim);
+            font-size: 0.92rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body id="home">
+    <nav id="navbar"></nav>
+
+    <main class="container">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+
+        <header>
+            <span class="section-tag">Cohort Economics · Lifecycle Analysis</span>
+            <h1>Retention & Cohort Analytics</h1>
+            <p class="lead">
+                Framework analítico para medir la salud a largo plazo del negocio. Análisis de cohortes mensuales para identificar la velocidad de caída de retención (Churn Velocity) y el momento óptimo para intervenciones estratégicas.
+            </p>
+        </header>
+
+        <div class="db-shell">
+            <div class="db-topbar">
+                <span class="db-title"><i class="fas fa-calendar-alt" style="color:#10b981;margin-right:8px;"></i>Customer Retention Heatmap</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <span class="db-badge">AÑO FISCAL: 2025</span>
+                    <span class="db-badge">SIMULACIÓN — Datos Anonimizados</span>
+                </div>
+            </div>
+            <div class="db-body">
+                <div class="filter-bar">
+                    <div class="filter-chip"><strong>Métrica:</strong> Retención Acumulada (%)</div>
+                    <div class="filter-chip"><strong>Agrupación:</strong> Mes de Adquisición</div>
+                    <div class="filter-chip"><strong>Canal:</strong> Todos los canales</div>
+                </div>
+
+                <div class="kpi-row">
+                    <div class="kpi-box">
+                        <div class="kpi-label">Nuevos Clientes 2025</div>
+                        <div class="kpi-value gold">12.4k</div>
+                    </div>
+                    <div class="kpi-box">
+                        <div class="kpi-label">Retención M1 Promedio</div>
+                        <div class="kpi-value">21.3%</div>
+                    </div>
+                    <div class="kpi-box">
+                        <div class="kpi-label">Retención M6 Promedio</div>
+                        <div class="kpi-value" style="font-size:0.95rem;">8.5%</div>
+                    </div>
+                    <div class="kpi-box highlighted">
+                        <div class="kpi-label">LTV a 12 Meses</div>
+                        <div class="kpi-value green" style="font-size:1rem;">$1,850</div>
+                    </div>
+                </div>
+
+                <div class="chart-box">
+                    <div class="chart-box-title">Heatmap de Retención por Cohorte Mensual</div>
+                    <div>                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="ca55f578-3b86-4751-97da-5a7cc995f61e" class="plotly-graph-div" style="height:550px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("ca55f578-3b86-4751-97da-5a7cc995f61e")) {                    Plotly.newPlot(                        "ca55f578-3b86-4751-97da-5a7cc995f61e",                        [{"colorscale":[[0.0,"rgba(2, 6, 23, 0)"],[0.1,"rgba(59, 130, 246, 0.2)"],[0.3,"rgba(59, 130, 246, 0.5)"],[0.6,"rgba(59, 130, 246, 0.8)"],[1.0,"rgba(59, 130, 246, 1.0)"]],"hoverinfo":"text","showscale":false,"text":[["100.0%","20.2%","18.0%","15.3%","12.5%","9.1%","6.7%","4.8%","4.2%","3.4%","2.9%","2.0%"],["100.0%","23.0%","17.1%","12.6%","9.3%","7.0%","5.7%","4.5%","3.4%","2.8%","2.0%",""],["100.0%","20.2%","16.0%","13.7%","10.1%","8.1%","6.7%","4.7%","3.9%","2.8%","",""],["100.0%","23.7%","21.2%","18.2%","13.9%","10.0%","8.4%","6.6%","4.8%","","",""],["100.0%","18.2%","16.1%","12.1%","10.0%","7.7%","6.2%","5.0%","","","",""],["100.0%","23.8%","20.4%","18.1%","15.9%","13.0%","11.5%","","","","",""],["100.0%","19.2%","13.6%","10.4%","8.1%","6.1%","","","","","",""],["100.0%","20.1%","15.2%","12.3%","9.0%","","","","","","",""],["100.0%","18.4%","16.6%","14.1%","","","","","","","",""],["100.0%","18.0%","15.6%","","","","","","","","",""],["100.0%","22.4%","","","","","","","","","",""],["100.0%","","","","","","","","","","",""]],"texttemplate":"%{text}","x":["Mes 0","Mes 1","Mes 2","Mes 3","Mes 4","Mes 5","Mes 6","Mes 7","Mes 8","Mes 9","Mes 10","Mes 11"],"xgap":4,"y":["Ene 2025","Feb 2025","Mar 2025","Abr 2025","May 2025","Jun 2025","Jul 2025","Ago 2025","Sep 2025","Oct 2025","Nov 2025","Dic 2025"],"ygap":4,"z":[[100.0,20.247240713084175,18.02293678140981,15.254591854515253,12.504672465494389,9.143463125294954,6.685690216594896,4.757648959139911,4.154546679073526,3.4076547505072665,2.8679317020412105,2.0193591761811307],[100.0,22.99465584480253,17.07279204584945,12.571806402868658,9.261409680266137,7.046529187004564,5.6721127332161805,4.460487081309175,3.3821457204272516,2.7813771341823403,2.0245610008029193,null],[100.0,20.19817105976215,15.981075653121248,13.696344245191666,10.134401143070226,8.136372416242155,6.65948180278333,4.723504397596451,3.8804012342562215,2.8486212679846803,null,null],[100.0,23.69331322352,21.16112370012399,18.23410584655572,13.87474603447411,9.983357379429632,8.354538732496666,6.583631324178166,4.769232876059015,null,null,null],[100.0,18.20633112669131,16.055509456784396,12.069825508110188,10.048183529154556,7.6601544905315215,6.158868420933475,4.984631229622841,null,null,null,null],[100.0,23.81750776658735,20.36460184471917,18.08172566700138,15.893212500853458,13.025759034097492,11.51965365289906,null,null,null,null,null],[100.0,19.175897174514873,13.596582790486522,10.402284108636383,8.090225194830419,6.102212591071296,null,null,null,null,null,null],[100.0,20.140519960161534,15.229997392084451,12.314050160698029,8.966904707527965,null,null,null,null,null,null,null],[100.0,18.447303862078623,16.55419334285217,14.144713183785147,null,null,null,null,null,null,null,null],[100.0,18.033132702741614,15.564257722577782,null,null,null,null,null,null,null,null,null],[100.0,22.374043008245923,null,null,null,null,null,null,null,null,null,null],[100.0,null,null,null,null,null,null,null,null,null,null,null]],"type":"heatmap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"margin":{"l":80,"r":20,"t":20,"b":40},"xaxis":{"tickfont":{"size":11,"family":"Inter"},"showgrid":false,"zeroline":false,"color":"#94a3b8"},"yaxis":{"tickfont":{"size":12,"family":"Outfit","weight":"bold"},"showgrid":false,"zeroline":false,"autorange":"reversed","color":"#f8fafc"},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":550},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Insights Estratégicos & Casos de Uso</h2>
+        <p class="section-desc">
+            El análisis de cohortes permite aislar el impacto de campañas estacionales y medir la eficacia real de las estrategias de onboarding y win-back.
+        </p>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <span class="c-num">01 · Caída Crítica (Mes 1)</span>
+                <h3>El Precipicio del Onboarding</h3>
+                <p><strong>Insight:</strong> La caída más drástica ocurre del Mes 0 al Mes 1 (78% churn).</p>
+                <p><strong>Acción:</strong> Implementar un flujo de "Post-Purchase" en los primeros 15 días, incentivando una segunda compra con envíos gratis inmediatos para anclar la retención.</p>
+            </div>
+            <div class="challenge-card">
+                <span class="c-num">02 · Estabilización (Mes 4-6)</span>
+                <h3>El "Core" Leal</h3>
+                <p><strong>Insight:</strong> Las cohortes tienden a estabilizar su caída alrededor del Mes 4 (reteniendo un 8-10% base).</p>
+                <p><strong>Acción:</strong> Los clientes que superan el Mes 4 tienen 5x más probabilidad de permanecer 2 años. Se activa el programa VIP a partir del 5to mes.</p>
+            </div>
+            <div class="challenge-card">
+                <span class="c-num">03 · Estacionalidad</span>
+                <h3>Cohortes de Alto Valor</h3>
+                <p><strong>Insight:</strong> Las cohortes adquiridas en Noviembre y Diciembre muestran un AOV más alto pero una retención M1 mucho más débil (compradores de regalos).</p>
+                <p><strong>Acción:</strong> Desvincular la expectativa de retención en Q4 y enfocar el presupuesto de fidelización en Q1-Q2.</p>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:50px;margin-bottom:50px;">
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+    <script src="../assets/navbar.js"></script>
+    <script src="../assets/footer.js"></script>
+</body>
+</html>
